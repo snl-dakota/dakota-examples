@@ -1,0 +1,11 @@
+# Dakota restart files
+dakota.rst
+
+# LHS Sampling output
+LHS_[123456789].out
+LHS_samples.out
+LHS_distributions.out
+
+# Potential python cruft
+__pycache__/
+*.py[cod]
