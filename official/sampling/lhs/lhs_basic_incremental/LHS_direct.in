@@ -1,0 +1,30 @@
+# Regular (uncorrelated LHS example) with 80 final samples via refinement
+#
+# Uses direct rosenbrock driver. See other example for custom drivers
+
+environment
+	tabular_data
+		tabular_data_file = 'LHS_direct.dat' # Save the evaluations in a txt file
+ 		custom_annotated header # Tells Dakota to print the descriptors at the top
+
+method
+	sampling
+	    sample_type = lhs
+	        samples = 80 
+        seed = 548745 # Set a seed for repeatability with the same Dakota version
+        
+model single # This is the default.
+
+variables,
+	uniform_uncertain =  2
+	lower_bounds    =    -2.0   -2.0    
+	upper_bounds    =    +2.0   +2.0    
+	descriptors     =    'x1'   'x2' 
+
+interface
+	direct analysis_driver = 'rosenbrock'
+
+responses
+	response_functions = 1
+	descriptors = 'rosen' # This is optional but is good practice
+	no_gradients no_hessians
