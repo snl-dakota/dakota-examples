@@ -1,0 +1,76 @@
+# Create  surrogate all at once
+# This will use use 40 real points to build a surrogate from which we will
+# sample it 1000 times. Note that it will use refinement LHS
+
+# See also the two-part examples:
+
+environment
+	top_method_pointer = 'method_surrogate' # VERY IMPORTANT
+	tabular_data
+		tabular_data_file = 'surrogate_values_ex1.dat'
+        custom_annotated header
+        
+variables,
+	uniform_uncertain =  2
+	lower_bounds    =    -2.0   -2.0    
+	upper_bounds    =    +2.0   +2.0    
+	descriptors     =    'x1'   'x2'    
+##############################
+# "Real" model -- rosebrock
+
+method,
+    id_method = 'method_real'
+    model_pointer = 'model_real'
+	sampling
+	    sample_type = lhs
+        samples = 40 
+        seed = 4572
+
+model
+    single
+    id_model = 'model_real'
+    interface_pointer = 'interface_real'
+
+interface
+	id_interface = 'interface_real'
+	direct
+	analysis_driver = 'rosenbrock'
+	
+
+responses
+    response_functions = 1
+	descriptors = 'rosen'
+	no_gradients no_hessians
+
+##########################
+### Surrogate
+
+method
+  	id_method = 'method_surrogate'
+  	model_pointer = 'model_surrogate'
+	sampling
+	  sample_type lhs
+	  samples = 1000 
+	  seed = 6347
+      
+model
+	id_model = 'model_surrogate'
+	dace_method_pointer = 'method_real'
+	surrogate global    
+        # polynomial quadratic		
+        # neural_network		
+        gaussian_process surfpack trend quadratic
+        # mars
+    metrics =
+          'sum_squared'
+          'mean_squared' 
+          'root_mean_squared' 
+          'sum_abs' 
+          'mean_abs' 
+          'max_abs' 
+          'rsquared' 
+        # press
+        # cross_validation
+	 
+
+

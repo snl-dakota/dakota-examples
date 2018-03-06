@@ -1,5 +1,6 @@
 # Dakota restart files
 dakota.rst
+fort.*
 
 # LHS Sampling output
 LHS_[123456789].out

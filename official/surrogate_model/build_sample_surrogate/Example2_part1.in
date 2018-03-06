@@ -1,0 +1,33 @@
+# Example 2, Part 1
+#   Part 1: Build Model Value
+#   Part 2: Build Surrogate
+
+environment
+	tabular_data
+		tabular_data_file = 'model_values_ex2.dat'
+        custom_annotated header
+        output_precision = 16 # optional but good idea since data is copied
+        
+variables,
+	uniform_uncertain =  2
+	lower_bounds    =    -2.0   -2.0    
+	upper_bounds    =    +2.0   +2.0    
+	descriptors     =    'x1'   'x2'    
+
+method,
+	sampling
+	    sample_type = lhs
+        samples = 40 
+        seed = 4572
+
+model
+    single
+
+interface
+	direct
+	analysis_driver = 'rosenbrock'
+	
+responses
+    response_functions = 1
+	descriptors = 'rosen'
+	no_gradients no_hessians

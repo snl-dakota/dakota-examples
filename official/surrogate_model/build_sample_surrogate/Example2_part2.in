@@ -1,0 +1,46 @@
+# Example 2, Part 2
+#   Part 1: Build Model Value
+#   Part 2: Build Surrogate
+
+
+environment,
+	tabular_data
+		tabular_data_file = 'surrogate_values_ex2.dat'
+        custom_annotated header
+        
+variables,
+	uniform_uncertain =  2
+	lower_bounds    =    -2.0   -2.0    
+	upper_bounds    =    +2.0   +2.0    
+	descriptors     =    'x1'   'x2'
+
+method
+  	sampling
+	  sample_type lhs
+	  samples = 1000 
+	  seed = 6347
+      
+model
+	surrogate global    
+        # polynomial quadratic		
+        # neural_network		
+        gaussian_process surfpack trend quadratic
+        # mars
+    metrics =
+          'sum_squared'
+          'mean_squared' 
+          'root_mean_squared' 
+          'sum_abs' 
+          'mean_abs' 
+          'max_abs' 
+          'rsquared' 
+        # press
+        # cross_validation
+    import_build_points_file = 'model_values_ex2.dat'
+        custom_annotated header
+        
+    
+responses
+    response_functions = 1
+	descriptors = 'rosen'
+	no_gradients no_hessians
