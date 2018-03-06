@@ -1,0 +1,60 @@
+# LHS with correlations. Note that these samples need not all come 
+# from a normal distribution
+
+environment
+	tabular_data
+		tabular_data_file = 'samples.dat'
+		custom_annotated header
+
+method,
+	sampling
+	    sample_type = lhs
+	        samples = 500
+        seed = 548745
+        
+model,
+	single
+
+variables
+    # For this example, include three different distributions
+    # Note the order of these coincide with the "Dakota Order"
+	
+	normal_uncertain = 2
+	means           =    0.0     -6.0   
+	std_deviations  =   +1.0     +2.5
+	descriptors     =   'N1'     'N2'
+	
+	uniform_uncertain = 2
+	lower_bounds    =    0.0    +3.0    
+	upper_bounds    =   +1.0    +6.0 
+	descriptors     =    'U1'   'U2'
+	
+	triangular_uncertain = 2
+	modes           =    0.0    -3.0
+	lower_bounds    =   -1.0    -8.0
+	upper_bounds    =   +1.0    -1.0
+    descriptors     =    'T1'   'T2'
+	
+	
+	# Specify the correlation matrix. Because we set the variables in Dakota
+	# order, the order is preserved in this matrix
+	
+	uncertain_correlation_matrix
+	   # N1    N2    U1    U2    T1    T1
+        +1.0   0.0  +0.8   0.0  -0.6   0.0 # N1
+         0.0  +1.0   0.0   0.0   0.0   0.0 # N2
+        +0.8   0.0  +1.0  +0.7   0.0   0.0 # U1
+         0.0   0.0  +0.7  +1.0   0.0  +0.9 # U2
+        -0.6   0.0   0.0   0.0  +1.0   0.0 # T1
+         0.0   0.0   0.0  +0.9   0.0  +1.0 # T2
+
+
+interface
+	fork
+	analysis_driver = "python return_random.py"
+	asynchronous evaluation_concurrency = 20
+
+responses
+	response_functions = 1
+	descriptors 'random'
+	no_gradients no_hessians
