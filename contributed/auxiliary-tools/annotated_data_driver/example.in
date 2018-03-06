@@ -1,0 +1,37 @@
+# Example study to just return "fun1" and "fun4" at two points
+
+environment
+
+method
+  list_parameter_study
+    list_of_points =
+        0.5  0.5 
+        0.25 0.5 
+
+model single
+
+variables,
+	uniform_uncertain   =  2
+	    lower_bounds    =    0   0    
+	    upper_bounds    =    1   1    
+	    descriptors     =    'x' 'y' # Must match those in data.csv    
+	
+## To set some fixed variables, you can use continuos_state as below (commented)
+## or add `--set "param=val"` to the analysis_driver. If you set
+## the variable with continuous state, in *this* example, you would also need
+## to add that to the list_of_points
+
+
+# 	continuous_state  = 1
+# 	    initial_state = 0.75
+# 	    descriptors   = 'z'
+	
+interface
+	analysis_driver = 'python annotated_data_driver.py -v --set "z=0.75" data.csv'
+	fork asynchronous evaluation_concurrency 10
+	file_tag file_save
+
+responses
+	response_functions = 2
+	descriptors "fun1" "fun4" # REQUIRED
+	no_gradients no_hessians
