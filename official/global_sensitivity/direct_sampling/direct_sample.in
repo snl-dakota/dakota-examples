@@ -1,0 +1,37 @@
+# Global Sensitivity via Direct Sampling
+
+environment,
+	tabular_data
+		tabular_data_file = 'samples.dat'
+        custom_annotated header
+
+
+method
+    output normal
+	sampling
+	  samples = 1000
+	  seed = 6347
+	  sample_type lhs
+      variance_based_decomp 
+
+variables,
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159    
+	upper_bounds    =    +3.14159 +3.14159 +3.14159    
+	descriptors     =    'x'      'y'      'z'
+
+    
+model single
+
+interface
+    fork
+    analysis_driver = 'python ../Ishigami.py'
+    asynchronous evaluation_concurrency = 20
+
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians
+
