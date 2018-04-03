@@ -1,0 +1,56 @@
+# Build and Sample a surrogate with EXISTING data
+
+environment
+	tabular_data
+        tabular_data_file = 'surrogate_evals.dat'          # Save the evaluations in a txt file
+
+variables
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159    
+	upper_bounds    =    +3.14159 +3.14159 +3.14159    
+	descriptors     =    'x'      'y'      'z'
+
+#############
+# This is the only part that changes between the PCE and the sampling methods
+method
+	polynomial_chaos
+	    askey
+	    ############# This works for low-dimensions
+	    #quadrature_order = 15
+     	#non_nested
+     	
+     	############ This may be useful for either higher dimensions 
+     	#            or if higher order PCEs are desired
+     	sparse_grid_level = 8
+     	nested         
+     	
+     	variance_based_decomp
+
+############
+
+model
+	surrogate global    
+        # polynomial quadratic		
+        # neural_network		
+        gaussian_process surfpack trend quadratic
+        # mars
+        metrics =
+              'sum_squared'
+              'mean_squared' 
+              'root_mean_squared' 
+              'sum_abs' 
+              'mean_abs' 
+              'max_abs' 
+              'rsquared' 
+             # press               # These are slow so I'll leave them out for now
+             # cross_validation
+    import_build_points_file = 'existing_data.dat'
+        custom_annotated header
+
+## Notice: no interface block
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians

@@ -1,0 +1,33 @@
+# This is just a helper that was used to generate the "existing" data
+
+environment
+    tabular_data
+        tabular_data_file = 'existing_data.dat'          # Save the evaluations in a txt file
+        custom_annotated header
+        
+variables
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159    
+	upper_bounds    =    +3.14159 +3.14159 +3.14159    
+	descriptors     =    'x'      'y'      'z'
+
+
+method 
+    sampling
+	    sample_type = lhs
+        samples = 50
+        seed = 12345
+
+model single
+    
+interface
+	fork
+    analysis_driver = 'python ../../Ishigami.py'
+    asynchronous evaluation_concurrency = 20
+
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians

@@ -1,0 +1,87 @@
+# Build and Sample a surrogate with direct calls to the interface
+#
+# Note that this is a more complex study because you need to call the interface
+# itself inside the Dakota run
+
+
+environment
+	top_method_pointer = 'method_surrogate' # Important
+    tabular_data
+        tabular_data_file = 'surrogate_evals.dat'          # Save the evaluations in a txt file
+
+variables
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159    
+	upper_bounds    =    +3.14159 +3.14159 +3.14159    
+	descriptors     =    'x'      'y'      'z'
+
+######################################
+## Sample the actual ("real") model ##
+## with 50 LHS samples              ##
+######################################
+
+method 
+    id_method = 'method_real'
+    model_pointer = 'model_real'
+	sampling
+	    sample_type = lhs
+        samples = 50
+        seed = 12345
+
+model
+    id_model = 'model_real'
+    single
+    interface_pointer = 'interface_real'
+
+interface
+	id_interface = 'interface_real'
+	
+    fork
+    analysis_driver = 'python ../../Ishigami.py'
+    asynchronous evaluation_concurrency = 20
+
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians
+
+######################################
+## Build the surrogate and perform  ##
+## variance based decomposition     ##
+## with 10,000 (really 50,000)      ##
+## LHS samples                      ##
+######################################
+        
+method
+  	id_method = 'method_surrogate'
+  	model_pointer = 'model_surrogate'
+	sampling
+	  samples = 10000 
+	  seed = 54321
+	  sample_type lhs
+	variance_based_decomp
+ 
+
+model
+	id_model = 'model_surrogate'
+	dace_method_pointer = 'method_real'
+	surrogate global    
+        # polynomial quadratic		
+        # neural_network		
+        gaussian_process surfpack trend quadratic
+        # mars
+        metrics =
+              'sum_squared'
+              'mean_squared' 
+              'root_mean_squared' 
+              'sum_abs' 
+              'mean_abs' 
+              'max_abs' 
+              'rsquared' 
+#               press
+#               cross_validation
+
+
+	 
