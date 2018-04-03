@@ -1,0 +1,36 @@
+# Under-sampled PCE
+
+environment
+
+variables
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159    
+	upper_bounds    =    +3.14159 +3.14159 +3.14159    
+	descriptors     =    'x'      'y'      'z'
+
+
+method,
+	polynomial_chaos
+	    askey
+
+        expansion_order = 3
+            basis_type total_order
+                import_build_points_file='existing_data.dat'
+                    custom_annotated header
+                    
+        # Tell Dakota to not use any additional points
+        collocation_points = 0
+        
+        variance_based_decomp
+
+model single
+
+interface
+	analysis_driver = '' # None needed
+	direct
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians
