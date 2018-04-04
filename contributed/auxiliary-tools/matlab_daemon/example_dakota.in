@@ -1,0 +1,32 @@
+# Create a PCE on the Matlab implemented Rosenbrock function
+
+environment
+
+method,
+	polynomial_chaos
+	    askey
+	    sparse_grid_level = 2
+          dimension_adaptive p_refinement generalized              
+            convergence_tol = 1.e-4
+
+
+model,
+	single
+
+variables,
+	continuous_design =  2
+	initial_point   =    -1.0    0.0
+	lower_bounds    =    -2.0   -2.0    
+	upper_bounds    =    +2.0   +2.0    
+	descriptors     =    'x1'   'x2'  
+	 
+interface
+    analysis_driver = 'python send_to_matlab.py'
+    fork 
+        asynchronous evaluation_concurrency = 20
+
+
+responses
+	objective_functions = 1
+	no_gradients
+	no_hessians
