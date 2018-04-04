@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Dummy code that is designed to fail the first time `param1=3` is run.
+
+It does this by writing a temp file when param1=2 is run and then failing on the
+next run
+"""
+from __future__ import division, print_function, unicode_literals, absolute_import
+
+import os
+import sys
+
+input,output = sys.argv[1:]
+
+with open(input) as F:
+    F.readline()
+    param = F.readline() # Second line
+
+param = param.replace('{','').replace('}','').replace('=',' ')
+plist = param.split()
+try:
+    param = float(plist[0])
+except ValueError:
+    param = float(plist[1])
+
+val = param**2 + 1.5
+
+
+if param == 2:
+    with open('.failed_dakota','w') as F:
+        F.write('fail next')
+        
+if param==3 and os.path.exists('.failed_dakota'):
+    os.remove('.failed_dakota') # Remove it so the next one runs
+    sys.exit()
+    #sys.exit(2) # With error
+
+
+with open(output,'w') as F:
+    F.write('{:16e}'.format(val))
