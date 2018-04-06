@@ -1,0 +1,3855 @@
+Dakota version 6.7 released Nov 15 2017.
+Repository revision 0616ac7 (2017-11-10) built Nov 13 2017 03:30:07.
+Running MPI Dakota executable in serial mode.
+Start time: Fri Apr  6 12:00:59 2018
+
+-----------------------
+Begin DAKOTA input file
+dakota_cal.in
+-----------------------
+
+method
+  nl2sol
+
+
+variables
+  continuous_design 2
+    descriptors  'E0'      'Es'
+    lower_bounds 28e6  -10000.0
+    upper_bounds 32e6       0.0
+
+  continuous_state 1
+    descriptors     'Y'
+
+responses
+  descriptors 'displacement'
+  calibration_terms 1
+    field_calibration_terms 1
+      lengths 12
+      read_field_coordinates
+      num_coordinates_per_field 1
+    calibration_data 
+      num_experiments 2
+      num_config_variables 1
+      experiment_variance_type 'scalar'
+      interpolate
+    numerical_gradients
+    no_hessians
+    
+interface
+  fork
+    analysis_driver 'python cantilever.py'
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_save file_tag
+    analysis_components '12'
+---------------------
+End DAKOTA input file
+---------------------
+
+Using Dakota input file 'dakota_cal.in'
+Writing new restart file 'dakota.rst'.
+Reading scalar cov from displacement
+Reading scalar cov from displacement
+
+>>>>> Executing environment.
+
+>>>>> Running nl2sol iterator.
+
+NONDEFAULT VALUES...
+
+RFCTOL.... V(32) = 0.0001000000
+XCTOL..... V(33) = 1.000000e-05
+XFTOL..... V(34) = 1.000000e-08
+
+---------------------
+Begin Evaluation    1
+---------------------
+Parameters for evaluation 1:
+                      2.8000000000e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.1 results.out.1
+
+Active response data for evaluation 1:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7724867725e+00 displacement_1
+                      6.7724867725e+00 displacement_2
+                      6.7724867725e+00 displacement_3
+                      6.7724867725e+00 displacement_4
+                      6.7724867725e+00 displacement_5
+                      6.7724867725e+00 displacement_6
+                      6.7724867725e+00 displacement_7
+                      6.7724867725e+00 displacement_8
+                      6.7724867725e+00 displacement_9
+                      6.7724867725e+00 displacement_10
+                      6.7724867725e+00 displacement_11
+                      6.7724867725e+00 displacement_12
+
+
+sim_values                       6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+                      6.7724867725e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation    2
+---------------------
+Parameters for evaluation 2:
+                      2.8000000000e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.2 results.out.2
+
+Active response data for evaluation 2:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0158730159e+01 displacement_1
+                      1.0158730159e+01 displacement_2
+                      1.0158730159e+01 displacement_3
+                      1.0158730159e+01 displacement_4
+                      1.0158730159e+01 displacement_5
+                      1.0158730159e+01 displacement_6
+                      1.0158730159e+01 displacement_7
+                      1.0158730159e+01 displacement_8
+                      1.0158730159e+01 displacement_9
+                      1.0158730159e+01 displacement_10
+                      1.0158730159e+01 displacement_11
+                      1.0158730159e+01 displacement_12
+
+
+sim_values                       1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+                      1.0158730159e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    3
+---------------------
+Parameters for evaluation 3:
+                      2.8028000000e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.3 results.out.3
+
+Active response data for evaluation 3:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7657210514e+00 displacement_1
+                      6.7657210514e+00 displacement_2
+                      6.7657210514e+00 displacement_3
+                      6.7657210514e+00 displacement_4
+                      6.7657210514e+00 displacement_5
+                      6.7657210514e+00 displacement_6
+                      6.7657210514e+00 displacement_7
+                      6.7657210514e+00 displacement_8
+                      6.7657210514e+00 displacement_9
+                      6.7657210514e+00 displacement_10
+                      6.7657210514e+00 displacement_11
+                      6.7657210514e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation    4
+---------------------
+Parameters for evaluation 4:
+                      2.8000000000e+07 E0
+                     -1.0000000000e-05 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.4 results.out.4
+
+Active response data for evaluation 4:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7724867724e+00 displacement_1
+                      6.7724867726e+00 displacement_2
+                      6.7724867727e+00 displacement_3
+                      6.7724867728e+00 displacement_4
+                      6.7724867729e+00 displacement_5
+                      6.7724867730e+00 displacement_6
+                      6.7724867731e+00 displacement_7
+                      6.7724867732e+00 displacement_8
+                      6.7724867734e+00 displacement_9
+                      6.7724867735e+00 displacement_10
+                      6.7724867736e+00 displacement_11
+                      6.7724867737e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.4163289469e-07  4.8374637629e-06 ] displacement_1 gradient
+ [ -2.4163289469e-07 -6.5964123053e-06 ] displacement_2 gradient
+ [ -2.4163289469e-07 -1.8030466009e-05 ] displacement_3 gradient
+ [ -2.4163289469e-07 -2.9464697349e-05 ] displacement_4 gradient
+ [ -2.4163289469e-07 -4.0898751053e-05 ] displacement_5 gradient
+ [ -2.4163289469e-07 -5.2332804756e-05 ] displacement_6 gradient
+ [ -2.4163289469e-07 -6.3766769642e-05 ] displacement_7 gradient
+ [ -2.4163289469e-07 -7.5200912164e-05 ] displacement_8 gradient
+ [ -2.4163289469e-07 -8.6634965868e-05 ] displacement_9 gradient
+ [ -2.4163289469e-07 -9.8069108390e-05 ] displacement_10 gradient
+ [ -2.4163289469e-07 -1.0950316209e-04 ] displacement_11 gradient
+ [ -2.4163289469e-07 -1.2093730462e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    5
+---------------------
+Parameters for evaluation 5:
+                      2.8028000000e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.5 results.out.5
+
+Active response data for evaluation 5:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0148581577e+01 displacement_1
+                      1.0148581577e+01 displacement_2
+                      1.0148581577e+01 displacement_3
+                      1.0148581577e+01 displacement_4
+                      1.0148581577e+01 displacement_5
+                      1.0148581577e+01 displacement_6
+                      1.0148581577e+01 displacement_7
+                      1.0148581577e+01 displacement_8
+                      1.0148581577e+01 displacement_9
+                      1.0148581577e+01 displacement_10
+                      1.0148581577e+01 displacement_11
+                      1.0148581577e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation    6
+---------------------
+Parameters for evaluation 6:
+                      2.8000000000e+07 E0
+                     -1.0000000000e-05 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.6 results.out.6
+
+Active response data for evaluation 6:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0158730159e+01 displacement_1
+                      1.0158730159e+01 displacement_2
+                      1.0158730159e+01 displacement_3
+                      1.0158730159e+01 displacement_4
+                      1.0158730159e+01 displacement_5
+                      1.0158730160e+01 displacement_6
+                      1.0158730160e+01 displacement_7
+                      1.0158730160e+01 displacement_8
+                      1.0158730160e+01 displacement_9
+                      1.0158730160e+01 displacement_10
+                      1.0158730160e+01 displacement_11
+                      1.0158730161e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.6244934204e-07  7.2562400533e-06 ] displacement_1 gradient
+ [ -3.6244934204e-07 -9.8946628668e-06 ] displacement_2 gradient
+ [ -3.6244934204e-07 -2.7045743423e-05 ] displacement_3 gradient
+ [ -3.6244934204e-07 -4.4197179250e-05 ] displacement_4 gradient
+ [ -3.6244934204e-07 -6.1348259806e-05 ] displacement_5 gradient
+ [ -3.6244934204e-07 -7.8499340361e-05 ] displacement_6 gradient
+ [ -3.6244934204e-07 -9.5650243281e-05 ] displacement_7 gradient
+ [ -3.6244934204e-07 -1.1280150147e-04 ] displacement_8 gradient
+ [ -3.6244934204e-07 -1.2995258203e-04 ] displacement_9 gradient
+ [ -3.6244934204e-07 -1.4710366258e-04 ] displacement_10 gradient
+ [ -3.6244934204e-07 -1.6425474314e-04 ] displacement_11 gradient
+ [ -3.6244934204e-07 -1.8140600133e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+
+    I     INITIAL X(I)       D(I)
+
+    1     2.80000e+07        2.42e-06
+    2     0.00000            0.00121
+
+   IT   NF     F       RELDF    PRELDF   RELDX   MODEL  STPPAR  D*STEP  NPRELDF
+
+    0    1  133.    
+
+---------------------
+Begin Evaluation    7
+---------------------
+Parameters for evaluation 7:
+                      2.8376228125e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.7 results.out.7
+
+Active response data for evaluation 7:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6826933021e+00 displacement_1
+                      6.6826933021e+00 displacement_2
+                      6.6826933021e+00 displacement_3
+                      6.6826933021e+00 displacement_4
+                      6.6826933021e+00 displacement_5
+                      6.6826933021e+00 displacement_6
+                      6.6826933021e+00 displacement_7
+                      6.6826933021e+00 displacement_8
+                      6.6826933021e+00 displacement_9
+                      6.6826933021e+00 displacement_10
+                      6.6826933021e+00 displacement_11
+                      6.6826933021e+00 displacement_12
+
+
+sim_values                       6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+                      6.6826933021e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation    8
+---------------------
+Parameters for evaluation 8:
+                      2.8376228125e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.8 results.out.8
+
+Active response data for evaluation 8:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0024039953e+01 displacement_1
+                      1.0024039953e+01 displacement_2
+                      1.0024039953e+01 displacement_3
+                      1.0024039953e+01 displacement_4
+                      1.0024039953e+01 displacement_5
+                      1.0024039953e+01 displacement_6
+                      1.0024039953e+01 displacement_7
+                      1.0024039953e+01 displacement_8
+                      1.0024039953e+01 displacement_9
+                      1.0024039953e+01 displacement_10
+                      1.0024039953e+01 displacement_11
+                      1.0024039953e+01 displacement_12
+
+
+sim_values                       1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+                      1.0024039953e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    9
+---------------------
+Parameters for evaluation 9:
+                      2.8404604353e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.9 results.out.9
+
+Active response data for evaluation 9:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6760172848e+00 displacement_1
+                      6.6760172848e+00 displacement_2
+                      6.6760172848e+00 displacement_3
+                      6.6760172848e+00 displacement_4
+                      6.6760172848e+00 displacement_5
+                      6.6760172848e+00 displacement_6
+                      6.6760172848e+00 displacement_7
+                      6.6760172848e+00 displacement_8
+                      6.6760172848e+00 displacement_9
+                      6.6760172848e+00 displacement_10
+                      6.6760172848e+00 displacement_11
+                      6.6760172848e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   10
+---------------------
+Parameters for evaluation 10:
+                      2.8376228125e+07 E0
+                     -1.0000000000e-05 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.10 results.out.10
+
+Active response data for evaluation 10:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6826933020e+00 displacement_1
+                      6.6826933022e+00 displacement_2
+                      6.6826933023e+00 displacement_3
+                      6.6826933024e+00 displacement_4
+                      6.6826933025e+00 displacement_5
+                      6.6826933026e+00 displacement_6
+                      6.6826933027e+00 displacement_7
+                      6.6826933028e+00 displacement_8
+                      6.6826933029e+00 displacement_9
+                      6.6826933030e+00 displacement_10
+                      6.6826933032e+00 displacement_11
+                      6.6826933033e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.3526795934e-07  4.7100101597e-06 ] displacement_1 gradient
+ [ -2.3526795934e-07 -6.4228622421e-06 ] displacement_2 gradient
+ [ -2.3526795934e-07 -1.7555823462e-05 ] displacement_3 gradient
+ [ -2.3526795934e-07 -2.8688695863e-05 ] displacement_4 gradient
+ [ -2.3526795934e-07 -3.9821479447e-05 ] displacement_5 gradient
+ [ -2.3526795934e-07 -5.0954529485e-05 ] displacement_6 gradient
+ [ -2.3526795934e-07 -6.2087224251e-05 ] displacement_7 gradient
+ [ -2.3526795934e-07 -7.3220185470e-05 ] displacement_8 gradient
+ [ -2.3526795934e-07 -8.4353057872e-05 ] displacement_9 gradient
+ [ -2.3526795934e-07 -9.5486019092e-05 ] displacement_10 gradient
+ [ -2.3526795934e-07 -1.0661889149e-04 ] displacement_11 gradient
+ [ -2.3526795934e-07 -1.1775176390e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   11
+---------------------
+Parameters for evaluation 11:
+                      2.8404604353e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.11 results.out.11
+
+Active response data for evaluation 11:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0014025927e+01 displacement_1
+                      1.0014025927e+01 displacement_2
+                      1.0014025927e+01 displacement_3
+                      1.0014025927e+01 displacement_4
+                      1.0014025927e+01 displacement_5
+                      1.0014025927e+01 displacement_6
+                      1.0014025927e+01 displacement_7
+                      1.0014025927e+01 displacement_8
+                      1.0014025927e+01 displacement_9
+                      1.0014025927e+01 displacement_10
+                      1.0014025927e+01 displacement_11
+                      1.0014025927e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   12
+---------------------
+Parameters for evaluation 12:
+                      2.8376228125e+07 E0
+                     -1.0000000000e-05 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.12 results.out.12
+
+Active response data for evaluation 12:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0024039953e+01 displacement_1
+                      1.0024039953e+01 displacement_2
+                      1.0024039953e+01 displacement_3
+                      1.0024039954e+01 displacement_4
+                      1.0024039954e+01 displacement_5
+                      1.0024039954e+01 displacement_6
+                      1.0024039954e+01 displacement_7
+                      1.0024039954e+01 displacement_8
+                      1.0024039954e+01 displacement_9
+                      1.0024039955e+01 displacement_10
+                      1.0024039955e+01 displacement_11
+                      1.0024039955e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.5290193901e-07  7.0649264217e-06 ] displacement_1 gradient
+ [ -3.5290193901e-07 -9.6344265899e-06 ] displacement_2 gradient
+ [ -3.5290193901e-07 -2.6333779601e-05 ] displacement_3 gradient
+ [ -3.5290193901e-07 -4.3033132613e-05 ] displacement_4 gradient
+ [ -3.5290193901e-07 -5.9732307989e-05 ] displacement_5 gradient
+ [ -3.5290193901e-07 -7.6431838636e-05 ] displacement_6 gradient
+ [ -3.5290193901e-07 -9.3131014012e-05 ] displacement_7 gradient
+ [ -3.5290193901e-07 -1.0983036702e-04 ] displacement_8 gradient
+ [ -3.5290193901e-07 -1.2652954240e-04 ] displacement_9 gradient
+ [ -3.5290193901e-07 -1.4322907305e-04 ] displacement_10 gradient
+ [ -3.5290193901e-07 -1.5992842606e-04 ] displacement_11 gradient
+ [ -3.5290193901e-07 -1.7662760143e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+    1    2  99.1       0.25     0.26     0.007     G    2.e+01  0.9     0.29   
+
+---------------------
+Begin Evaluation   13
+---------------------
+Parameters for evaluation 13:
+                      2.8789344666e+07 E0
+                     -1.2568287614e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.13 results.out.13
+
+Active response data for evaluation 13:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.5810530491e+00 displacement_1
+                      6.5946508215e+00 displacement_2
+                      6.6083049018e+00 displacement_3
+                      6.6220156402e+00 displacement_4
+                      6.6357833904e+00 displacement_5
+                      6.6496085085e+00 displacement_6
+                      6.6634913539e+00 displacement_7
+                      6.6774322890e+00 displacement_8
+                      6.6914316790e+00 displacement_9
+                      6.7054898924e+00 displacement_10
+                      6.7196073008e+00 displacement_11
+                      6.7337842788e+00 displacement_12
+
+
+sim_values                       6.5810530491e+00
+                      6.5946508215e+00
+                      6.6083049018e+00
+                      6.6220156402e+00
+                      6.6357833904e+00
+                      6.6496085085e+00
+                      6.6634913539e+00
+                      6.6774322890e+00
+                      6.6914316790e+00
+                      6.7054898924e+00
+                      6.7196073008e+00
+                      6.7337842788e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.5810530491e+00
+                      6.5889254437e+00
+                      6.5968067290e+00
+                      6.6047117228e+00
+                      6.6126346087e+00
+                      6.6205724046e+00
+                      6.6285372061e+00
+                      6.6365110282e+00
+                      6.6445150439e+00
+                      6.6525312128e+00
+                      6.6605686496e+00
+                      6.6686274879e+00
+                      6.6766985555e+00
+                      6.6848003890e+00
+                      6.6929114909e+00
+                      6.7010504566e+00
+                      6.7092049999e+00
+                      6.7173782363e+00
+                      6.7255765547e+00
+                      6.7337842788e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation   14
+---------------------
+Parameters for evaluation 14:
+                      2.8789344666e+07 E0
+                     -1.2568287614e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.14 results.out.14
+
+Active response data for evaluation 14:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.8715795737e+00 displacement_1
+                      9.8919762323e+00 displacement_2
+                      9.9124573527e+00 displacement_3
+                      9.9330234604e+00 displacement_4
+                      9.9536750856e+00 displacement_5
+                      9.9744127627e+00 displacement_6
+                      9.9952370309e+00 displacement_7
+                      1.0016148433e+01 displacement_8
+                      1.0037147518e+01 displacement_9
+                      1.0058234839e+01 displacement_10
+                      1.0079410951e+01 displacement_11
+                      1.0100676418e+01 displacement_12
+
+
+sim_values                       9.8715795737e+00
+                      9.8919762323e+00
+                      9.9124573527e+00
+                      9.9330234604e+00
+                      9.9536750856e+00
+                      9.9744127627e+00
+                      9.9952370309e+00
+                      1.0016148433e+01
+                      1.0037147518e+01
+                      1.0058234839e+01
+                      1.0079410951e+01
+                      1.0100676418e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.8715795737e+00
+                      9.8833881655e+00
+                      9.8952100934e+00
+                      9.9070675841e+00
+                      9.9189519130e+00
+                      9.9308586069e+00
+                      9.9428058091e+00
+                      9.9547665423e+00
+                      9.9667725659e+00
+                      9.9787968192e+00
+                      9.9908529744e+00
+                      1.0002941232e+01
+                      1.0015047833e+01
+                      1.0027200583e+01
+                      1.0039367236e+01
+                      1.0051575685e+01
+                      1.0063807500e+01
+                      1.0076067354e+01
+                      1.0088364832e+01
+                      1.0100676418e+01
+
+interp_resp_offset 20
+field_size 20
+
+---------------------
+Begin Evaluation   15
+---------------------
+Parameters for evaluation 15:
+                      2.9374416081e+07 E0
+                     -3.4478408783e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.15 results.out.15
+
+Active response data for evaluation 15:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4404859553e+00 displacement_1
+                      6.4763368288e+00 displacement_2
+                      6.5125890632e+00 displacement_3
+                      6.5492494365e+00 displacement_4
+                      6.5863248802e+00 displacement_5
+                      6.6238224835e+00 displacement_6
+                      6.6617494981e+00 displacement_7
+                      6.7001133427e+00 displacement_8
+                      6.7389216080e+00 displacement_9
+                      6.7781820613e+00 displacement_10
+                      6.8179026523e+00 displacement_11
+                      6.8580915180e+00 displacement_12
+
+
+sim_values                       6.4404859553e+00
+                      6.4763368288e+00
+                      6.5125890632e+00
+                      6.5492494365e+00
+                      6.5863248802e+00
+                      6.6238224835e+00
+                      6.6617494981e+00
+                      6.7001133427e+00
+                      6.7389216080e+00
+                      6.7781820613e+00
+                      6.8179026523e+00
+                      6.8580915180e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.4404859553e+00
+                      6.4612417242e+00
+                      6.4820608658e+00
+                      6.5030490015e+00
+                      6.5241660232e+00
+                      6.5453904498e+00
+                      6.5668114888e+00
+                      6.5882984382e+00
+                      6.6100075770e+00
+                      6.6318071181e+00
+                      6.6537648634e+00
+                      6.6758835461e+00
+                      6.6980941930e+00
+                      6.7205387455e+00
+                      6.7430542873e+00
+                      6.7657840234e+00
+                      6.7886348484e+00
+                      6.8116309800e+00
+                      6.8348242800e+00
+                      6.8580915180e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation   16
+---------------------
+Parameters for evaluation 16:
+                      2.9374416081e+07 E0
+                     -3.4478408783e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.16 results.out.16
+
+Active response data for evaluation 16:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6607289329e+00 displacement_1
+                      9.7145052432e+00 displacement_2
+                      9.7688835948e+00 displacement_3
+                      9.8238741548e+00 displacement_4
+                      9.8794873203e+00 displacement_5
+                      9.9357337252e+00 displacement_6
+                      9.9926242471e+00 displacement_7
+                      1.0050170014e+01 displacement_8
+                      1.0108382412e+01 displacement_9
+                      1.0167273092e+01 displacement_10
+                      1.0226853978e+01 displacement_11
+                      1.0287137277e+01 displacement_12
+
+
+sim_values                       9.6607289329e+00
+                      9.7145052432e+00
+                      9.7688835948e+00
+                      9.8238741548e+00
+                      9.8794873203e+00
+                      9.9357337252e+00
+                      9.9926242471e+00
+                      1.0050170014e+01
+                      1.0108382412e+01
+                      1.0167273092e+01
+                      1.0226853978e+01
+                      1.0287137277e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.6607289329e+00
+                      9.6918625862e+00
+                      9.7230912987e+00
+                      9.7545735023e+00
+                      9.7862490348e+00
+                      9.8180856748e+00
+                      9.8502172332e+00
+                      9.8824476574e+00
+                      9.9150113655e+00
+                      9.9477106772e+00
+                      9.9806472951e+00
+                      1.0013825319e+01
+                      1.0047141289e+01
+                      1.0080808118e+01
+                      1.0114581431e+01
+                      1.0148676035e+01
+                      1.0182952273e+01
+                      1.0217446470e+01
+                      1.0252236420e+01
+                      1.0287137277e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   17
+---------------------
+Parameters for evaluation 17:
+                      2.9403790497e+07 E0
+                     -3.4478408783e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.17 results.out.17
+
+Active response data for evaluation 17:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4340669570e+00 displacement_1
+                      6.4698462051e+00 displacement_2
+                      6.5060256085e+00 displacement_3
+                      6.5426119181e+00 displacement_4
+                      6.5796120373e+00 displacement_5
+                      6.6170330266e+00 displacement_6
+                      6.6548821081e+00 displacement_7
+                      6.6931666700e+00 displacement_8
+                      6.7318942717e+00 displacement_9
+                      6.7710726482e+00 displacement_10
+                      6.8107097161e+00 displacement_11
+                      6.8508135780e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   18
+---------------------
+Parameters for evaluation 18:
+                      2.9374416081e+07 E0
+                     -3.4512887191e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.18 results.out.18
+
+Active response data for evaluation 18:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4404708716e+00 displacement_1
+                      6.4763576272e+00 displacement_2
+                      6.5126465507e+00 displacement_3
+                      6.5493444406e+00 displacement_4
+                      6.5864582496e+00 displacement_5
+                      6.6239950887e+00 displacement_6
+                      6.6619622320e+00 displacement_7
+                      6.7003671214e+00 displacement_8
+                      6.7392173714e+00 displacement_9
+                      6.7785207739e+00 displacement_10
+                      6.8182853040e+00 displacement_11
+                      6.8585191248e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1852343409e-07  4.3748186693e-06 ] displacement_1 gradient
+ [ -2.2096179451e-07 -6.0322957152e-06 ] displacement_2 gradient
+ [ -2.2344119590e-07 -1.6673476244e-05 ] displacement_3 gradient
+ [ -2.2596256451e-07 -2.7554674116e-05 ] displacement_4 gradient
+ [ -2.2852685283e-07 -3.8682020844e-05 ] displacement_5 gradient
+ [ -2.3113504056e-07 -5.0061834693e-05 ] displacement_6 gradient
+ [ -2.3378813548e-07 -6.1700627386e-05 ] displacement_7 gradient
+ [ -2.3648717449e-07 -7.3605111087e-05 ] displacement_8 gradient
+ [ -2.3923322457e-07 -8.5782205677e-05 ] displacement_9 gradient
+ [ -2.4202738385e-07 -9.8239046334e-05 ] displacement_10 gradient
+ [ -2.4487078274e-07 -1.1098299144e-04 ] displacement_11 gradient
+ [ -2.4776458501e-07 -1.2402163082e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   19
+---------------------
+Parameters for evaluation 19:
+                      2.9403790497e+07 E0
+                     -3.4478408783e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.19 results.out.19
+
+Active response data for evaluation 19:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6511004355e+00 displacement_1
+                      9.7047693076e+00 displacement_2
+                      9.7590384128e+00 displacement_3
+                      9.8139178772e+00 displacement_4
+                      9.8694180560e+00 displacement_5
+                      9.9255495399e+00 displacement_6
+                      9.9823231622e+00 displacement_7
+                      1.0039750005e+01 displacement_8
+                      1.0097841408e+01 displacement_9
+                      1.0156608972e+01 displacement_10
+                      1.0216064574e+01 displacement_11
+                      1.0276220367e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   20
+---------------------
+Parameters for evaluation 20:
+                      2.9374416081e+07 E0
+                     -3.4512887191e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.20 results.out.20
+
+Active response data for evaluation 20:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6607063074e+00 displacement_1
+                      9.7145364408e+00 displacement_2
+                      9.7689698260e+00 displacement_3
+                      9.8240166610e+00 displacement_4
+                      9.8796873744e+00 displacement_5
+                      9.9359926331e+00 displacement_6
+                      9.9929433480e+00 displacement_7
+                      1.0050550682e+01 displacement_8
+                      1.0108826057e+01 displacement_9
+                      1.0167781161e+01 displacement_10
+                      1.0227427956e+01 displacement_11
+                      1.0287778687e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.2778515114e-07  6.5622280038e-06 ] displacement_1 gradient
+ [ -3.3144269176e-07 -9.0484435725e-06 ] displacement_2 gradient
+ [ -3.3516179385e-07 -2.5010214366e-05 ] displacement_3 gradient
+ [ -3.3894384676e-07 -4.1332011174e-05 ] displacement_4 gradient
+ [ -3.4279027925e-07 -5.8023031266e-05 ] displacement_5 gradient
+ [ -3.4670256084e-07 -7.5092752040e-05 ] displacement_6 gradient
+ [ -3.5068220322e-07 -9.2550941080e-05 ] displacement_7 gradient
+ [ -3.5473076174e-07 -1.1040766663e-04 ] displacement_8 gradient
+ [ -3.5884983685e-07 -1.2867330852e-04 ] displacement_9 gradient
+ [ -3.6304107578e-07 -1.4735856950e-04 ] displacement_10 gradient
+ [ -3.6730617410e-07 -1.6647448716e-04 ] displacement_11 gradient
+ [ -3.7164687751e-07 -1.8603244623e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+    2    4  27.8       0.72     0.72     0.03      G    2.      5.      0.81   
+
+---------------------
+Begin Evaluation   21
+---------------------
+Parameters for evaluation 21:
+                      2.9886324113e+07 E0
+                     -5.3172346011e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.21 results.out.21
+
+Active response data for evaluation 21:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3225327116e+00 displacement_1
+                      6.3759679181e+00 displacement_2
+                      6.4303140440e+00 displacement_3
+                      6.4855945825e+00 displacement_4
+                      6.5418338415e+00 displacement_5
+                      6.5990569797e+00 displacement_6
+                      6.6572900436e+00 displacement_7
+                      6.7165600073e+00 displacement_8
+                      6.7768948144e+00 displacement_9
+                      6.8383234212e+00 displacement_10
+                      6.9008758439e+00 displacement_11
+                      6.9645832069e+00 displacement_12
+
+
+sim_values                       6.3225327116e+00
+                      6.3759679181e+00
+                      6.4303140440e+00
+                      6.4855945825e+00
+                      6.5418338415e+00
+                      6.5990569797e+00
+                      6.6572900436e+00
+                      6.7165600073e+00
+                      6.7768948144e+00
+                      6.8383234212e+00
+                      6.9008758439e+00
+                      6.9645832069e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.3225327116e+00
+                      6.3534688838e+00
+                      6.3845488854e+00
+                      6.4160124319e+00
+                      6.4477710562e+00
+                      6.4797755784e+00
+                      6.5122342315e+00
+                      6.5448455856e+00
+                      6.5779747709e+00
+                      6.6113165721e+00
+                      6.6450304512e+00
+                      6.6791263460e+00
+                      6.7134405356e+00
+                      6.7483151689e+00
+                      6.7833609835e+00
+                      6.8189249138e+00
+                      6.8547845851e+00
+                      6.8909991456e+00
+                      6.9276999967e+00
+                      6.9645832069e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation   22
+---------------------
+Parameters for evaluation 22:
+                      2.9886324113e+07 E0
+                     -5.3172346011e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.22 results.out.22
+
+Active response data for evaluation 22:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4837990674e+00 displacement_1
+                      9.5639518772e+00 displacement_2
+                      9.6454710660e+00 displacement_3
+                      9.7283918737e+00 displacement_4
+                      9.8127507623e+00 displacement_5
+                      9.8985854695e+00 displacement_6
+                      9.9859350654e+00 displacement_7
+                      1.0074840011e+01 displacement_8
+                      1.0165342222e+01 displacement_9
+                      1.0257485132e+01 displacement_10
+                      1.0351313766e+01 displacement_11
+                      1.0446874810e+01 displacement_12
+
+
+sim_values                       9.4837990674e+00
+                      9.5639518772e+00
+                      9.6454710660e+00
+                      9.7283918737e+00
+                      9.8127507623e+00
+                      9.8985854695e+00
+                      9.9859350654e+00
+                      1.0074840011e+01
+                      1.0165342222e+01
+                      1.0257485132e+01
+                      1.0351313766e+01
+                      1.0446874810e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.4837990674e+00
+                      9.5302033257e+00
+                      9.5768233281e+00
+                      9.6240186479e+00
+                      9.6716565842e+00
+                      9.7196633676e+00
+                      9.7683513472e+00
+                      9.8172683785e+00
+                      9.8669621563e+00
+                      9.9169748581e+00
+                      9.9675456768e+00
+                      1.0018689519e+01
+                      1.0070160803e+01
+                      1.0122472753e+01
+                      1.0175041475e+01
+                      1.0228387371e+01
+                      1.0282176878e+01
+                      1.0336498718e+01
+                      1.0391549995e+01
+                      1.0446874810e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   23
+---------------------
+Parameters for evaluation 23:
+                      2.9916210437e+07 E0
+                     -5.3172346011e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.23 results.out.23
+
+Active response data for evaluation 23:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3162388682e+00 displacement_1
+                      6.3695672935e+00 displacement_2
+                      6.4238038975e+00 displacement_3
+                      6.4789720788e+00 displacement_4
+                      6.5350960466e+00 displacement_5
+                      6.5922008565e+00 displacement_6
+                      6.6503124474e+00 displacement_7
+                      6.7094576810e+00 displacement_8
+                      6.7696643833e+00 displacement_9
+                      6.8309613880e+00 displacement_10
+                      6.8933785825e+00 displacement_11
+                      6.9569469571e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   24
+---------------------
+Parameters for evaluation 24:
+                      2.9886324113e+07 E0
+                     -5.3225518357e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.24 results.out.24
+
+Active response data for evaluation 24:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3225102940e+00 displacement_1
+                      6.3759990068e+00 displacement_2
+                      6.4304004753e+00 displacement_3
+                      6.4857382640e+00 displacement_4
+                      6.5420367557e+00 displacement_5
+                      6.5993211871e+00 displacement_6
+                      6.6576176869e+00 displacement_7
+                      6.7169533149e+00 displacement_8
+                      6.7773561045e+00 displacement_9
+                      6.8388551067e+00 displacement_10
+                      6.9014804364e+00 displacement_11
+                      6.9652633218e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1059275882e-07  4.2160371487e-06 ] displacement_1 gradient
+ [ -2.1416567018e-07 -5.8467797835e-06 ] displacement_2 gradient
+ [ -2.1783028580e-07 -1.6254932669e-05 ] displacement_3 gradient
+ [ -2.2158977105e-07 -2.7021853312e-05 ] displacement_4 gradient
+ [ -2.2544742907e-07 -3.8161597902e-05 ] displacement_5 gradient
+ [ -2.2940670800e-07 -4.9688881316e-05 ] displacement_6 gradient
+ [ -2.3347120874e-07 -6.1619113618e-05 ] displacement_7 gradient
+ [ -2.3764469308e-07 -7.3968438909e-05 ] displacement_8 gradient
+ [ -2.4193109243e-07 -8.6753776701e-05 ] displacement_9 gradient
+ [ -2.4633451713e-07 -9.9992866004e-05 ] displacement_10 gradient
+ [ -2.5085926622e-07 -1.1370431232e-04 ] displacement_11 gradient
+ [ -2.5550983801e-07 -1.2790763779e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   25
+---------------------
+Parameters for evaluation 25:
+                      2.9916210437e+07 E0
+                     -5.3172346011e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.25 results.out.25
+
+Active response data for evaluation 25:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4743583023e+00 displacement_1
+                      9.5543509402e+00 displacement_2
+                      9.6357058462e+00 displacement_3
+                      9.7184581181e+00 displacement_4
+                      9.8026440699e+00 displacement_5
+                      9.8883012847e+00 displacement_6
+                      9.9754686711e+00 displacement_7
+                      1.0064186522e+01 displacement_8
+                      1.0154496575e+01 displacement_9
+                      1.0246442082e+01 displacement_10
+                      1.0340067874e+01 displacement_11
+                      1.0435420436e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   26
+---------------------
+Parameters for evaluation 26:
+                      2.9886324113e+07 E0
+                     -5.3225518357e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.26 results.out.26
+
+Active response data for evaluation 26:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4837654409e+00 displacement_1
+                      9.5639985102e+00 displacement_2
+                      9.6456007130e+00 displacement_3
+                      9.7286073960e+00 displacement_4
+                      9.8130551335e+00 displacement_5
+                      9.8989817807e+00 displacement_6
+                      9.9864265303e+00 displacement_7
+                      1.0075429972e+01 displacement_8
+                      1.0166034157e+01 displacement_9
+                      1.0258282660e+01 displacement_10
+                      1.0352220655e+01 displacement_11
+                      1.0447894983e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1588913824e-07  6.3240557232e-06 ] displacement_1 gradient
+ [ -3.2124850527e-07 -8.7701696755e-06 ] displacement_2 gradient
+ [ -3.2674542870e-07 -2.4382399003e-05 ] displacement_3 gradient
+ [ -3.3238465658e-07 -4.0532779968e-05 ] displacement_4 gradient
+ [ -3.3817114360e-07 -5.7242396853e-05 ] displacement_5 gradient
+ [ -3.4411006201e-07 -7.4533321974e-05 ] displacement_6 gradient
+ [ -3.5020681311e-07 -9.2428670427e-05 ] displacement_7 gradient
+ [ -3.5646703961e-07 -1.1095265836e-04 ] displacement_8 gradient
+ [ -3.6289663865e-07 -1.3013066505e-04 ] displacement_9 gradient
+ [ -3.6950177570e-07 -1.4998929901e-04 ] displacement_10 gradient
+ [ -3.7628889933e-07 -1.7055646848e-04 ] displacement_11 gradient
+ [ -3.8326475701e-07 -1.9186145669e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+    3    5  18.2       0.35     0.35     0.02      G    0.      3.      0.35   
+
+---------------------
+Begin Evaluation   27
+---------------------
+Parameters for evaluation 27:
+                      2.9891897415e+07 E0
+                     -5.3290120824e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.27 results.out.27
+
+Active response data for evaluation 27:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213084277e+00 displacement_1
+                      6.3748421676e+00 displacement_2
+                      6.4292903823e+00 displacement_3
+                      6.4846767057e+00 displacement_4
+                      6.5410255930e+00 displacement_5
+                      6.5983623567e+00 displacement_6
+                      6.6567132051e+00 displacement_7
+                      6.7161052814e+00 displacement_8
+                      6.7765667066e+00 displacement_9
+                      6.8381266232e+00 displacement_10
+                      6.9008152425e+00 displacement_11
+                      6.9646638941e+00 displacement_12
+
+
+sim_values                       6.3213084277e+00
+                      6.3748421676e+00
+                      6.4292903823e+00
+                      6.4846767057e+00
+                      6.5410255930e+00
+                      6.5983623567e+00
+                      6.6567132051e+00
+                      6.7161052814e+00
+                      6.7765667066e+00
+                      6.8381266232e+00
+                      6.9008152425e+00
+                      6.9646638941e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.3213084277e+00
+                      6.3523016455e+00
+                      6.3834392541e+00
+                      6.4149619048e+00
+                      6.4467808002e+00
+                      6.4788465664e+00
+                      6.5113682839e+00
+                      6.5440433174e+00
+                      6.5772382859e+00
+                      6.6106467458e+00
+                      6.6444288160e+00
+                      6.6785944964e+00
+                      6.7129793827e+00
+                      6.7479270841e+00
+                      6.7830466978e+00
+                      6.8186866495e+00
+                      6.8546236283e+00
+                      6.8909170395e+00
+                      6.9276988853e+00
+                      6.9646638941e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation   28
+---------------------
+Parameters for evaluation 28:
+                      2.9891897415e+07 E0
+                     -5.3290120824e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.28 results.out.28
+
+Active response data for evaluation 28:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4819626416e+00 displacement_1
+                      9.5622632514e+00 displacement_2
+                      9.6439355735e+00 displacement_3
+                      9.7270150586e+00 displacement_4
+                      9.8115383894e+00 displacement_5
+                      9.8975435351e+00 displacement_6
+                      9.9850698076e+00 displacement_7
+                      1.0074157922e+01 displacement_8
+                      1.0164850060e+01 displacement_9
+                      1.0257189935e+01 displacement_10
+                      1.0351222864e+01 displacement_11
+                      1.0446995841e+01 displacement_12
+
+
+sim_values                       9.4819626416e+00
+                      9.5622632514e+00
+                      9.6439355735e+00
+                      9.7270150586e+00
+                      9.8115383894e+00
+                      9.8975435351e+00
+                      9.9850698076e+00
+                      1.0074157922e+01
+                      1.0164850060e+01
+                      1.0257189935e+01
+                      1.0351222864e+01
+                      1.0446995841e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.4819626416e+00
+                      9.5284524683e+00
+                      9.5751588812e+00
+                      9.6224428572e+00
+                      9.6701712004e+00
+                      9.7182698496e+00
+                      9.7670524258e+00
+                      9.8160649760e+00
+                      9.8658574288e+00
+                      9.9159701188e+00
+                      9.9666432239e+00
+                      1.0017891745e+01
+                      1.0069469074e+01
+                      1.0121890626e+01
+                      1.0174570047e+01
+                      1.0228029974e+01
+                      1.0281935442e+01
+                      1.0336375559e+01
+                      1.0391548328e+01
+                      1.0446995841e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   29
+---------------------
+Parameters for evaluation 29:
+                      2.9921789312e+07 E0
+                     -5.3290120824e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.29 results.out.29
+
+Active response data for evaluation 29:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3150158482e+00 displacement_1
+                      6.3684426098e+00 displacement_2
+                      6.4227810949e+00 displacement_3
+                      6.4780548420e+00 displacement_4
+                      6.5342882071e+00 displacement_5
+                      6.5915063991e+00 displacement_6
+                      6.6497355177e+00 displacement_7
+                      6.7090025934e+00 displacement_8
+                      6.7693356285e+00 displacement_9
+                      6.8307636421e+00 displacement_10
+                      6.8933167162e+00 displacement_11
+                      6.9570260449e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   30
+---------------------
+Parameters for evaluation 30:
+                      2.9891897415e+07 E0
+                     -5.3343410945e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.30 results.out.30
+
+Active response data for evaluation 30:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3212859691e+00 displacement_1
+                      6.3748733141e+00 displacement_2
+                      6.4293769775e+00 displacement_3
+                      6.4848206648e+00 displacement_4
+                      6.5412289063e+00 displacement_5
+                      6.5986270936e+00 displacement_6
+                      6.6570415172e+00 displacement_7
+                      6.7164994068e+00 displacement_8
+                      6.7770289738e+00 displacement_9
+                      6.8386594558e+00 displacement_10
+                      6.9014211637e+00 displacement_11
+                      6.9653455313e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1051121062e-07  4.2144045053e-06 ] displacement_1 gradient
+ [ -2.1409004790e-07 -5.8447153916e-06 ] displacement_2 gradient
+ [ -2.1776093115e-07 -1.6249758183e-05 ] displacement_3 gradient
+ [ -2.2152704414e-07 -2.7014206534e-05 ] displacement_4 gradient
+ [ -2.2539170950e-07 -3.8152171171e-05 ] displacement_5 gradient
+ [ -2.2935839606e-07 -4.9678425465e-05 ] displacement_6 gradient
+ [ -2.3343072661e-07 -6.1608442231e-05 ] displacement_7 gradient
+ [ -2.3761248618e-07 -7.3958432894e-05 ] displacement_8 gradient
+ [ -2.4190763087e-07 -8.6745389215e-05 ] displacement_9 gradient
+ [ -2.4632029715e-07 -9.9987127754e-05 ] displacement_10 gradient
+ [ -2.5085481188e-07 -1.1370233727e-04 ] displacement_11 gradient
+ [ -2.5551570290e-07 -1.2791062933e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   31
+---------------------
+Parameters for evaluation 31:
+                      2.9921789312e+07 E0
+                     -5.3290120824e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.31 results.out.31
+
+Active response data for evaluation 31:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4725237723e+00 displacement_1
+                      9.5526639148e+00 displacement_2
+                      9.6341716424e+00 displacement_3
+                      9.7170822631e+00 displacement_4
+                      9.8014323106e+00 displacement_5
+                      9.8872595986e+00 displacement_6
+                      9.9746032766e+00 displacement_7
+                      1.0063503890e+01 displacement_8
+                      1.0154003443e+01 displacement_9
+                      1.0246145463e+01 displacement_10
+                      1.0339975074e+01 displacement_11
+                      1.0435539067e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   32
+---------------------
+Parameters for evaluation 32:
+                      2.9891897415e+07 E0
+                     -5.3343410945e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.32 results.out.32
+
+Active response data for evaluation 32:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4819289537e+00 displacement_1
+                      9.5623099712e+00 displacement_2
+                      9.6440654662e+00 displacement_3
+                      9.7272309971e+00 displacement_4
+                      9.8118433595e+00 displacement_5
+                      9.8979406405e+00 displacement_6
+                      9.9855622758e+00 displacement_7
+                      1.0074749110e+01 displacement_8
+                      1.0165543461e+01 displacement_9
+                      1.0257989184e+01 displacement_10
+                      1.0352131745e+01 displacement_11
+                      1.0448018297e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1576681593e-07  6.3216067581e-06 ] displacement_1 gradient
+ [ -3.2113507185e-07 -8.7670730875e-06 ] displacement_2 gradient
+ [ -3.2664139672e-07 -2.4374637274e-05 ] displacement_3 gradient
+ [ -3.3229056620e-07 -4.0521309801e-05 ] displacement_4 gradient
+ [ -3.3808756425e-07 -5.7228256756e-05 ] displacement_5 gradient
+ [ -3.4403759409e-07 -7.4517638198e-05 ] displacement_6 gradient
+ [ -3.5014608992e-07 -9.2412663346e-05 ] displacement_7 gradient
+ [ -3.5641872928e-07 -1.1093764934e-04 ] displacement_8 gradient
+ [ -3.6286144630e-07 -1.3011808382e-04 ] displacement_9 gradient
+ [ -3.6948044572e-07 -1.4998069163e-04 ] displacement_10 gradient
+ [ -3.7628221782e-07 -1.7055350591e-04 ] displacement_11 gradient
+ [ -3.8327355434e-07 -1.9186594400e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+    4    6  18.2       5.8e-05  5.8e-05  0.0001    G    0.      0.02    5.8e-05
+
+***** RELATIVE FUNCTION CONVERGENCE *****
+
+FUNCTION     18.1904        RELDX        9.86e-05
+FUNC. EVALS      6          GRAD. EVALS      5
+PRELDF       5.83e-05       NPRELDF      5.83e-05
+
+    I      FINAL X(I)        D(I)          G(I)
+
+    1       2.98919e+07      2.56e-06    1.27e-09
+    2      -5329.01          0.00128     5.22e-07
+Warning: couldn't recover final least squares terms from evaluation database.
+
+---------------------
+Begin Evaluation   33
+---------------------
+Parameters for evaluation 33:
+                      2.9891897415e+07 E0
+                     -5.3290120824e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213084277e+00 displacement_1
+                      6.3748421676e+00 displacement_2
+                      6.4292903823e+00 displacement_3
+                      6.4846767057e+00 displacement_4
+                      6.5410255930e+00 displacement_5
+                      6.5983623567e+00 displacement_6
+                      6.6567132051e+00 displacement_7
+                      6.7161052814e+00 displacement_8
+                      6.7765667066e+00 displacement_9
+                      6.8381266232e+00 displacement_10
+                      6.9008152425e+00 displacement_11
+                      6.9646638941e+00 displacement_12
+
+
+sim_values                       6.3213084277e+00
+                      6.3748421676e+00
+                      6.4292903823e+00
+                      6.4846767057e+00
+                      6.5410255930e+00
+                      6.5983623567e+00
+                      6.6567132051e+00
+                      6.7161052814e+00
+                      6.7765667066e+00
+                      6.8381266232e+00
+                      6.9008152425e+00
+                      6.9646638941e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.3213084277e+00
+                      6.3523016455e+00
+                      6.3834392541e+00
+                      6.4149619048e+00
+                      6.4467808002e+00
+                      6.4788465664e+00
+                      6.5113682839e+00
+                      6.5440433174e+00
+                      6.5772382859e+00
+                      6.6106467458e+00
+                      6.6444288160e+00
+                      6.6785944964e+00
+                      6.7129793827e+00
+                      6.7479270841e+00
+                      6.7830466978e+00
+                      6.8186866495e+00
+                      6.8546236283e+00
+                      6.8909170395e+00
+                      6.9276988853e+00
+                      6.9646638941e+00
+
+interp_resp_offset 0
+field_size 20
+
+---------------------
+Begin Evaluation   34
+---------------------
+Parameters for evaluation 34:
+                      2.9891897415e+07 E0
+                     -5.3290120824e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4819626416e+00 displacement_1
+                      9.5622632514e+00 displacement_2
+                      9.6439355735e+00 displacement_3
+                      9.7270150586e+00 displacement_4
+                      9.8115383894e+00 displacement_5
+                      9.8975435351e+00 displacement_6
+                      9.9850698076e+00 displacement_7
+                      1.0074157922e+01 displacement_8
+                      1.0164850060e+01 displacement_9
+                      1.0257189935e+01 displacement_10
+                      1.0351222864e+01 displacement_11
+                      1.0446995841e+01 displacement_12
+
+
+sim_values                       9.4819626416e+00
+                      9.5622632514e+00
+                      9.6439355735e+00
+                      9.7270150586e+00
+                      9.8115383894e+00
+                      9.8975435351e+00
+                      9.9850698076e+00
+                      1.0074157922e+01
+                      1.0164850060e+01
+                      1.0257189935e+01
+                      1.0351222864e+01
+                      1.0446995841e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.4819626416e+00
+                      9.5284524683e+00
+                      9.5751588812e+00
+                      9.6224428572e+00
+                      9.6701712004e+00
+                      9.7182698496e+00
+                      9.7670524258e+00
+                      9.8160649760e+00
+                      9.8658574288e+00
+                      9.9159701188e+00
+                      9.9666432239e+00
+                      1.0017891745e+01
+                      1.0069469074e+01
+                      1.0121890626e+01
+                      1.0174570047e+01
+                      1.0228029974e+01
+                      1.0281935442e+01
+                      1.0336375559e+01
+                      1.0391548328e+01
+                      1.0446995841e+01
+
+interp_resp_offset 20
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   35
+---------------------
+Parameters for evaluation 35:
+                      2.9921789312e+07 E0
+                     -5.3290120824e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3150158482e+00 displacement_1
+                      6.3684426098e+00 displacement_2
+                      6.4227810949e+00 displacement_3
+                      6.4780548420e+00 displacement_4
+                      6.5342882071e+00 displacement_5
+                      6.5915063991e+00 displacement_6
+                      6.6497355177e+00 displacement_7
+                      6.7090025934e+00 displacement_8
+                      6.7693356285e+00 displacement_9
+                      6.8307636421e+00 displacement_10
+                      6.8933167162e+00 displacement_11
+                      6.9570260449e+00 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   36
+---------------------
+Parameters for evaluation 36:
+                      2.9891897415e+07 E0
+                     -5.3343410945e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3212859691e+00 displacement_1
+                      6.3748733141e+00 displacement_2
+                      6.4293769775e+00 displacement_3
+                      6.4848206648e+00 displacement_4
+                      6.5412289063e+00 displacement_5
+                      6.5986270936e+00 displacement_6
+                      6.6570415172e+00 displacement_7
+                      6.7164994068e+00 displacement_8
+                      6.7770289738e+00 displacement_9
+                      6.8386594558e+00 displacement_10
+                      6.9014211637e+00 displacement_11
+                      6.9653455313e+00 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1051121062e-07  4.2144045053e-06 ] displacement_1 gradient
+ [ -2.1409004790e-07 -5.8447153916e-06 ] displacement_2 gradient
+ [ -2.1776093115e-07 -1.6249758183e-05 ] displacement_3 gradient
+ [ -2.2152704414e-07 -2.7014206534e-05 ] displacement_4 gradient
+ [ -2.2539170950e-07 -3.8152171171e-05 ] displacement_5 gradient
+ [ -2.2935839606e-07 -4.9678425465e-05 ] displacement_6 gradient
+ [ -2.3343072661e-07 -6.1608442231e-05 ] displacement_7 gradient
+ [ -2.3761248618e-07 -7.3958432894e-05 ] displacement_8 gradient
+ [ -2.4190763087e-07 -8.6745389215e-05 ] displacement_9 gradient
+ [ -2.4632029715e-07 -9.9987127754e-05 ] displacement_10 gradient
+ [ -2.5085481188e-07 -1.1370233727e-04 ] displacement_11 gradient
+ [ -2.5551570290e-07 -1.2791062933e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 0
+field_size 20
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   37
+---------------------
+Parameters for evaluation 37:
+                      2.9921789312e+07 E0
+                     -5.3290120824e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4725237723e+00 displacement_1
+                      9.5526639148e+00 displacement_2
+                      9.6341716424e+00 displacement_3
+                      9.7170822631e+00 displacement_4
+                      9.8014323106e+00 displacement_5
+                      9.8872595986e+00 displacement_6
+                      9.9746032766e+00 displacement_7
+                      1.0063503890e+01 displacement_8
+                      1.0154003443e+01 displacement_9
+                      1.0246145463e+01 displacement_10
+                      1.0339975074e+01 displacement_11
+                      1.0435539067e+01 displacement_12
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   38
+---------------------
+Parameters for evaluation 38:
+                      2.9891897415e+07 E0
+                     -5.3343410945e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4819289537e+00 displacement_1
+                      9.5623099712e+00 displacement_2
+                      9.6440654662e+00 displacement_3
+                      9.7272309971e+00 displacement_4
+                      9.8118433595e+00 displacement_5
+                      9.8979406405e+00 displacement_6
+                      9.9855622758e+00 displacement_7
+                      1.0074749110e+01 displacement_8
+                      1.0165543461e+01 displacement_9
+                      1.0257989184e+01 displacement_10
+                      1.0352131745e+01 displacement_11
+                      1.0448018297e+01 displacement_12
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1576681593e-07  6.3216067581e-06 ] displacement_1 gradient
+ [ -3.2113507185e-07 -8.7670730875e-06 ] displacement_2 gradient
+ [ -3.2664139672e-07 -2.4374637274e-05 ] displacement_3 gradient
+ [ -3.3229056620e-07 -4.0521309801e-05 ] displacement_4 gradient
+ [ -3.3808756425e-07 -5.7228256756e-05 ] displacement_5 gradient
+ [ -3.4403759409e-07 -7.4517638198e-05 ] displacement_6 gradient
+ [ -3.5014608992e-07 -9.2412663346e-05 ] displacement_7 gradient
+ [ -3.5641872928e-07 -1.1093764934e-04 ] displacement_8 gradient
+ [ -3.6286144630e-07 -1.3011808382e-04 ] displacement_9 gradient
+ [ -3.6948044572e-07 -1.4998069163e-04 ] displacement_10 gradient
+ [ -3.7628221782e-07 -1.7055350591e-04 ] displacement_11 gradient
+ [ -3.8327355434e-07 -1.9186594400e-04 ] displacement_12 gradient
+
+
+sim_values                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+                      0.0000000000e+00
+
+interp_resp_offset 20
+field_size 20
+<<<<< Function evaluation summary: 38 total (32 new, 6 duplicate)
+<<<<< Best parameters (experiment config variables omitted) =
+                      2.9891897415e+07 E0
+                     -5.3290120824e+03 Es
+Original (as-posed) response:
+<<<<< Best model responses 
+<<<<< Best configuration variables (experiment 1) =
+                      4.0000000000e+02 Y
+sim_values                       6.3213084277e+00
+                      6.3748421676e+00
+                      6.4292903823e+00
+                      6.4846767057e+00
+                      6.5410255930e+00
+                      6.5983623567e+00
+                      6.6567132051e+00
+                      6.7161052814e+00
+                      6.7765667066e+00
+                      6.8381266232e+00
+                      6.9008152425e+00
+                      6.9646638941e+00
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       6.3213084277e+00
+                      6.3523016455e+00
+                      6.3834392541e+00
+                      6.4149619048e+00
+                      6.4467808002e+00
+                      6.4788465664e+00
+                      6.5113682839e+00
+                      6.5440433174e+00
+                      6.5772382859e+00
+                      6.6106467458e+00
+                      6.6444288160e+00
+                      6.6785944964e+00
+                      6.7129793827e+00
+                      6.7479270841e+00
+                      6.7830466978e+00
+                      6.8186866495e+00
+                      6.8546236283e+00
+                      6.8909170395e+00
+                      6.9276988853e+00
+                      6.9646638941e+00
+
+interp_resp_offset 0
+field_size 20
+<<<<< Best model responses (experiment 1) =
+                      6.3213084277e+00 displacement_1
+                      6.3748421676e+00 displacement_2
+                      6.4292903823e+00 displacement_3
+                      6.4846767057e+00 displacement_4
+                      6.5410255930e+00 displacement_5
+                      6.5983623567e+00 displacement_6
+                      6.6567132051e+00 displacement_7
+                      6.7161052814e+00 displacement_8
+                      6.7765667066e+00 displacement_9
+                      6.8381266232e+00 displacement_10
+                      6.9008152425e+00 displacement_11
+                      6.9646638941e+00 displacement_12
+<<<<< Best configuration variables (experiment 2) =
+                      6.0000000000e+02 Y
+sim_values                       9.4819626416e+00
+                      9.5622632514e+00
+                      9.6439355735e+00
+                      9.7270150586e+00
+                      9.8115383894e+00
+                      9.8975435351e+00
+                      9.9850698076e+00
+                      1.0074157922e+01
+                      1.0164850060e+01
+                      1.0257189935e+01
+                      1.0351222864e+01
+                      1.0446995841e+01
+
+sim_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 12
+Columns : 1
+LDA : 12
+-2.0000000000e+01 
+2.7272727270e+01 
+7.4545454550e+01 
+1.2181818182e+02 
+1.6909090909e+02 
+2.1636363636e+02 
+2.6363636364e+02 
+3.1090909091e+02 
+3.5818181818e+02 
+4.0545454545e+02 
+4.5272727273e+02 
+5.0000000000e+02 
+
+exp_coords Teuchos::SerialDenseMatrix
+
+Values_copied : no
+Rows : 20
+Columns : 1
+LDA : 20
+-2.0000000000e+01 
+7.3684210500e+00 
+3.4736842110e+01 
+6.2105263160e+01 
+8.9473684210e+01 
+1.1684210526e+02 
+1.4421052632e+02 
+1.7157894737e+02 
+1.9894736842e+02 
+2.2631578947e+02 
+2.5368421053e+02 
+2.8105263158e+02 
+3.0842105263e+02 
+3.3578947368e+02 
+3.6315789474e+02 
+3.9052631579e+02 
+4.1789473684e+02 
+4.4526315789e+02 
+4.7263157895e+02 
+5.0000000000e+02 
+
+field pred                       9.4819626416e+00
+                      9.5284524683e+00
+                      9.5751588812e+00
+                      9.6224428572e+00
+                      9.6701712004e+00
+                      9.7182698496e+00
+                      9.7670524258e+00
+                      9.8160649760e+00
+                      9.8658574288e+00
+                      9.9159701188e+00
+                      9.9666432239e+00
+                      1.0017891745e+01
+                      1.0069469074e+01
+                      1.0121890626e+01
+                      1.0174570047e+01
+                      1.0228029974e+01
+                      1.0281935442e+01
+                      1.0336375559e+01
+                      1.0391548328e+01
+                      1.0446995841e+01
+
+interp_resp_offset 20
+field_size 20
+<<<<< Best model responses (experiment 2) =
+                      9.4819626416e+00 displacement_1
+                      9.5622632514e+00 displacement_2
+                      9.6439355735e+00 displacement_3
+                      9.7270150586e+00 displacement_4
+                      9.8115383894e+00 displacement_5
+                      9.8975435351e+00 displacement_6
+                      9.9850698076e+00 displacement_7
+                      1.0074157922e+01 displacement_8
+                      1.0164850060e+01 displacement_9
+                      1.0257189935e+01 displacement_10
+                      1.0351222864e+01 displacement_11
+                      1.0446995841e+01 displacement_12
+Variance-weighted original (as-posed) residuals:
+<<<<< Best residual terms =
+                     -7.2611272260e-01
+                      9.5422015546e-01
+                     -1.6527960587e+00
+                      1.1034264768e-01
+                      5.3624640239e-01
+                     -1.0538840359e+00
+                     -1.0069828611e+00
+                      5.0709417365e-01
+                     -1.2489724140e-01
+                      2.1528694585e+00
+                     -1.2197505405e+00
+                     -1.0407887364e+00
+                     -9.8221187331e-01
+                      2.0147955413e+00
+                      3.4856487808e-01
+                      3.5271195224e-02
+                     -3.4548781725e-01
+                     -2.0633140528e-01
+                     -1.2141138472e+00
+                      1.6766187405e+00
+                     -3.3087718927e-01
+                      3.2969032213e-01
+                     -2.5623105866e-01
+                      1.8726683810e+00
+                     -4.3213453094e-01
+                      7.3043573074e-01
+                     -1.0599627805e-02
+                     -1.4771855968e-01
+                     -8.6461480807e-01
+                     -3.0508400820e-01
+                     -9.1072364046e-01
+                      1.3969672970e+00
+                      1.3730854934e+00
+                      9.4458974678e-02
+                      5.6272997808e-01
+                      1.8200909522e-01
+                     -2.9405478392e-01
+                      1.1827352805e-01
+                     -4.5869401385e-01
+                     -1.4159456595e+00
+<<<<< Best residual norm =  6.0316523501e+00; 0.5 * norm^2 =  1.8190415036e+01
+<<<<< Best residual terms =
+                     -7.2611272260e-01
+                      9.5422015546e-01
+                     -1.6527960587e+00
+                      1.1034264768e-01
+                      5.3624640239e-01
+                     -1.0538840359e+00
+                     -1.0069828611e+00
+                      5.0709417365e-01
+                     -1.2489724140e-01
+                      2.1528694585e+00
+                     -1.2197505405e+00
+                     -1.0407887364e+00
+                     -9.8221187331e-01
+                      2.0147955413e+00
+                      3.4856487808e-01
+                      3.5271195224e-02
+                     -3.4548781725e-01
+                     -2.0633140528e-01
+                     -1.2141138472e+00
+                      1.6766187405e+00
+                     -3.3087718927e-01
+                      3.2969032213e-01
+                     -2.5623105866e-01
+                      1.8726683810e+00
+                     -4.3213453094e-01
+                      7.3043573074e-01
+                     -1.0599627805e-02
+                     -1.4771855968e-01
+                     -8.6461480807e-01
+                     -3.0508400820e-01
+                     -9.1072364046e-01
+                      1.3969672970e+00
+                      1.3730854934e+00
+                      9.4458974678e-02
+                      5.6272997808e-01
+                      1.8200909522e-01
+                     -2.9405478392e-01
+                      1.1827352805e-01
+                     -4.5869401385e-01
+                     -1.4159456595e+00
+<<<<< Best residual norm =  6.0316523501e+00; 0.5 * norm^2 =  1.8190415036e+01
+<<<<< Best data not found in evaluation cache
+
+Warning: Confidence intervals may be inaccurate when num_experiments > 1
+Confidence Intervals on Calibrated Parameters:
+            E0: [ 2.9632495414e+07, 3.0151299416e+07 ]
+            Es: [ -6.1849389192e+03, -4.4730852456e+03 ]
+
+<<<<< Iterator nl2sol completed.
+<<<<< Environment execution completed.
+DAKOTA execution time in seconds:
+  Total CPU        =   0.063776 [parent =   0.063755, child =    2.1e-05]
+  Total wall clock =     5.7544

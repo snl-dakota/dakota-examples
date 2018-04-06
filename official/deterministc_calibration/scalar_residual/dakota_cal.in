@@ -1,0 +1,47 @@
+
+method
+  nl2sol
+
+variables
+  continuous_design 2
+    descriptors  'E0'      'Es'
+    lower_bounds 28e6  -10000.0
+    upper_bounds 32e6       0.0
+
+  continuous_state 1
+    descriptors     'Y'
+    initial_state 400.0
+
+responses
+  descriptors 'displacement01'
+              'displacement02
+              'displacement03
+              'displacement04
+              'displacement05
+              'displacement06
+              'displacement07
+              'displacement08
+              'displacement09
+              'displacement10
+              'displacement11
+              'displacement12
+              'displacement13
+              'displacement14
+              'displacement15
+              'displacement16
+              'displacement17
+              'displacement18
+              'displacement19
+              'displacement20
+
+  calibration_terms 20
+  numerical_gradients
+  no_hessians
+
+interface
+  fork
+    analysis_driver 'python cantilever_residuals.py'
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_save file_tag
+    analysis_components '20'

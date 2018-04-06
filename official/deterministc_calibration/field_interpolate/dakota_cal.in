@@ -1,0 +1,36 @@
+
+method
+  nl2sol
+
+
+variables
+  continuous_design 2
+    descriptors  'E0'      'Es'
+    lower_bounds 28e6  -10000.0
+    upper_bounds 32e6       0.0
+
+  continuous_state 1
+    descriptors     'Y'
+
+responses
+  descriptors 'displacement'
+  calibration_terms 1
+    field_calibration_terms 1
+      lengths 12
+      read_field_coordinates
+      num_coordinates_per_field 1
+    calibration_data 
+      num_experiments 2
+      num_config_variables 1
+      experiment_variance_type 'scalar'
+      interpolate
+    numerical_gradients
+    no_hessians
+    
+interface
+  fork
+    analysis_driver 'python cantilever.py'
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_save file_tag
+    analysis_components '12'

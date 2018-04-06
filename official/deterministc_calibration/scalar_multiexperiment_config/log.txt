@@ -1,0 +1,1990 @@
+Dakota version 6.7 released Nov 15 2017.
+Repository revision 0616ac7 (2017-11-10) built Nov 13 2017 03:30:07.
+Running MPI Dakota executable in serial mode.
+Start time: Fri Apr  6 11:50:23 2018
+
+-----------------------
+Begin DAKOTA input file
+dakota_cal.in
+-----------------------
+
+method
+  nl2sol
+
+variables
+   continuous_design 2
+    descriptors  'E0'      'Es'
+    lower_bounds 28e6  -10000.0
+    upper_bounds 32e6       0.0
+
+  continuous_state 1
+    descriptors     'Y'
+
+responses
+  descriptors 'displacement01'
+              'displacement02
+              'displacement03
+              'displacement04
+              'displacement05
+              'displacement06
+              'displacement07
+              'displacement08
+              'displacement09
+              'displacement10
+              'displacement11
+              'displacement12
+              'displacement13
+              'displacement14
+              'displacement15
+              'displacement16
+              'displacement17
+              'displacement18
+              'displacement19
+              'displacement20
+  calibration_terms 20
+    calibration_data_file = 'displacements.dat'
+      num_experiments 2
+      num_config_variables 1
+      experiment_variance_type 'scalar'
+    numerical_gradients
+    no_hessians
+    
+interface
+  fork
+    analysis_driver 'python cantilever.py'
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_save file_tag
+    analysis_components '20'
+---------------------
+End DAKOTA input file
+---------------------
+
+Using Dakota input file 'dakota_cal.in'
+Writing new restart file 'dakota.rst'.
+
+Reading scalar experimental data from file displacements.dat:
+  2 experiment(s) for
+  20 scalar responses
+
+>>>>> Executing environment.
+
+>>>>> Running nl2sol iterator.
+
+NONDEFAULT VALUES...
+
+RFCTOL.... V(32) = 0.0001000000
+XCTOL..... V(33) = 1.000000e-05
+XFTOL..... V(34) = 1.000000e-08
+
+---------------------
+Begin Evaluation    1
+---------------------
+Parameters for evaluation 1:
+                      2.8000000000e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.1 results.out.1
+
+Active response data for evaluation 1:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7724867725e+00 displacement01
+                      6.7724867725e+00 displacement02
+                      6.7724867725e+00 displacement03
+                      6.7724867725e+00 displacement04
+                      6.7724867725e+00 displacement05
+                      6.7724867725e+00 displacement06
+                      6.7724867725e+00 displacement07
+                      6.7724867725e+00 displacement08
+                      6.7724867725e+00 displacement09
+                      6.7724867725e+00 displacement10
+                      6.7724867725e+00 displacement11
+                      6.7724867725e+00 displacement12
+                      6.7724867725e+00 displacement13
+                      6.7724867725e+00 displacement14
+                      6.7724867725e+00 displacement15
+                      6.7724867725e+00 displacement16
+                      6.7724867725e+00 displacement17
+                      6.7724867725e+00 displacement18
+                      6.7724867725e+00 displacement19
+                      6.7724867725e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation    2
+---------------------
+Parameters for evaluation 2:
+                      2.8000000000e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.2 results.out.2
+
+Active response data for evaluation 2:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0158730159e+01 displacement01
+                      1.0158730159e+01 displacement02
+                      1.0158730159e+01 displacement03
+                      1.0158730159e+01 displacement04
+                      1.0158730159e+01 displacement05
+                      1.0158730159e+01 displacement06
+                      1.0158730159e+01 displacement07
+                      1.0158730159e+01 displacement08
+                      1.0158730159e+01 displacement09
+                      1.0158730159e+01 displacement10
+                      1.0158730159e+01 displacement11
+                      1.0158730159e+01 displacement12
+                      1.0158730159e+01 displacement13
+                      1.0158730159e+01 displacement14
+                      1.0158730159e+01 displacement15
+                      1.0158730159e+01 displacement16
+                      1.0158730159e+01 displacement17
+                      1.0158730159e+01 displacement18
+                      1.0158730159e+01 displacement19
+                      1.0158730159e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    3
+---------------------
+Parameters for evaluation 3:
+                      2.8028000000e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.3 results.out.3
+
+Active response data for evaluation 3:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7657210514e+00 displacement01
+                      6.7657210514e+00 displacement02
+                      6.7657210514e+00 displacement03
+                      6.7657210514e+00 displacement04
+                      6.7657210514e+00 displacement05
+                      6.7657210514e+00 displacement06
+                      6.7657210514e+00 displacement07
+                      6.7657210514e+00 displacement08
+                      6.7657210514e+00 displacement09
+                      6.7657210514e+00 displacement10
+                      6.7657210514e+00 displacement11
+                      6.7657210514e+00 displacement12
+                      6.7657210514e+00 displacement13
+                      6.7657210514e+00 displacement14
+                      6.7657210514e+00 displacement15
+                      6.7657210514e+00 displacement16
+                      6.7657210514e+00 displacement17
+                      6.7657210514e+00 displacement18
+                      6.7657210514e+00 displacement19
+                      6.7657210514e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation    4
+---------------------
+Parameters for evaluation 4:
+                      2.8000000000e+07 E0
+                     -1.0000000000e-05 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.4 results.out.4
+
+Active response data for evaluation 4:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.7724867724e+00 displacement01
+                      6.7724867725e+00 displacement02
+                      6.7724867726e+00 displacement03
+                      6.7724867726e+00 displacement04
+                      6.7724867727e+00 displacement05
+                      6.7724867728e+00 displacement06
+                      6.7724867728e+00 displacement07
+                      6.7724867729e+00 displacement08
+                      6.7724867730e+00 displacement09
+                      6.7724867730e+00 displacement10
+                      6.7724867731e+00 displacement11
+                      6.7724867732e+00 displacement12
+                      6.7724867732e+00 displacement13
+                      6.7724867733e+00 displacement14
+                      6.7724867734e+00 displacement15
+                      6.7724867734e+00 displacement16
+                      6.7724867735e+00 displacement17
+                      6.7724867736e+00 displacement18
+                      6.7724867736e+00 displacement19
+                      6.7724867737e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.4163289469e-07  4.8374637629e-06 ] displacement01 gradient
+ [ -2.4163289469e-07 -1.7821299991e-06 ] displacement02 gradient
+ [ -2.4163289469e-07 -8.4019013968e-06 ] displacement03 gradient
+ [ -2.4163289469e-07 -1.5021672795e-05 ] displacement04 gradient
+ [ -2.4163289469e-07 -2.1641355374e-05 ] displacement05 gradient
+ [ -2.4163289469e-07 -2.8261215590e-05 ] displacement06 gradient
+ [ -2.4163289469e-07 -3.4880809352e-05 ] displacement07 gradient
+ [ -2.4163289469e-07 -4.1500491932e-05 ] displacement08 gradient
+ [ -2.4163289469e-07 -4.8120174512e-05 ] displacement09 gradient
+ [ -2.4163289469e-07 -5.4739945909e-05 ] displacement10 gradient
+ [ -2.4163289469e-07 -6.1359539671e-05 ] displacement11 gradient
+ [ -2.4163289469e-07 -6.7979399887e-05 ] displacement12 gradient
+ [ -2.4163289469e-07 -7.4599082467e-05 ] displacement13 gradient
+ [ -2.4163289469e-07 -8.1218853865e-05 ] displacement14 gradient
+ [ -2.4163289469e-07 -8.7838625262e-05 ] displacement15 gradient
+ [ -2.4163289469e-07 -9.4458219024e-05 ] displacement16 gradient
+ [ -2.4163289469e-07 -1.0107799042e-04 ] displacement17 gradient
+ [ -2.4163289469e-07 -1.0769776182e-04 ] displacement18 gradient
+ [ -2.4163289469e-07 -1.1431744440e-04 ] displacement19 gradient
+ [ -2.4163289469e-07 -1.2093730462e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    5
+---------------------
+Parameters for evaluation 5:
+                      2.8028000000e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.5 results.out.5
+
+Active response data for evaluation 5:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0148581577e+01 displacement01
+                      1.0148581577e+01 displacement02
+                      1.0148581577e+01 displacement03
+                      1.0148581577e+01 displacement04
+                      1.0148581577e+01 displacement05
+                      1.0148581577e+01 displacement06
+                      1.0148581577e+01 displacement07
+                      1.0148581577e+01 displacement08
+                      1.0148581577e+01 displacement09
+                      1.0148581577e+01 displacement10
+                      1.0148581577e+01 displacement11
+                      1.0148581577e+01 displacement12
+                      1.0148581577e+01 displacement13
+                      1.0148581577e+01 displacement14
+                      1.0148581577e+01 displacement15
+                      1.0148581577e+01 displacement16
+                      1.0148581577e+01 displacement17
+                      1.0148581577e+01 displacement18
+                      1.0148581577e+01 displacement19
+                      1.0148581577e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation    6
+---------------------
+Parameters for evaluation 6:
+                      2.8000000000e+07 E0
+                     -1.0000000000e-05 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.6 results.out.6
+
+Active response data for evaluation 6:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0158730159e+01 displacement01
+                      1.0158730159e+01 displacement02
+                      1.0158730159e+01 displacement03
+                      1.0158730159e+01 displacement04
+                      1.0158730159e+01 displacement05
+                      1.0158730159e+01 displacement06
+                      1.0158730159e+01 displacement07
+                      1.0158730159e+01 displacement08
+                      1.0158730159e+01 displacement09
+                      1.0158730160e+01 displacement10
+                      1.0158730160e+01 displacement11
+                      1.0158730160e+01 displacement12
+                      1.0158730160e+01 displacement13
+                      1.0158730160e+01 displacement14
+                      1.0158730160e+01 displacement15
+                      1.0158730160e+01 displacement16
+                      1.0158730160e+01 displacement17
+                      1.0158730160e+01 displacement18
+                      1.0158730160e+01 displacement19
+                      1.0158730161e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.6244934204e-07  7.2562400533e-06 ] displacement01 gradient
+ [ -3.6244934204e-07 -2.6732394076e-06 ] displacement02 gradient
+ [ -3.6244934204e-07 -1.2602896504e-05 ] displacement03 gradient
+ [ -3.6244934204e-07 -2.2532553601e-05 ] displacement04 gradient
+ [ -3.6244934204e-07 -3.2462033062e-05 ] displacement05 gradient
+ [ -3.6244934204e-07 -4.2391867794e-05 ] displacement06 gradient
+ [ -3.6244934204e-07 -5.2321347255e-05 ] displacement07 gradient
+ [ -3.6244934204e-07 -6.2250826716e-05 ] displacement08 gradient
+ [ -3.6244934204e-07 -7.2180306177e-05 ] displacement09 gradient
+ [ -3.6244934204e-07 -8.2109963273e-05 ] displacement10 gradient
+ [ -3.6244934204e-07 -9.2039442734e-05 ] displacement11 gradient
+ [ -3.6244934204e-07 -1.0196927747e-04 ] displacement12 gradient
+ [ -3.6244934204e-07 -1.1189875693e-04 ] displacement13 gradient
+ [ -3.6244934204e-07 -1.2182841402e-04 ] displacement14 gradient
+ [ -3.6244934204e-07 -1.3175789348e-04 ] displacement15 gradient
+ [ -3.6244934204e-07 -1.4168737295e-04 ] displacement16 gradient
+ [ -3.6244934204e-07 -1.5161703004e-04 ] displacement17 gradient
+ [ -3.6244934204e-07 -1.6154668714e-04 ] displacement18 gradient
+ [ -3.6244934204e-07 -1.7147616660e-04 ] displacement19 gradient
+ [ -3.6244934204e-07 -1.8140600133e-04 ] displacement20 gradient
+
+
+
+    I     INITIAL X(I)       D(I)
+
+    1     2.80000e+07        2.42e-06
+    2     0.00000            0.00121
+
+   IT   NF     F       RELDF    PRELDF   RELDX   MODEL  STPPAR  D*STEP  NPRELDF
+
+    0    1  133.    
+
+---------------------
+Begin Evaluation    7
+---------------------
+Parameters for evaluation 7:
+                      2.8376228125e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.7 results.out.7
+
+Active response data for evaluation 7:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6826933021e+00 displacement01
+                      6.6826933021e+00 displacement02
+                      6.6826933021e+00 displacement03
+                      6.6826933021e+00 displacement04
+                      6.6826933021e+00 displacement05
+                      6.6826933021e+00 displacement06
+                      6.6826933021e+00 displacement07
+                      6.6826933021e+00 displacement08
+                      6.6826933021e+00 displacement09
+                      6.6826933021e+00 displacement10
+                      6.6826933021e+00 displacement11
+                      6.6826933021e+00 displacement12
+                      6.6826933021e+00 displacement13
+                      6.6826933021e+00 displacement14
+                      6.6826933021e+00 displacement15
+                      6.6826933021e+00 displacement16
+                      6.6826933021e+00 displacement17
+                      6.6826933021e+00 displacement18
+                      6.6826933021e+00 displacement19
+                      6.6826933021e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation    8
+---------------------
+Parameters for evaluation 8:
+                      2.8376228125e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.8 results.out.8
+
+Active response data for evaluation 8:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0024039953e+01 displacement01
+                      1.0024039953e+01 displacement02
+                      1.0024039953e+01 displacement03
+                      1.0024039953e+01 displacement04
+                      1.0024039953e+01 displacement05
+                      1.0024039953e+01 displacement06
+                      1.0024039953e+01 displacement07
+                      1.0024039953e+01 displacement08
+                      1.0024039953e+01 displacement09
+                      1.0024039953e+01 displacement10
+                      1.0024039953e+01 displacement11
+                      1.0024039953e+01 displacement12
+                      1.0024039953e+01 displacement13
+                      1.0024039953e+01 displacement14
+                      1.0024039953e+01 displacement15
+                      1.0024039953e+01 displacement16
+                      1.0024039953e+01 displacement17
+                      1.0024039953e+01 displacement18
+                      1.0024039953e+01 displacement19
+                      1.0024039953e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation    9
+---------------------
+Parameters for evaluation 9:
+                      2.8404604353e+07 E0
+                      0.0000000000e+00 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.9 results.out.9
+
+Active response data for evaluation 9:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6760172848e+00 displacement01
+                      6.6760172848e+00 displacement02
+                      6.6760172848e+00 displacement03
+                      6.6760172848e+00 displacement04
+                      6.6760172848e+00 displacement05
+                      6.6760172848e+00 displacement06
+                      6.6760172848e+00 displacement07
+                      6.6760172848e+00 displacement08
+                      6.6760172848e+00 displacement09
+                      6.6760172848e+00 displacement10
+                      6.6760172848e+00 displacement11
+                      6.6760172848e+00 displacement12
+                      6.6760172848e+00 displacement13
+                      6.6760172848e+00 displacement14
+                      6.6760172848e+00 displacement15
+                      6.6760172848e+00 displacement16
+                      6.6760172848e+00 displacement17
+                      6.6760172848e+00 displacement18
+                      6.6760172848e+00 displacement19
+                      6.6760172848e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   10
+---------------------
+Parameters for evaluation 10:
+                      2.8376228125e+07 E0
+                     -1.0000000000e-05 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.10 results.out.10
+
+Active response data for evaluation 10:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.6826933020e+00 displacement01
+                      6.6826933021e+00 displacement02
+                      6.6826933022e+00 displacement03
+                      6.6826933022e+00 displacement04
+                      6.6826933023e+00 displacement05
+                      6.6826933024e+00 displacement06
+                      6.6826933024e+00 displacement07
+                      6.6826933025e+00 displacement08
+                      6.6826933026e+00 displacement09
+                      6.6826933026e+00 displacement10
+                      6.6826933027e+00 displacement11
+                      6.6826933028e+00 displacement12
+                      6.6826933028e+00 displacement13
+                      6.6826933029e+00 displacement14
+                      6.6826933029e+00 displacement15
+                      6.6826933030e+00 displacement16
+                      6.6826933031e+00 displacement17
+                      6.6826933031e+00 displacement18
+                      6.6826933032e+00 displacement19
+                      6.6826933033e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.3526795934e-07  4.7100101597e-06 ] displacement01 gradient
+ [ -2.3526795934e-07 -1.7354118143e-06 ] displacement02 gradient
+ [ -2.3526795934e-07 -8.1807449703e-06 ] displacement03 gradient
+ [ -2.3526795934e-07 -1.4626078126e-05 ] displacement04 gradient
+ [ -2.3526795934e-07 -2.1071411282e-05 ] displacement05 gradient
+ [ -2.3526795934e-07 -2.7516922074e-05 ] displacement06 gradient
+ [ -2.3526795934e-07 -3.3962077595e-05 ] displacement07 gradient
+ [ -2.3526795934e-07 -4.0407588386e-05 ] displacement08 gradient
+ [ -2.3526795934e-07 -4.6852921542e-05 ] displacement09 gradient
+ [ -2.3526795934e-07 -5.3298254699e-05 ] displacement10 gradient
+ [ -2.3526795934e-07 -5.9743499037e-05 ] displacement11 gradient
+ [ -2.3526795934e-07 -6.6188921011e-05 ] displacement12 gradient
+ [ -2.3526795934e-07 -7.2634165349e-05 ] displacement13 gradient
+ [ -2.3526795934e-07 -7.9079587323e-05 ] displacement14 gradient
+ [ -2.3526795934e-07 -8.5525098115e-05 ] displacement15 gradient
+ [ -2.3526795934e-07 -9.1970253635e-05 ] displacement16 gradient
+ [ -2.3526795934e-07 -9.8415764427e-05 ] displacement17 gradient
+ [ -2.3526795934e-07 -1.0486091995e-04 ] displacement18 gradient
+ [ -2.3526795934e-07 -1.1130625310e-04 ] displacement19 gradient
+ [ -2.3526795934e-07 -1.1775176390e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   11
+---------------------
+Parameters for evaluation 11:
+                      2.8404604353e+07 E0
+                      0.0000000000e+00 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.11 results.out.11
+
+Active response data for evaluation 11:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0014025927e+01 displacement01
+                      1.0014025927e+01 displacement02
+                      1.0014025927e+01 displacement03
+                      1.0014025927e+01 displacement04
+                      1.0014025927e+01 displacement05
+                      1.0014025927e+01 displacement06
+                      1.0014025927e+01 displacement07
+                      1.0014025927e+01 displacement08
+                      1.0014025927e+01 displacement09
+                      1.0014025927e+01 displacement10
+                      1.0014025927e+01 displacement11
+                      1.0014025927e+01 displacement12
+                      1.0014025927e+01 displacement13
+                      1.0014025927e+01 displacement14
+                      1.0014025927e+01 displacement15
+                      1.0014025927e+01 displacement16
+                      1.0014025927e+01 displacement17
+                      1.0014025927e+01 displacement18
+                      1.0014025927e+01 displacement19
+                      1.0014025927e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   12
+---------------------
+Parameters for evaluation 12:
+                      2.8376228125e+07 E0
+                     -1.0000000000e-05 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.12 results.out.12
+
+Active response data for evaluation 12:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      1.0024039953e+01 displacement01
+                      1.0024039953e+01 displacement02
+                      1.0024039953e+01 displacement03
+                      1.0024039953e+01 displacement04
+                      1.0024039953e+01 displacement05
+                      1.0024039954e+01 displacement06
+                      1.0024039954e+01 displacement07
+                      1.0024039954e+01 displacement08
+                      1.0024039954e+01 displacement09
+                      1.0024039954e+01 displacement10
+                      1.0024039954e+01 displacement11
+                      1.0024039954e+01 displacement12
+                      1.0024039954e+01 displacement13
+                      1.0024039954e+01 displacement14
+                      1.0024039954e+01 displacement15
+                      1.0024039955e+01 displacement16
+                      1.0024039955e+01 displacement17
+                      1.0024039955e+01 displacement18
+                      1.0024039955e+01 displacement19
+                      1.0024039955e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.5290193901e-07  7.0649264217e-06 ] displacement01 gradient
+ [ -3.5290193901e-07 -2.6032509481e-06 ] displacement02 gradient
+ [ -3.5290193901e-07 -1.2271250682e-05 ] displacement03 gradient
+ [ -3.5290193901e-07 -2.1939250416e-05 ] displacement04 gradient
+ [ -3.5290193901e-07 -3.1607250151e-05 ] displacement05 gradient
+ [ -3.5290193901e-07 -4.1275427520e-05 ] displacement06 gradient
+ [ -3.5290193901e-07 -5.0943249619e-05 ] displacement07 gradient
+ [ -3.5290193901e-07 -6.0611426989e-05 ] displacement08 gradient
+ [ -3.5290193901e-07 -7.0279426723e-05 ] displacement09 gradient
+ [ -3.5290193901e-07 -7.9947426457e-05 ] displacement10 gradient
+ [ -3.5290193901e-07 -8.9615248555e-05 ] displacement11 gradient
+ [ -3.5290193901e-07 -9.9283425925e-05 ] displacement12 gradient
+ [ -3.5290193901e-07 -1.0895124802e-04 ] displacement13 gradient
+ [ -3.5290193901e-07 -1.1861942539e-04 ] displacement14 gradient
+ [ -3.5290193901e-07 -1.2828760276e-04 ] displacement15 gradient
+ [ -3.5290193901e-07 -1.3795542486e-04 ] displacement16 gradient
+ [ -3.5290193901e-07 -1.4762360223e-04 ] displacement17 gradient
+ [ -3.5290193901e-07 -1.5729142433e-04 ] displacement18 gradient
+ [ -3.5290193901e-07 -1.6695942406e-04 ] displacement19 gradient
+ [ -3.5290193901e-07 -1.7662760143e-04 ] displacement20 gradient
+
+
+    1    2  99.1       0.25     0.26     0.007     G    2.e+01  0.9     0.29   
+
+---------------------
+Begin Evaluation   13
+---------------------
+Parameters for evaluation 13:
+                      2.8789344716e+07 E0
+                     -1.2568286995e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.13 results.out.13
+
+Active response data for evaluation 13:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.5810530379e+00 displacement01
+                      6.5889185892e+00 displacement02
+                      6.5968029645e+00 displacement03
+                      6.6047062315e+00 displacement04
+                      6.6126284581e+00 displacement05
+                      6.6205697127e+00 displacement06
+                      6.6285300639e+00 displacement07
+                      6.6365095807e+00 displacement08
+                      6.6445083323e+00 displacement09
+                      6.6525263884e+00 displacement10
+                      6.6605638190e+00 displacement11
+                      6.6686206943e+00 displacement12
+                      6.6766970851e+00 displacement13
+                      6.6847930623e+00 displacement14
+                      6.6929086972e+00 displacement15
+                      6.7010440616e+00 displacement16
+                      6.7091992274e+00 displacement17
+                      6.7173742671e+00 displacement18
+                      6.7255692534e+00 displacement19
+                      6.7337842593e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation   14
+---------------------
+Parameters for evaluation 14:
+                      2.8789344716e+07 E0
+                     -1.2568286995e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.14 results.out.14
+
+Active response data for evaluation 14:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.8715795568e+00 displacement01
+                      9.8833778838e+00 displacement02
+                      9.8952044467e+00 displacement03
+                      9.9070593472e+00 displacement04
+                      9.9189426872e+00 displacement05
+                      9.9308545691e+00 displacement06
+                      9.9427950959e+00 displacement07
+                      9.9547643710e+00 displacement08
+                      9.9667624984e+00 displacement09
+                      9.9787895826e+00 displacement10
+                      9.9908457285e+00 displacement11
+                      1.0002931041e+01 displacement12
+                      1.0015045628e+01 displacement13
+                      1.0027189593e+01 displacement14
+                      1.0039363046e+01 displacement15
+                      1.0051566092e+01 displacement16
+                      1.0063798841e+01 displacement17
+                      1.0076061401e+01 displacement18
+                      1.0088353880e+01 displacement19
+                      1.0100676389e+01 displacement20
+
+
+
+---------------------
+Begin Evaluation   15
+---------------------
+Parameters for evaluation 15:
+                      2.9374582467e+07 E0
+                     -3.4484721188e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.15 results.out.15
+
+Active response data for evaluation 15:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4404467985e+00 displacement01
+                      6.4611575852e+00 displacement02
+                      6.4820020025e+00 displacement03
+                      6.5029813480e+00 displacement04
+                      6.5240969359e+00 displacement05
+                      6.5453500979e+00 displacement06
+                      6.5667421827e+00 displacement07
+                      6.5882745569e+00 displacement08
+                      6.6099486052e+00 displacement09
+                      6.6317657304e+00 displacement10
+                      6.6537273540e+00 displacement11
+                      6.6758349161e+00 displacement12
+                      6.6980898764e+00 displacement13
+                      6.7204937140e+00 displacement14
+                      6.7430479276e+00 displacement15
+                      6.7657540366e+00 displacement16
+                      6.7886135804e+00 displacement17
+                      6.8116281195e+00 displacement18
+                      6.8347992358e+00 displacement19
+                      6.8581285325e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation   16
+---------------------
+Parameters for evaluation 16:
+                      2.9374582467e+07 E0
+                     -3.4484721188e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.16 results.out.16
+
+Active response data for evaluation 16:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6606701978e+00 displacement01
+                      9.6917363778e+00 displacement02
+                      9.7230030038e+00 displacement03
+                      9.7544720220e+00 displacement04
+                      9.7861454039e+00 displacement05
+                      9.8180251468e+00 displacement06
+                      9.8501132740e+00 displacement07
+                      9.8824118354e+00 displacement08
+                      9.9149229079e+00 displacement09
+                      9.9476485957e+00 displacement10
+                      9.9805910309e+00 displacement11
+                      1.0013752374e+01 displacement12
+                      1.0047134815e+01 displacement13
+                      1.0080740571e+01 displacement14
+                      1.0114571891e+01 displacement15
+                      1.0148631055e+01 displacement16
+                      1.0182920371e+01 displacement17
+                      1.0217442179e+01 displacement18
+                      1.0252198854e+01 displacement19
+                      1.0287192799e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   17
+---------------------
+Parameters for evaluation 17:
+                      2.9403957049e+07 E0
+                     -3.4484721188e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.17 results.out.17
+
+Active response data for evaluation 17:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4340278420e+00 displacement01
+                      6.4546972996e+00 displacement02
+                      6.4754999874e+00 displacement03
+                      6.4964371978e+00 displacement04
+                      6.5175102397e+00 displacement05
+                      6.5387204394e+00 displacement06
+                      6.5600691402e+00 displacement07
+                      6.5815577033e+00 displacement08
+                      6.6031875075e+00 displacement09
+                      6.6249599499e+00 displacement10
+                      6.6468764463e+00 displacement11
+                      6.6689384310e+00 displacement12
+                      6.6911473575e+00 displacement13
+                      6.7135046988e+00 displacement14
+                      6.7360119476e+00 displacement15
+                      6.7586706166e+00 displacement16
+                      6.7814822390e+00 displacement17
+                      6.8044483689e+00 displacement18
+                      6.8275705813e+00 displacement19
+                      6.8508504728e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   18
+---------------------
+Parameters for evaluation 18:
+                      2.9374582467e+07 E0
+                     -3.4519205910e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.18 results.out.18
+
+Active response data for evaluation 18:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.4404317123e+00 displacement01
+                      6.4611631791e+00 displacement02
+                      6.4820285444e+00 displacement03
+                      6.5030291094e+00 displacement04
+                      6.5241661925e+00 displacement05
+                      6.5454411293e+00 displacement06
+                      6.5668552728e+00 displacement07
+                      6.5884099938e+00 displacement08
+                      6.6101066810e+00 displacement09
+                      6.6319467417e+00 displacement10
+                      6.6539316017e+00 displacement11
+                      6.6760627059e+00 displacement12
+                      6.6983415182e+00 displacement13
+                      6.7207695226e+00 displacement14
+                      6.7433482225e+00 displacement15
+                      6.7660791419e+00 displacement16
+                      6.7889638254e+00 displacement17
+                      6.8120038385e+00 displacement18
+                      6.8352007679e+00 displacement19
+                      6.8585562223e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1852077704e-07  4.3747654710e-06 ] displacement01 gradient
+ [ -2.1992774283e-07 -1.6221435375e-06 ] displacement02 gradient
+ [ -2.2134834080e-07 -7.6966943065e-06 ] displacement03 gradient
+ [ -2.2278274765e-07 -1.3850020491e-05 ] displacement04 gradient
+ [ -2.2423114293e-07 -2.0083275426e-05 ] displacement05 gradient
+ [ -2.2569370911e-07 -2.6397632524e-05 ] displacement06 gradient
+ [ -2.2717063166e-07 -3.2794285692e-05 ] displacement07 gradient
+ [ -2.2866209909e-07 -3.9274449744e-05 ] displacement08 gradient
+ [ -2.3016830302e-07 -4.5839360839e-05 ] displacement09 gradient
+ [ -2.3168943823e-07 -5.2490276917e-05 ] displacement10 gradient
+ [ -2.3322570273e-07 -5.9228478154e-05 ] displacement11 gradient
+ [ -2.3477729782e-07 -6.6055267421e-05 ] displacement12 gradient
+ [ -2.3634442816e-07 -7.2971970759e-05 ] displacement13 gradient
+ [ -2.3792730184e-07 -7.9979937868e-05 ] displacement14 gradient
+ [ -2.3952613045e-07 -8.7080542597e-05 ] displacement15 gradient
+ [ -2.4114112913e-07 -9.4275183454e-05 ] displacement16 gradient
+ [ -2.4277251668e-07 -1.0156528413e-04 ] displacement17 gradient
+ [ -2.4442051560e-07 -1.0895229404e-04 ] displacement18 gradient
+ [ -2.4608535218e-07 -1.1643768884e-04 ] displacement19 gradient
+ [ -2.4776725658e-07 -1.2402297102e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   19
+---------------------
+Parameters for evaluation 19:
+                      2.9403957049e+07 E0
+                     -3.4484721188e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.19 results.out.19
+
+Active response data for evaluation 19:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6510417629e+00 displacement01
+                      9.6820459494e+00 displacement02
+                      9.7132499812e+00 displacement03
+                      9.7446557967e+00 displacement04
+                      9.7762653596e+00 displacement05
+                      9.8080806591e+00 displacement06
+                      9.8401037103e+00 displacement07
+                      9.8723365549e+00 displacement08
+                      9.9047812612e+00 displacement09
+                      9.9374399249e+00 displacement10
+                      9.9703146695e+00 displacement11
+                      1.0003407647e+01 displacement12
+                      1.0036721036e+01 displacement13
+                      1.0070257048e+01 displacement14
+                      1.0104017921e+01 displacement15
+                      1.0138005925e+01 displacement16
+                      1.0172223359e+01 displacement17
+                      1.0206672553e+01 displacement18
+                      1.0241355872e+01 displacement19
+                      1.0276275709e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   20
+---------------------
+Parameters for evaluation 20:
+                      2.9374582467e+07 E0
+                     -3.4519205910e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.20 results.out.20
+
+Active response data for evaluation 20:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.6606475684e+00 displacement01
+                      9.6917447687e+00 displacement02
+                      9.7230428165e+00 displacement03
+                      9.7545436641e+00 displacement04
+                      9.7862492888e+00 displacement05
+                      9.8181616940e+00 displacement06
+                      9.8502829093e+00 displacement07
+                      9.8826149907e+00 displacement08
+                      9.9151600215e+00 displacement09
+                      9.9479201126e+00 displacement10
+                      9.9808974026e+00 displacement11
+                      1.0014094059e+01 displacement12
+                      1.0047512277e+01 displacement13
+                      1.0081154284e+01 displacement14
+                      1.0115022334e+01 displacement15
+                      1.0149118713e+01 displacement16
+                      1.0183445738e+01 displacement17
+                      1.0218005758e+01 displacement18
+                      1.0252801152e+01 displacement19
+                      1.0287834333e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.2778116556e-07  6.5621482066e-06 ] displacement01 gradient
+ [ -3.2989161424e-07 -2.4332153064e-06 ] displacement02 gradient
+ [ -3.3202251121e-07 -1.1545041460e-05 ] displacement03 gradient
+ [ -3.3417412148e-07 -2.0775030736e-05 ] displacement04 gradient
+ [ -3.3634671439e-07 -3.0124913138e-05 ] displacement05 gradient
+ [ -3.3854056366e-07 -3.9596448786e-05 ] displacement06 gradient
+ [ -3.4075594749e-07 -4.9191428538e-05 ] displacement07 gradient
+ [ -3.4299314864e-07 -5.8911674616e-05 ] displacement08 gradient
+ [ -3.4525245454e-07 -6.8759041259e-05 ] displacement09 gradient
+ [ -3.4753415735e-07 -7.8735415376e-05 ] displacement10 gradient
+ [ -3.4983855410e-07 -8.8842717230e-05 ] displacement11 gradient
+ [ -3.5216594673e-07 -9.9082901131e-05 ] displacement12 gradient
+ [ -3.5451664224e-07 -1.0945795614e-04 ] displacement13 gradient
+ [ -3.5689095276e-07 -1.1996990680e-04 ] displacement14 gradient
+ [ -3.5928919567e-07 -1.3062081390e-04 ] displacement15 gradient
+ [ -3.6171169370e-07 -1.4141277518e-04 ] displacement16 gradient
+ [ -3.6415877502e-07 -1.5234792620e-04 ] displacement17 gradient
+ [ -3.6663077340e-07 -1.6342844105e-04 ] displacement18 gradient
+ [ -3.6912802827e-07 -1.7465653325e-04 ] displacement19 gradient
+ [ -3.7165088487e-07 -1.8603445653e-04 ] displacement20 gradient
+
+
+    2    4  27.8       0.72     0.72     0.03      G    2.      5.      0.81   
+
+---------------------
+Begin Evaluation   21
+---------------------
+Parameters for evaluation 21:
+                      2.9886035239e+07 E0
+                     -5.3172974034e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.21 results.out.21
+
+Active response data for evaluation 21:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3225933429e+00 displacement01
+                      6.3534207762e+00 displacement02
+                      6.3845502965e+00 displacement03
+                      6.4159863662e+00 displacement04
+                      6.4477335357e+00 displacement05
+                      6.4797964462e+00 displacement06
+                      6.5121798314e+00 displacement07
+                      6.5448885203e+00 displacement08
+                      6.5779274393e+00 displacement09
+                      6.6113016149e+00 displacement10
+                      6.6450161760e+00 displacement11
+                      6.6790763568e+00 displacement12
+                      6.7134874992e+00 displacement13
+                      6.7482550558e+00 displacement14
+                      6.7833845929e+00 displacement15
+                      6.8188817931e+00 displacement16
+                      6.8547524587e+00 displacement17
+                      6.8910025147e+00 displacement18
+                      6.9276380121e+00 displacement19
+                      6.9646651313e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation   22
+---------------------
+Parameters for evaluation 22:
+                      2.9886035239e+07 E0
+                     -5.3172974034e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.22 results.out.22
+
+Active response data for evaluation 22:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4838900144e+00 displacement01
+                      9.5301311643e+00 displacement02
+                      9.5768254448e+00 displacement03
+                      9.6239795493e+00 displacement04
+                      9.6716003036e+00 displacement05
+                      9.7196946693e+00 displacement06
+                      9.7682697471e+00 displacement07
+                      9.8173327804e+00 displacement08
+                      9.8668911590e+00 displacement09
+                      9.9169524224e+00 displacement10
+                      9.9675242640e+00 displacement11
+                      1.0018614535e+01 displacement12
+                      1.0070231249e+01 displacement13
+                      1.0122382584e+01 displacement14
+                      1.0175076889e+01 displacement15
+                      1.0228322690e+01 displacement16
+                      1.0282128688e+01 displacement17
+                      1.0336503772e+01 displacement18
+                      1.0391457018e+01 displacement19
+                      1.0446997697e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   23
+---------------------
+Parameters for evaluation 23:
+                      2.9915921274e+07 E0
+                     -5.3172974034e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.23 results.out.23
+
+Active response data for evaluation 23:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3162994396e+00 displacement01
+                      6.3470653790e+00 displacement02
+                      6.3781324998e+00 displacement03
+                      6.4095052464e+00 displacement04
+                      6.4411881511e+00 displacement05
+                      6.4731858360e+00 displacement06
+                      6.5055030159e+00 displacement07
+                      6.5381444999e+00 displacement08
+                      6.5711151942e+00 displacement09
+                      6.6044201045e+00 displacement10
+                      6.6380643386e+00 displacement11
+                      6.6720531087e+00 displacement12
+                      6.7063917344e+00 displacement13
+                      6.7410856454e+00 displacement14
+                      6.7761403844e+00 displacement15
+                      6.8115616098e+00 displacement16
+                      6.8473550991e+00 displacement17
+                      6.8835267518e+00 displacement18
+                      6.9200825928e+00 displacement19
+                      6.9570287756e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   24
+---------------------
+Parameters for evaluation 24:
+                      2.9886035239e+07 E0
+                     -5.3226147009e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.24 results.out.24
+
+Active response data for evaluation 24:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3225709246e+00 displacement01
+                      6.3534291164e+00 displacement02
+                      6.3845900009e+00 displacement03
+                      6.4160580540e+00 displacement04
+                      6.4478378398e+00 displacement05
+                      6.4799340138e+00 displacement06
+                      6.5123513242e+00 displacement07
+                      6.5450946150e+00 displacement08
+                      6.5781688281e+00 displacement09
+                      6.6115790055e+00 displacement10
+                      6.6453302926e+00 displacement11
+                      6.6794279400e+00 displacement12
+                      6.7138773068e+00 displacement13
+                      6.7486838633e+00 displacement14
+                      6.7838531938e+00 displacement15
+                      6.8193909994e+00 displacement16
+                      6.8553031017e+00 displacement17
+                      6.8915954451e+00 displacement18
+                      6.9282741009e+00 displacement19
+                      6.9653452703e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1059679791e-07  4.2161180103e-06 ] displacement01 gradient
+ [ -2.1265441021e-07 -1.5684982766e-06 ] displacement02 gradient
+ [ -2.1474232599e-07 -7.4670225661e-06 ] displacement03 gradient
+ [ -2.1686114325e-07 -1.3481987708e-05 ] displacement04 gradient
+ [ -2.1901147480e-07 -1.9615993612e-05 ] displacement05 gradient
+ [ -2.2119394874e-07 -2.5871709338e-05 ] displacement06 gradient
+ [ -2.2340920887e-07 -3.2251875269e-05 ] displacement07 gradient
+ [ -2.2565791519e-07 -3.8759305345e-05 ] displacement08 gradient
+ [ -2.2794074442e-07 -4.5396889401e-05 ] displacement09 gradient
+ [ -2.3025839046e-07 -5.2167595572e-05 ] displacement10 gradient
+ [ -2.3261156494e-07 -5.9074472794e-05 ] displacement11 gradient
+ [ -2.3500099777e-07 -6.6120653401e-05 ] displacement12 gradient
+ [ -2.3742743769e-07 -7.3309355812e-05 ] displacement13 gradient
+ [ -2.3989165289e-07 -8.0643887321e-05 ] displacement14 gradient
+ [ -2.4239443157e-07 -8.8127646991e-05 ] displacement15 gradient
+ [ -2.4493658261e-07 -9.5764128664e-05 ] displacement16 gradient
+ [ -2.4751893622e-07 -1.0355692407e-04 ] displacement17 gradient
+ [ -2.5014234458e-07 -1.1150972607e-04 ] displacement18 gradient
+ [ -2.5280768259e-07 -1.1962633202e-04 ] displacement19 gradient
+ [ -2.5551584858e-07 -1.2791064726e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   25
+---------------------
+Parameters for evaluation 25:
+                      2.9915921274e+07 E0
+                     -5.3172974034e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.25 results.out.25
+
+Active response data for evaluation 25:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4744491594e+00 displacement01
+                      9.5205980685e+00 displacement02
+                      9.5671987497e+00 displacement03
+                      9.6142578697e+00 displacement04
+                      9.6617822266e+00 displacement05
+                      9.7097787541e+00 displacement06
+                      9.7582545238e+00 displacement07
+                      9.8072167498e+00 displacement08
+                      9.8566727913e+00 displacement09
+                      9.9066301568e+00 displacement10
+                      9.9570965079e+00 displacement11
+                      1.0008079663e+01 displacement12
+                      1.0059587602e+01 displacement13
+                      1.0111628468e+01 displacement14
+                      1.0164210577e+01 displacement15
+                      1.0217342415e+01 displacement16
+                      1.0271032649e+01 displacement17
+                      1.0325290128e+01 displacement18
+                      1.0380123889e+01 displacement19
+                      1.0435543163e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   26
+---------------------
+Parameters for evaluation 26:
+                      2.9886035239e+07 E0
+                     -5.3226147009e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.26 results.out.26
+
+Active response data for evaluation 26:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4838563869e+00 displacement01
+                      9.5301436746e+00 displacement02
+                      9.5768850014e+00 displacement03
+                      9.6240870809e+00 displacement04
+                      9.6717567597e+00 displacement05
+                      9.7199010206e+00 displacement06
+                      9.7685269863e+00 displacement07
+                      9.8176419225e+00 displacement08
+                      9.8672532421e+00 displacement09
+                      9.9173685083e+00 displacement10
+                      9.9679954388e+00 displacement11
+                      1.0019141910e+01 displacement12
+                      1.0070815960e+01 displacement13
+                      1.0123025795e+01 displacement14
+                      1.0175779791e+01 displacement15
+                      1.0229086499e+01 displacement16
+                      1.0282954652e+01 displacement17
+                      1.0337393168e+01 displacement18
+                      1.0392411151e+01 displacement19
+                      1.0448017905e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1589519687e-07  6.3241770154e-06 ] displacement01 gradient
+ [ -3.1898161531e-07 -2.3527474149e-06 ] displacement02 gradient
+ [ -3.2211348898e-07 -1.1200533849e-05 ] displacement03 gradient
+ [ -3.2529171487e-07 -2.0222981562e-05 ] displacement04 gradient
+ [ -3.2851721221e-07 -2.9423990417e-05 ] displacement05 gradient
+ [ -3.3179092311e-07 -3.8807564008e-05 ] displacement06 gradient
+ [ -3.3511381330e-07 -4.8377812903e-05 ] displacement07 gradient
+ [ -3.3848687279e-07 -5.8138958017e-05 ] displacement08 gradient
+ [ -3.4191111664e-07 -6.8095334102e-05 ] displacement09 gradient
+ [ -3.4538758569e-07 -7.8251393358e-05 ] displacement10 gradient
+ [ -3.4891734741e-07 -8.8611709191e-05 ] displacement11 gradient
+ [ -3.5250149665e-07 -9.9180980102e-05 ] displacement12 gradient
+ [ -3.5614115654e-07 -1.0996403372e-04 ] displacement13 gradient
+ [ -3.5983747933e-07 -1.2096583098e-04 ] displacement14 gradient
+ [ -3.6359164735e-07 -1.3219147049e-04 ] displacement15 gradient
+ [ -3.6740487392e-07 -1.4364619300e-04 ] displacement16 gradient
+ [ -3.7127840432e-07 -1.5533538611e-04 ] displacement17 gradient
+ [ -3.7521351686e-07 -1.6726458911e-04 ] displacement18 gradient
+ [ -3.7921152388e-07 -1.7943949804e-04 ] displacement19 gradient
+ [ -3.8327377287e-07 -1.9186597089e-04 ] displacement20 gradient
+
+
+    3    5  18.2       0.35     0.35     0.02      G    0.      3.      0.35   
+
+---------------------
+Begin Evaluation   27
+---------------------
+Parameters for evaluation 27:
+                      2.9891556145e+07 E0
+                     -5.3290509492e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.27 results.out.27
+
+Active response data for evaluation 27:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213801774e+00 displacement01
+                      6.3522642014e+00 displacement02
+                      6.3834514838e+00 displacement03
+                      6.4149465133e+00 displacement04
+                      6.4467538677e+00 displacement05
+                      6.4788782159e+00 displacement06
+                      6.5113243204e+00 displacement07
+                      6.5440970395e+00 displacement08
+                      6.5772013301e+00 displacement09
+                      6.6106422495e+00 displacement10
+                      6.6444249586e+00 displacement11
+                      6.6785547244e+00 displacement12
+                      6.7130369226e+00 displacement13
+                      6.7478770403e+00 displacement14
+                      6.7830806795e+00 displacement15
+                      6.8186535595e+00 displacement16
+                      6.8546015200e+00 displacement17
+                      6.8909305250e+00 displacement18
+                      6.9276466651e+00 displacement19
+                      6.9647561617e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation   28
+---------------------
+Parameters for evaluation 28:
+                      2.9891556145e+07 E0
+                     -5.3290509492e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.28 results.out.28
+
+Active response data for evaluation 28:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4820702661e+00 displacement01
+                      9.5283963021e+00 displacement02
+                      9.5751772257e+00 displacement03
+                      9.6224197700e+00 displacement04
+                      9.6701308016e+00 displacement05
+                      9.7183173238e+00 displacement06
+                      9.7669864805e+00 displacement07
+                      9.8161455593e+00 displacement08
+                      9.8658019951e+00 displacement09
+                      9.9159633742e+00 displacement10
+                      9.9666374379e+00 displacement11
+                      1.0017832087e+01 displacement12
+                      1.0069555384e+01 displacement13
+                      1.0121815560e+01 displacement14
+                      1.0174621019e+01 displacement15
+                      1.0227980339e+01 displacement16
+                      1.0281902280e+01 displacement17
+                      1.0336395787e+01 displacement18
+                      1.0391469998e+01 displacement19
+                      1.0447134243e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   29
+---------------------
+Parameters for evaluation 29:
+                      2.9921447702e+07 E0
+                     -5.3290509492e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.29 results.out.29
+
+Active response data for evaluation 29:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3150875269e+00 displacement01
+                      6.3459099443e+00 displacement02
+                      6.3770347109e+00 displacement03
+                      6.4084662975e+00 displacement04
+                      6.4402092634e+00 displacement05
+                      6.4722682586e+00 displacement06
+                      6.5046480263e+00 displacement07
+                      6.5373534051e+00 displacement08
+                      6.5703893312e+00 displacement09
+                      6.6037608413e+00 displacement10
+                      6.6374730749e+00 displacement11
+                      6.6715312769e+00 displacement12
+                      6.7059408005e+00 displacement13
+                      6.7407071098e+00 displacement14
+                      6.7758357831e+00 displacement15
+                      6.8113325151e+00 displacement16
+                      6.8472031210e+00 displacement17
+                      6.8834535387e+00 displacement18
+                      6.9200898327e+00 displacement19
+                      6.9571181974e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   30
+---------------------
+Parameters for evaluation 30:
+                      2.9891556145e+07 E0
+                     -5.3343800002e+03 Es
+                      4.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.30 results.out.30
+
+Active response data for evaluation 30:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213577181e+00 displacement01
+                      6.3522725570e+00 displacement02
+                      6.3834912623e+00 displacement03
+                      6.4150183363e+00 displacement04
+                      6.4468583706e+00 displacement05
+                      6.4790160485e+00 displacement06
+                      6.5114961471e+00 displacement07
+                      6.5443035399e+00 displacement08
+                      6.5774431990e+00 displacement09
+                      6.6109201978e+00 displacement10
+                      6.6447397135e+00 displacement11
+                      6.6789070297e+00 displacement12
+                      6.7134275395e+00 displacement13
+                      6.7483067476e+00 displacement14
+                      6.7835502742e+00 displacement15
+                      6.8191638573e+00 displacement16
+                      6.8551533559e+00 displacement17
+                      6.8915247537e+00 displacement18
+                      6.9282841616e+00 displacement19
+                      6.9654378220e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1051598945e-07  4.2145001761e-06 ] displacement01 gradient
+ [ -2.1257699360e-07 -1.5679272746e-06 ] displacement02 gradient
+ [ -2.1466841320e-07 -7.4644526590e-06 ] displacement03 gradient
+ [ -2.1679084967e-07 -1.3477618260e-05 ] displacement04 gradient
+ [ -2.1894491941e-07 -1.9610033813e-05 ] displacement05 gradient
+ [ -2.2113125417e-07 -2.5864378606e-05 ] displacement06 gradient
+ [ -2.2335050156e-07 -3.2243403674e-05 ] displacement07 gradient
+ [ -2.2560332554e-07 -3.8749934049e-05 ] displacement08 gradient
+ [ -2.2789040686e-07 -4.5386871115e-05 ] displacement09 gradient
+ [ -2.3021244364e-07 -5.2157195040e-05 ] displacement10 gradient
+ [ -2.3257015186e-07 -5.9063967289e-05 ] displacement11 gradient
+ [ -2.3496426595e-07 -6.6110333248e-05 ] displacement12 gradient
+ [ -2.3739553930e-07 -7.3299524929e-05 ] displacement13 gradient
+ [ -2.3986474493e-07 -8.0634863791e-05 ] displacement14 gradient
+ [ -2.4237267603e-07 -8.8119763653e-05 ] displacement15 gradient
+ [ -2.4492014665e-07 -9.5757733728e-05 ] displacement16 gradient
+ [ -2.4750799236e-07 -1.0355238177e-04 ] displacement17 gradient
+ [ -2.5013707088e-07 -1.1150741733e-04 ] displacement18 gradient
+ [ -2.5280826285e-07 -1.1962665516e-04 ] displacement19 gradient
+ [ -2.5552247256e-07 -1.2791401872e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   31
+---------------------
+Parameters for evaluation 31:
+                      2.9921447702e+07 E0
+                     -5.3290509492e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.31 results.out.31
+
+Active response data for evaluation 31:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4726312903e+00 displacement01
+                      9.5188649164e+00 displacement02
+                      9.5655520663e+00 displacement03
+                      9.6126994462e+00 displacement04
+                      9.6603138950e+00 displacement05
+                      9.7084023879e+00 displacement06
+                      9.7569720395e+00 displacement07
+                      9.8060301076e+00 displacement08
+                      9.8555839968e+00 displacement09
+                      9.9056412619e+00 displacement10
+                      9.9562096123e+00 displacement11
+                      1.0007296915e+01 displacement12
+                      1.0058911201e+01 displacement13
+                      1.0111060665e+01 displacement14
+                      1.0163753675e+01 displacement15
+                      1.0216998773e+01 displacement16
+                      1.0270804681e+01 displacement17
+                      1.0325180308e+01 displacement18
+                      1.0380134749e+01 displacement19
+                      1.0435677296e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   32
+---------------------
+Parameters for evaluation 32:
+                      2.9891556145e+07 E0
+                     -5.3343800002e+03 Es
+                      6.0000000000e+02 Y
+
+blocking fork: python cantilever.py params.in.32 results.out.32
+
+Active response data for evaluation 32:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4820365772e+00 displacement01
+                      9.5284088354e+00 displacement02
+                      9.5752368934e+00 displacement03
+                      9.6225275044e+00 displacement04
+                      9.6702875559e+00 displacement05
+                      9.7185240727e+00 displacement06
+                      9.7672442207e+00 displacement07
+                      9.8164553099e+00 displacement08
+                      9.8661647985e+00 displacement09
+                      9.9163802967e+00 displacement10
+                      9.9671095703e+00 displacement11
+                      1.0018360545e+01 displacement12
+                      1.0070141309e+01 displacement13
+                      1.0122460121e+01 displacement14
+                      1.0175325411e+01 displacement15
+                      1.0228745786e+01 displacement16
+                      1.0282730034e+01 displacement17
+                      1.0337287130e+01 displacement18
+                      1.0392426242e+01 displacement19
+                      1.0448156733e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1577398418e-07  6.3217502642e-06 ] displacement01 gradient
+ [ -3.1886549040e-07 -2.3518909118e-06 ] displacement02 gradient
+ [ -3.2200261979e-07 -1.1196678988e-05 ] displacement03 gradient
+ [ -3.2518627451e-07 -2.0216427390e-05 ] displacement04 gradient
+ [ -3.2841737912e-07 -2.9415050719e-05 ] displacement05 gradient
+ [ -3.3169688126e-07 -3.8796567910e-05 ] displacement06 gradient
+ [ -3.3502575235e-07 -4.8365105510e-05 ] displacement07 gradient
+ [ -3.3840498830e-07 -5.8124901073e-05 ] displacement08 gradient
+ [ -3.4183561028e-07 -6.8080306673e-05 ] displacement09 gradient
+ [ -3.4531866545e-07 -7.8235792560e-05 ] displacement10 gradient
+ [ -3.4885522779e-07 -8.8595950933e-05 ] displacement11 gradient
+ [ -3.5244639892e-07 -9.9165499871e-05 ] displacement12 gradient
+ [ -3.5609330896e-07 -1.0994928739e-04 ] displacement13 gradient
+ [ -3.5979711739e-07 -1.2095229569e-04 ] displacement14 gradient
+ [ -3.6355901404e-07 -1.3217964548e-04 ] displacement15 gradient
+ [ -3.6738021998e-07 -1.4363660059e-04 ] displacement16 gradient
+ [ -3.7126198853e-07 -1.5532857265e-04 ] displacement17 gradient
+ [ -3.7520560631e-07 -1.6726112599e-04 ] displacement18 gradient
+ [ -3.7921239427e-07 -1.7943998273e-04 ] displacement19 gradient
+ [ -3.8328370884e-07 -1.9187102809e-04 ] displacement20 gradient
+
+
+    4    6  18.2       5.7e-05  5.7e-05  0.0001    G    0.      0.02    5.7e-05
+
+***** RELATIVE FUNCTION CONVERGENCE *****
+
+FUNCTION     18.1900        RELDX        9.84e-05
+FUNC. EVALS      6          GRAD. EVALS      5
+PRELDF       5.69e-05       NPRELDF      5.69e-05
+
+    I      FINAL X(I)        D(I)          G(I)
+
+    1       2.98916e+07      2.56e-06    1.26e-09
+    2      -5329.05          0.00128     5.18e-07
+Warning: couldn't recover final least squares terms from evaluation database.
+
+---------------------
+Begin Evaluation   33
+---------------------
+Parameters for evaluation 33:
+                      2.9891556145e+07 E0
+                     -5.3290509492e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213801774e+00 displacement01
+                      6.3522642014e+00 displacement02
+                      6.3834514838e+00 displacement03
+                      6.4149465133e+00 displacement04
+                      6.4467538677e+00 displacement05
+                      6.4788782159e+00 displacement06
+                      6.5113243204e+00 displacement07
+                      6.5440970395e+00 displacement08
+                      6.5772013301e+00 displacement09
+                      6.6106422495e+00 displacement10
+                      6.6444249586e+00 displacement11
+                      6.6785547244e+00 displacement12
+                      6.7130369226e+00 displacement13
+                      6.7478770403e+00 displacement14
+                      6.7830806795e+00 displacement15
+                      6.8186535595e+00 displacement16
+                      6.8546015200e+00 displacement17
+                      6.8909305250e+00 displacement18
+                      6.9276466651e+00 displacement19
+                      6.9647561617e+00 displacement20
+
+
+
+---------------------
+Begin Evaluation   34
+---------------------
+Parameters for evaluation 34:
+                      2.9891556145e+07 E0
+                     -5.3290509492e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4820702661e+00 displacement01
+                      9.5283963021e+00 displacement02
+                      9.5751772257e+00 displacement03
+                      9.6224197700e+00 displacement04
+                      9.6701308016e+00 displacement05
+                      9.7183173238e+00 displacement06
+                      9.7669864805e+00 displacement07
+                      9.8161455593e+00 displacement08
+                      9.8658019951e+00 displacement09
+                      9.9159633742e+00 displacement10
+                      9.9666374379e+00 displacement11
+                      1.0017832087e+01 displacement12
+                      1.0069555384e+01 displacement13
+                      1.0121815560e+01 displacement14
+                      1.0174621019e+01 displacement15
+                      1.0227980339e+01 displacement16
+                      1.0281902280e+01 displacement17
+                      1.0336395787e+01 displacement18
+                      1.0391469998e+01 displacement19
+                      1.0447134243e+01 displacement20
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   35
+---------------------
+Parameters for evaluation 35:
+                      2.9921447702e+07 E0
+                     -5.3290509492e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3150875269e+00 displacement01
+                      6.3459099443e+00 displacement02
+                      6.3770347109e+00 displacement03
+                      6.4084662975e+00 displacement04
+                      6.4402092634e+00 displacement05
+                      6.4722682586e+00 displacement06
+                      6.5046480263e+00 displacement07
+                      6.5373534051e+00 displacement08
+                      6.5703893312e+00 displacement09
+                      6.6037608413e+00 displacement10
+                      6.6374730749e+00 displacement11
+                      6.6715312769e+00 displacement12
+                      6.7059408005e+00 displacement13
+                      6.7407071098e+00 displacement14
+                      6.7758357831e+00 displacement15
+                      6.8113325151e+00 displacement16
+                      6.8472031210e+00 displacement17
+                      6.8834535387e+00 displacement18
+                      6.9200898327e+00 displacement19
+                      6.9571181974e+00 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   36
+---------------------
+Parameters for evaluation 36:
+                      2.9891556145e+07 E0
+                     -5.3343800002e+03 Es
+                      4.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      6.3213577181e+00 displacement01
+                      6.3522725570e+00 displacement02
+                      6.3834912623e+00 displacement03
+                      6.4150183363e+00 displacement04
+                      6.4468583706e+00 displacement05
+                      6.4790160485e+00 displacement06
+                      6.5114961471e+00 displacement07
+                      6.5443035399e+00 displacement08
+                      6.5774431990e+00 displacement09
+                      6.6109201978e+00 displacement10
+                      6.6447397135e+00 displacement11
+                      6.6789070297e+00 displacement12
+                      6.7134275395e+00 displacement13
+                      6.7483067476e+00 displacement14
+                      6.7835502742e+00 displacement15
+                      6.8191638573e+00 displacement16
+                      6.8551533559e+00 displacement17
+                      6.8915247537e+00 displacement18
+                      6.9282841616e+00 displacement19
+                      6.9654378220e+00 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -2.1051598945e-07  4.2145001761e-06 ] displacement01 gradient
+ [ -2.1257699360e-07 -1.5679272746e-06 ] displacement02 gradient
+ [ -2.1466841320e-07 -7.4644526590e-06 ] displacement03 gradient
+ [ -2.1679084967e-07 -1.3477618260e-05 ] displacement04 gradient
+ [ -2.1894491941e-07 -1.9610033813e-05 ] displacement05 gradient
+ [ -2.2113125417e-07 -2.5864378606e-05 ] displacement06 gradient
+ [ -2.2335050156e-07 -3.2243403674e-05 ] displacement07 gradient
+ [ -2.2560332554e-07 -3.8749934049e-05 ] displacement08 gradient
+ [ -2.2789040686e-07 -4.5386871115e-05 ] displacement09 gradient
+ [ -2.3021244364e-07 -5.2157195040e-05 ] displacement10 gradient
+ [ -2.3257015186e-07 -5.9063967289e-05 ] displacement11 gradient
+ [ -2.3496426595e-07 -6.6110333248e-05 ] displacement12 gradient
+ [ -2.3739553930e-07 -7.3299524929e-05 ] displacement13 gradient
+ [ -2.3986474493e-07 -8.0634863791e-05 ] displacement14 gradient
+ [ -2.4237267603e-07 -8.8119763653e-05 ] displacement15 gradient
+ [ -2.4492014665e-07 -9.5757733728e-05 ] displacement16 gradient
+ [ -2.4750799236e-07 -1.0355238177e-04 ] displacement17 gradient
+ [ -2.5013707088e-07 -1.1150741733e-04 ] displacement18 gradient
+ [ -2.5280826285e-07 -1.1962665516e-04 ] displacement19 gradient
+ [ -2.5552247256e-07 -1.2791401872e-04 ] displacement20 gradient
+
+
+
+------------------------------------------
+Begin Dakota derivative estimation routine
+------------------------------------------
+
+>>>>> map at X performed previously and results retrieved
+
+>>>>> Dakota finite difference gradient evaluation for x[1] + h:
+
+---------------------
+Begin Evaluation   37
+---------------------
+Parameters for evaluation 37:
+                      2.9921447702e+07 E0
+                     -5.3290509492e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4726312903e+00 displacement01
+                      9.5188649164e+00 displacement02
+                      9.5655520663e+00 displacement03
+                      9.6126994462e+00 displacement04
+                      9.6603138950e+00 displacement05
+                      9.7084023879e+00 displacement06
+                      9.7569720395e+00 displacement07
+                      9.8060301076e+00 displacement08
+                      9.8555839968e+00 displacement09
+                      9.9056412619e+00 displacement10
+                      9.9562096123e+00 displacement11
+                      1.0007296915e+01 displacement12
+                      1.0058911201e+01 displacement13
+                      1.0111060665e+01 displacement14
+                      1.0163753675e+01 displacement15
+                      1.0216998773e+01 displacement16
+                      1.0270804681e+01 displacement17
+                      1.0325180308e+01 displacement18
+                      1.0380134749e+01 displacement19
+                      1.0435677296e+01 displacement20
+
+
+>>>>> Dakota finite difference gradient evaluation for x[2] + h:
+
+---------------------
+Begin Evaluation   38
+---------------------
+Parameters for evaluation 38:
+                      2.9891556145e+07 E0
+                     -5.3343800002e+03 Es
+                      6.0000000000e+02 Y
+
+Duplication detected: analysis_drivers not invoked.
+
+Active response data retrieved from database:
+Active set vector = { 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 }
+                      9.4820365772e+00 displacement01
+                      9.5284088354e+00 displacement02
+                      9.5752368934e+00 displacement03
+                      9.6225275044e+00 displacement04
+                      9.6702875559e+00 displacement05
+                      9.7185240727e+00 displacement06
+                      9.7672442207e+00 displacement07
+                      9.8164553099e+00 displacement08
+                      9.8661647985e+00 displacement09
+                      9.9163802967e+00 displacement10
+                      9.9671095703e+00 displacement11
+                      1.0018360545e+01 displacement12
+                      1.0070141309e+01 displacement13
+                      1.0122460121e+01 displacement14
+                      1.0175325411e+01 displacement15
+                      1.0228745786e+01 displacement16
+                      1.0282730034e+01 displacement17
+                      1.0337287130e+01 displacement18
+                      1.0392426242e+01 displacement19
+                      1.0448156733e+01 displacement20
+
+
+>>>>> Total response returned to iterator:
+
+Active set vector = { 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 } Deriv vars vector = { 1 2 }
+ [ -3.1577398418e-07  6.3217502642e-06 ] displacement01 gradient
+ [ -3.1886549040e-07 -2.3518909118e-06 ] displacement02 gradient
+ [ -3.2200261979e-07 -1.1196678988e-05 ] displacement03 gradient
+ [ -3.2518627451e-07 -2.0216427390e-05 ] displacement04 gradient
+ [ -3.2841737912e-07 -2.9415050719e-05 ] displacement05 gradient
+ [ -3.3169688126e-07 -3.8796567910e-05 ] displacement06 gradient
+ [ -3.3502575235e-07 -4.8365105510e-05 ] displacement07 gradient
+ [ -3.3840498830e-07 -5.8124901073e-05 ] displacement08 gradient
+ [ -3.4183561028e-07 -6.8080306673e-05 ] displacement09 gradient
+ [ -3.4531866545e-07 -7.8235792560e-05 ] displacement10 gradient
+ [ -3.4885522779e-07 -8.8595950933e-05 ] displacement11 gradient
+ [ -3.5244639892e-07 -9.9165499871e-05 ] displacement12 gradient
+ [ -3.5609330896e-07 -1.0994928739e-04 ] displacement13 gradient
+ [ -3.5979711739e-07 -1.2095229569e-04 ] displacement14 gradient
+ [ -3.6355901404e-07 -1.3217964548e-04 ] displacement15 gradient
+ [ -3.6738021998e-07 -1.4363660059e-04 ] displacement16 gradient
+ [ -3.7126198853e-07 -1.5532857265e-04 ] displacement17 gradient
+ [ -3.7520560631e-07 -1.6726112599e-04 ] displacement18 gradient
+ [ -3.7921239427e-07 -1.7943998273e-04 ] displacement19 gradient
+ [ -3.8328370884e-07 -1.9187102809e-04 ] displacement20 gradient
+
+
+<<<<< Function evaluation summary: 38 total (32 new, 6 duplicate)
+<<<<< Best parameters (experiment config variables omitted) =
+                      2.9891556145e+07 E0
+                     -5.3290509492e+03 Es
+Original (as-posed) response:
+<<<<< Best model responses 
+<<<<< Best configuration variables (experiment 1) =
+                      4.0000000000e+02 Y
+<<<<< Best model responses (experiment 1) =
+                      6.3213801774e+00 displacement01
+                      6.3522642014e+00 displacement02
+                      6.3834514838e+00 displacement03
+                      6.4149465133e+00 displacement04
+                      6.4467538677e+00 displacement05
+                      6.4788782159e+00 displacement06
+                      6.5113243204e+00 displacement07
+                      6.5440970395e+00 displacement08
+                      6.5772013301e+00 displacement09
+                      6.6106422495e+00 displacement10
+                      6.6444249586e+00 displacement11
+                      6.6785547244e+00 displacement12
+                      6.7130369226e+00 displacement13
+                      6.7478770403e+00 displacement14
+                      6.7830806795e+00 displacement15
+                      6.8186535595e+00 displacement16
+                      6.8546015200e+00 displacement17
+                      6.8909305250e+00 displacement18
+                      6.9276466651e+00 displacement19
+                      6.9647561617e+00 displacement20
+<<<<< Best configuration variables (experiment 2) =
+                      6.0000000000e+02 Y
+<<<<< Best model responses (experiment 2) =
+                      9.4820702661e+00 displacement01
+                      9.5283963021e+00 displacement02
+                      9.5751772257e+00 displacement03
+                      9.6224197700e+00 displacement04
+                      9.6701308016e+00 displacement05
+                      9.7183173238e+00 displacement06
+                      9.7669864805e+00 displacement07
+                      9.8161455593e+00 displacement08
+                      9.8658019951e+00 displacement09
+                      9.9159633742e+00 displacement10
+                      9.9666374379e+00 displacement11
+                      1.0017832087e+01 displacement12
+                      1.0069555384e+01 displacement13
+                      1.0121815560e+01 displacement14
+                      1.0174621019e+01 displacement15
+                      1.0227980339e+01 displacement16
+                      1.0281902280e+01 displacement17
+                      1.0336395787e+01 displacement18
+                      1.0391469998e+01 displacement19
+                      1.0447134243e+01 displacement20
+Variance-weighted original (as-posed) residuals:
+<<<<< Best residual terms =
+                     -7.2539522609e-01
+                      9.5384571396e-01
+                     -1.6526737619e+00
+                      1.1018873343e-01
+                      5.3597707711e-01
+                     -1.0535675411e+00
+                     -1.0074224963e+00
+                      5.0763139531e-01
+                     -1.2526679933e-01
+                      2.1528244947e+00
+                     -1.2197891139e+00
+                     -1.0411864559e+00
+                     -9.8163647443e-01
+                      2.0142951033e+00
+                      3.4890469526e-01
+                      3.4940294527e-02
+                     -3.4570889976e-01
+                     -2.0619655042e-01
+                     -1.2146360492e+00
+                      1.6775414172e+00
+                     -3.3015969276e-01
+                      3.2931588062e-01
+                     -2.5610876187e-01
+                      1.8725144668e+00
+                     -4.3240385622e-01
+                      7.3075222553e-01
+                     -1.1039263006e-02
+                     -1.4718133803e-01
+                     -8.6498436599e-01
+                     -3.0512897197e-01
+                     -9.1076221386e-01
+                      1.3965695775e+00
+                      1.3736608922e+00
+                      9.3958536627e-02
+                      5.6306979526e-01
+                      1.8167819453e-01
+                     -2.9427586643e-01
+                      1.1840838291e-01
+                     -4.5921621588e-01
+                     -1.4150229828e+00
+<<<<< Best residual norm =  6.0315876370e+00; 0.5 * norm^2 =  1.8190024711e+01
+<<<<< Best residual terms =
+                     -7.2539522609e-01
+                      9.5384571396e-01
+                     -1.6526737619e+00
+                      1.1018873343e-01
+                      5.3597707711e-01
+                     -1.0535675411e+00
+                     -1.0074224963e+00
+                      5.0763139531e-01
+                     -1.2526679933e-01
+                      2.1528244947e+00
+                     -1.2197891139e+00
+                     -1.0411864559e+00
+                     -9.8163647443e-01
+                      2.0142951033e+00
+                      3.4890469526e-01
+                      3.4940294527e-02
+                     -3.4570889976e-01
+                     -2.0619655042e-01
+                     -1.2146360492e+00
+                      1.6775414172e+00
+                     -3.3015969276e-01
+                      3.2931588062e-01
+                     -2.5610876187e-01
+                      1.8725144668e+00
+                     -4.3240385622e-01
+                      7.3075222553e-01
+                     -1.1039263006e-02
+                     -1.4718133803e-01
+                     -8.6498436599e-01
+                     -3.0512897197e-01
+                     -9.1076221386e-01
+                      1.3965695775e+00
+                      1.3736608922e+00
+                      9.3958536627e-02
+                      5.6306979526e-01
+                      1.8167819453e-01
+                     -2.9427586643e-01
+                      1.1840838291e-01
+                     -4.5921621588e-01
+                     -1.4150229828e+00
+<<<<< Best residual norm =  6.0315876370e+00; 0.5 * norm^2 =  1.8190024711e+01
+<<<<< Best data not found in evaluation cache
+
+Warning: Confidence intervals may be inaccurate when num_experiments > 1
+Confidence Intervals on Calibrated Parameters:
+            E0: [ 2.7591979642e+07, 3.2191132649e+07 ]
+            Es: [ -1.2919603018e+04, 2.2615011195e+03 ]
+
+<<<<< Iterator nl2sol completed.
+<<<<< Environment execution completed.
+DAKOTA execution time in seconds:
+  Total CPU        =   0.074298 [parent =   0.074288, child =      1e-05]
+  Total wall clock =    5.78488
