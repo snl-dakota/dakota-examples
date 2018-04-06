@@ -19,3 +19,12 @@ To run the example, first make sure Dakota is on your `PATH` and that the share/
 
 `dakota -i dakota_cal.in`
 
+On the system where this example was generated, the best values of E0 and Es discovered were:
+```
+<<<<< Best parameters          =
+                      2.9792117040e+07 E0
+                     -5.2921595180e+03 Es
+                      4.0000000000e+02 Y
+```
+Using these values, the predicted displacements are:
+![Predicted displacements](replicateresult.png)
