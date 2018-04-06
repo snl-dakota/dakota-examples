@@ -19,5 +19,6 @@ On the system where this example was generated, the best values of E0 and Es dis
                      -5.3290120824e+03 Es
 ```
 Using these values, the predicted displacements are:
+
 ![Predicted displacements](configresult.png)
 

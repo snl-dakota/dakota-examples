@@ -17,4 +17,5 @@ On the system where this example was generated, the best values of E0 and Es dis
                       4.0000000000e+02 Y
 ```
 Using these values, the predicted displacements are:
+
 ![Predicted displacements](residualresults.png)
