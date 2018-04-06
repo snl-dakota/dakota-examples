@@ -13,7 +13,7 @@ The distinguishing features of the five examples are summarized in the table bel
 | Example Folder                    | Characteristics                                                                            |
 |:---------------------------------:|:------------------------------------------------------------------------------------------:|
 | `scalar_residual`                 | Scalar calibration terms; Analysis driver returns residuals                                |
-| `scalar_multiexperiment_noconfig` | Scalar calibration terms; Replicated experiments with uncertainty;                         |
+| `scalar_multiexperiment_noconfig` | Scalar calibration terms; Replicated experiments with uncertainty                          |
 | `scalar_multiexperiment_config`   | Scalar calibration terms; Experiments under different conditions (configuration variables) |
 | `field_no_interp`                 | Field calibration terms                                                                    |
 | `field_interpolate`               | Field calibration terms with interpolation                                                 |
