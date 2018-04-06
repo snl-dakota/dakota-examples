@@ -1,9 +1,9 @@
-#Scalar Terms and Replicate Experiments
+# Scalar Terms and Replicate Experiments
 
 If you have not already done so, you may wish to read the introduction to this collection of examples that is one directory level up. It describes the calibration problem that is being solved.
 
 This example demonstrates several Dakota features, including:
-* *Computing residuals from user-provided experimental data.* Instead of the analysis driver returning residuals to Dakota, as demonstrated in the scalar_residuals example, it returns predictions that Dakota differences with the experimental data.
+* *Computing residuals from user-provided experimental data.* Instead of the analysis driver returning residuals to Dakota, as demonstrated in the `scalar_residual` example, it returns predictions that Dakota differences with the experimental data.
 * *Calibrating to replicate experimental data.* Data from multiple, identical experiments can be provided to Dakota. The analysis driver predicts the outcome of a single experiment, and Dakota handles differencing those predictions with the data from all of the experiments.
 * *Treatment of uncertainty information.* Measurement uncertainty can be expressed to Dakota as variance on each measurement.
 

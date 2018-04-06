@@ -1,4 +1,4 @@
-#Scalar Calibration Terms - Residual Responses
+# Scalar Calibration Terms - Residual Responses
 
 If you have not already done so, you may wish to read the introduction to this collection of examples that is one directory level up. It describes the calibration problem that is being solved.
 
