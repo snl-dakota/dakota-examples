@@ -4,10 +4,12 @@ environment
 
 method,
 	polynomial_chaos
-	    askey
-	    sparse_grid_level = 2
-          dimension_adaptive p_refinement generalized              
-            convergence_tol = 1.e-4
+		askey
+		convergence_tolerance = 1.e-4
+		sparse_grid_level = 2
+		p_refinement
+			dimension_adaptive
+				generalized
 
 
 model,

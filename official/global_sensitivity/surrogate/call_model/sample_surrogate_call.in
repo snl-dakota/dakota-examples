@@ -22,11 +22,11 @@ variables
 
 method 
     id_method = 'method_real'
-    model_pointer = 'model_real'
 	sampling
 	    sample_type = lhs
         samples = 50
         seed = 12345
+        model_pointer = 'model_real'
 
 model
     id_model = 'model_real'
@@ -56,17 +56,17 @@ responses
         
 method
   	id_method = 'method_surrogate'
-  	model_pointer = 'model_surrogate'
 	sampling
 	  samples = 10000 
 	  seed = 54321
 	  sample_type lhs
-	variance_based_decomp
+	  variance_based_decomp
+	  model_pointer = 'model_surrogate'
  
 
 model
 	id_model = 'model_surrogate'
-	dace_method_pointer = 'method_real'
+	
 	surrogate global    
         # polynomial quadratic		
         # neural_network		
@@ -82,6 +82,4 @@ model
               'rsquared' 
 #               press
 #               cross_validation
-
-
-	 
+		dace_method_pointer = 'method_real'
