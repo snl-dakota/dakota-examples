@@ -28,8 +28,11 @@ variables,
 	
 interface
 	analysis_driver = 'python annotated_data_driver.py -v --set "z=0.75" data.csv'
-	fork asynchronous evaluation_concurrency 10
-	file_tag file_save
+		fork
+			file_tag
+			file_save
+	asynchronous
+		evaluation_concurrency 10
 
 responses
 	response_functions = 2

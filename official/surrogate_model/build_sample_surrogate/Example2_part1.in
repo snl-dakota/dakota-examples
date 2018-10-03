@@ -24,8 +24,8 @@ model
     single
 
 interface
-	direct
 	analysis_driver = 'rosenbrock'
+		direct
 	
 responses
     response_functions = 1

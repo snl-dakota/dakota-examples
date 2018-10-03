@@ -20,11 +20,11 @@ variables,
 
 method,
     id_method = 'method_real'
-    model_pointer = 'model_real'
 	sampling
 	    sample_type = lhs
         samples = 40 
         seed = 4572
+        model_pointer = 'model_real'
 
 model
     single
@@ -33,10 +33,9 @@ model
 
 interface
 	id_interface = 'interface_real'
-	direct
 	analysis_driver = 'rosenbrock'
+		direct
 	
-
 responses
     response_functions = 1
 	descriptors = 'rosen'
@@ -47,30 +46,28 @@ responses
 
 method
   	id_method = 'method_surrogate'
-  	model_pointer = 'model_surrogate'
 	sampling
 	  sample_type lhs
 	  samples = 1000 
 	  seed = 6347
+	  model_pointer = 'model_surrogate'
       
 model
 	id_model = 'model_surrogate'
-	dace_method_pointer = 'method_real'
+	
 	surrogate global    
         # polynomial quadratic		
         # neural_network		
         gaussian_process surfpack trend quadratic
         # mars
-    metrics =
-          'sum_squared'
-          'mean_squared' 
-          'root_mean_squared' 
-          'sum_abs' 
-          'mean_abs' 
-          'max_abs' 
-          'rsquared' 
-        # press
-        # cross_validation
-	 
-
-
+	    metrics =
+	          'sum_squared'
+	          'mean_squared' 
+	          'root_mean_squared' 
+	          'sum_abs' 
+	          'mean_abs' 
+	          'max_abs' 
+	          'rsquared' 
+	        # press
+	        # cross_validation
+	    dace_method_pointer = 'method_real'
