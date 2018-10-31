@@ -36,7 +36,11 @@ TODO - Anything that needs to be listed here?
        -j ../official/template-example-directory/example.json
    ```
 
-6. Create a merge request by clicking ...
+6. Push changes to your forked repository.
+7. In the GitLab GUI forked repository, create a merge request by clicking 
+the `Merge Requests` link on the left sidebar, then clicking the `New merge
+request` button in the center of the page, then selecting the proper target and
+source branches.
 
 # Updating the README.md File
 
@@ -84,11 +88,11 @@ provide guidance for customizing your JSON file.
    * Field/value pairs are separated by commas, `,`, except the last
      field/value pair.
 
-     ```javascript
-     {
-	"item1": "value1",
-   	"item_last": "value_last_NO_COMMA"
-     }
+   ```javascript
+   {
+        "item1": "value1",
+  	    "item_last": "value_last_NO_COMMA"
+   }
      ```
 
 2. List values (one line).
@@ -97,8 +101,8 @@ provide guidance for customizing your JSON file.
    ```javascript
    {
         ...
-	"list_name_one_line": ["Optimization", "Calibration"],
-	...
+        "list_name_one_line": ["Optimization", "Calibration"],
+	    ...
    }
    ```
    
@@ -107,11 +111,11 @@ provide guidance for customizing your JSON file.
 
    ```javascript
    {
-	"list_name_one_line": [
-	    "Optimization",
-	    ...
-	    "Calibration"
-	],
+	    "list_name_one_line": [
+	        "Optimization",
+	        ...
+	        "Calibration"
+	    ],
    }
    ```
 
@@ -155,11 +159,11 @@ provide guidance for customizing your JSON file.
    value. See (Hints for Updating JSON Files, #2, #3 for help specifying a
    list. Valid `analysis_type` values are listed below:
 
-   "Sensitivity Analysis"
-   "Optimization"
-   "Uncertainty Quantification"
-   "Calibration"
-   "Advanced"
+   - "Sensitivity Analysis"
+   - "Optimization"
+   - "Uncertainty Quantification"
+   - "Calibration"
+   - "Advanced"
 
 * Field `"goal"` can be a list or a single value. It is an **_OPTIONAL_**
   field. Delete the following line if you do not specify a goal.
@@ -176,45 +180,45 @@ provide guidance for customizing your JSON file.
   `"goal": ["Bound"],`.
 
   Valid general and constraint `goal` values are listed below:
-   "Bound"
-   "Bound and Linear"
-   "Bound and Non-linear"
-   "Linear"
-   "Non-linear"
-   "Unconstrained"
-   "Analysis of Variance"
-   "Correlations"
-   "Principal Components"
-   "Sobol Indices"
+   - "Bound"
+   - "Bound and Linear"
+   - "Bound and Non-linear"
+   - "Linear"
+   - "Non-linear"
+   - "Unconstrained"
+   - "Analysis of Variance"
+   - "Correlations"
+   - "Principal Components"
+   -"Sobol Indices"
 
 *  Field `"method"` can be a list or a single value. It is a
    **_REQUIRED_** field. The template JSON files by default specify a single
    value. See (Hints for Updating JSON Files, #2, #3 for help specifying a
    list. Valid `method` values are listed below:
 
-   "Bayesian"
-   "Conjugate Gradient"
-   "DACE"
-   "Divided Rectangles"
-   "Epistemic"
-   "Feasible Directions"
-   "Genetic Algorithms"
-   "Hybrid Optimization"
-   "Least Squares"
-   "Mixed Aleatory-Epistemic UQ"
-   "Newton"
-   "Optimization Under Uncertainty"
-   "Other"
-   "Parameter Study"
-   "Pattern Search"
-   "Reliability"
-   "Sampling"
-   "SQP"
-   "Stochastic"
-   "Stochastic Expansion"
-   "Surrogate-Based Optimization"
-   "Surrogate-Based Optimization Under Uncertainty"
-   "Surrogate-Based UQ"
+   - "Bayesian"
+   - "Conjugate Gradient"
+   - "DACE"
+   - "Divided Rectangles"
+   - "Epistemic"
+   - "Feasible Directions"
+   - "Genetic Algorithms"
+   - "Hybrid Optimization"
+   - "Least Squares"
+   - "Mixed Aleatory-Epistemic UQ"
+   - "Newton"
+   - "Optimization Under Uncertainty"
+   - "Other"
+   - "Parameter Study"
+   - "Pattern Search"
+   - "Reliability"
+   - "Sampling"
+   - "SQP"
+   - "Stochastic"
+   - "Stochastic Expansion"
+   - "Surrogate-Based Optimization"
+   - "Surrogate-Based Optimization Under Uncertainty"
+   - "Surrogate-Based UQ"
 
 
 
