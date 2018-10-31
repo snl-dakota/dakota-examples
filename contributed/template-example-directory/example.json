@@ -1,0 +1,18 @@
+{
+    "name": "Optimal Design",
+    "maintainer": {
+        "name": "(required for user-contributed examples) John Doe",
+        "email": "jdoe@sandia.gov"
+    },
+    "doc_links": [
+        {"name": "(optional) user-friendly name",
+         "url": "URL link"
+        },
+        {"name": "Theory Manual Article ",
+         "url": "https://example-b.url"
+        }
+    ],
+    "analysis_type": "(required-see JSON-Instructions.md) Optimization",
+    "goal": ["(optional, one or more)", "Bound", "Correlations"],
+    "method": "(required) SQP"
+}
