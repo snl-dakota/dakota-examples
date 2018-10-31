@@ -1,0 +1,28 @@
+#------------------------------------------------------------------------------
+# NOTE: DELETE ALL LINES BEGINNING with a # 
+# JSON files do not allow comments, so the comments in this section
+# are for information purposes only.
+#
+# 1. Delete all fields that do not apply for your example
+# "analysis_type", "method", and "goal" 
+
+#------------------------------------------------------------------------------
+
+
+{
+    "name": "title of example",
+    "example_id": "(required) unique id",
+    "parent_id": "(optional) example_id of parent to link related examples",
+    "maintainer": {
+        "name": "(required only for user-contributed examples) John Doe",
+        "email": "jdoe@sandia.gov"
+    },
+    "doc_links": [
+        {"name": "(optional) user-friendly name",
+         "url": "URL link"
+        },
+        {"name": "Theory Manual Article ",
+         "url": "https://example-b.url"
+        }
+    ],
+}
