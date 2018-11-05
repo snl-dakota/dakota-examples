@@ -22,7 +22,6 @@ It is divided into two examples subdirectories, official and contributed. In
 addition, it provides several convenient utilities:
 - test-examplefiles.py: to test for and fix JSON or example file errors before
   committing
-- update_mirror_repo.sh: to update a forked repository before merge requests
 
 ### Dakota GUI
 
@@ -39,10 +38,10 @@ https://dakota.sandia.gov/download.html.
 1. From https://gitlab-ex.sandia.gov/Dakota/dakota-examples, create a fork of
    the Dakota examples repository by clicking the `Fork` button.
 
-2. Clone your forked copy to your local workstation, replacing
-   - <forked Git URL> with the repository URL from the forked repository,
-     e.g., git@gitlab-ex.sandia.gov:<username>/dakota-examples.git
-   - <my_local_dakota_repo_fork> with a valid name for your local repository.
+2. Clone your forked copy to your local workstation, replacing:
+   - \<forked Git URL\> with the repository URL from the forked repository,
+     e.g., git@gitlab-ex.sandia.gov:\<username\>/dakota-examples.git
+   - \<my_local_dakota_repo_fork\> with a valid name for your local repository.
       ```bash
       git clone <forked Git URL> <my_local_dakota_repo_fork>
       ```
@@ -60,27 +59,28 @@ https://dakota.sandia.gov/download.html.
       upstream	git@gitlab-ex.sandia.gov:<namespace>/dakota-examples.git (push)
       ```
 
-   ** NOTE: you will not be able to push to the Dakota repository. **
+   *NOTE: you will not be able to push to the Dakota repository.*
 
 
 ## Adding a new example
 
 ### A brief description of our workflow...
 
-1. On the local repo you created in `First time setup, step #2`, create and
+1. On the local repo you created in [First time setup](#first-time-setup), step #2`, create and
    checkout a feature branch.
 2. Make changes to the files.
 3. Commit your changes to the branch.
-4. Push your branch to the remote fork you created in `First time setup, step 1`.
-4. In GitLab, issue a merge request from your fork to the Dakota examples
+4. Push your branch to the remote fork you created in [First time setup](#first-time-setup), step 1`.
+5. In GitLab, issue a merge request from your fork to the Dakota examples
    repository.
+
 
 ### Now to the buiness of creating a new Dakota example...
 
 1. Update your forked repository:
       ```bash
-      git pull upstream master
       git pull origin master
+      git pull upstream master
       ```
 
 2. Create a Git branch, replacing <new-dakota-example> with a valid branch name.
@@ -121,11 +121,22 @@ https://dakota.sandia.gov/download.html.
       ```bash
       git add <new_directory>
       git commit
-      git push -u origin <new-dakota-example>
+      git push origin <new-dakota-example>
       ```
-8. In the GitLab GUI, navigate to your forked repository. On the left sidebar,
-   click the `Merge request` link. Select your feature branch as the source
-   and the Dakota examples repository master branch as the destination.
+8. In the GitLab GUI, issue a merge request and clean up forked repository.
+   - Navigate to your forked repository, and issue a Merge request:
+     You may see a `New merge request` button at the top of the main window.
+     Or on the left sidebar, click the `Merge request` link.
+   - Select your feature branch as the source branch and the Dakota examples
+     repository master branch as the target branch.
+   - Submit the merge request. You should then see a `Merge` button to
+     merge your branch to the forked master branch. Optionally, click the box to
+     remove the source branch to delete your feature branch onece the merge
+     request is approved.
+   - Once the merge request is approved, if you clicked the box in the step
+     above, you will see a button to remove the source branch. Click the button
+     to remove your feature branch. Repeat step #1 above to sync your local
+     fork.
 
 
 # Updating the README.md File
