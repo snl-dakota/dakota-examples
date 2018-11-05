@@ -42,6 +42,7 @@ https://dakota.sandia.gov/download.html.
    - \<forked Git URL\> with the repository URL from the forked repository,
      e.g., git@gitlab-ex.sandia.gov:\<username\>/dakota-examples.git
    - \<my_local_dakota_repo_fork\> with a valid name for your local repository.
+
       ```bash
       git clone <forked Git URL> <my_local_dakota_repo_fork>
       ```
@@ -64,7 +65,7 @@ https://dakota.sandia.gov/download.html.
 
 ## Adding a new example
 
-### A brief description of our workflow...
+### A brief description of our workflow
 
 1. On the local repo you created in [First time setup](#first-time-setup), step #2`, create and
    checkout a feature branch.
@@ -75,7 +76,7 @@ https://dakota.sandia.gov/download.html.
    repository.
 
 
-### Now to the buiness of creating a new Dakota example...
+### Using the workflow to create a new Dakota example
 
 1. Update your forked repository:
       ```bash
@@ -187,8 +188,8 @@ provide guidance for customizing your JSON file.
 
      ```javascript
      {
-	"item1": "value1",
-   	"item_last": "value_last_NO_COMMA"
+       "item1": "value1",
+       "item_last": "value_last_NO_COMMA"
      }
      ```
 
@@ -197,9 +198,8 @@ provide guidance for customizing your JSON file.
 
    ```javascript
    {
-        ...
-	"list_name_one_line": ["Optimization", "Calibration"],
-	...
+    "list_name_one_line": ["Optimization", "Calibration"],
+    ...
    }
    ```
    
@@ -208,11 +208,12 @@ provide guidance for customizing your JSON file.
 
    ```javascript
    {
-	"list_name_one_line": [
+    "list_name_one_line": [
 	    "Optimization",
 	    ...
 	    "Calibration"
-	],
+    ],
+    ...
    }
    ```
 
