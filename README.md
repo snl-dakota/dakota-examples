@@ -71,7 +71,8 @@ https://dakota.sandia.gov/download.html.
    checkout a feature branch.
 2. Make changes to the files.
 3. Commit your changes to the branch.
-4. Push your branch to the remote fork you created in `First time setup, step 1`.
+4. Push your branch to the remote fork you created in `First time setup,
+   step 1`.
 4. In GitLab, issue a merge request from your fork to the Dakota examples
    repository.
 
@@ -79,8 +80,8 @@ https://dakota.sandia.gov/download.html.
 
 1. Update your forked repository:
       ```bash
-      git pull upstream master
       git pull origin master
+      git pull upstream master
       ```
 
 2. Create a Git branch, replacing <new-dakota-example> with a valid branch name.
@@ -121,11 +122,22 @@ https://dakota.sandia.gov/download.html.
       ```bash
       git add <new_directory>
       git commit
-      git push -u origin <new-dakota-example>
+      git push origin <new-dakota-example>
       ```
-8. In the GitLab GUI, navigate to your forked repository. On the left sidebar,
-   click the `Merge request` link. Select your feature branch as the source
-   and the Dakota examples repository master branch as the destination.
+8. In the GitLab GUI, issue a merge request and clean up forked repository.
+   - Navigate to your forked repository, and issue a Merge request:
+     You may see a 'New merge request button at the top of the main window. Or, on
+     the left sidebar, click the `Merge request` link.
+   - Select your feature branch as the source branch and the Dakota examples
+     repository master branch as the target branch.
+   - Submit the merge request. You should then see a `Merge` button to
+     merge your branch to the forked master branch. Optionally, click the box to
+     remove the source branch to delete your feature branch onece the merge
+     request is approved.
+   - Once the merge request is approved, if you clicked the box in the step
+     above, you will see a button to remove the source branch. Click the button
+     to remove your feature branch. Repeat step #1 above to sync your local
+     fork.
 
 
 # Updating the README.md File
