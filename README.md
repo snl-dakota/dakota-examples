@@ -1,15 +1,96 @@
-# General Instructions
+# Dakota Examples Repository
 
-TODO - Anything that needs to be listed here?
+A collection of official and user contributed [Dakota][] examples and
+auxiliary tools.
+
+[Dakota]:https://dakota.sandia.gov/
+
+
+## How to use this repository
+
+We recommend you access this repository using the latest Dakota GUI. You may
+also go to diretctly to the GitLab repository and browse the file directories.
+
+
+### File System
+
+The repository is located on the Sandia SON GitLab server at
+https://gitlab-ex.sandia.gov/dakota/dakota-examples. It may be cloned to your
+local machine or downloaded as a zipfile.
+
+It is divided into two examples subdirectories, official and contributed. In
+addition, it provides several convenient utilities:
+- test-examplefiles.py: to test for and fix JSON or example file errors before
+  committing
+- update_mirror_repo.sh: to update a forked repository before merge requests
+
+### Dakota GUI
+
+The Dakota GUI is a convenient and powerful way to view and find examples. It
+includes an advanced search interface to quickly search for examples by analysis
+type, method, and goal. Download the Dakota GUI from
+https://dakota.sandia.gov/download.html.
+
 
 # Contributing Dakota Examples
 
-1. From https://gitlab-ex.sandia.gov/Dakota/dakota-examples, create a fork of
-   the Dakota examples repository by clicking the `Fork` button. Clone your
-   forked copy to your local workstation.
+## First time setup
 
-2. FOR OFFICIALLY-SUPPORTED examples, copy the official/template directory into
-    the official directory.
+1. From https://gitlab-ex.sandia.gov/Dakota/dakota-examples, create a fork of
+   the Dakota examples repository by clicking the `Fork` button.
+
+2. Clone your forked copy to your local workstation, replacing
+   - <forked Git URL> with the repository URL from the forked repository,
+     e.g., git@gitlab-ex.sandia.gov:<username>/dakota-examples.git
+   - <my_local_dakota_repo_fork> with a valid name for your local repository.
+      ```bash
+      git clone <forked Git URL> <my_local_dakota_repo_fork>
+      ```
+3. Add an upstream remote:
+      ```bash
+      git remote add upstream git@gitlab-ex.sandia.gov:dakota/dakota-examples.git
+      ```
+   Your remotes should look like the following. The URL of the upstream remote
+   should have the URL of your forked repository.
+      ```
+      $ git remote -v
+      origin	git@gitlab-ex.sandia.gov:dmvigi/dakota-examples.git (fetch)
+      origin	git@gitlab-ex.sandia.gov:dmvigi/dakota-examples.git (push)
+      upstream	git@gitlab-ex.sandia.gov:<namespace>/dakota-examples.git (fetch)
+      upstream	git@gitlab-ex.sandia.gov:<namespace>/dakota-examples.git (push)
+      ```
+
+   ** NOTE: you will not be able to push to the Dakota repository. **
+
+
+## Adding a new example
+
+### A brief description of our workflow...
+
+1. On the local repo you created in `First time setup, step #2`, create and
+   checkout a feature branch.
+2. Make changes to the files.
+3. Commit your changes to the branch.
+4. Push your branch to the remote fork you created in `First time setup, step 1`.
+4. In GitLab, issue a merge request from your fork to the Dakota examples
+   repository.
+
+### Now to the buiness of creating a new Dakota example...
+
+1. Update your forked repository:
+      ```bash
+      git pull upstream master
+      git pull origin master
+      ```
+
+2. Create a Git branch, replacing <new-dakota-example> with a valid branch name.
+      ```bash
+      git branch <new-dakota-example>
+      git checkout <new-dakota-example>
+      ```
+
+3. FOR OFFICIALLY-SUPPORTED examples, copy the official/template directory into
+   the official directory.
    FOR USER-CONTRIBUTED examples, copy the contributed/template directory into
    the contributed directory.
 
@@ -17,30 +98,35 @@ TODO - Anything that needs to be listed here?
    repository directly (not through the GUI or Dakota website). Descriptive
    example names will help users navigate to examples they are interested in.
 
-3. Update the README.md file for your example. See Guidance for README.md
-   section below.
+4. In your new directory, update the README.md file for your example. See
+   Guidance for README.md section below.
 
-4. Update the example.json file  for your example. See Guidance for README.md
-   section below.
+5. In your new directory, update the example.json file  for your example. See
+   Guidance for README.md section below.
 
-5. Test your README.md and JSON files.
-   ```bash
-   python test-examplefiles.py  \
-       -r ../official/template-example-directory/README.md \
-       -j ../official/template-example-directory/example.json
-   ```
+6. Test your README.md and JSON files.
+      ```bash
+      python test-examplefiles.py  \
+          -r ../official/template-example-directory/README.md \
+          -j ../official/template-example-directory/example.json
+      ```
    If you get errors, test with the verbose flag on.
-   ```bash
-   python test-examplefiles.py -v  \
-       -r ../official/template-example-directory/README.md \
-       -j ../official/template-example-directory/example.json
-   ```
+      ```bash
+      python test-examplefiles.py -v  \
+          -r ../official/template-example-directory/README.md \
+          -j ../official/template-example-directory/example.json
+      ```
+   
+7. Add and commit your files in <new_directory>. Push changes to your fork.
+      ```bash
+      git add <new_directory>
+      git commit
+      git push -u origin <new-dakota-example>
+      ```
+8. In the GitLab GUI, navigate to your forked repository. On the left sidebar,
+   click the `Merge request` link. Select your feature branch as the source
+   and the Dakota examples repository master branch as the destination.
 
-6. Push changes to your forked repository.
-7. In the GitLab GUI forked repository, create a merge request by clicking 
-the `Merge Requests` link on the left sidebar, then clicking the `New merge
-request` button in the center of the page, then selecting the proper target and
-source branches.
 
 # Updating the README.md File
 
@@ -88,11 +174,11 @@ provide guidance for customizing your JSON file.
    * Field/value pairs are separated by commas, `,`, except the last
      field/value pair.
 
-   ```javascript
-   {
-        "item1": "value1",
-  	    "item_last": "value_last_NO_COMMA"
-   }
+     ```javascript
+     {
+	"item1": "value1",
+   	"item_last": "value_last_NO_COMMA"
+     }
      ```
 
 2. List values (one line).
@@ -101,8 +187,8 @@ provide guidance for customizing your JSON file.
    ```javascript
    {
         ...
-        "list_name_one_line": ["Optimization", "Calibration"],
-	    ...
+	"list_name_one_line": ["Optimization", "Calibration"],
+	...
    }
    ```
    
@@ -111,11 +197,11 @@ provide guidance for customizing your JSON file.
 
    ```javascript
    {
-	    "list_name_one_line": [
-	        "Optimization",
-	        ...
-	        "Calibration"
-	    ],
+	"list_name_one_line": [
+	    "Optimization",
+	    ...
+	    "Calibration"
+	],
    }
    ```
 
@@ -159,11 +245,11 @@ provide guidance for customizing your JSON file.
    value. See (Hints for Updating JSON Files, #2, #3 for help specifying a
    list. Valid `analysis_type` values are listed below:
 
-   - "Sensitivity Analysis"
-   - "Optimization"
-   - "Uncertainty Quantification"
-   - "Calibration"
-   - "Advanced"
+   "Sensitivity Analysis"
+   "Optimization"
+   "Uncertainty Quantification"
+   "Calibration"
+   "Advanced"
 
 * Field `"goal"` can be a list or a single value. It is an **_OPTIONAL_**
   field. Delete the following line if you do not specify a goal.
@@ -180,45 +266,45 @@ provide guidance for customizing your JSON file.
   `"goal": ["Bound"],`.
 
   Valid general and constraint `goal` values are listed below:
-   - "Bound"
-   - "Bound and Linear"
-   - "Bound and Non-linear"
-   - "Linear"
-   - "Non-linear"
-   - "Unconstrained"
-   - "Analysis of Variance"
-   - "Correlations"
-   - "Principal Components"
-   -"Sobol Indices"
+   "Bound"
+   "Bound and Linear"
+   "Bound and Non-linear"
+   "Linear"
+   "Non-linear"
+   "Unconstrained"
+   "Analysis of Variance"
+   "Correlations"
+   "Principal Components"
+   "Sobol Indices"
 
 *  Field `"method"` can be a list or a single value. It is a
    **_REQUIRED_** field. The template JSON files by default specify a single
    value. See (Hints for Updating JSON Files, #2, #3 for help specifying a
    list. Valid `method` values are listed below:
 
-   - "Bayesian"
-   - "Conjugate Gradient"
-   - "DACE"
-   - "Divided Rectangles"
-   - "Epistemic"
-   - "Feasible Directions"
-   - "Genetic Algorithms"
-   - "Hybrid Optimization"
-   - "Least Squares"
-   - "Mixed Aleatory-Epistemic UQ"
-   - "Newton"
-   - "Optimization Under Uncertainty"
-   - "Other"
-   - "Parameter Study"
-   - "Pattern Search"
-   - "Reliability"
-   - "Sampling"
-   - "SQP"
-   - "Stochastic"
-   - "Stochastic Expansion"
-   - "Surrogate-Based Optimization"
-   - "Surrogate-Based Optimization Under Uncertainty"
-   - "Surrogate-Based UQ"
+   "Bayesian"
+   "Conjugate Gradient"
+   "DACE"
+   "Divided Rectangles"
+   "Epistemic"
+   "Feasible Directions"
+   "Genetic Algorithms"
+   "Hybrid Optimization"
+   "Least Squares"
+   "Mixed Aleatory-Epistemic UQ"
+   "Newton"
+   "Optimization Under Uncertainty"
+   "Other"
+   "Parameter Study"
+   "Pattern Search"
+   "Reliability"
+   "Sampling"
+   "SQP"
+   "Stochastic"
+   "Stochastic Expansion"
+   "Surrogate-Based Optimization"
+   "Surrogate-Based Optimization Under Uncertainty"
+   "Surrogate-Based UQ"
 
 
 
