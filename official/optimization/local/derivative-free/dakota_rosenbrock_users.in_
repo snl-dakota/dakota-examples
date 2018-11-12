@@ -1,0 +1,39 @@
+
+# Dakota Input File: rosen_opt_patternsearch.in
+
+environment
+## Activate Dakota's legacy X Windows-based graphics on Unix systems
+## Consider newer capabilities in the Dakota GUI
+  graphics
+  tabular_data
+    tabular_data_file = 'rosen_opt_patternsearch.dat'
+
+method
+  coliny_pattern_search
+    initial_delta = 0.5
+    solution_target = 1e-4
+    exploratory_moves
+      basic_pattern
+    contraction_factor = 0.75
+    max_iterations = 1000
+    max_function_evaluations = 2000
+    variable_tolerance = 1e-4
+
+model
+  single
+
+variables
+  continuous_design = 2
+    initial_point     0.0      0.0
+    lower_bounds     -2.0     -2.0
+    upper_bounds      2.0      2.0
+    descriptors       'x1'     "x2"
+
+interface
+  analysis_drivers = 'rosenbrock'
+    direct
+
+responses
+  objective_functions = 1
+  no_gradients
+  no_hessians

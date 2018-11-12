@@ -1,0 +1,16 @@
+{
+    "name": "Optimal Design",
+    "example_id": "optimal1",
+    "parent_id": "(delete field if example has no parent)",
+    "doc_links": [
+        {"name": "(optional) user-friendly name",
+         "url": "URL link"
+        },
+        {"name": "Theory Manual Article ",
+         "url": "https://example-b.url"
+        }
+    ],
+    "analysis_type": "(required-see JSON-Instructions.md) Optimization",
+    "goal": ["(optional, one or more)", "Bound", "Correlations"],
+    "method": "(required) SQP"
+}
