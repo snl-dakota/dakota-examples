@@ -60,7 +60,7 @@ the calculation of CDF values for this problem, but it is a very small
 error (on the order of e-11), much smaller than the error obtained
 when using a Mean Value method, which will be discussed next.
 
-![Screen Output](logratio_uq_reliability_cdf.png]
+![Screen Output](logratio_uq_reliability_cdf.png)
 
 
 ### FORM Results 
@@ -71,7 +71,7 @@ specification on how to do the MPP search (for example, by commenting
 out mpp search no approx in logratio_uq_reliability.in), then no MPP
 search is done: the Mean Value method is used.
 
-![Screen Output](logratio_uq_reliability_mv.png]
+![Screen Output](logratio_uq_reliability_mv.png)
 
 The mean value results are shown above and consist of approximate mean
 and standard deviation of the response, the importance factors for
@@ -85,7 +85,7 @@ much less expensive to calculate. The importance factors are a measure
 of the sensitivity of the response function(s) to the uncertain input
 variables.
 
-![Screen Output](cdf_form.png]
+![Screen Output](cdf_form.png)
 
 
 
