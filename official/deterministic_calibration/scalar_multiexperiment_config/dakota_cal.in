@@ -36,7 +36,6 @@ responses
     calibration_data_file = 'displacements.dat'
       num_experiments 2
       num_config_variables 1
-      experiment_variance_type 'scalar'
     numerical_gradients
     no_hessians
     
