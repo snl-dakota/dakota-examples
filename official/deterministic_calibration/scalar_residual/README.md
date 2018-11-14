@@ -57,12 +57,16 @@ we have data and differences with the data to obtain residuals, which it writes
 in Dakota results format.
 
 ### Outputs
- 
+
+The only output produced by this example is the file `dakota_cal.out`.
+
 # Interpret the results
  
 ## Screen Output
 
----
+Dakota produces the following output to the screen (redirected to 
+`dakota_cal.out`).
+
 ~~~~
 <<<<< Best parameters          =
                       2.9746942319e+07 E0

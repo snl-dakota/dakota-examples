@@ -94,12 +94,15 @@ other files are 20 lines long, corresponding to the number of data points
 collected in each experiment.
 
 ### Outputs
+
+The only output produced by this example is the file `dakota_cal.out`.
  
 # Interpret the results
  
 ## Screen Output
 
-Dakota produces the following output to the screen:
+Dakota produces the following output to the screen (redirected to
+`dakota_cal.out`):
 
 ~~~~
 <<<<< Best parameters (experiment config variables omitted) =
