@@ -1,0 +1,6 @@
+{
+    "name": "Deterministic Calibration",
+    "example_id": "determistic_calibration",
+    "analysis_type": "Calibration",
+    "method": "Least Squares"
+}
