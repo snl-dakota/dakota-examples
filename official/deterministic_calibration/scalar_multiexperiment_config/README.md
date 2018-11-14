@@ -81,9 +81,13 @@ the input file.
 
 ### Outputs
  
+The only output produced by this example is the file `dakota_cal.out`.
+
 # Interpret the results
  
 ## Screen Output
+
+Screen output for this example is redirected to the file `dakota_cal.out`.
 
 First, note that evaluations reported to the screen occur in pairs. For example,
 look at evaluations 1 and 2:
