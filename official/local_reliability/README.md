@@ -1,7 +1,5 @@
 # Summary
-
-Find the most probable point of "failure" using local optimization
-over continuous uncertain variables (the "FORM" method)
+Estimate statistics such as the CDF using local optimization (the "FORM" method)
 
 ### Run Dakota
 
@@ -10,14 +8,11 @@ over continuous uncertain variables (the "FORM" method)
 
 # What problem does this solve?
 
-This example quantifies the uncertainty in the “log ratio” response function:
+This example estimates the probability, reliability, and generalized
+reliability levels corresponding to user-specified response levels
+of the “log ratio” response function:
 
 $`\qquad \qquad g(x1, x2) = \frac {x1} {x2}`$
-
-by computing approximate response statistics using reliability
-analysis to determine the response cumulative distribution function:
-
-$`\qquad \qquad P[g(x1, x2) \lt z]`$
 
 where x1 and x2 are identically distributed lognormal random variables
 with means of 1, standard deviations of 0.5, and correlation
@@ -25,31 +20,34 @@ coefficient of 0.3.
 
 # What method will we use?
 
-Here is a [Dakota input file](logratio_uq_reliability.in) showing RIA using FORM 
-(option 7 in limit state approximations combined with first-order integration).
+The `local_reliability` method can be a more cost-effective way to
+estimate statistics, especially low-probability events, than
+random sampling. With the `mpp_search` option, Dakota employs constrained
+local optimization to search for the "most probable point" of "failure".
+With the `no_approx` sub-option, the optimization is performed directly
+on the simulation. This is generally the most costly but also the most
+accurate way to perform the search. The Reference Manual describes various
+approximations Dakota can make to reduce the expense of the search.
 
-The user first specifies the local reliability method,
-followed by the MPP search approach and integration order. In this
-example, we specify mpp search no approx and utilize the default
-first-order integration to select FORM. Finally, the user specifies
-response levels or probability/ reliability levels to determine if the
-problem will be solved using an RIA approach or a PMA approach. In the
-Dakota input file, we use RIA by specifying a range of response
-levels for the problem.
+It should be noted that Dakota must perform a separate optimization for
+each response, probability, reliability, and generalized reliability
+level that the user requests. Also, because the method employs local
+optimization, the result can depend on the initial point and significant
+errors can occur for multi-modal failure surfaces. 
 
 (To modify this example to use the mean value method, see
-[Local Relaiability - Mean Value] example(../local_reliability_mean_value/README.md).
-
+[Local Relaiability - Mean Value] example(../local_reliability_mean_value/README.md)
 ## Analysis Driver
 
-Built-in Dakota driver, log_ratio 
-
-_TODO: Characterize the analysis driver._
+Built-in Dakota driver, `log_ratio`. 
 
 ### Inputs
 
+The Dakota input file logratio_uq_reliability_mv.in.
+
 ### Outputs
 
+Screen output, redirected to the file logratio_uq_reliability.out.
 
 
 # Interpret the results
@@ -92,7 +90,7 @@ Cumulative Distribution Function (CDF) for response_fn_1:
 The figure below shows that FORM compares favorably to an exact analytic
 solution for this problem. Also note that FORM does have some error in
 the calculation of CDF values for this problem, but it is a very small
-error (on the order of e-11), much smaller than the error obtained
+error (on the order of 1e-11), much smaller than the error obtained
 when using a Mean Value method. See the local_reliability_mean_value example
 for a discussion of differences.
 

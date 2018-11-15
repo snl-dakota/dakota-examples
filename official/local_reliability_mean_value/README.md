@@ -1,7 +1,6 @@
 # Summary
 
-Estimate statistics using the mean-value reliability method
-
+Estimate statistics such as the CDF using the mean-value reliability method
 
 ### Run Dakota
 
@@ -21,14 +20,16 @@ coefficient of 0.3.
 
 # What method will we use?
 
-If the user specifies `local_reliability` as a method with no `mpp_search`
-specification, then the "mean value" method is used. The mean value method
-requires only the values of the response and its gradient at the means of
-the variables, and thus can be very inexpensive. However, the method assumes
-that the variables are normal and uncorrelated, and that the response is
-a linear function of the variables. Estimates of the statistics when these
-assumptions are not met can be very poor; see comparison with the more accurate
-results obtained using FORM below.
+The `local_reliability` method can be a more cost-effective way to 
+estimate statistics, especially for low probability 
+events, than random sampling. If the user specifies `local_reliability` 
+as a method with no `mpp_search` specification, then the "mean value" method 
+is used. The mean value method requires only the values of the response and 
+its gradient at the means of the variables, and thus can be very inexpensive. 
+However, the method assumes that the variables are normal and uncorrelated, 
+and that the response is a linear function of the variables. Estimates of the 
+statistics when these assumptions are not met can be very poor; see comparison
+with the more accurate results obtained using FORM below.
 
 ## Analysis Driver
 
