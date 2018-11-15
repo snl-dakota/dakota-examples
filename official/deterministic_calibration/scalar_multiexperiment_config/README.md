@@ -1,7 +1,8 @@
 # Summary
-Adjust the parameters of a model to make its predictions more closely match 
-data, when data for multiple experiments run under different configurations 
-are available.
+
+Adjust the parameters of a model to make its predictions more closely
+match data, when data for multiple experiments run under different
+configurations are available.
  
 ### Run Dakota
     $ dakota -i dakota_cal.in -o dakota_cal.out
@@ -12,14 +13,16 @@ This example uses the driver `cantilever.py`, which requires Python.
  
 # What problem does this solve?
 
-This example demonstrates how to calibrate a model to data from multiple
-experiments that has been collected at different *configurations*, or conditions.
+This example demonstrates how to calibrate a model to data from
+multiple experiments that has been collected at different
+*configurations*, or conditions.
 
-The configurations are distinguished by one or more configuration variables. The user 
-provides values of these variables to Dakota in a data file, and Dakota is responsible 
-for running the user's driver at each configuration to construct a composite set of 
-residuals for all the experiments. This is in contrast to requiring the user to design 
-a more complex driver that manages running the simlation multiple times.
+The configurations are distinguished by one or more configuration
+variables. The user provides values of these variables to Dakota in a
+data file, and Dakota is responsible for running the user's driver at
+each configuration to construct a composite set of residuals for all
+the experiments. This is in contrast to requiring the user to design a
+more complex driver that manages running the simlation multiple times.
 
 ## Math Equation
 
@@ -35,53 +38,63 @@ Where:
 
 # What method will we use?
 
-The method used in this example, `nl2sol`, is a gradient-based local optimizer
-that is tailored to calibration problems. It is often a good method to use when
-discovering a local minimum will achieve the goal of the calibration, and the 
-residuals have smooth gradients.
+The method used in this example, `nl2sol`, is a gradient-based local
+optimizer that is tailored to calibration problems. It is often a good
+method to use when discovering a local minimum will achieve the goal
+of the calibration, and the residuals have smooth gradients.
 
 ## Analysis Driver
 
-The model to be calibrated predicts the dependence of the Young’s modulus $`E`$ of
-carbon steel on temperature. Over a wide range of temperature, this relationship
-is linear to a very good approximation:
+The model to be calibrated predicts the dependence of the Young’s
+modulus $`E`$ of carbon steel on temperature. Over a wide range of
+temperature, this relationship is linear to a very good approximation:
 
 $`E(T) = E0 + Es \cdot T`$
 
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have experimental 
-values of $`E(T)`$. Rather, two experiments were performed on a carbon steel cantilever 
-beam with a rectangular cross section. In the first experiment, the beam was placed 
-under a vertical load $`Y = 400 lbs`$, and the displacement at the free end was measured at a 
-sequence of 20 evenly spaced temperatures between -20&deg;F and 500&deg;F. The vertical load 
+The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
+experimental values of $`E(T)`$. Rather, an experiment was performed
+on a carbon steel cantilever beam with a rectangular cross
+section. The beam was placed under a vertical load of 400 lbs, and the
+displacement at the free end was measured at a sequence of 20 evenly
+spaced temperatures between -20&deg;F and 500&deg;F. The vertical load
 was then increased to 600 lbs and the experiment was repeated.
 
-The displacement of a rectangular cantilever beam can be predicted using a 
-well-known formula that depends on $`E`$. The script `cantilever.py` 
-implements this formula. It accepts Dakota parameter files as input, and 
-expects to find the calibration parameters $`E0`$ and $`Es`$, as well as the vertical 
-load $`Y`$. It predicts displacement at the same 20 temperatures for which
-we have data and writes these predictions in Dakota results format.
-
-Notice that our driver is limited to making predictions at just one vertical load
-condition. To obtain residuals at both of the load conditions for which we have data,
-the driver must be run twice, once for each experiment.
+The displacement of a rectangular cantilever beam can be predicted
+using a well-known formula that depends on E. The script
+`cantilever.py` implements this formula.
 
 ### Inputs
 
-In the `reponses` section of the Dakota input file, the keywords `num_experiments` 
-and `num_config_variables` are set to 2 and 1, respectively. The keyword 
-`calibration_data_file` also appears and is set to `displacements.dat`. This file
-has an initial header line that may contain column headings or other information 
-helpful to the user (Dakota treats it as a comment) followed by one line per 
-experiment. Each of these lines contains the value of our single configuration 
-variable (the verical load, $`Y`$), followed by 20 measurements of the displacement.
-As Dakota performs evaluations, it will insert these values of $`Y`$ into the 
-`continuous_state` variable $`Y`$ that is defined in the `variables` section of
-the input file.
+The cantilever.py driver has three inputs: the slope, $`E0`$; the
+intercept, $`Es`$, and the vertical load $`Y`$. The slope and the
+intercept are to be calibrated.
+
 
 ### Outputs
- 
-The only output produced by this example is the file `dakota_cal.out`.
+
+The analysis driver returns one value, the displacement, at the same
+20 temperatures for which we have data and differences with the data
+to obtain residuals, which it writes in Dakota results format.
+
+Notice that our driver is limited to making predictions at just one
+vertical load condition. To obtain residuals at both of the load
+conditions for which we have data, the driver must be run twice, once
+for each experiment.
+
+### Dakota Input file
+
+In the `reponses` section of the Dakota input file, the keywords
+`num_experiments` and `num_config_variables` are set to 2 and 1,
+respectively. The keyword `calibration_data_file` also appears and is
+set to `displacements.dat`. This file has an initial header line that
+may contain column headings or other information helpful to the user
+(Dakota treats it as a comment) followed by one line per
+experiment. Each of these lines contains the value of our single
+configuration variable (the verical load, $`Y`$), followed by 20
+measurements of the displacement.  As Dakota performs evaluations, it
+will insert these values of $`Y`$ into the `continuous_state` variable
+$`Y`$ that is defined in the `variables` section of the input file.
+
 
 # Interpret the results
  

@@ -62,26 +62,33 @@ indicator of elementary effects varying throughout the input space.
 
 # What method will we use?
 
-In Dakota, the `psuade_moat` method is used for MOAT analysis. Like `sampling`,
-MOAT can handle problems that are non-smooth. It may be preferable to `sampling`
-in some situations because it can provide richer and easier to interpret results than 
-correlation analysis. Because `psuade_moat` runs the model at randomly selected locations 
-on a structured grid in parameter space, the raw evaluation data may not be ideal 
-for reuse for some purposes, such as surrogate construction.
+In Dakota, the `psuade_moat` method is used for MOAT analysis. Like
+`sampling`, MOAT can handle problems that are non-smooth. It may be
+preferable to `sampling` in some situations because it can provide
+richer and easier to interpret results Than correlation
+analysis. Because `psuade_moat` runs the model at randomly selected
+locations on a structured grid in parameter space, the raw evaluation
+data may not be ideal for reuse for some purposes, such as surrogate
+construction.
 
 ## Analysis Driver
 
-A description of the `morris` driver is provided in section 20.9 of the User's
-Manual. Briefly, it has 20 inputs and 1 output, and is designed in such a way that the
-first ten inputs signficantly influence the output in different ways.
+The `morris` driver is a screening design test problem with a
+single-output analytical test function. A description of the `morris`
+driver is provided in section 20.9 of the User's Manual.
 
 ### Inputs
 
-The only input for this example is the Dakota input file, `dakota_moat.in`.
+Briefly, it has 20 inputs that express first- through fourth-order
+interaction terms, some having large fixed coefficients and others
+small random coefficients. It is designed in such a way that the first
+ten inputs are important. Of these, the first seven have significant
+effects involving either interactions or curvatures, and the other
+three are important mainly because of their first-order effect.
 
 ### Outputs
 
-The only output produced by this example is the file `moat.out`.
+The `morris` driver returns one output.
 
 # Interpret the results
  
