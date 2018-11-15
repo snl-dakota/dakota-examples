@@ -1,34 +1,46 @@
 # Summary
 
-Find the mean value using local optimization over continuous uncertain variables. Related to [Local Relaiability - MPP](../local_reliability/README.md).
+Estimate statistics using the mean-value reliability method
 
 
 ### Run Dakota
 
    `dakota -i logratio_uq_reliability_mv.in -o logratio_uq_reliability.out`
  
-
 # What problem does this solve?
 
-See [Local Relaiability - MPP] example(../local_reliability/README.md) for description of problem.
+This example estimates the probability, reliability, and generalized
+reliability levels corresponding to user-specified response levels
+of the “log ratio” response function:
+
+$`\qquad \qquad g(x1, x2) = \frac {x1} {x2}​`$
+
+where x1 and x2 are identically distributed lognormal random variables
+with means of 1, standard deviations of 0.5, and correlation
+coefficient of 0.3.
 
 # What method will we use?
 
-If the user specifies local reliability as a method with no additional
-specification on how to do the MPP search (for example, by commenting
-out mpp search no approx in the local_reliability.in), then no MPP
-search is done: the Mean Value method is used.
+If the user specifies `local_reliability` as a method with no `mpp_search`
+specification, then the "mean value" method is used. The mean value method
+requires only the values of the response and its gradient at the means of
+the variables, and thus can be very inexpensive. However, the method assumes
+that the variables are normal and uncorrelated, and that the response is
+a linear function of the variables. Estimates of the statistics when these
+assumptions are not met can be very poor; see comparison with the more accurate
+results obtained using FORM below.
 
 ## Analysis Driver
 
-Built-in Dakota driver, log_ratio 
-
-_TODO: Characterize the analysis driver._
+Built-in Dakota driver, `log_ratio` 
 
 ### Inputs
 
+The Dakota input file `logratio_uq_reliability_mv.in`. 
+
 ### Outputs
  
+Screen output, redirected to the file `logratio_uq_reliability.out`.
 
 # Interpret the results
  

@@ -1,11 +1,3 @@
-
-# Dakota Input File: logratio_uq_reliability.in
-
-environment
-# Activate Dakota's legacy X Windows-based graphics on Unix systems
-# Consider newer capabilities in the Dakota GUI
-#   graphics
-
 method
   local_reliability
     mpp_search no_approx
@@ -25,7 +17,6 @@ variables
 interface
   analysis_drivers = 'log_ratio'
     direct
-#  fork asynch
 
 responses
   response_functions = 1

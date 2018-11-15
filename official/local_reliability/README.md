@@ -1,7 +1,7 @@
 # Summary
 
 Find the most probable point of "failure" using local optimization
-over continuous uncertain variables.
+over continuous uncertain variables (the "FORM" method)
 
 ### Run Dakota
 
