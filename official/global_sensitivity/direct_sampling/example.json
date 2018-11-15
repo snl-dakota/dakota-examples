@@ -1,0 +1,7 @@
+{
+    "name": "Sampling-based Variance-based Decomposition ",
+    "example_id": "direct_sampling",
+    "analysis_type": "Sensitivity Analysis",
+    "goal": "Sobol Indices",
+    "method": "Sampling"
+}

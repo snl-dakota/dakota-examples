@@ -12,31 +12,43 @@ This also puts out `pce_samples.dat`. This is optional but useful later
  
 # What problem does this solve?
 
-Use global sensitivity analysis to return the Sobol indices of the function
+Variance-based decomposition (VBD) attributes fractions of response variance to variables so that
+the most important variables can be identified. Polynomial chaos produces the *main effect*,
+*interaction effects*, and *total effect* of each variable. These are also called the Sobol' indices.
+The main effect is the fraction of the response variance that can be attributed to a variable acting
+on its own. The interaction effects include the influence of the variable in combination with other
+variables. The total effect is the variable's main effect, plus the summed effects of all its 
+interactions.
  
 ## Math Equation
 
-Without going into too much detail, the "Main" sensitivity of a direction $d$ is
+The "main" sensitivity of a variable $`x_i`$ is
 
-$$ 
-S_{\{d}\} = \frac{
-        \mathbb{V} \left ( \mathbb{E} (f|x_{\\{d\\}}) \right )
+$`S_i = \frac {
+        \mathbb{V} \left( \mathbb{E} ( f|x_i ) \right)
     }{
         \mathbb{V}(f)
-    } 
-$$
+    }
+`$
 
-And the "Total" sensitivity is
+The "total" sensitivity is
 
-$$ 
-T_{\{d}\} = 1- \frac{
-        \mathbb{V} \left ( \mathbb{E} (f|x_{\\{\sim d\\}}) \right )
+$`T_i = \frac { \mathbb{E} \left( \mathbb{V}(Y|x_{\sim i})  \right)
+              } {
+                  \mathbb{V}(Y)
+              }
+`$
+
+and the interation between $`x_i`$ and $`x_j`$ are defined as
+
+$`S_{i,j} = \frac {
+        \mathbb{V} \left( \mathbb{E} ( f|x_i, x_j ) \right) - S_i - S_j
     }{
         \mathbb{V}(f)
-    } 
-$$
+    }
+`$
 
-where $x_{\{\sim d\}}$ is all direction *but* $\\{d\\}$
+where $`x_{\sim i}`$ is all variables *but* $`x_i`$
 
 # What method will we use?
 
@@ -50,15 +62,15 @@ In this example, we do a `fork` with the included Python `Ishigami.py` function
 
 The analytical answers are:
 
-| Index | Analytical Form                                                                      | `a = 7` & `b = 0.1` |
-|-------|--------------------------------------------------------------------------------------|---------------------|
-| Sx    | `(pi^8*b^2/50 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2)`              | 0.313905191147811   |
-| Sy    | `a^2/(8*(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2))`                                     | 0.442411144790041   |
-| Sz    | `0`                                                                                  | 0                   |
-|       |                                                                                      |                     |
-| Tx    | `-a^2/(8*(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2)) + 1`                                | 0.557588855209959   |
-| Ty    | `-(pi^8*b^2/18 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2) + 1`         | 0.442411144790041   |
-| Tz    | `-(a^2/8 + pi^8*b^2/50 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2) + 1` | 0.243683664062148   |
+| Index | Analytical Form                                                                        | $`a = 7`$ & $`b = 0.1`$ |
+|-------|----------------------------------------------------------------------------------------|-------------------------|
+| Sx    | $`(pi^8*b^2/50 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2)`$              | 0.313905191147811       |
+| Sy    | $`a^2/(8*(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2))`$                                     | 0.442411144790041       |
+| Sz    | $`0`$                                                                                  | 0                       |
+|       |                                                                                        |                         |
+| Tx    | $`-a^2/(8*(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2)) + 1`$                                | 0.557588855209959       |
+| Ty    | $`-(pi^8*b^2/18 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2) + 1`$         | 0.442411144790041       |
+| Tz    | $`-(a^2/8 + pi^8*b^2/50 + pi^4*b/5 + 1/2)/(a^2/8 + pi^8*b^2/18 + pi^4*b/5 + 1/2) + 1`$ | 0.243683664062148       |
 
 
 ### Inputs
@@ -73,8 +85,13 @@ The Ishigami takes three uniform variables in $[-\pi,\pi]^3$
 ```
 
 ### Outputs
- 
-We are primarily interested in the sensitivity measures. They are presented in the dakota output as follows. Note that this also includes local sensitivity:
+
+ The Ishigami driver has one output.
+
+# Interpret the results
+## Screen Outputs
+
+The output (redirected to the file `direct_pce.out` is as follows:
 
 ```
 Local sensitivities for each response function evaluated at uncertain variable means:
@@ -93,4 +110,14 @@ Ishigami Sobol' indices:
                       9.8240433823e-31 y z
                       6.3759218235e-31 x y z
 ```
-Please note that values such as `2.7230302032e-30` should be interpreted as zero.
+From these results, we may make the following observations:
+
+- All three variables have significant total effects on the response.
+- About 31% of the response variance can be attributed to x alone (x's main effect).
+  The interaction between x and z also makes a significant contribution, about 24%.
+- The main and total effects of y are identical, indicating that it does not have 
+   any interactions with other variables. It can be seen that its interaction effects
+   with the other variables are negligible.
+- The main effect of z is neglible; it influences the response only via its interactions 
+  with x.
+
