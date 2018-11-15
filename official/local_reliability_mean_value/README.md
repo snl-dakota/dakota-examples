@@ -39,8 +39,9 @@ and standard deviation of the response, the importance factors for
 each uncertain variable, and approximate probability/reliability
 levels for the prescribed response levels that have been inferred from
 the approximate mean and standard deviation (see Mean Value section in
-Reliability Methods Chapter of Dakota Theory Manual [4]).  It is
-evident that the statistics are considerably different from the fully
+Reliability Methods Chapter of 
+[Dakota Theory Manual](https://dakota.sandia.gov/sites/default/files/docs/6.9/Theory-6.9.0.pdf) ).  
+It is evident that the statistics are considerably different from the fully
 converged FORM results; however, these rough approximations are also
 much less expensive to calculate. The importance factors are a measure
 of the sensitivity of the response function(s) to the uncertain input
