@@ -1,6 +1,4 @@
 
-# Dakota Input File: rosen_opt_apps_bounds.in
-
 # Output variable values and corresponding response values to a text
 # file in a tabular format.
 environment
