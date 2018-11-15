@@ -2,11 +2,16 @@
 dakota.rst
 fort.*
 
-# LHS Sampling output
-LHS_[123456789].out
-LHS_samples.out
-LHS_distributions.out
+# Generated output
+*.out
+*.log
 
 # Potential python cruft
 __pycache__/
 *.py[cod]
+
+# Potential emacs cruft
+*~
+
+# Potential MacOs cruft
+*.DS_Store
