@@ -13,8 +13,8 @@ method,
 	polynomial_chaos
 	    askey
 
-        expansion_order = 3
-            basis_type total_order
+        expansion_order = 7
+            basis_type adapted
                 import_build_points_file='existing_data.dat'
                     custom_annotated header
                     
