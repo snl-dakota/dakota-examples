@@ -1,5 +1,5 @@
 # Summary
-Estimate statistics such as the CDF using local optimization (the "FORM" method)
+Estimate statistics such as the CDF using local optimization (the first-order reliability method)
 
 ### Run Dakota
 
