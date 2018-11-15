@@ -25,18 +25,20 @@ coefficient of 0.3.
 
 # What method will we use?
 
-A Dakota input file showing RIA using FORM (option 7 in limit state
-approximations combined with first-order integration) is listed in
-Figure 5.10. The user first specifies the local reliability method,
+Here is a [Dakota input file](logratio_uq_reliability.in) showing RIA using FORM 
+(option 7 in limit state approximations combined with first-order integration).
+
+The user first specifies the local reliability method,
 followed by the MPP search approach and integration order. In this
 example, we specify mpp search no approx and utilize the default
 first-order integration to select FORM. Finally, the user specifies
 response levels or probability/ reliability levels to determine if the
 problem will be solved using an RIA approach or a PMA approach. In the
-example figure of 5.10, we use RIA by specifying a range of response
+Dakota input file, we use RIA by specifying a range of response
 levels for the problem.
 
-To view an example of the mean value method, see xxxxx.
+(To modify this example to use the mean value method, see
+[Local Relaiability - Mean Value] example(../local_reliability_mean_value/README.md).
 
 ## Analysis Driver
 
@@ -47,7 +49,8 @@ _TODO: Characterize the analysis driver._
 ### Inputs
 
 ### Outputs
- 
+
+
 
 # Interpret the results
  
@@ -94,5 +97,3 @@ when using a Mean Value method. See the local_reliability_mean_value example
 for a discussion of differences.
 
 ![Screen Output](cdf_form.png)
-
-
