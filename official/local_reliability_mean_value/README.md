@@ -12,7 +12,7 @@ This example estimates the probability, reliability, and generalized
 reliability levels corresponding to user-specified response levels
 of the “log ratio” response function:
 
-$`\qquad \qquad g(x1, x2) = \frac {x1} {x2}​`$
+$`\qquad \qquad g(x1, x2) = \frac {x1} {x2}`$
 
 where x1 and x2 are identically distributed lognormal random variables
 with means of 1, standard deviations of 0.5, and correlation
