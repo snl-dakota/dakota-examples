@@ -1,6 +1,7 @@
 # Summary
-Adjust the parameters of a model to make its predictions more closely match 
-data.
+
+Adjust the parameters of a model to make its predictions more closely
+match data.
  
 ### Run Dakota
     $ dakota -i dakota_cal.in -o dakota_cal.out
@@ -11,54 +12,62 @@ This example uses the driver `cantilever_residuals.py`, which requires Python.
  
 # What problem does this solve?
 
-In (deterministic) calibration, the parameters of a model are adjusted with the
-goal that its predictions more closely match some data. The data may come from
-experiment, predictions from a higher fidelity model, or some other trusted
-source. Dakota uses optimization, such as the `nl2sol` method, to minimize the 
-errors between model predictions and experiment in a least squares sense.
+In (deterministic) calibration, the parameters of a model are adjusted
+with the goal that its predictions more closely match some data. The
+data may come from experiment, predictions from a higher fidelity
+model, or some other trusted source. Dakota uses optimization, such as
+the `nl2sol` method, to minimize the errors between model predictions
+and experiment in a least squares sense.
 
-This example demonstrates how to pose a calibration problem to Dakota when the
-analysis driver returns *residuals*, which are defined as predictions minus data.
+This example demonstrates how to pose a calibration problem to Dakota
+when the analysis driver returns *residuals*, which are defined as
+predictions minus data.
 
 ## Math Equation
 
 minimize: $` \qquad \qquad f(\theta) = \sum_{i=1}^N {R_i^2(\theta)} `$
 
-Where $`R_i`$ is the $`i`$th of $`N`$ total residuals (model prediction minus
-data), and $`\theta`$ are the parameters to be calibrated.
+Where $`R_i`$ is the $`i`$th of $`N`$ total residuals (model
+prediction minus data), and $`\theta`$ are the parameters to be
+calibrated.
 
 # What method will we use?
 
-The method used in this example, `nl2sol`, is a gradient-based local optimizer
-that is tailored to calibration problems. It is often a good method to use when
-discovering a local minimum will achieve the goal of the calibration, and the 
-residuals have smooth gradients.
+The method used in this example, `nl2sol`, is a gradient-based local
+optimizer that is tailored to calibration problems. It is often a good
+method to use when discovering a local minimum will achieve the goal
+of the calibration, and the residuals have smooth gradients.
 
 ## Analysis Driver
 
-The model to be calibrated predicts the dependence of the Young’s modulus $`E`$ of
-carbon steel on temperature. Over a wide range of temperature, this relationship
-is linear to a very good approximation:
+The model to be calibrated predicts the dependence of the Young’s
+modulus $`E`$ of carbon steel on temperature. Over a wide range of
+temperature, this relationship is linear to a very good approximation:
 
 $`E(T) = E0 + Es \cdot T`$
 
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have experimental 
-values of $`E(T)`$. Rather, an experiment was performed on a carbon steel 
-cantilever beam with a rectangular cross section. The beam was placed under a 
-vertical load of 400 lbs, and the displacement at the free end was measured at a 
-sequence of 20 evenly spaced temperatures between -20&deg;F and 500&deg;F.
+The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
+experimental values of $`E(T)`$. Rather, an experiment was performed
+on a carbon steel cantilever beam with a rectangular cross
+section. The beam was placed under a vertical load of 400 lbs, and the
+displacement at the free end was measured at a sequence of 20 evenly
+spaced temperatures between -20&deg;F and 500&deg;F.
 
-The displacement of a rectangular cantilever beam can be predicted using a 
-well-known formula that depends on $`E`$. The script `cantilever_residual.py` 
-implements this formula. It accepts Dakota parameter files as input, and 
-expects to find the calibration parameters $`E0`$ and $`Es`$, as well as the 
-vertical load $`Y`$. It predicts displacement at the same 20 temperatures for which
-we have data and differences with the data to obtain residuals, which it writes
-in Dakota results format.
+The displacement of a rectangular cantilever beam can be predicted
+using a well-known formula that depends on $`E`$. The script
+`cantilever_residual.py` implements this formula.
+
+### Inputs
+
+The `cantilever.py` driver has three inputs: the slope, $`E0`$; the
+intercept, $`Es`$, and the vertical load $`Y`$. 
 
 ### Outputs
 
-The only output produced by this example is the file `dakota_cal.out`.
+The analysis driver returns one value, the displacement, at the same 20
+temperatures for which we have data and differences with the data to
+obtain residuals, which it writes in Dakota results format.
+
 
 # Interpret the results
  
