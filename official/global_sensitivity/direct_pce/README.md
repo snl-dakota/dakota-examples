@@ -1,15 +1,14 @@
 # Summary
 
-Global Sensitivity can be assessed via direct Monte-Carlo sampling however, this is *very expensive* to do. For example, using `N` samples in `ndim` dimensions actually require `N*(2*ndim-1)` (though for 2D, this may be reduced). For this example with 1000 samples in 3 dimensions, the actual function is called 5000 times.
-
-See other examples for ways to use surrogates or PCEs to drastically improve performance.
+Apply quadrature-based Polynomial Chaos expansions for global sensitivity and (some) general UQ
  
 ### Run Dakota
 
-run:
+    $ dakota -i direc_pce.in -o direct_pce.out
+ 
+### More about running this example
 
-    $ dakota -i direct_sample.in -o direct_sample.out
-    
+This also puts out `pce_samples.dat`. This is optional but useful later
  
 # What problem does this solve?
 
@@ -41,7 +40,9 @@ where $x_{\{\sim d\}}$ is all direction *but* $\\{d\\}$
 
 # What method will we use?
 
-We use the `sampling` method but with the `variance_based_decomp` flag. **WARNING**: Unlike some other methods such as Polynomial Chaos, this greatly increases the number of sample
+Polynomial Chaos Expansion (PCE) methods are ideally suited for smooth responses. A direct quadrature-based method (as opposed to sparse grids) are ideal for low-dimension and/or low-order approximations.
+
+PCEs are particularly well suited for global sensitivity analysis since they do not require resampling and also provide immediate access to *explicit* interactions
  
 ## Analysis Driver
 
@@ -73,11 +74,23 @@ The Ishigami takes three uniform variables in $[-\pi,\pi]^3$
 
 ### Outputs
  
-The output is as follows:
+We are primarily interested in the sensitivity measures. They are presented in the dakota output as follows. Note that this also includes local sensitivity:
 
+```
+Local sensitivities for each response function evaluated at uncertain variable means:
+Ishigami:
+ [  9.9999724630e-01  1.8104711070e-16 -5.5065304221e-16 ]
+
+Global sensitivity indices for each response function:
+Ishigami Sobol' indices:
                                   Main             Total
-                      3.6442176674e-01  6.4970249569e-01 x
-                      4.4188053874e-01  4.5552696765e-01 y
-                      3.2470524558e-02  2.4838191925e-01 z
-                      
-Note that this is both less correct and noisier than that from a polynomial chaos expansion.
+                      3.1402935786e-01  5.5780885341e-01 x
+                      4.4219114659e-01  4.4219114659e-01 y
+                      2.7230302032e-30  2.4377949556e-01 z
+                           Interaction
+                      1.8693507016e-30 x y
+                      2.4377949556e-01 x z
+                      9.8240433823e-31 y z
+                      6.3759218235e-31 x y z
+```
+Please note that values such as `2.7230302032e-30` should be interpreted as zero.
