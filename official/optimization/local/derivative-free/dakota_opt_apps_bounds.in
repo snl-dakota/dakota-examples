@@ -1,0 +1,37 @@
+
+# Output variable values and corresponding response values to a text
+# file in a tabular format.
+environment
+  tabular_data
+    tabular_data_file = 'dakota_opt_apps_bounds.dat'
+
+# Use asynchronous parallel pattern search to solve the optimization
+# problem.  Set stopping criteria based on the number of function
+# evaluations and the amount of change in variable values from
+# iteration to the next.
+method
+  asynch_pattern_search
+    max_function_evaluations = 2000
+    variable_tolerance = 1e-4
+
+# The problem has two continuous variables with upper and lower bounds.
+variables
+  continuous_design = 2
+    initial_point     0.0      0.0
+    lower_bounds     -2.0     -2.0
+    upper_bounds      2.0      2.0
+    descriptors       'x1'     "x2"
+
+# The analysis driver that generates responses implements the
+# Rosenbrock function, one of Dakota's analytic test problems.  It is
+# directly linked into Dakota.
+interface
+  analysis_drivers = 'rosenbrock'
+    direct
+
+# The optimization problem only has one response value, in particular
+# the objective function.  It has no gradients or Hessians.
+responses
+  objective_functions = 1
+  no_gradients
+  no_hessians

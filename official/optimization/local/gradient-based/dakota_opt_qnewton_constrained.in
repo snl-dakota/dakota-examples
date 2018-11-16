@@ -1,0 +1,40 @@
+
+# Use a quasi-Newton method to solve the optimization problem.  Set
+# the stopping criteria based on the amount of change in the objective
+# function value from on iteration to the next.
+method
+  optpp_q_newton
+    convergence_tolerance = 1.e-8
+
+# The problem has two continuous variables with upper and lower
+# bounds.
+variables
+  continuous_design = 2
+    initial_point  4.0   4.0
+    upper_bounds  10.0  10.0
+    lower_bounds   1.0   1.0
+    descriptors    'w'   't'
+
+# The analysis driver is a Python script that is executed via Dakota's
+# fork interface.  Because gradients are being approximated by finite
+# differencing (see responses section below), take advantage of
+# Dakota's ability to do concurrent evaluations.
+interface
+  analysis_drivers = 'python cantilever.py'
+    fork
+  asynchronous evaluation_concurrency = 2
+
+# The optimization problem has three responses: one objective function
+# and two nonlinear constraints.  This form assumes that nonlinear
+# constraints have been formulated such that there are no lower bounds
+# and that upper bounds are zero.  Gradients are approximated by
+# finite differences.  Hessians are not available; they will be
+# approximated by the quasi-Newton method.
+responses
+  objective_functions = 1
+  nonlinear_inequality_constraints = 2
+  numerical_gradients
+    method_source dakota
+    interval_type forward
+    fd_step_size = 1.e-4
+  no_hessians

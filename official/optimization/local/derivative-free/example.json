@@ -1,0 +1,15 @@
+{
+    "name": "Derivative-Free Optimization",
+    "example_id": "dfopt_apps",
+    "doc_links": [
+        {"name": "User's Manual - Chapter 6",
+         "url": "https://dakota.sandia.gov/sites/default/files/docs/6.8/Users-6.8.0.pdf"
+        },
+        {"name": "Reference Manual - Keywords",
+         "url": "https://dakota.sandia.gov/sites/default/files/docs/6.8/html-ref/method-asynch_pattern_search.html"
+        }
+    ],
+    "analysis_type": "Optimization",
+    "goal": ["Bound"],
+    "method": "Pattern Search"
+}
