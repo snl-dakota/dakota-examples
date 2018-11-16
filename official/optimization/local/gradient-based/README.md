@@ -42,8 +42,8 @@ $` \qquad \qquad \qquad \qquad \mathtt{displacement} = \frac{4L^3}{E w t}
   \sqrt{\bigg(\frac{Y}{t^2}\bigg)^2+\bigg(\frac{X}{w^2}\bigg)^2}
   \leq D_{0} `$
 
-$` \qquad \qquad \qquad \qquad R and D_{0} are the requisite
-thresholds for stress and displacement, respectively `$
+` \qquad \qquad \qquad \qquad R and D_{0} are the requisite
+thresholds for stress and displacement, respectively `
 
 # What method will we use?
 This example employs a quasi-Newton method, which is a gradient-base
