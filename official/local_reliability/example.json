@@ -1,0 +1,12 @@
+{
+    "name": "Local Reliability",
+    "example_id": "local_reliability1",
+    "doc_links": [
+        {"name": "FORM Reliability with Lognormal Ratio (Section 5.3.3.2",
+         "url": "https://dakota.sandia.gov/sites/default/files/docs/6.9/Users-6.9.0.pdf"
+        }
+    ],
+    "analysis_type": "Uncertainty Quantification",
+    "goal": ["Linear", "Unconstrained"],
+    "method": "Reliability"
+}

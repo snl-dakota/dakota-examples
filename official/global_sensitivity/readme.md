@@ -53,7 +53,51 @@ Or, as Dakota would format it (if calculated analytically):
                       0.0000000000e-00 x y z
 ```
 
+### Run Dakota
+   
+See each sub example
 
-## Comparisons
+## Math Equation
+
+Without going into too much detail, the "Main" sensitivity of a direction $d$ is
+
+$$ 
+S_{\{d}\} = \frac{
+        \mathbb{V} \left ( \mathbb{E} (f|x_{\\{d\\}}) \right )
+    }{
+        \mathbb{V}(f)
+    } 
+$$
+
+And the "Total" sensitivity is
+
+$$ 
+T_{\{d}\} = 1- \frac{
+        \mathbb{V} \left ( \mathbb{E} (f|x_{\\{\sim d\\}}) \right )
+    }{
+        \mathbb{V}(f)
+    } 
+$$
+
+where $x_{\{\sim d\}}$ is all direction *but* $\\{d\\}$
+
+
+# What method will we use?
+
+Each sub example uses a different method. See each example separately
+ 
+## Analysis Driver
+
+### Inputs
+
+### Outputs
+ 
+# Interpret the results
+ 
+
+
+
+
+
 
 

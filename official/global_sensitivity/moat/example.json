@@ -1,0 +1,7 @@
+{
+    "name": "Morris One-At-A-Time for Global Sensitivity Analysis",
+    "example_id": "moat",
+    "analysis_type": "Sensitivity Analysis",
+    "goal": ["Linear", "Non-linear"],
+    "method": "DACE"
+}

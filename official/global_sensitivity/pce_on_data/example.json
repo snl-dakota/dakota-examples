@@ -1,0 +1,8 @@
+{
+    "name": "PCE on Existing Data",
+    "example_id": "pce_on_data",
+    "parent_id": "global_sensitivity_analysis",
+    "doc_links": [],
+    "analysis_type": ["Sensitivity Analysis","Uncertainty Quantification"],
+    "method": "polynomial_chaos"
+}
