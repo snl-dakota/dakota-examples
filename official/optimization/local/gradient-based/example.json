@@ -1,0 +1,15 @@
+{
+    "name": "Gradient-Based Optimization",
+    "example_id": "gbopt_qnewton",
+    "doc_links": [
+        {"name": "User's Manual - Chapter 6",
+         "url": "https://dakota.sandia.gov/sites/default/files/docs/6.8/Users-6.8.0.pdf"
+        },
+        {"name": "Reference Manual - Keywords",
+         "url": "https://dakota.sandia.gov/sites/default/files/docs/6.8/html-ref/method-optpp_q_newton.html"
+        }
+    ],
+    "analysis_type": "Optimization",
+    "goal": ["Bound and Non-linear"],
+    "method": "Newton"
+}
