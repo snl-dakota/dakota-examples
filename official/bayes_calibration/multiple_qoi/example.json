@@ -1,0 +1,7 @@
+{
+    "name": "Bayesian Calibration with Multiple Observables",
+    "example_id": "bayes_calibration_multiple_qoi",
+    "parent_id": "bayes_calibration",
+    "analysis_type": "Calibration",
+    "method": "Bayesian"
+}
