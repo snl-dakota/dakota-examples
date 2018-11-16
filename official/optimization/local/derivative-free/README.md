@@ -8,7 +8,7 @@ response are not available.
  
 # What problem does this solve?
 The goal is to find the variable values that yield the minimum value
-of an analytical model know as Rosenbrock's funtion.  The model has
+of an analytical model known as Rosenbrock's function.  The model has
 two continuous variables that are bounded above and below, and
 derivatives of the function are not available.
  
@@ -63,9 +63,7 @@ plotting (e.g., Excel, MATLAB, etc.)
 The output below appears at the end of dakota_opt_apps_bounds.out (or
 screen output if it hasn't been redirected on the command line).  It
 includes the final variable values and corresponding response value.
-
----
-
+```
 <<<<< Function evaluation summary: 2000 total (2000 new, 0 duplicate)
 <<<<< Best parameters          =
                       9.0502929688e-01 x1
@@ -80,8 +78,7 @@ includes the final variable values and corresponding response value.
 DAKOTA execution time in seconds:
   Total CPU        =       1.33 [parent =    1.33629, child =  -0.006294]
   Total wall clock =    1.57401
- 
----
+```
 
 The image below shows an example of how data in
 dakota_opt_apps_bounds.dat can be viewed.  It shows the histories of

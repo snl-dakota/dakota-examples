@@ -36,14 +36,14 @@ $` \qquad \qquad \qquad \qquad 1.0 \leq t \leq 10.0 `$
 
 where
 
-$` \qquad \qquad \qquad \qquad \mathtt{stress}&=&\frac{600}{w t^2}Y+\frac{600}{w^2t}X `$
+$` \qquad \qquad \qquad \qquad \mathtt{stress} = \frac{600}{w t^2}Y+\frac{600}{w^2t}X `$
 
-$` \qquad \qquad \qquad \qquad \mathtt{displacement}&=&\frac{4L^3}{E w t}
+$` \qquad \qquad \qquad \qquad \mathtt{displacement} = \frac{4L^3}{E w t}
   \sqrt{\bigg(\frac{Y}{t^2}\bigg)^2+\bigg(\frac{X}{w^2}\bigg)^2}
   \leq D_{0} `$
 
-$` R and D_{0} are the requisite thresholds for stress and
-displacement, respectively `$
+$` \qquad \qquad \qquad \qquad R and D_{0} are the requisite
+thresholds for stress and displacement, respectively `$
 
 # What method will we use?
 This example employs a quasi-Newton method, which is a gradient-base
@@ -86,9 +86,7 @@ The output below appears at the end of
 dakota_opt_qnewton_constrained.out (or screen output if it hasn't been
 redirected on the command line).  It includes the final variable
 values and corresponding response values.
-
----
-
+```
 <<<<< Function evaluation summary: 39 total (39 new, 0 duplicate)
 <<<<< Best parameters          =
                       2.3520340723e+00 w
@@ -106,5 +104,4 @@ values and corresponding response values.
 DAKOTA execution time in seconds:
   Total CPU        =       0.08 [parent =   0.085885, child =  -0.005885]
   Total wall clock =    3.51154
-
----
+```
