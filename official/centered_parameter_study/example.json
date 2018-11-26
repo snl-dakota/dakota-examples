@@ -1,0 +1,11 @@
+{
+    "name": "Centered Parameter Study",
+    "example_id": "centered_parameter_study",
+    "doc_links": [
+        {"name": "centered_parameter_study",
+         "url": "https://dakota.sandia.gov//sites/default/files/docs/6.9/html-ref/method-centered_parameter_study.html"
+        }
+    ],
+    "analysis_type": "Basic Parameter Sweep",    
+    "method": "centered_parameter_study"
+}
