@@ -142,7 +142,8 @@ https://dakota.sandia.gov/download.html.
 
 # Updating the README.md File
 
-TODO
+To update the copy of the example README.md that you made, follow the 
+instructions that it contains.
 
 # Updating the JSON File
 The template, `example.json`, makes simplifying assumptions about typical
