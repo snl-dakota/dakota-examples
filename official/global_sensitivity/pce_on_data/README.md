@@ -69,14 +69,21 @@ There are **many** methods to build a PCE. In this example, we simply present th
 
 The data is the same as from `official/global_sensitivity/surrogate/existing_data/existing_data.dat`
 
+# Additional Input to Dakota
+
+For all three input files, Dakota imports data from the file 
+`existing_data.dat`. This file contains evaluations (variables + response) of
+the Ishigami test function.
 
 ## Analysis Driver
 
-We do not need one except to be syntactically correct since we are using existing data
+We do not need one except to be syntactically correct since we are using existing 
+data. The data were generated using the Ishigami function.
 
 ### Inputs
 
-The Ishigami takes three uniform variables in $[-\pi,\pi]^3$
+The Ishigami takes three variables, which for this example were
+uniformly distributed in $[-\pi,\pi]^3$
 
 ```dakota
 	uniform_uncertain =  3

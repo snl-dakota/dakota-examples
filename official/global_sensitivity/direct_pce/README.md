@@ -8,7 +8,7 @@ Apply quadrature-based Polynomial Chaos expansions for global sensitivity and (s
  
 ### More about running this example
 
-This also puts out `pce_samples.dat`. This is optional but useful later
+Python is required to run this example.
  
 # What problem does this solve?
 
@@ -75,7 +75,8 @@ The analytical answers are:
 
 ### Inputs
 
-The Ishigami takes three uniform variables in $[-\pi,\pi]^3$
+The Ishigami takes three variables, which in this example are uniformly
+distributed in $[-\pi,\pi]^3$
 
 ```dakota
 	uniform_uncertain =  3
@@ -121,3 +122,5 @@ From these results, we may make the following observations:
 - The main effect of z is neglible; it influences the response only via its interactions 
   with x.
 
+In addition to the console output, samples on the PCE are written to the file 
+`pce_samples.dat`.

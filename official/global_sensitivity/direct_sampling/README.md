@@ -8,7 +8,10 @@ run:
 
     $ dakota -i direct_sample.in -o direct_sample.out
     
- 
+### More about running this example
+
+Python is required to run this example.
+
 # What problem does this solve?
 
 Variance-based decomposition (VBD) attributes fractions of response variance to variables so that
@@ -70,7 +73,8 @@ The analytical answers are:
 
 ### Inputs
 
-The Ishigami function takes three uniform variables in $[-\pi,\pi]^3$
+The Ishigami takes three variables, which in this example are uniformly
+distributed in $[-\pi,\pi]^3$
 
 ```dakota
 	uniform_uncertain =  3
