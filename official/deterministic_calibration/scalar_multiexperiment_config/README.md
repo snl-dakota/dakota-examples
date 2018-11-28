@@ -43,6 +43,21 @@ optimizer that is tailored to calibration problems. It is often a good
 method to use when discovering a local minimum will achieve the goal
 of the calibration, and the residuals have smooth gradients.
 
+# Additional Input to Dakota 
+
+In the `reponses` section of the Dakota input file, the keywords
+`num_experiments` and `num_config_variables` are set to 2 and 1,
+respectively. The keyword `calibration_data_file` also appears and is
+set to `displacements.dat`. This file has an initial header line that
+may contain column headings or other information helpful to the user
+(Dakota treats it as a comment) followed by one line per
+experiment. Each of these lines contains the value of our single
+configuration variable (the verical load, $`Y`$), followed by 20
+measurements of the displacement.  As Dakota performs evaluations, it
+will insert these values of $`Y`$ into the `continuous_state` variable
+$`Y`$ that is defined in the `variables` section of the input file.
+
+
 ## Analysis Driver
 
 The model to be calibrated predicts the dependence of the Young’s
@@ -80,20 +95,6 @@ Notice that our driver is limited to making predictions at just one
 vertical load condition. To obtain residuals at both of the load
 conditions for which we have data, the driver must be run twice, once
 for each experiment.
-
-### Dakota Input file
-
-In the `reponses` section of the Dakota input file, the keywords
-`num_experiments` and `num_config_variables` are set to 2 and 1,
-respectively. The keyword `calibration_data_file` also appears and is
-set to `displacements.dat`. This file has an initial header line that
-may contain column headings or other information helpful to the user
-(Dakota treats it as a comment) followed by one line per
-experiment. Each of these lines contains the value of our single
-configuration variable (the verical load, $`Y`$), followed by 20
-measurements of the displacement.  As Dakota performs evaluations, it
-will insert these values of $`Y`$ into the `continuous_state` variable
-$`Y`$ that is defined in the `variables` section of the input file.
 
 
 # Interpret the results

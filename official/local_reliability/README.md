@@ -43,12 +43,11 @@ Built-in Dakota driver, `log_ratio`.
 
 ### Inputs
 
-The Dakota input file logratio_uq_reliability_mv.in.
+The driver takes two continuous inputs.
 
 ### Outputs
 
-Screen output, redirected to the file logratio_uq_reliability.out.
-
+The driver returns one output.
 
 # Interpret the results
  

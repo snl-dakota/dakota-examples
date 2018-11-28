@@ -11,9 +11,7 @@ you want text to be rendered in italics.)_
 ### More about running this example
 _Optionally, in this section, write additional information or instructions that 
 would be helpful to run the example. You may wish to include notes about how to
-get the example to run on different operating systems, or you may describe 
-input files that are needed in addition to the Dakota input file, such as 
-surrogate build points or experiment data._
+get the example to run on different operating systems_
  
 # What problem does this solve?
 _Include a paragraph to describe the problem that will be solved by Dakota. If
@@ -44,6 +42,11 @@ _Include a paragraph about the chosen Dakota method and the reason for
 choosing this particular method over other possibilities, i.e., identify problem
 characteristics that led to the selection._
  
+# Additional Input to Dakota
+
+_Optionally describe input that Dakota needs to run the example in addition to
+the input file_
+
 ## Analysis Driver
 _Characterize the analysis driver._
 

@@ -36,40 +36,7 @@ that is tailored to calibration problems. It is often a good method to use when
 discovering a local minimum will achieve the goal of the calibration, and the 
 residuals have smooth gradients.
 
-## Analysis Driver
-
-The model to be calibrated predicts the dependence of the Young’s
-modulus $`E`$ of carbon steel on temperature. Over a wide range of
-temperature, this relationship is linear to a very good approximation:
-
-$`E(T) = E0 + Es \cdot T`$
-
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
-experimental values of $`E(T)`$. Rather, an experiment was performed
-on a carbon steel cantilever beam with a rectangular cross
-section. The beam was placed under a vertical load of 400 lbs, and the
-displacement at the free end was measured at a sequence of 20 evenly
-spaced temperatures between -20&deg;F and 500&deg;F. The experiment
-was then repeated with a vertical load of 600 lbs.
-
-The displacement of a rectangular cantilever beam can be predicted
-using a well-known formula that depends on E. The script cantilever.py
-implements this formula.
-
-
-### Inputs
-
-The cantilever.py driver has three inputs: the slope, $`E0`$; the
-intercept, $`Es`$, and the vertical load $`Y`$. The slope and the
-intercept are to be calibrated.
-
-### Outputs
-
-The analysis driver returns one value, the displacement at 12 (not 20)
-evenly spaced temperatures between -20°F and 500°F and writes these
-predictions in Dakota results format.
-
-# Dakota Input File
+# Additional Input to Dakota
 
 Because the driver predicts the displacement at a different set of
 temperatures from the ones where it was experimentally measured, it is
@@ -110,6 +77,40 @@ Note that `displacement.coords` is 12 lines long, corresponding to the
 12 predicted values of displacement that Dakota expects from
 `cantilever.py`. The other files are 20 lines long, corresponding to
 the number of data points collected in each experiment.
+
+
+## Analysis Driver
+
+The model to be calibrated predicts the dependence of the Young’s
+modulus $`E`$ of carbon steel on temperature. Over a wide range of
+temperature, this relationship is linear to a very good approximation:
+
+$`E(T) = E0 + Es \cdot T`$
+
+The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
+experimental values of $`E(T)`$. Rather, an experiment was performed
+on a carbon steel cantilever beam with a rectangular cross
+section. The beam was placed under a vertical load of 400 lbs, and the
+displacement at the free end was measured at a sequence of 20 evenly
+spaced temperatures between -20&deg;F and 500&deg;F. The experiment
+was then repeated with a vertical load of 600 lbs.
+
+The displacement of a rectangular cantilever beam can be predicted
+using a well-known formula that depends on E. The script cantilever.py
+implements this formula.
+
+
+### Inputs
+
+The cantilever.py driver has three inputs: the slope, $`E0`$; the
+intercept, $`Es`$, and the vertical load $`Y`$. The slope and the
+intercept are to be calibrated.
+
+### Outputs
+
+The analysis driver returns one value, the displacement at 12 (not 20)
+evenly spaced temperatures between -20°F and 500°F and writes these
+predictions in Dakota results format.
 
  
 # Interpret the results
