@@ -41,6 +41,16 @@ Simulation, and Optimization) developed at The University of Texas at
 Austin. Its implementation of the Delayed Rejection and Adaptive
 Metropolis (DRAM) algorithm is used.
 
+# Additional Input to Dakota
+
+Dakota expects to find all the data required for calibration in one file with a
+predefined name of **dakota_cantilever_queso.withsigma.dat**. The calibration
+data file has the observational data: in this case, it is a freeform file (e.g.
+no header or annotation) with ten experiments. For each experiment, there are
+two experiment values, one for stress and one for displacement, followed by two
+variance values for the error associated with that experiment for each quantity
+of interest.
+
 ## Analysis Driver
 
 The model to be calibrated is that of a simple
@@ -51,31 +61,39 @@ to some nominal stress and displacement values, being $` R=40000 `$ and
 $` D_{0} = 2.2535 `$, respectively. The maximum stress and tip displacement
 have the following relationships:
 
-$` \mathtt{stress}&=&\frac{600}{w t^2}Y+\frac{600}{w^2t}X `$
+$` \mathtt{stress}=\frac{600}{w t^2}Y+\frac{600}{w^2t}X `$
 
 and
 
-$` \mathtt{displacement}&=&\frac{4L^3}{E w t}
+$` \mathtt{displacement}=\frac{4L^3}{E w t}
   \sqrt{\bigg(\frac{Y}{t^2}\bigg)^2+\bigg(\frac{X}{w^2}\bigg)^2} `$ .
 
-We assume that the horizontal and vertical loads, $X$ and $Y$, as well as the
+We assume that the horizontal and vertical loads, $`X`$ and $`Y`$, as well as the
 cross-sectional thickness, $` t `$, are known, as provided in the Dakota input
 file, with values being 500, 1000, and 3, respectively.
 
 ### Inputs
 
-Dakota expects to find all the data required for calibration in one file with a
-predefined name of **dakota_cantilever_queso.withsigma.dat**. The calibration
-data file has the observational data: in this case, it is a freeform file (e.g.
-no header or annotation) with ten experiments. For each experiment, there are
-two experiment values, one for stress and one for displacement, followed by two
-variance values for the error associated with that experiment for each quantity
-of interest.
+The mod\_cantilever driver expects values for:
+
+- $`E`$: Young's modulus
+- $`w`$: width
+- $`t`$: thickness
+- $`R`$: yield strength
+- $`X`$: horizontal load
+- $`Y`$: vertical load
 
 ### Outputs
 
-The only output produced by this example is the file
-`dakota_bayes_calib_multi_qoi.out`.
+The driver provides either two or three outputs, depending on the number 
+specified in the responses section of the Dakota input file. When three are 
+requested, they are:
+
+- area
+- stress constraint
+- displacement constraint
+
+When two are requested, as in this example, the latter two are returend.
  
 # Interpret the results
  

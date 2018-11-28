@@ -1,7 +1,3 @@
-# Under-sampled PCE
-
-environment
-
 variables
 	uniform_uncertain =  3
 	lower_bounds    =    -3.14159 -3.14159 -3.14159    
