@@ -2,14 +2,14 @@ method
   bayes_calibration queso
     chain_samples = 1000 seed = 348
     dram
+    export_chain_points_file 'chain_samples.dat'
     proposal_covariance
       values 1.0e6 1.0e-1
         diagonal
     logit_transform         # default is off
     probability_levels 0.05 0.1
                        0.05 0.1
-    posterior_stats kl_divergence
-    output debug
+
 
 variables
   uniform_uncertain 2

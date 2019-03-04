@@ -144,7 +144,6 @@ Sample moment statistics for each response function:
                   3.5984952189e-01  9.5000000000e-01
                   2.4309506889e-01  1.0000000000e-01
                   3.4867791685e-01  9.0000000000e-01
-Information gained from prior to posterior = 6.0209966781e+00
 ~~~~
 
 The final results include:
@@ -154,3 +153,7 @@ The final results include:
 Young's modulus, $` E `$
 * Statistical moments of pushed-forward response functions, being maximum stress and tip displacement
 * Credible and prediction intervals for each model output
+
+## Chain Samples
+
+The chain samples are written to the file `chain_samples.dat` in Dakota tabular format.
