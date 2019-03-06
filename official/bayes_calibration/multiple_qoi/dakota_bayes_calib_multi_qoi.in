@@ -6,7 +6,6 @@ method
     proposal_covariance
       values 1.0e6 1.0e-1
         diagonal
-    logit_transform         # default is off
     probability_levels 0.05 0.1
                        0.05 0.1
 
