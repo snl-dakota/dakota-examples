@@ -1,0 +1,7 @@
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 5000 total (5000 new, 0 duplicate)
+Ishigami Sobol' indices:
+                                  Main             Total
+                      3.6442176674e-01  6.4970249569e-01 x
+                      4.4188053874e-01  4.5552696765e-01 y
+                      3.2470524558e-02  2.4838191925e-01 z

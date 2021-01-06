@@ -1,0 +1,43 @@
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 1606 total (1606 new, 0 duplicate)
+<<<<< Best parameters          =
+                      2.8684119054e+07 E
+                      2.5003472849e+00 w
+<<<<< Best misfit              =
+                      9.7132783789e+00
+<<<<< Best log prior           =
+                     -2.0703165165e+01
+<<<<< Best log posterior       =
+                     -6.9873866072e+01
+Sample moment statistics for each posterior variable:
+                            Mean           Std Dev          Skewness          Kurtosis
+             E  2.8648541784e+07  1.4245116550e+05  4.1797232695e-01 -7.6453326827e-01
+             w  2.5009672835e+00  3.7969372456e-03 -2.1146581484e-02 -2.6617303167e-02
+Sample moment statistics for each response function:
+                            Mean           Std Dev          Skewness          Kurtosis
+        stress  2.6441507455e+03  8.9018665125e+01  3.2555531618e-02 -2.7691473378e-02
+  displacement  2.9377032606e-01  1.0661873777e-02 -3.6110962119e-01 -4.5104678875e-01
+                  Response Level    Probability Level
+                  ----------------- -----------------
+                  2.4764049695e+03  5.0000000000e-02
+                  2.8242874802e+03  9.5000000000e-01
+                  2.4990608791e+03  1.0000000000e-01
+                  2.7952985803e+03  9.0000000000e-01
+                  Response Level    Probability Level
+                  ----------------- -----------------
+                  2.7270094322e-01  5.0000000000e-02
+                  3.1057999512e-01  9.5000000000e-01
+                  2.7538816802e-01  1.0000000000e-01
+                  3.0889319332e-01  9.0000000000e-01
+                  Response Level    Probability Level
+                  ----------------- -----------------
+                  2.0964882850e+03  5.0000000000e-02
+                  3.1993026765e+03  9.5000000000e-01
+                  2.1822183238e+03  1.0000000000e-01
+                  3.1099058450e+03  9.0000000000e-01
+                  Response Level    Probability Level
+                  ----------------- -----------------
+                  2.3024056360e-01  5.0000000000e-02
+                  3.5670965985e-01  9.5000000000e-01
+                  2.4016170870e-01  1.0000000000e-01
+                  3.4701712866e-01  9.0000000000e-01
