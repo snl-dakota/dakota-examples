@@ -20,6 +20,7 @@ add_test(NAME dakota-exe-version
   -version
   )
 
+
 ##set(DAKOTA_TEST_PERL ${CMAKE_CURRENT_SOURCE_DIR}/../test/dakota_test.perl)
 if(NOT DAKOTA_TEST_PERL)
   if(Dakota_SOURCE_DIR)
@@ -33,3 +34,27 @@ endif()
 add_test(NAME dakota-test-perl-help COMMAND ${DAKOTA_TEST_PERL} --help)
 
 
+# TODO: protect with conditional Python? (probably always enabled)
+#set(DAKOTA_PYTHON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/Python")
+if(NOT DAKOTA_PYTHON_PATH)
+  if(Dakota_SOURCE_DIR)
+    set(DAKOTA_PYTHON_PATH "${Dakota_SOURCE_DIR}/interfaces/Python")
+  else()
+    message(WARNING
+      "Some DakotaExamples tests require DAKOTA_PYTHON_PATH (not found)")
+  endif()
+endif()
+# TODO: add Python import test
+
+
+# TODO: dprepro
+set(DAKOTA_DPREPRO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/pyprepro")
+if(NOT DAKOTA_DPREPRO_PATH)
+  if(Dakota_SOURCE_DIR)
+    set(DAKOTA_DPREPRO_PATH "${Dakota_SOURCE_DIR}/scripts/pyprepro")
+  else()
+    message(WARNING
+      "Some DakotaExamples tests require DAKOTA_DPREPRO_PATH (not found)")
+  endif()
+endif()
+# TODO: add Dprepro smoke test

@@ -31,6 +31,19 @@ function(add_conditional_dependence _test_name _depends_on)
 endfunction()
 
 
+# Handler for applying any necessary properties to all tests, such as
+# ENVIRONMENT, RUN_SERIAL, WILL_FAIL
+function(apply_test_properties _test_name _depends_on)
+  add_conditional_dependence(${_test_name} "${_depends_on}")
+
+  set(_env_path "PATH=${DAKOTA_DPREPRO_PATH}:$ENV{PATH}")
+  set(_env_python_path "PYTHONPATH=${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
+
+  set_tests_properties(${_test_name} PROPERTIES
+    ENVIRONMENT "${_env_path};${_env_python_path}")
+endfunction()
+
+
 # Add a test to check an input file
 #
 # Sets in caller scope: _last_test_added
@@ -43,7 +56,7 @@ function(test_check_input _example_path _input_name _depends_on)
       -check -input ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
-  add_conditional_dependence(${_test_name} "${_depends_on}")
+  apply_test_properties(${_test_name} "${_depends_on}")
 
   set(_last_test_added ${_test_name} PARENT_SCOPE)
 endfunction()
@@ -61,7 +74,7 @@ function(test_run_input _example_path _input_name _depends_on)
       -input ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
-  add_conditional_dependence(${_test_name} "${_depends_on}")
+  apply_test_properties(${_test_name} "${_depends_on}")
 
   set(_last_test_added ${_test_name} PARENT_SCOPE)
 endfunction()
@@ -84,7 +97,7 @@ function(test_regress_input _example_path _input_name _depends_on)
       ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
-  add_conditional_dependence(${_test_name} "${_depends_on}")
+  apply_test_properties(${_test_name} "${_depends_on}")
 
   set(_last_test_added ${_test_name} PARENT_SCOPE)
 endfunction()
@@ -102,7 +115,7 @@ function(test_command _example_path _test_command _depends_on)
     COMMAND ${_test_command}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
-  add_conditional_dependence(${_test_name} "${_depends_on}")
+  apply_test_properties(${_test_name} "${_depends_on}")
 
   set(_last_test_added ${_test_name} PARENT_SCOPE)
 endfunction()

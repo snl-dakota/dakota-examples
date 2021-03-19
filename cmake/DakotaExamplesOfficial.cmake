@@ -20,22 +20,22 @@ dakota_example_test(
 
 dakota_example_test(
   PATH official/centered_parameter_study
-  CHECK dakota_cantilever_center.in
+  RUN dakota_cantilever_center.in
   )
 
 dakota_example_test(
   PATH official/deterministic_calibration/field_interpolate
-  CHECK dakota_cal.in
+  RUN dakota_cal.in
   )
 
 dakota_example_test(
   PATH official/deterministic_calibration/scalar_multiexperiment_config
-  CHECK dakota_cal.in
+  RUN dakota_cal.in
   )
 
 dakota_example_test(
   PATH official/deterministic_calibration/scalar_residual
-  CHECK dakota_cal.in
+  RUN dakota_cal.in
   )
 
 dakota_example_test(
@@ -55,7 +55,8 @@ dakota_example_test(
 
 dakota_example_test(
   PATH official/global_sensitivity/pce_on_data
-  CHECK pce_oli.in pce_oversample.in pce_undersample.in
+  CHECK pce_oli.in
+  RUN pce_oversample.in pce_undersample.in
   )
 
 dakota_example_test(
@@ -80,5 +81,5 @@ dakota_example_test(
 
 dakota_example_test(
   PATH official/optimization/local/gradient-based
-  CHECK dakota_opt_qnewton_constrained.in
+  RUN dakota_opt_qnewton_constrained.in
   )
