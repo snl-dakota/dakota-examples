@@ -1,119 +1,127 @@
 # Summary
 
-Adjust the parameters of a model to make its predictions more closely
-match data, when simulation predictions must be interpolated onto the
-data.
- 
-### Run Dakota
+Calibrate a model to data from multiple experiments when simulation
+predictions must be interpolated onto the data.
+
+# Description
+
+The example demonstrates how to use Dakota's interpolation feature when performing
+a calibration. In addition, it shows how to use field calibration terms, which are 
+required when performing interpolation.
+
+When calibrating a model, one challenge that can arise is that
+the simulation does not make predictions on coordinates that match the
+experimental data, complicating calculation of accurate residuals.
+
+Dakota can interpolate (in one dimension) simulation predictions onto the
+coordinates of the data. Residuals are computed using the interpolated 
+values. For each experiment, in addition to the observations, 
+configuration, and uncertainty, the user provides the coordinates at which
+the data were taken. The user also provides the coodinates at which the
+simulation predictions are made. (A current limitation of the interpolation
+feature is that the prediction coordinates are fixed for the duration of the
+study.)
+
+In this example, measurements of the tip displacement of a cantilever beam
+are used to calibate a model for the temperature dependence of the Young's
+modulus of carbon steel. Two experiments were performed at different vertical loads.
+In both, tip displacement was measured at a series of temperatures. The temperatures
+in the experiments differ from those at which the simulation predicts displacements, 
+and interpolation is needed to reconcile them.
+
+
+# Calibration Problem
+
+Over a wide range of temperature, the Young's modulus $`E`$ of carbon
+steel is linearly related to temperature:
+```math
+E(T) = E0 + Es \cdot T
+```
+
+The parameters $`E0`$ and $`Es`$ are to be calibrated.
+
+We don’t have direct experimental measurements of $`E(T)`$. Experiments were
+performed on a carbon steel cantilever beam. The beam was placed under a vertical
+load and the displacement of the tip, which depends on $`E(T)`$, was measured at
+a series of temperatures. Dakota will use a cantilever beam model that incorporates
+the linear model for $`E(T)`$ to determine the values of $`E0`$ and $`Es`$ that 
+result in the closest fit between the measured and predicted tip displacements.
+
+# Experimental Data
+
+Two experiments were performed under different vertical loads. In both, the 
+displacement of a cantilever beam tip under vertical load was measured at 20
+temperatures between -20&deg;F and 500&deg;F.
+
+The experimental observations are recorded in the files `displacement.1.dat` and
+`displacement.2.dat`. The temperatures at which the diplacements were measured
+can be found in `displacements.1.coords` and `displacements.2.coords`. These files
+all contain 20 values, and in general the number of coordinates must match the
+number of observations for each experiment, although different experiments can
+have different numbers of observations.
+
+Finally, measurement variance is provided for each experiment in the files 
+`displacement.1.sigma` and `displacement.2.sigma`. They contain a single value,
+as specified inthe Dakota input file (`experiment_variance_type = 'scalar'`). Dakota
+also supports specification of per observation variance, or a full covariance
+matrix per experiment.
+
+Dakota infers the information each file contains based on its name, as explained in the 
+[Reference Manual](https://dakota.sandia.gov//sites/default/files/docs/6.13/html-ref/responses-calibration_terms-calibration_data.html). The file names are composed
+of the *response descriptor*, followed by the *experiment number*, followed by a
+label *coords*, *sigma*, or *dat*.
+
+# Simulation Coordinates
+
+To perform the 1D interpolation, Dakota also must know the temperatures at which
+the simulation will predict the tip displacement. These are provided in the file
+`displacement.coords`. This filename contains the response descriptor and the label
+*coords*. The lack of experimental number distinguishes it from the coordinate files the 
+experimental data. Note that it contains 12 values, in agreement with the response 
+specification in the Dakota input file (`lengths 12`).
+
+Dakota will read the simulation coordinate file one time at the beginning of the study.
+A limitation of Dakota is that all evaluations of the simulation are required to share these coordinates.
+
+# Analysis Driver
+
+The analysis driver for this study is the script `cantilever.py`.
+It has three inputs:
+
+* $`Y`$: The vertical load. In this study, $`Y`$ is a configuration variable that
+  Dakota sets to values provided by the user in `displacements.1.coords` and 
+  `displacements.2.coords` as needed. It is specified as a `continuous_state` 
+  variable in the Dakota input.
+* $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
+  and slope of the linear Young's modulus model. These are `continuous_design'
+  variables in the Dakota input file.
+
+When called by Dakota, the driver predicts beam tip displacement for the input
+vertical load at the 12 temperatures listed in `displacements.dat`. It returns
+these 12 predictions to Dakota. A single `field_calibration_term` of length 12
+is specified in  the `responses` section of the Dakota  input file for the 12
+predictions. Dakota handles interpolating these 12 predictions onto the 20 
+temperatures provided for the experiments and calculating the residuals.
+
+# How to run the example
+
     $ dakota -i dakota_cal.in -o dakota_cal.out
  
-### More about running this example
+# Requirements
 
-This example uses the driver `cantilever.py`, which requires Python.
- 
-# What problem does this solve?
+Python 2 or 3 with numpy
 
-This example demonstrates how to calibrate a model to experimental data when
-the user desires that Dakota interpolate the simulation predictions onto the 
-data.
+# Contents
 
-## Math Equation
+* `dakota_cal.in`: Dakota input file
+* `cantilever.py`: Combined simulator and analysis driver
+* Experimental data:
+  * `displacements.{1,2}.dat`: Data from the two experiments to calibrate to.
+  * `displacements.{1,2}.coords`: Temperatures at which the data were collected.
+  * `displacements.{1,2}.sigma`: Variance (uncertainty) of the measurements
+* `displacement.dat`: Temperatures at which `cantilever.py` predicts displacements.
 
-minimize: $` \qquad \qquad f(\theta) = \sum_{j=1}^{N_{configs}} {\sum_{i=1}^{N_{data}} { ( y_i^{interp}(\theta; \chi_j) - y_{i,j}^{data} )^2  }} `$
-
-Where:
-* $`N_{configs}`$ is the number of experimental configurations (`num_experiments` in the Dakota input file)
-* $`N_{data}`$ is the number of data points (this must be the same for all configurations; `calibration_terms` in the Dakota input file)
-* $`y_i^{interp}(\theta; \chi_j)`$ is the interpolated model prediction for the $`i`$th datapoint and configuration $`j`$.
-* $`\theta`$ are the parameters to be calibrated.
-* $`\chi_j`$ are the configuration variables for configuration $`j`$.
-* $`y_{i,j}^{data}`$ is the $`i`$th datapoint for configuration $`j`$.
-
-# What method will we use?
-
-The method used in this example, `nl2sol`, is a gradient-based local optimizer
-that is tailored to calibration problems. It is often a good method to use when
-discovering a local minimum will achieve the goal of the calibration, and the 
-residuals have smooth gradients.
-
-# Additional Input to Dakota
-
-Because the driver predicts the displacement at a different set of
-temperatures from the ones where it was experimentally measured, it is
-necessary to interpolate between the two. The interpolation could be
-performed by the driver, but Dakota also can do it.
-
-To use Dakota's interpolation feature, `field_calibration_terms` must
-be specified.  Scalar terms may not be used. In this example, there is
-one field term with a length of 12 (the number of displacement
-predictions returned by the driver). The values of the independent
-coordinate (temperature, here) must be provided. Currently, Dakota is
-limited to linear interpolation in one dimension, and the length of
-the field and its coordinates must remain constant throughout the
-study.
-
-Instead of specifying the name of a `calibration_data_file`, which is
-applicable only for scalar responses, the `calibration_data` group of
-keywords must be used. Here, the number of experiments and
-configuration variables may be specified, as well as the type of
-experimental variance provided, if any. Finally, the `interpolate`
-keyword activates interpolation.
-
-Dakota expects to find all the data required for calibration in files
-with predefined names. For this study, they are:
-
-- **displacement.N.coords**: Temperatures at which displacement was
-  *measured* in experiment N=[1,2].
-- **displacement.N.dat**: Measurements of displacement for experiment N=[1,2].
-- **displacement.N.sigma**: Uncertainty information for displacement
-  measurements for experiment N=[1,2].
-- **experiment.N.config**: Configuration variable values for experiment N=[1,2].
-- **displacement.coords**: Temperatures at which displacement
-  *predictions* will be returned by the driver. The name of this
-  file differs from the name(s) of the experiment coordinates
-  file(s) only by the lack of experiment number.
-
-Note that `displacement.coords` is 12 lines long, corresponding to the
-12 predicted values of displacement that Dakota expects from
-`cantilever.py`. The other files are 20 lines long, corresponding to
-the number of data points collected in each experiment.
-
-
-## Analysis Driver
-
-The model to be calibrated predicts the dependence of the Young’s
-modulus $`E`$ of carbon steel on temperature. Over a wide range of
-temperature, this relationship is linear to a very good approximation:
-
-$`E(T) = E0 + Es \cdot T`$
-
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
-experimental values of $`E(T)`$. Rather, an experiment was performed
-on a carbon steel cantilever beam with a rectangular cross
-section. The beam was placed under a vertical load of 400 lbs, and the
-displacement at the free end was measured at a sequence of 20 evenly
-spaced temperatures between -20&deg;F and 500&deg;F. The experiment
-was then repeated with a vertical load of 600 lbs.
-
-The displacement of a rectangular cantilever beam can be predicted
-using a well-known formula that depends on E. The script cantilever.py
-implements this formula.
-
-
-### Inputs
-
-The cantilever.py driver has three inputs: the slope, $`E0`$; the
-intercept, $`Es`$, and the vertical load $`Y`$. The slope and the
-intercept are to be calibrated.
-
-### Outputs
-
-The analysis driver returns one value, the displacement at 12 (not 20)
-evenly spaced temperatures between -20°F and 500°F and writes these
-predictions in Dakota results format.
-
- 
-# Interpret the results
+# Study Results
  
 ## Screen Output
 

@@ -1,0 +1,134 @@
+method,
+    model_pointer = 'HIERARCH'
+    bayes_calibration queso
+    chain_samples = 50000 seed = 381
+      delayed_rejection
+      emulator
+        mf_pce
+        allocation_control greedy
+        p_refinement dimension_adaptive generalized
+        sparse_grid_level_sequence = 0 unrestricted
+        convergence_tolerance 5.e-6
+          max_refinement_iterations = 10000
+        diagonal_covariance
+      proposal_covariance
+        derivatives
+          update_period = 40
+
+model,
+    id_model = 'HIERARCH'
+    variables_pointer = 'V_COARSE'
+    responses_pointer = 'R_SHARED'
+    surrogate hierarchical
+      ordered_model_fidelities = 'M_COARSE' 'M_MEDIUM' 'M_FINE'
+      correction additive zeroth_order
+
+model,
+    id_model = 'M_COARSE'
+    variables_pointer = 'V_COARSE'
+    interface_pointer = 'I_SHARED'
+    responses_pointer = 'R_SHARED'
+    simulation
+      solution_level_cost = 1.
+
+variables,
+    id_variables = 'V_COARSE'
+    uniform_uncertain = 6
+    descriptors  = 'HH_vel' 'power' 'wind_angle' 'eff_thickness' 'axial_induction_factor' 'lmax'
+    lower_bounds =  6.0    0.055  -0.1309   2.4   0.10   3.0
+    upper_bounds =  10.0   0.25    0.1309   15.0  0.9    20
+    discrete_state_set
+      integer = 7 
+          elements_per_variable = 1 1 1 1 1 1 1
+          set_values = 12  #grid x
+                       8  #grid y
+                       8  #grid z
+                       0  #grid_refine
+                       50 #y_bound for slice y in [-y_bound, y_bound]
+                       10 #z_lower for slice 
+                       70 #z_upper for slice z in [z_lower, z_upper]
+          descriptors = 'grid_x' 'grid_y' 'grid_z' 'grid_refine' 'y_bound' 'z_lower' 'z_upper'
+      string = 1
+        num_set_values = 1
+        descriptors =   'model'
+        initial_state = 'coarse'
+        set_values = 'coarse'
+
+model,
+    id_model = 'M_MEDIUM'
+    variables_pointer = 'V_MEDIUM'
+    interface_pointer = 'I_SHARED'
+    responses_pointer = 'R_SHARED'
+    simulation
+      solution_level_cost = 7.
+
+variables,
+    id_variables = 'V_MEDIUM'
+    uniform_uncertain = 6
+    descriptors  = 'HH_vel' 'power' 'wind_angle' 'eff_thickness' 'axial_induction_factor' 'lmax'
+    lower_bounds =  6.0    0.055  -0.1309   2.4   0.10   3.0
+    upper_bounds =  10.0   0.25    0.1309   15.0  0.9    20
+    discrete_state_set
+      integer = 7 
+          elements_per_variable = 1 1 1 1 1 1 1
+          set_values = 24 #grid x
+                       16 #grid y
+                       16 #grid z
+                       0  #grid_refine
+                       50 #y_bound for slice y in [-y_bound, y_bound]
+                       10 #z_lower for slice 
+                       70 #z_upper for slice z in [z_lower, z_upper]
+          descriptors = 'grid_x' 'grid_y' 'grid_z' 'grid_refine' 'y_bound' 'z_lower' 'z_upper'
+      string = 1
+        num_set_values = 1
+        descriptors =   'model'
+        initial_state = 'medium'
+        set_values = 'medium'
+
+model,
+    id_model = 'M_FINE'
+    variables_pointer = 'V_FINE'
+    interface_pointer = 'I_SHARED'
+    responses_pointer = 'R_SHARED'
+    simulation
+      solution_level_cost = 150.
+
+variables,
+    id_variables = 'V_FINE'
+    uniform_uncertain = 6
+    descriptors  = 'HH_vel' 'power' 'wind_angle' 'eff_thickness' 'axial_induction_factor' 'lmax'
+    lower_bounds =  6.0    0.055  -0.1309   2.4   0.10   3.0
+    upper_bounds =  10.0   0.25    0.1309   15.0  0.9    20
+    discrete_state_set
+      integer = 7 
+          elements_per_variable = 1 1 1 1 1 1 1
+          set_values = 48 #grid x
+                       32 #grid y
+                       32 #grid z
+                       0  #grid_refine
+                       50 #y_bound for slice y in [-y_bound, y_bound]
+                       10 #z_lower for slice 
+                       70 #z_upper for slice z in [z_lower, z_upper]
+          descriptors = 'grid_x' 'grid_y' 'grid_z' 'grid_refine' 'y_bound' 'z_lower' 'z_upper'
+      string = 1
+        num_set_values = 1
+        descriptors =   'model'
+        initial_state = 'fine'
+        set_values = 'fine'
+
+interface,
+    id_interface = 'I_SHARED'
+    fork asynchronous evaluation_concurrency = 12
+      analysis_driver = 'interface_DAK2WindSE.sh'
+      parameters_file = 'params.in'
+      results_file = 'results.out'
+      file_tag file_save
+
+
+responses,
+  id_responses = 'R_SHARED'
+  calibration_terms = 31395
+        calibration_data_file = 'upper_half_slice_nalu_all.dat'
+          freeform num_experiments = 1 variance_type = 'scalar'
+  no_gradients
+  no_hessians

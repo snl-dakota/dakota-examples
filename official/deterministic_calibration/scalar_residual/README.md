@@ -1,79 +1,82 @@
 # Summary
 
-Adjust the parameters of a model to make its predictions more closely
-match data.
+Calibrate a model using an analysis driver that computes residuals
+
+# Description
+
+A simple cantilever beam simulation is used to demonstrate how to pose
+a calibration problem to Dakota when the analysis driver returns one or
+more *residuals*. A residual is defined as the difference, for particular
+values of model input parameters, between a model prediction and experimental 
+data. That is, the residual $`r_i(\theta)`$ for the $`i`$th experimental 
+observation $`m_i`$ and model input parameters $`\theta`$, is defined as:
+```math
+r_i(\theta) = \hat{y}_i(\theta) - m_i
+```
+In this expression, $`\hat{y}_i(\theta)`$ is the prediction of the model to be
+calibrated at conditions corresponding to $`m_i`$.
+
+This is the simplest form of calibration study from the perspective of
+Dakota setup, because it does not require the user to provide experimental
+data to Dakota.
+
+# Calibration Problem
+
+Over a wide range of temperature, the Young's modulus $`E`$ of carbon
+steel is linearly related to temperature:
+```math
+E(T) = E0 + Es \cdot T
+```
+
+The parameters $`E0`$ and $`Es`$ are to be calibrated.
+
+We don’t have direct experimental measurements of $`E(T)`$. Rather, an
+experiment was performed on a carbon steel cantilever beam. The beam was
+placed under a vertical load and the displacement of the tip, which depends
+on $`E(T)`$, was measured at a series of temperatures. Dakota will use a
+cantilever beam model that incorporates the linear model for $`E(T)`$ to
+determine the values of $`E0`$ and $`Es`$ that result in the closest fit
+between the measured and predicted tip displacements.
+
+# Analysis Driver
+
+The analysis driver for this study is the script `cantilever_residual.py`.
+It has three inputs:
+
+* $`Y`$: The vertical load. It's fixed at 400 lbs for this example using a
+  `continuous_state` variable.
+* $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
+  and slope of the linear Young's modulus model. These are `continuous_design'
+  variables in the Dakota input file.
+
+The driver contains experimentally measured displacements at
+20 evenly spaced temperatures between -20&deg;F and 500&deg;F (`d_exp`,
+defined beginning on line 20). When called by Dakota, it predicts 
+displacements at each temperature, differences them with
+the measured displacements to calculate residuals, and returns the
+residuals to Dakota. Twenty `calibration_terms` are specified in 
+the `responses` section of the Dakota input file for the 20 residuals.
+
+
+# How to run the example
  
-### Run Dakota
+Run Dakota
+
     $ dakota -i dakota_cal.in -o dakota_cal.out
  
-### More about running this example
+# Requirements
 
-This example uses the driver `cantilever_residuals.py`, which requires Python.
- 
-# What problem does this solve?
+Python 2 or 3 with numpy
 
-In (deterministic) calibration, the parameters of a model are adjusted
-with the goal that its predictions more closely match some data. The
-data may come from experiment, predictions from a higher fidelity
-model, or some other trusted source. Dakota uses optimization, such as
-the `nl2sol` method, to minimize the errors between model predictions
-and experiment in a least squares sense.
+# Contents
 
-This example demonstrates how to pose a calibration problem to Dakota
-when the analysis driver returns *residuals*, which are defined as
-predictions minus data.
+* `dakota_cal.in`: Dakota input file
+* `cantilever_residuals.py`: Combined simulator and analysis driver
 
-## Math Equation
-
-minimize: $` \qquad \qquad f(\theta) = \sum_{i=1}^N {R_i^2(\theta)} `$
-
-Where $`R_i`$ is the $`i`$th of $`N`$ total residuals (model
-prediction minus data), and $`\theta`$ are the parameters to be
-calibrated.
-
-# What method will we use?
-
-The method used in this example, `nl2sol`, is a gradient-based local
-optimizer that is tailored to calibration problems. It is often a good
-method to use when discovering a local minimum will achieve the goal
-of the calibration, and the residuals have smooth gradients.
-
-## Analysis Driver
-
-The model to be calibrated predicts the dependence of the Young’s
-modulus $`E`$ of carbon steel on temperature. Over a wide range of
-temperature, this relationship is linear to a very good approximation:
-
-$`E(T) = E0 + Es \cdot T`$
-
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
-experimental values of $`E(T)`$. Rather, an experiment was performed
-on a carbon steel cantilever beam with a rectangular cross
-section. The beam was placed under a vertical load of 400 lbs, and the
-displacement at the free end was measured at a sequence of 20 evenly
-spaced temperatures between -20&deg;F and 500&deg;F.
-
-The displacement of a rectangular cantilever beam can be predicted
-using a well-known formula that depends on $`E`$. The script
-`cantilever_residual.py` implements this formula.
-
-### Inputs
-
-The `cantilever.py` driver has three inputs: the slope, $`E0`$; the
-intercept, $`Es`$, and the vertical load $`Y`$. 
-
-### Outputs
-
-The analysis driver returns one value, the displacement, at the same 20
-temperatures for which we have data and differences with the data to
-obtain residuals, which it writes in Dakota results format.
-
-
-# Interpret the results
- 
+# Study Results 
 ## Screen Output
 
-Dakota produces the following output to the screen (redirected to 
+Dakota produces output similar to the following to the screen (redirected to 
 `dakota_cal.out`).
 
 ~~~~

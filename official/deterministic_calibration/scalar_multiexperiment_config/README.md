@@ -1,103 +1,98 @@
 # Summary
 
-Adjust the parameters of a model to make its predictions more closely
-match data, when data for multiple experiments run under different
-configurations are available.
- 
-### Run Dakota
+Calibrate a model to data from multiple experiments run under different
+configurations using Dakota's configuration variable feature.
+
+# Description
+
+Model parameters can be calibrated to data from multiple experiments 
+simultaneously, such that the resulting parameters are a best fit to all
+the experiments. The experiments are distinguished from one another by
+having been performed under different configurations. In addition to the
+observations for each experiment, the user provides information about its
+configuration in the form of *configuration variables*. To obtain predictions
+for a particular experiment, Dakota runs the model with not only values
+of the calibration parameters, but with forwarded values of the configuration
+variables.
+
+In this example, measurements of the tip displacement of a cantilever beam 
+are used to calibate a model for the temperature dependence of the Young's
+modulus of carbon steel. Two experiments were performed. In both, tip displacement
+was measured at a series of temperatures. The vertical load placed on the beam, which
+is the configuration variable, differed for the two experiments. The example 
+illustrates how to specify to Dakota both the observations for the experiments and
+the configuration information.
+
+# Calibration Problem
+
+Over a wide range of temperature, the Young's modulus $`E`$ of carbon
+steel is linearly related to temperature:
+```math
+E(T) = E0 + Es \cdot T
+```
+
+The parameters $`E0`$ and $`Es`$ are to be calibrated.
+
+We don’t have direct experimental measurements of $`E(T)`$. Experiments were
+performed on a carbon steel cantilever beam. The beam was placed under a vertical
+load and the displacement of the tip, which depends on $`E(T)`$, was measured at
+a series of temperatures. Dakota will use a cantilever beam model that incorporates
+the linear model for $`E(T)`$ to determine the values of $`E0`$ and $`Es`$ that 
+result in the closest fit between the measured and predicted tip displacements.
+
+# Experimental Data
+
+Two experiments were performed. In both, the displacement of a cantilever beam tip
+under vertical load was measured at a series of evenly-spaced temperatures between
+ -20&deg;F and 500&deg;F.
+
+The experiments differed in one respect. In the first, the vertical load was 400 lbs,
+and in the second, it was 600 lbs.
+
+These data are recorded in the file `displacements.dat`. The format of this file is
+explained in the [Reference Manual](https://dakota.sandia.gov//sites/default/files/docs/6.13/html-ref/responses-calibration_terms-calibration_data_file.html). This example uses the default `annotated` format, in which the first line is a header, which is ignored by Dakota, and each subsequent line contains calibration data for one experiment. On each row:
+
+**Item 1:** The experiment number
+
+**Item 2:** Value of the configuration variable `Y`
+
+**Items 3-22:** Experimental measurements of the displacement
+
+
+# Analysis Driver
+
+The analysis driver for this study is the script `cantilever.py`.
+It has three inputs:
+
+* $`Y`$: The vertical load. In this study, $`Y`$ is a configuration variable that
+  Dakota sets to values provided by the user in `displacements.dat` as needed. It is 
+  specified as a `continuous_state` variable in the Dakota input.
+* $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
+  and slope of the linear Young's modulus model. These are `continuous_design'
+  variables in the Dakota input file.
+
+When called by Dakota, the driver predicts beam tip displacement for the input
+vertical load at the 20 temperatures. It returns these 20 predictions to Dakota.
+Twenty `calibration_terms` are specified in  the `responses` section of the Dakota 
+input file for the 20 predictions. Dakota handles calculating the residuals by
+differencing the predictions with the experimental measurements that the user
+provided in `displacements.dat`.
+
+# How to run the example
+
     $ dakota -i dakota_cal.in -o dakota_cal.out
  
-### More about running this example
+# Requirements
 
-This example uses the driver `cantilever.py`, which requires Python.
+Python 2 or 3 with numpy
+
+# Contents
+
+* `dakota_cal.in`: Dakota input file
+* `cantilever.py`: Combined simulator and analysis driver
+* `displacements.dat`: Experimental data to calibrate to.
  
-# What problem does this solve?
-
-This example demonstrates how to calibrate a model to data from
-multiple experiments that has been collected at different
-*configurations*, or conditions.
-
-The configurations are distinguished by one or more configuration
-variables. The user provides values of these variables to Dakota in a
-data file, and Dakota is responsible for running the user's driver at
-each configuration to construct a composite set of residuals for all
-the experiments. This is in contrast to requiring the user to design a
-more complex driver that manages running the simlation multiple times.
-
-## Math Equation
-
-minimize: $` \qquad \qquad f(\theta) = \sum_{j=1}^{N_{configs}} {\sum_{i=1}^{N_{data}} { ( y_i^{model}(\theta; \chi_j) - y_{i,j}^{data} )^2  }} `$
-
-Where:
-* $`N_{configs}`$ is the number of experimental configurations (`num_experiments` in the Dakota input file)
-* $`N_{data}`$ is the number of data points (this must be the same for all configurations; `calibration_terms` in the Dakota input file)
-* $`y_i^{model}(\theta; \chi_j)`$ is the model prediction for the $`i`$th datapoint and configuration $`j`$.
-* $`\theta`$ are the parameters to be calibrated.
-* $`\chi_j`$ are the configuration variables for configuration $`j`$.
-* $`y_{i,j}^{data}`$ is the $`i`$th datapoint for configuration $`j`$.
-
-# What method will we use?
-
-The method used in this example, `nl2sol`, is a gradient-based local
-optimizer that is tailored to calibration problems. It is often a good
-method to use when discovering a local minimum will achieve the goal
-of the calibration, and the residuals have smooth gradients.
-
-# Additional Input to Dakota 
-
-In the `reponses` section of the Dakota input file, the keywords
-`num_experiments` and `num_config_variables` are set to 2 and 1,
-respectively. The keyword `calibration_data_file` also appears and is
-set to `displacements.dat`. This file has an initial header line that
-may contain column headings or other information helpful to the user
-(Dakota treats it as a comment) followed by one line per
-experiment. Each of these lines contains the value of our single
-configuration variable (the verical load, $`Y`$), followed by 20
-measurements of the displacement.  As Dakota performs evaluations, it
-will insert these values of $`Y`$ into the `continuous_state` variable
-$`Y`$ that is defined in the `variables` section of the input file.
-
-
-## Analysis Driver
-
-The model to be calibrated predicts the dependence of the Young’s
-modulus $`E`$ of carbon steel on temperature. Over a wide range of
-temperature, this relationship is linear to a very good approximation:
-
-$`E(T) = E0 + Es \cdot T`$
-
-The parameters $`E0`$ and $`Es`$ are to be calibrated. We don’t have
-experimental values of $`E(T)`$. Rather, an experiment was performed
-on a carbon steel cantilever beam with a rectangular cross
-section. The beam was placed under a vertical load of 400 lbs, and the
-displacement at the free end was measured at a sequence of 20 evenly
-spaced temperatures between -20&deg;F and 500&deg;F. The vertical load
-was then increased to 600 lbs and the experiment was repeated.
-
-The displacement of a rectangular cantilever beam can be predicted
-using a well-known formula that depends on E. The script
-`cantilever.py` implements this formula.
-
-### Inputs
-
-The cantilever.py driver has three inputs: the slope, $`E0`$; the
-intercept, $`Es`$, and the vertical load $`Y`$. The slope and the
-intercept are to be calibrated.
-
-
-### Outputs
-
-The analysis driver returns one value, the displacement, at the same
-20 temperatures for which we have data and differences with the data
-to obtain residuals, which it writes in Dakota results format.
-
-Notice that our driver is limited to making predictions at just one
-vertical load condition. To obtain residuals at both of the load
-conditions for which we have data, the driver must be run twice, once
-for each experiment.
-
-
-# Interpret the results
+# Study Results
  
 ## Screen Output
 
