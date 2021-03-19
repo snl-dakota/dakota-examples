@@ -28,6 +28,8 @@ macro(setup_test_directory _example_path)
   set(_example_src "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}")
   set(_example_bin "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}")
 
+  # TODO: verify _example_src exists
+
   file(MAKE_DIRECTORY "${_example_bin}")
   file(GLOB _example_all_files "${_example_src}/*")
 

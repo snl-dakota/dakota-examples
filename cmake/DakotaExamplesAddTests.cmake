@@ -108,12 +108,35 @@ function(test_command _example_path _test_command _depends_on)
 endfunction()
 
 
+# Register default tests for all ${_example_path}/*.in
+# REGRESS if *.base, else CHECK
+#
+# Uses/modifies : _last_test_added from PARENT_SCOPE
+macro(test_inputs_with_defaults _example_path)
+  set(_example_src "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}")
+  file(GLOB _example_in_files_fq "${_example_src}/*.in")
+
+  # TODO: check all input files exist throughout all scripts
+  foreach(_example_in ${_example_in_files_fq})
+    get_filename_component(_example_in_we ${_example_in} NAME_WE)
+    if(EXISTS "${_example_src}/${_example_in_we}.base")
+      test_regress_input("${_example_PATH}" ${_example_in_we}.in
+	"${_last_test_added}")
+    else()
+      test_check_input("${_example_PATH}" ${_example_in_we}.in
+	"${_last_test_added}")
+    endif()
+  endforeach()
+endmacro()
+
+
 # Add a Dakota Example test with the specified test variants
+# DEFAULT will test each *.in file, REGRESS if *.base, else CHECK
 #
 # Appends in caller: registered_dakota_examples, dakota_examples_required_files,
 #   _last_test_added
 macro(dakota_example_test)
-  set(_options)
+  set(_options DEFAULT)
   set(_oneValueArgs DEPENDS PATH)
   set(_multiValueArgs CHECK RUN REGRESS COMMAND)
   cmake_parse_arguments(_example "${_options}" "${_oneValueArgs}"
@@ -122,8 +145,14 @@ macro(dakota_example_test)
   if(NOT _example_PATH)
     message(FATAL_ERROR "dakota_example_test requires PATH")
   endif()
-
   dakota_example_init("${_example_PATH}")
+
+  # Block mutually exclusive options
+  if( _example_DEFAULT AND
+      (_example_CHECK OR _example_RUN OR _example_REGRESS) )
+    message(FATAL_ERROR "Processing example ${_example_PATH}:\n"
+      "DEFAULT cannot be specified with other input file test modes")
+  endif()
 
   # tests in a given directory depend on each other
   set(_last_test_added)
@@ -131,17 +160,21 @@ macro(dakota_example_test)
     set(_last_test_added ${_example_DEPENDS})
   endif()
 
-  foreach(_input_check ${_example_CHECK})
-    test_check_input("${_example_PATH}" ${_input_check} "${_last_test_added}")
-  endforeach()
+  if(_example_DEFAULT)
+    test_inputs_with_defaults("${_example_PATH}")
+  else()
+    foreach(_input_check ${_example_CHECK})
+      test_check_input("${_example_PATH}" ${_input_check} "${_last_test_added}")
+    endforeach()
 
-  foreach(_input_runs ${_example_RUN})
-    test_run_input("${_example_PATH}" ${_input_runs} "${_last_test_added}")
-  endforeach()
+    foreach(_input_runs ${_example_RUN})
+      test_run_input("${_example_PATH}" ${_input_runs} "${_last_test_added}")
+    endforeach()
 
-  foreach(_input_regress ${_example_REGRESS})
-    test_regress_input("${_example_PATH}" ${_input_regress} "${_last_test_added}")
-  endforeach()
+    foreach(_input_regress ${_example_REGRESS})
+      test_regress_input("${_example_PATH}" ${_input_regress} "${_last_test_added}")
+    endforeach()
+  endif()
 
   if(_example_COMMAND)
     test_command("${_example_PATH}" "${_example_COMMAND}" "${_last_test_added}")
