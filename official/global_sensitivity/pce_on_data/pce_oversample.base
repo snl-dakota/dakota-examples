@@ -1,0 +1,35 @@
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 0 total (0 new, 0 duplicate)
+Coefficients of Polynomial Chaos Expansion for Ishigami:
+   3.3670626415e+00   P0   P0   P0
+   2.3526292449e+00   P1   P0   P0
+   4.6461084755e-01   P0   P1   P0
+   8.1925836495e-01   P0   P0   P1
+  -5.2318605627e-01   P2   P0   P0
+  -2.0127220025e+00   P1   P1   P0
+  -6.5037580959e-01   P0   P2   P0
+   5.5285267628e-01   P1   P0   P1
+  -4.1141764113e+00   P0   P1   P1
+   8.5005545256e-01   P0   P0   P2
+  -4.9164955591e+00   P3   P0   P0
+   1.3040401608e+00   P2   P1   P0
+   1.0318819969e+00   P1   P2   P0
+  -1.2883920404e+00   P0   P3   P0
+  -3.2248983765e-01   P2   P0   P1
+  -5.8779937381e+00   P1   P1   P1
+   3.6937400056e+00   P0   P2   P1
+   8.2551943801e-01   P1   P0   P2
+  -1.4043544485e+00   P0   P1   P2
+   1.9369771895e+00   P0   P0   P3
+Moment statistics for each response function:
+                            Mean           Std Dev          Skewness          Kurtosis
+      Ishigami  3.3670626415e+00  3.4019089541e+00
+Ishigami Sobol' indices:
+                                  Main             Total
+                      4.6252824047e-01  6.3538389818e-01 x
+                      3.4017883952e-02  4.5187966064e-01 y
+                      7.8132817774e-02  4.4863050116e-01 z
+                      5.4823374420e-02 x y 
+                      7.4592811125e-03 x z 
+                      2.5246540009e-01 y z 
+                      1.1057300218e-01 x y z 

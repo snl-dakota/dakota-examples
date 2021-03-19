@@ -1,1 +1,11 @@
-Test Number 0 failed with exit code 252
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 39 total (39 new, 0 duplicate)
+<<<<< Best parameters          =
+                      2.3520340723e+00 w
+                      3.3262784853e+00 t
+<<<<< Best objective function  =
+                      7.8235203315e+00
+<<<<< Best constraint values   =
+                     -1.6009004238e-02
+                     -9.1577967432e-11
+<<<<< Best data captured at function evaluation 37

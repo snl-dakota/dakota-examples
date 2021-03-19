@@ -1,1 +1,137 @@
-Test Number 0 failed with exit code 252
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 52 total (46 new, 6 duplicate)
+<<<<< Best parameters (experiment config variables omitted) =
+                      2.9947594473e+07 E0
+                     -5.5126339871e+03 Es
+<<<<< Best configuration variables (experiment 1) =
+                      4.0000000000e+02 Y
+<<<<< Best model responses (experiment 1) =
+                      6.3088227399e+00 displacement01
+                      6.3406489362e+00 displacement02
+                      6.3727978687e+00 displacement03
+                      6.4052744714e+00 displacement04
+                      6.4380837795e+00 displacement05
+                      6.4712309320e+00 displacement06
+                      6.5047211742e+00 displacement07
+                      6.5385598604e+00 displacement08
+                      6.5727524571e+00 displacement09
+                      6.6073045458e+00 displacement10
+                      6.6422218257e+00 displacement11
+                      6.6775101174e+00 displacement12
+                      6.7131753656e+00 displacement13
+                      6.7492236429e+00 displacement14
+                      6.7856611530e+00 displacement15
+                      6.8224942342e+00 displacement16
+                      6.8597293633e+00 displacement17
+                      6.8973731591e+00 displacement18
+                      6.9354323866e+00 displacement19
+                      6.9739139609e+00 displacement20
+<<<<< Best configuration variables (experiment 2) =
+                      6.0000000000e+02 Y
+<<<<< Best model responses (experiment 2) =
+                      9.4632341098e+00 displacement01
+                      9.5109734043e+00 displacement02
+                      9.5591968030e+00 displacement03
+                      9.6079117070e+00 displacement04
+                      9.6571256693e+00 displacement05
+                      9.7068463980e+00 displacement06
+                      9.7570817612e+00 displacement07
+                      9.8078397906e+00 displacement08
+                      9.8591286857e+00 displacement09
+                      9.9109568187e+00 displacement10
+                      9.9633327386e+00 displacement11
+                      1.0016265176e+01 displacement12
+                      1.0069763048e+01 displacement13
+                      1.0123835464e+01 displacement14
+                      1.0178491730e+01 displacement15
+                      1.0233741351e+01 displacement16
+                      1.0289594045e+01 displacement17
+                      1.0346059739e+01 displacement18
+                      1.0403148580e+01 displacement19
+                      1.0460870941e+01 displacement20
+<<<<< Best residual terms =
+                     -8.5096960124e-02
+                      8.3769306205e-02
+                     -1.7592099134e-01
+                      1.3468313559e-03
+                      4.4927619502e-02
+                     -1.1300403799e-01
+                     -1.0734539584e-01
+                      4.5225960389e-02
+                     -1.6975552862e-02
+                      2.1194474579e-01
+                     -1.2418204430e-01
+                     -1.0516325264e-01
+                     -9.8025204404e-02
+                      2.0277611293e-01
+                      3.7470943030e-02
+                      7.3347042395e-03
+                     -2.9443046712e-02
+                     -1.4177020930e-02
+                     -1.1367788343e-01
+                      1.7691194091e-01
+                     -6.8360110185e-02
+                      3.1974484308e-02
+                     -5.4396737010e-02
+                      2.6636910703e-01
+                     -7.7865710746e-02
+                      9.8141908011e-02
+                     -1.1560608764e-02
+                     -3.0382969417e-02
+                     -1.3642096429e-01
+                     -5.0775901320e-02
+                     -1.3991903145e-01
+                      2.0791852604e-01
+                      2.0625679839e-01
+                      1.6113684401e-02
+                      8.8331179545e-02
+                      3.3012741359e-02
+                     -3.6449615068e-02
+                      2.7425208605e-02
+                     -5.7203850147e-02
+                     -1.9851674863e-01
+<<<<< Best residual terms =
+                     -8.5096960124e-02
+                      8.3769306205e-02
+                     -1.7592099134e-01
+                      1.3468313559e-03
+                      4.4927619502e-02
+                     -1.1300403799e-01
+                     -1.0734539584e-01
+                      4.5225960389e-02
+                     -1.6975552862e-02
+                      2.1194474579e-01
+                     -1.2418204430e-01
+                     -1.0516325264e-01
+                     -9.8025204404e-02
+                      2.0277611293e-01
+                      3.7470943030e-02
+                      7.3347042395e-03
+                     -2.9443046712e-02
+                     -1.4177020930e-02
+                     -1.1367788343e-01
+                      1.7691194091e-01
+                     -6.8360110185e-02
+                      3.1974484308e-02
+                     -5.4396737010e-02
+                      2.6636910703e-01
+                     -7.7865710746e-02
+                      9.8141908011e-02
+                     -1.1560608764e-02
+                     -3.0382969417e-02
+                     -1.3642096429e-01
+                     -5.0775901320e-02
+                     -1.3991903145e-01
+                      2.0791852604e-01
+                      2.0625679839e-01
+                      1.6113684401e-02
+                      8.8331179545e-02
+                      3.3012741359e-02
+                     -3.6449615068e-02
+                      2.7425208605e-02
+                     -5.7203850147e-02
+                     -1.9851674863e-01
+<<<<< Best data not found in evaluation cache
+Confidence Intervals on Calibrated Parameters:
+            E0: [ 1.1863275637e+07, 4.8031913309e+07 ]
+            Es: [ -6.5103894624e+04, 5.4078626650e+04 ]

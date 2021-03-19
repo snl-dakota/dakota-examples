@@ -1,1 +1,31 @@
-Test Number 0 failed with exit code 252
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 26 total (24 new, 2 duplicate)
+<<<<< Best parameters          =
+                      2.9746943482e+07 E0
+                     -4.8549325738e+03 Es
+                      4.0000000000e+02 Y
+<<<<< Best residual terms =
+                     -3.9900067487e-02
+                      1.2555592368e-01
+                     -1.3761208476e-01
+                      3.6109113309e-02
+                      7.6072846670e-02
+                     -8.5547851811e-02
+                     -8.3651833705e-02
+                      6.5081676478e-02
+                     -1.0345871561e-03
+                      2.2389232970e-01
+                     -1.1630824681e-01
+                     -1.0144546701e-01
+                     -9.8547525993e-02
+                      1.9792766819e-01
+                      2.8208386345e-02
+                     -6.4319799951e-03
+                     -4.7805956616e-02
+                     -3.7230394643e-02
+                     -1.4151815849e-01
+                      1.4418606626e-01
+<<<<< Best data captured at function evaluation 22
+Confidence Intervals on Calibrated Parameters:
+            E0: [ 2.9310007289e+07, 3.0183879675e+07 ]
+            Es: [ -6.3036337054e+03, -3.4062314421e+03 ]
