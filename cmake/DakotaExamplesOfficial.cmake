@@ -15,7 +15,7 @@
 
 dakota_example_test(
   PATH official/bayes_calibration/multiple_qoi
-  CHECK dakota_bayes_calib_multi_qoi.in
+  RUN dakota_bayes_calib_multi_qoi.in
   )
 
 dakota_example_test(
@@ -40,43 +40,42 @@ dakota_example_test(
 
 dakota_example_test(
   PATH official/global_sensitivity/direct_pce
-  CHECK direct_pce.in
+  RUN direct_pce.in
   )
 
 dakota_example_test(
   PATH official/global_sensitivity/direct_sampling
-  CHECK direct_sample.in
+  RUN direct_sample.in
   )
 
 dakota_example_test(
   PATH official/global_sensitivity/moat
-  CHECK dakota_moat.in
+  RUN dakota_moat.in
   )
 
 dakota_example_test(
   PATH official/global_sensitivity/pce_on_data
-  CHECK pce_oli.in
-  RUN pce_oversample.in pce_undersample.in
+  RUN pce_oli.in pce_oversample.in pce_undersample.in
   )
 
 dakota_example_test(
   PATH official/local_reliability
-  CHECK logratio_uq_reliability.in
+  RUN logratio_uq_reliability.in
   )
 
 dakota_example_test(
   PATH official/local_reliability_mean_value
-  CHECK logratio_uq_reliability.in
+  RUN logratio_uq_reliability.in
   )
 
 dakota_example_test(
   PATH official/multidim_parameter_study
-  CHECK rosen_multidim.in
+  RUN rosen_multidim.in
   )
 
 dakota_example_test(
   PATH official/optimization/local/derivative-free
-  CHECK dakota_opt_apps_bounds.in
+  RUN dakota_opt_apps_bounds.in
   )
 
 dakota_example_test(

@@ -34,6 +34,18 @@ endif()
 add_test(NAME dakota-test-perl-help COMMAND ${DAKOTA_TEST_PERL} --help)
 
 
+##set(DAKOTA_TEST_DRIVERS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../build.opt/test)
+if(NOT DAKOTA_TEST_DRIVERS_PATH)
+  if(Dakota_BINARY_DIR)
+    set(DAKOTA_TEST_DRIVERS_PATH "${Dakota_BINARY_DIR}/test")
+  else()
+    message(WARNING
+      "Some DakotaExamples tests require DAKOTA_TEST_DRIVERS_PATH (not found)")
+  endif()
+endif()
+# TODO: validate driver location test
+
+
 # TODO: protect with conditional Python? (probably always enabled)
 #set(DAKOTA_PYTHON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/Python")
 if(NOT DAKOTA_PYTHON_PATH)
@@ -47,7 +59,6 @@ endif()
 # TODO: add Python import test
 
 
-# TODO: dprepro
 set(DAKOTA_DPREPRO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/pyprepro")
 if(NOT DAKOTA_DPREPRO_PATH)
   if(Dakota_SOURCE_DIR)
