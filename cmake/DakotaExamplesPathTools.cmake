@@ -7,6 +7,8 @@
 #  For more information, see the README file in the top Dakota directory.
 #  _______________________________________________________________________
 
+include(AddFileCopyCommand)
+
 
 # Translate path to hyphen-delimited and strip input file extension
 #

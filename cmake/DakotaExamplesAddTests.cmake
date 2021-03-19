@@ -39,8 +39,8 @@ function(test_check_input _example_path _input_name _depends_on)
   set(_test_name ${_example_name}-${_input_name_we}-check)
 
   add_test(NAME ${_test_name}
-#    COMMAND "$<TARGET_FILE:dakota>" -check -input ${_input_name}
-    COMMAND "${DAKOTA_EXE}" -check -input ${_input_name}
+    COMMAND $<IF:$<BOOL:${DAKOTA_EXE}>,${DAKOTA_EXE},$<TARGET_FILE:dakota>>
+      -check -input ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
   add_conditional_dependence(${_test_name} "${_depends_on}")
@@ -57,8 +57,8 @@ function(test_run_input _example_path _input_name _depends_on)
   set(_test_name ${_example_name}-${_input_name_we}-run)
 
   add_test(NAME ${_test_name}
-#    COMMAND "$<TARGET_FILE:dakota>" -check -input ${_input_name}
-    COMMAND "${DAKOTA_EXE}" -input ${_input_name}
+    COMMAND $<IF:$<BOOL:${DAKOTA_EXE}>,${DAKOTA_EXE},$<TARGET_FILE:dakota>>
+      -input ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
   add_conditional_dependence(${_test_name} "${_depends_on}")
@@ -75,10 +75,13 @@ function(test_regress_input _example_path _input_name _depends_on)
   set(_test_name ${_example_name}-${_input_name_we}-regress)
 
   # TODO: WARNING if .base DNE
-  get_filename_component(_dakota_exe_dir ${DAKOTA_EXE} DIRECTORY)
+  if(DAKOTA_EXE)
+    get_filename_component(_dakota_exe_dir ${DAKOTA_EXE} DIRECTORY)
+  endif()
   add_test(NAME ${_test_name}
-#    COMMAND "$<TARGET_FILE:dakota>" -check -input ${_input_name}
-    COMMAND "${DAKOTA_TEST_PERL}" --save-output --bin-dir="${_dakota_exe_dir}" ${_input_name}
+    COMMAND "${DAKOTA_TEST_PERL}" --save-output
+      --bin-dir="$<IF:$<BOOL:${DAKOTA_EXE}>,${_dakota_exe_dir},$<TARGET_FILE_DIR:dakota>>"
+      ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
     )
   add_conditional_dependence(${_test_name} "${_depends_on}")

@@ -12,18 +12,10 @@ cmake_minimum_required(VERSION 3.12)
 
 enable_testing()
 
-
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+# Locations of required tools like dakota executable, Perl script
+include(DakotaExamplesFindTools)
 include(DakotaExamplesAddTests)
-
-# REMOVE (for testing)
-list(INSERT CMAKE_MODULE_PATH 0
-  "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/semsCMake")
-include(AddFileCopyCommand)
-
-# Locations of required tools
-set(DAKOTA_EXE ${CMAKE_CURRENT_SOURCE_DIR}/../../build.opt/src/dakota)
-set(DAKOTA_TEST_PERL ${CMAKE_CURRENT_SOURCE_DIR}/../test/dakota_test.perl)
 
 
 # Initialize test-tracking variables
