@@ -1,7 +1,0 @@
-{
-    "name": "Deterministic Calibration with Configuration Variables",
-    "example_id": "determistic_calibration_config",
-    "parent_id": "determistic_calibration",
-    "analysis_type": "Calibration",
-    "method": "Least Squares"
-}
