@@ -34,6 +34,8 @@ endfunction()
 # Handler for applying any necessary properties to all tests, such as
 # ENVIRONMENT, RUN_SERIAL, WILL_FAIL
 function(apply_test_properties _test_name _depends_on)
+  set_tests_properties(${_test_name} PROPERTIES LABELS "DakotaExample")
+
   add_conditional_dependence(${_test_name} "${_depends_on}")
 
   set(_env_path
