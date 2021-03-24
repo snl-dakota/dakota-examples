@@ -14,6 +14,12 @@ include(AddFileCopyCommand)
 #
 # Sets in caller scope: _example_name, _input_name_we
 macro(build_example_names _example_path _input_name)
+  set(_input_name_fq
+    "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}/${_input_name}")
+  if(NOT EXISTS "${_input_name_fq}")
+    message(FATAL_ERROR "Specified example file does not exist: "
+      "${_input_name_fq}")
+  endif()
   string(REPLACE "/" "-" _example_name "${_example_path}")
   get_filename_component(_input_name_we ${_input_name} NAME_WE)
 endmacro()
@@ -28,7 +34,9 @@ macro(setup_test_directory _example_path)
   set(_example_src "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}")
   set(_example_bin "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}")
 
-  # TODO: verify _example_src exists
+  if(NOT EXISTS "${_example_src}")
+    message(FATAL_ERROR "Example PATH does not exist: ${_example_src}")
+  endif()
 
   file(MAKE_DIRECTORY "${_example_bin}")
   file(GLOB _example_all_files "${_example_src}/*")

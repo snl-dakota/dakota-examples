@@ -90,7 +90,13 @@ function(test_regress_input _example_path _input_name _depends_on)
   build_example_names("${_example_path}" "${_input_name}")
   set(_test_name ${_example_name}-${_input_name_we}-regress)
 
-  # TODO: WARNING if .base DNE
+  set(_input_name_base
+    "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}/${_input_name_we}.base")
+  if(NOT EXISTS "${_input_name_base}")
+    message(FATAL_ERROR "Example ${_example_path}/${_input_name} has no "
+      "baseline ${_input_name_base}")
+  endif()
+
   if(DAKOTA_EXE)
     get_filename_component(_dakota_exe_dir ${DAKOTA_EXE} DIRECTORY)
   endif()
@@ -132,7 +138,11 @@ macro(test_inputs_with_defaults _example_path)
   set(_example_src "${CMAKE_CURRENT_SOURCE_DIR}/${_example_path}")
   file(GLOB _example_in_files_fq "${_example_src}/*.in")
 
-  # TODO: check all input files exist throughout all scripts
+  if(NOT _example_in_files_fq)
+    message(WARNING "In setting up default examples tests, no *.in files in: "
+      "${_example_src}")
+  endif()
+
   foreach(_example_in ${_example_in_files_fq})
     get_filename_component(_example_in_we ${_example_in} NAME_WE)
     if(EXISTS "${_example_src}/${_example_in_we}.base")
