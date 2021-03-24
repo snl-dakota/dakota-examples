@@ -43,11 +43,10 @@ if(NOT DAKOTA_TEST_DRIVERS_PATH)
       "Some DakotaExamples tests require DAKOTA_TEST_DRIVERS_PATH (not found)")
   endif()
 endif()
-# TODO: validate driver location test
+# TODO: validate driver location test at test time, maybe with cmake -P
 
 
-# TODO: protect with conditional Python? (probably always enabled)
-#set(DAKOTA_PYTHON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/Python")
+##set(DAKOTA_PYTHON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/Python")
 if(NOT DAKOTA_PYTHON_PATH)
   if(Dakota_SOURCE_DIR)
     set(DAKOTA_PYTHON_PATH "${Dakota_SOURCE_DIR}/interfaces/Python")
@@ -56,10 +55,17 @@ if(NOT DAKOTA_PYTHON_PATH)
       "Some DakotaExamples tests require DAKOTA_PYTHON_PATH (not found)")
   endif()
 endif()
-# TODO: add Python import test
+
+# TODO: This won't work outside a Dakota build unless Python_EXECUTABLE set
+if(Python_EXECUTABLE)
+  add_test(NAME dakota-interfacing-import
+    COMMAND ${Python_EXECUTABLE} -c "import dakota.interfacing")
+  set_tests_properties(dakota-interfacing-import PROPERTIES
+    ENVIRONMENT "PYTHONPATH=${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
+endif()
 
 
-set(DAKOTA_DPREPRO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/pyprepro")
+##set(DAKOTA_DPREPRO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/pyprepro")
 if(NOT DAKOTA_DPREPRO_PATH)
   if(Dakota_SOURCE_DIR)
     set(DAKOTA_DPREPRO_PATH "${Dakota_SOURCE_DIR}/scripts/pyprepro")
@@ -68,4 +74,5 @@ if(NOT DAKOTA_DPREPRO_PATH)
       "Some DakotaExamples tests require DAKOTA_DPREPRO_PATH (not found)")
   endif()
 endif()
-# TODO: add Dprepro smoke test
+
+add_test(NAME dprepro-help COMMAND "${DAKOTA_DPREPRO_PATH}/dprepro" --version)
