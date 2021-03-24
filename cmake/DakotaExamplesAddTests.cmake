@@ -114,11 +114,19 @@ endfunction()
 
 # Add a test to run an arbitrary command
 #
-# Sets in caller scope: _last_test_added
+# Sets in caller scope: ${_example_name}_command_num,  _last_test_added
 function(test_command _example_path _test_command _depends_on)
   string(REPLACE "/" "-" _example_name "${_example_path}")
-  # TODO: need unique name if multiple commands
-  set(_test_name ${_example_name}-command)
+
+  # No easy way to name based on the command itself, so number them as added
+  if (${_example_name}_command_num)
+    math(EXPR _command_num_plus_one "${${_example_name}_command_num} + 1")
+  else()
+    set(_command_num_plus_one 1)
+  endif()
+  set(${_example_name}_command_num ${_command_num_plus_one} PARENT_SCOPE)
+
+  set(_test_name ${_example_name}-command-${_command_num_plus_one})
 
   add_test(NAME ${_test_name}
     COMMAND ${_test_command}

@@ -11,12 +11,17 @@
 
 #dakota_example_init(contributed/optimization/global/genetic_algorithm/single-objective)
 
-# for some reason this check is failing
+# Demonstrate dakota -check and two general test commands
 dakota_example_test(
   PATH contributed/optimization/global/genetic_algorithm/single-objective
   CHECK dakota_mogatest.in
-  COMMAND echo Passed
+  COMMAND echo "Running tests"
   )
+dakota_example_test(
+  PATH contributed/optimization/global/genetic_algorithm/single-objective
+  COMMAND /bin/true
+  DEPENDS ${_last_test_added}
+)
 
 
 # Regress if baseline, else dakota -check
