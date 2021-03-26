@@ -28,6 +28,7 @@ set(dakota_examples_required_files)
 
 # Register tests for various components
 include(DakotaExamplesOfficial)
+include(DakotaExamplesTraining)
 include(DakotaExamplesContributed)
 
 
