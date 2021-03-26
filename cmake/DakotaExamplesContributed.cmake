@@ -9,6 +9,24 @@
 
 # Register tests for contributed examples
 
+dakota_example_test(
+  PATH contributed/case_studies/tank_vandv_2014/DakotaCalibration
+  CHECK dakota_Ponly_calibration.in
+  )
+
+dakota_example_test(
+  PATH contributed/case_studies/tank_vandv_2014/DakotaLHS
+  CHECK dakota_Ponly_lhs.in
+  )
+
+dakota_example_test(
+  PATH contributed/case_studies/tank_vandv_2014/DakotaList
+  CHECK dakota_PandL_list.in dakota_Ponly_list.in
+  )
+
+
+# Additional for example purposes only (need review)
+
 #dakota_example_init(contributed/optimization/global/genetic_algorithm/single-objective)
 
 # Demonstrate dakota -check and two general test commands
