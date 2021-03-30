@@ -13,10 +13,21 @@
 # Condense these with DEFAULT test option
 # Add/change to REGRESS to these as baselines are reviewed
 
-dakota_example_test(
-  PATH official/bayes_calibration/multiple_qoi
-  RUN dakota_bayes_calib_multi_qoi.in
-  )
+if(HAVE_QUESO)
+  dakota_example_test(
+    PATH official/bayes_calibration/multiple_qoi
+    RUN dakota_bayes_calib_multi_qoi.in
+    )
+#else() -check ?
+endif()
+
+# Case studies may be omitted from source distributions
+if(IS_DIRECTORY official/case_studies)
+#  dakota_example_test(
+#    PATH official/case_studies/bayesian_ml_emulator/study
+#    CHECK wind_inference.in
+#    )
+endif()
 
 dakota_example_test(
   PATH official/centered_parameter_study

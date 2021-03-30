@@ -7,15 +7,6 @@
 #  For more information, see the README file in the top Dakota directory.
 #  _______________________________________________________________________
 
-# Only distribute select examples
-# Manually account for case_studies as not at top-level
-
-# Example contents to package with binaries
-set(dakota_examples_binary official README.md training)
-
-# Example contents to package with source
-set(dakota_examples_source ${dakota_examples_binary} cmake CMakeLists.txt)
-
 
 file(GLOB _dir_contents RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}/*")

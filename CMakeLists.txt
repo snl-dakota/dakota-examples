@@ -26,11 +26,22 @@ set(registered_dakota_examples)
 set(dakota_examples_required_files)
 
 
+# Only distribute select examples
+# case_studies conditional in sub-lists as not at top-level
+
+# Example contents to package with binaries
+set(dakota_examples_binary official README.md training)
+
+# Example contents to package with source
+set(dakota_examples_source ${dakota_examples_binary} cmake CMakeLists.txt)
+
+
 # Register tests for various components
-# TODO: add conditional on sub-directory presence
 include(DakotaExamplesOfficial)
 include(DakotaExamplesTraining)
-include(DakotaExamplesContributed)
+if(IS_DIRECTORY contributed)
+  include(DakotaExamplesContributed)
+endif()
 
 
 # Post-processing
