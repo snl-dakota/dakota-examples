@@ -27,6 +27,7 @@ set(dakota_examples_required_files)
 
 
 # Register tests for various components
+# TODO: add conditional on sub-directory presence
 include(DakotaExamplesOfficial)
 include(DakotaExamplesTraining)
 include(DakotaExamplesContributed)
@@ -37,3 +38,4 @@ add_custom_target(dakota_examples_required_files ALL
   DEPENDS ${dakota_examples_required_files}
   COMMENT "Copy examples required files into binary test subdirs"
   )
+include(DakotaExamplesCPack)
