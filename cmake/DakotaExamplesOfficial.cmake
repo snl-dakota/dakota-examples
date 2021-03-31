@@ -98,3 +98,11 @@ dakota_example_test(
   PATH official/linked_interfaces/Python
   RUN dakota_rosenbrock_python.in
   )
+# This is a workaround to enforce consistency between the Python used
+# to build Dakota and which one gets used to run the driver script
+# associated with this test.
+get_test_property(${_last_test_added} ENVIRONMENT _linked_python_env)
+set(_env_python_home
+  "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
+set_tests_properties(${_last_test_added} PROPERTIES
+  ENVIRONMENT "${_linked_python_env};${_env_python_home}")
