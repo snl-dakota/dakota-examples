@@ -93,3 +93,8 @@ dakota_example_test(
   PATH official/optimization/local/gradient-based
   RUN dakota_opt_qnewton_constrained.in
   )
+
+dakota_example_test(
+  PATH official/linked_interfaces/Python
+  RUN dakota_rosenbrock_python.in
+  )

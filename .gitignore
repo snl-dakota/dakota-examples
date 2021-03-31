@@ -15,3 +15,7 @@ __pycache__/
 
 # Potential MacOs cruft
 *.DS_Store
+
+# Editor cruft
+*.swp
+*~
