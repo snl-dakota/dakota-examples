@@ -76,3 +76,8 @@ dakota_example_test(
   PATH contributed/sampling/lhs_correlation
   CHECK lhs_correlated.in
   )
+
+dakota_example_test(
+  PATH contributed/simulation_interfaces/Nastran
+  CHECK dakota_nastran_opt.in dakota_nastran_ps.in dakota_nastran_uq.in
+  )   
