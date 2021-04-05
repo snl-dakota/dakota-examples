@@ -106,3 +106,36 @@ set(_env_python_home
   "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
 set_tests_properties(${_last_test_added} PROPERTIES
   ENVIRONMENT "${_linked_python_env};${_env_python_home}")
+
+# external_drivers tests
+if (UNIX)
+  dakota_example_test(
+    PATH official/external_drivers/bash/
+    RUN dakota_rosenbrock.in
+  )
+endif()
+
+if (WIN32)
+  dakota_example_test(
+    PATH official/external_drivers/windows_bat
+    RUN dakota_rosenbrock.in
+  )
+endif()
+
+if (Python_EXECUTABLE)
+  dakota_example_test(
+    PATH official/external_drivers/Python
+    RUN dakota_rosenbrock_python.in
+  )
+endif()
+
+dakota_example_test(
+  PATH official/external_drivers/MATLAB/linux
+  CHECK dakota_matlab_rosenbrock.in
+)
+
+dakota_example_test(
+  PATH official/external_drivers/MATLAB/windows
+  CHECK dakota_matlab_rosenbrock.in
+)
+
