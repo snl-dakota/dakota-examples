@@ -1,0 +1,106 @@
+<gov.sandia.bmf.BMF>
+  <version>6.11</version>
+  <name>NewModel.bmf</name>
+  <rootVariableGroup>
+    <uuid>6539c76b-8204-4bff-be0c-b9bdfb77f136</uuid>
+    <name>Variables</name>
+    <value></value>
+    <children>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>bea40c08-da95-4875-85ce-e4bd0901d84d</uuid>
+        <name>L</name>
+        <value>100</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>2ca732d7-5ef9-4f39-b05d-cc2e6c6f7e80</uuid>
+        <name>w</name>
+        <value>1</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>f6faec8e-9fcb-4335-ab70-b6e674c93bbc</uuid>
+        <name>t</name>
+        <value>1</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>f0690a0a-e1c6-4950-af98-1beaa988dacd</uuid>
+        <name>p</name>
+        <value>500</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>506e1c19-97e5-4e0c-ba2c-16004fcd3f67</uuid>
+        <name>E</name>
+        <value>2.9e7</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>369e514f-a955-4bdc-b151-2de32ab1632e</uuid>
+        <name>X</name>
+        <value>100</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+      <gov.sandia.bmf.type.VariableComplex>
+        <uuid>76678b57-274d-4559-a8f3-909db12de35a</uuid>
+        <name>Y</name>
+        <value>100</value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.VariableComplex>
+    </children>
+  </rootVariableGroup>
+  <rootResponseGroup>
+    <uuid>d610421e-6d9e-4aca-b4c5-d86d40666a72</uuid>
+    <name>Responses</name>
+    <value></value>
+    <children>
+      <gov.sandia.bmf.type.ResponseComplex>
+        <uuid>84e3c80e-092d-4b18-a4af-b765391fcca2</uuid>
+        <name>mass</name>
+        <value></value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.ResponseComplex>
+      <gov.sandia.bmf.type.ResponseComplex>
+        <uuid>8bcbf1c7-675e-45d5-9eb7-8894ffe61588</uuid>
+        <name>stress</name>
+        <value></value>
+        <description></description>
+        <dataType>NONE</dataType>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.ResponseComplex>
+      <gov.sandia.bmf.type.ResponseComplex>
+        <uuid>947b3a86-dce4-473b-bf4d-c136a12ccabf</uuid>
+        <name>displacement</name>
+        <value></value>
+        <enumerated>false</enumerated>
+        <parent reference="../../.."/>
+      </gov.sandia.bmf.type.ResponseComplex>
+    </children>
+  </rootResponseGroup>
+</gov.sandia.bmf.BMF>

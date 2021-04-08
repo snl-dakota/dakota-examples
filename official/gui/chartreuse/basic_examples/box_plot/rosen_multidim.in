@@ -1,0 +1,39 @@
+
+# Dakota Input File: rosen_multidim.in
+# Usage:
+#   dakota -i rosen_multidim.in -o rosen_multidim.out > rosen_multidim.stdout
+
+environment
+	tabular_data
+		tabular_data_file "rosen_multidim.dat"
+		annotated
+	output_file "dakota.out"
+	error_file "dakota.err"
+	write_restart "dakota.rst"
+	results_output
+		hdf5
+
+method
+	id_method "method1"
+	multidim_parameter_study
+		partitions 8 8
+
+model
+	id_model "model1"
+	single
+
+variables
+	continuous_design 2
+		initial_point 0.0 0.0
+		lower_bounds -2.0 -2.0
+		upper_bounds 2.0 2.0
+		descriptors "x2" "x1"
+
+interface
+  analysis_drivers = 'rosenbrock'
+    direct
+
+responses
+  response_functions = 1
+  no_gradients
+  no_hessians
