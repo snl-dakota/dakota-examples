@@ -51,7 +51,9 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 ## Prerequisites
 
-Make sure Dakota's Python interfacing libraries are available on your system path.  For example, if you installed Dakota to `/home/dakota`, then the absolute path to the Python interfacing directory will be `/home/dakota/share/dakota/Python`, and this must be available for the Python driver script to work correctly.
+This analysis driver will only work if Dakota's Python interfacing libraries are available on the **PYTHONPATH** environment variable.  For example, if you installed Dakota to `/home/dakota`, then the absolute path to the Python interfacing directory will be `/home/dakota/share/dakota/Python`, and this must be available on PYTHONPATH for the Python driver script to work correctly.
+
+[You can learn more about PYTHONPATH here.](https://docs.python.org/3/using/cmdline.html#environment-variables)
 
 ## Run on command line
 
