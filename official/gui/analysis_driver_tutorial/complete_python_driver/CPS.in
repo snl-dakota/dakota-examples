@@ -33,7 +33,7 @@ interface
 				named "workdir/run"
 				directory_tag
 				directory_save
-				copy_files "cantilever" "cantilever.template" "ppp.py" "qoi.py" "DakotaDriver.py"
+				copy_files "cantilever" "cantilever.template" "qoi.py" "DakotaDriver.py"
 	asynchronous
 		evaluation_concurrency 4
 
