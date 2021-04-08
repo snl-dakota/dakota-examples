@@ -1,0 +1,49 @@
+environment
+	tabular_data
+		tabular_data_file "tabular.data"
+	output_file "dakota.out"
+	error_file "dakota.err"
+	write_restart "dakota.rst"
+	results_output
+		hdf5
+
+method
+	id_method "method1"
+	list_parameter_study
+		list_of_points
+			1.0 2.0 3.0 4.0 5.0 6.0 7.0
+		model_pointer "model1"
+
+model
+	id_model "model1"
+	single
+	variables_pointer "variables1"
+
+variables
+	id_variables "variables1"
+	active
+		design
+	continuous_design 7
+		initial_point 100 10 10 2.9e7 500 100 100
+		lower_bounds 50.0 5.0 5.0 1.45E7 250.0 50.0 50.0
+		upper_bounds 150.0 15.0 15.0 4.35E7 750.0 150.0 150.0
+		descriptors "Length" "Width" "Thickness" "YoungsModulus" "Density" "HorizontalLoad" "VerticalLoad"
+
+interface
+	id_interface "interface1"
+	analysis_drivers "python -m DakotaDriver"
+		system
+			file_save
+			work_directory
+				named "workdir\run"
+				directory_tag
+				directory_save
+				copy_files "cantilever" "cantilever_d.template" "DakotaDriver.py" "qoi.py"
+	asynchronous
+		evaluation_concurrency 4
+responses
+	descriptors "Mass" "Stress" "Displacement"
+	response_functions 3
+		scalar_responses 3
+	no_gradients
+	no_hessians

@@ -1,0 +1,19 @@
+<gov.sandia.dakota.parser.im.python.PythonScriptInterfaceManifest>
+  <version>6.11</version>
+  <driverFilePath>DakotaDriver.py</driverFilePath>
+  <requiredFiles/>
+  <supportedVariableLabels>
+    <string>w</string>
+    <string>t</string>
+    <string>L</string>
+    <string>E</string>
+    <string>X</string>
+    <string>Y</string>
+    <string>p</string>
+  </supportedVariableLabels>
+  <supportedResponseLabels>
+    <string>mass</string>
+    <string>stress</string>
+    <string>displacement</string>
+  </supportedResponseLabels>
+</gov.sandia.dakota.parser.im.python.PythonScriptInterfaceManifest>
