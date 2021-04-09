@@ -16,7 +16,7 @@ of the calibration parameters, but with forwarded values of the configuration
 variables.
 
 In this example, measurements of the tip displacement of a cantilever beam 
-are used to calibate a model for the temperature dependence of the Young's
+are used to calibrate a model for the temperature dependence of the Young's
 modulus of carbon steel. Two experiments were performed. In both, tip displacement
 was measured at a series of temperatures. The vertical load placed on the beam, which
 is the configuration variable, differed for the two experiments. The example 
@@ -68,7 +68,7 @@ It has three inputs:
   Dakota sets to values provided by the user in `displacements.dat` as needed. It is 
   specified as a `continuous_state` variable in the Dakota input.
 * $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
-  and slope of the linear Young's modulus model. These are `continuous_design'
+  and slope of the linear Young's modulus model. These are `continuous_design`
   variables in the Dakota input file.
 
 When called by Dakota, the driver predicts beam tip displacement for the input
@@ -91,6 +91,7 @@ Python 2 or 3 with numpy
 * `dakota_cal.in`: Dakota input file
 * `cantilever.py`: Combined simulator and analysis driver
 * `displacements.dat`: Experimental data to calibrate to.
+* `configresult.png`: Plot of experimental data and best fit using calibrated Young's modulus coefficients.
  
 # Study Results
  

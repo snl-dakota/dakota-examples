@@ -17,13 +17,13 @@ Dakota can interpolate (in one dimension) simulation predictions onto the
 coordinates of the data. Residuals are computed using the interpolated 
 values. For each experiment, in addition to the observations, 
 configuration, and uncertainty, the user provides the coordinates at which
-the data were taken. The user also provides the coodinates at which the
+the data were taken. The user also provides the coordinates at which the
 simulation predictions are made. (A current limitation of the interpolation
 feature is that the prediction coordinates are fixed for the duration of the
 study.)
 
 In this example, measurements of the tip displacement of a cantilever beam
-are used to calibate a model for the temperature dependence of the Young's
+are used to calibrate a model for the temperature dependence of the Young's
 modulus of carbon steel. Two experiments were performed at different vertical loads.
 In both, tip displacement was measured at a series of temperatures. The temperatures
 in the experiments differ from those at which the simulation predicts displacements, 
@@ -54,7 +54,7 @@ displacement of a cantilever beam tip under vertical load was measured at 20
 temperatures between -20&deg;F and 500&deg;F.
 
 The experimental observations are recorded in the files `displacement.1.dat` and
-`displacement.2.dat`. The temperatures at which the diplacements were measured
+`displacement.2.dat`. The temperatures at which the displacements were measured
 can be found in `displacements.1.coords` and `displacements.2.coords`. These files
 all contain 20 values, and in general the number of coordinates must match the
 number of observations for each experiment, although different experiments can
@@ -62,7 +62,7 @@ have different numbers of observations.
 
 Finally, measurement variance is provided for each experiment in the files 
 `displacement.1.sigma` and `displacement.2.sigma`. They contain a single value,
-as specified inthe Dakota input file (`experiment_variance_type = 'scalar'`). Dakota
+as specified in the Dakota input file (`experiment_variance_type = 'scalar'`). Dakota
 also supports specification of per observation variance, or a full covariance
 matrix per experiment.
 
@@ -93,7 +93,7 @@ It has three inputs:
   `displacements.2.coords` as needed. It is specified as a `continuous_state` 
   variable in the Dakota input.
 * $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
-  and slope of the linear Young's modulus model. These are `continuous_design'
+  and slope of the linear Young's modulus model. These are `continuous_design`
   variables in the Dakota input file.
 
 When called by Dakota, the driver predicts beam tip displacement for the input
@@ -119,7 +119,8 @@ Python 2 or 3 with numpy
   * `displacements.{1,2}.dat`: Data from the two experiments to calibrate to.
   * `displacements.{1,2}.coords`: Temperatures at which the data were collected.
   * `displacements.{1,2}.sigma`: Variance (uncertainty) of the measurements
-* `displacement.dat`: Temperatures at which `cantilever.py` predicts displacements.
+* `displacements.dat`: Temperatures at which `cantilever.py` predicts displacements.
+* `configresult.png`: Plot of experimental data and best fit using calibrated Young's modulus coefficients.
 
 # Study Results
  

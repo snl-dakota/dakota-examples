@@ -46,7 +46,7 @@ It has three inputs:
 * $`Y`$: The vertical load. It's fixed at 400 lbs for this example using a
   `continuous_state` variable.
 * $`E0`$ and $`Es`$: the parameters being calibrated, the intercept
-  and slope of the linear Young's modulus model. These are `continuous_design'
+  and slope of the linear Young's modulus model. These are `continuous_design`
   variables in the Dakota input file.
 
 The driver contains experimentally measured displacements at
@@ -106,7 +106,7 @@ Dakota produces output similar to the following to the screen (redirected to
                      -1.4151845265e-01
                       1.4418573491e-01
 <<<<< Best residual norm =  4.7968348487e-01; 0.5 * norm^2 =  1.1504812283e-01
-<<<<< Best data captured at function evaluation 40
+<<<<< Best data captured at function evaluation 22
 
 Confidence Intervals on Calibrated Parameters:
             E0: [ 2.9310006145e+07, 3.0183878493e+07 ]
