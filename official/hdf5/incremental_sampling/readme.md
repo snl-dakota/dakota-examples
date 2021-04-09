@@ -4,9 +4,9 @@ Read the results of an incremental sampling study from Dakota's HDF5-format outp
 
 # Description
 
-Dakota was used to perform an incremental sampling study of the cantilever problem. In an incremental sampling study, Dakota evaluates samples in batches or incremements. After each increment, it computes statistics, such as the mean and standard deviation, on all the accumulated samples. This enables the convergence of statistics as samples are added to be examined.
+Dakota was used to perform an incremental sampling study of the cantilever problem. In an incremental sampling study, Dakota evaluates samples in batches or increments. After each increment, it computes statistics, such as the mean and standard deviation, on all the accumulated samples. This enables the convergence of statistics as samples are added to be examined.
 
-The results of each increment were written to Dakota's HDF5-format results file. The Jupyter Notebook included with the exmaple demonstrates how to use the Python `h5py` package to access the results and the `matplotlib` package to then plot them.
+The results of each increment were written to Dakota's HDF5-format results file. The Jupyter Notebook included with the example demonstrates how to use the Python `h5py` package to access the results and the `matplotlib` package to then plot them.
 
 # Dakota Keywords
 

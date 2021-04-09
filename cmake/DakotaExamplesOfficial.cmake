@@ -139,3 +139,12 @@ dakota_example_test(
   CHECK dakota_matlab_rosenbrock.in
 )
 
+dakota_example_test(
+  PATH official/hdf5/centered_parameter_study
+  RUN dakota_centered.in
+)
+
+dakota_example_test(
+  PATH official/hdf5/incremental_sampling
+  RUN dakota_refine.in
+)

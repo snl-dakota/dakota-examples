@@ -4,7 +4,7 @@ Read the results of a centered parameter study from Dakota's HDF5-format output 
 
 # Description
 
-Dakota was used to perform a centered parameter study of the cantilever problem. In a centered parameter study, Dakota steps each variable one at a time while holding the others fixed at their initial values. The results of each step (variable values and responses) were written to Dakota's HDF5-format results file. The Jupyter Notebook included with the exmaple demonstrates how to use the Python `h5py` package to access the results and the `matplotlib` package to then plot them.
+Dakota was used to perform a centered parameter study of the cantilever problem. In a centered parameter study, Dakota steps each variable one at a time while holding the others fixed at their initial values. The results of each step (variable values and responses) were written to Dakota's HDF5-format results file. The Jupyter Notebook included with the example demonstrates how to use the Python `h5py` package to access the results and the `matplotlib` package to then plot them.
 
 # Dakota Keywords
 
