@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:gov.sandia.dart.workflow.domain="https://dart.sandia.gov/workflow/domain" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
-  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="WorkflowDriver.iwf" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@anchors.0/@link /0/@children.1/@link /0/@children.1/@anchors.0/@link /0/@children.2/@link /0/@children.2/@anchors.0/@link /0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@children.7/@link /0/@children.7/@anchors.0/@link /0/@children.8/@link /0/@children.8/@anchors.0/@link /0/@children.9/@link /0/@children.9/@anchors.0/@link /0/@children.10/@link /0/@children.10/@anchors.0/@link /0/@children.10/@anchors.1/@link /0/@children.10/@anchors.2/@link /0/@children.10/@anchors.3/@link /0/@children.11/@link /0/@children.11/@anchors.0/@link /0/@children.11/@anchors.1/@link /0/@children.11/@anchors.2/@link /0/@children.11/@anchors.3/@link /0/@children.10/@anchors.4/@link /0/@connections.0/@link /0/@children.10/@anchors.5/@link /0/@children.12/@link /0/@children.12/@anchors.0/@link /0/@children.12/@anchors.1/@link /0/@connections.1/@link /0/@children.12/@anchors.2/@link /0/@children.12/@anchors.3/@link /0/@children.12/@anchors.4/@link /0/@connections.2/@link /0/@connections.3/@link /0/@connections.4/@link /0/@children.13/@link /0/@children.13/@anchors.0/@link /0/@children.13/@anchors.1/@link /0/@children.13/@anchors.2/@link /0/@children.13/@anchors.3/@link /0/@children.13/@anchors.4/@link /0/@children.13/@anchors.5/@link /0/@children.14/@link /0/@children.14/@anchors.0/@link /0/@children.14/@anchors.1/@link /0/@children.14/@anchors.2/@link /0/@children.14/@anchors.3/@link /0/@connections.5/@link /0/@connections.6/@link /0/@children.12/@anchors.5/@link /0/@children.12/@anchors.6/@link /0/@children.12/@anchors.7/@link" version="0.17.0">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="WorkflowDriver.iwf" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@anchors.0/@link /0/@children.1/@link /0/@children.1/@anchors.0/@link /0/@children.2/@link /0/@children.2/@anchors.0/@link /0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@children.7/@link /0/@children.7/@anchors.0/@link /0/@children.8/@link /0/@children.8/@anchors.0/@link /0/@children.9/@link /0/@children.9/@anchors.0/@link /0/@children.10/@link /0/@children.10/@anchors.0/@link /0/@children.10/@anchors.1/@link /0/@children.10/@anchors.2/@link /0/@children.10/@anchors.3/@link /0/@children.11/@link /0/@children.11/@anchors.0/@link /0/@children.11/@anchors.1/@link /0/@children.11/@anchors.2/@link /0/@children.11/@anchors.3/@link /0/@children.10/@anchors.4/@link /0/@connections.0/@link /0/@children.10/@anchors.5/@link /0/@children.12/@link /0/@children.12/@anchors.0/@link /0/@children.12/@anchors.1/@link /0/@connections.1/@link /0/@children.12/@anchors.2/@link /0/@children.12/@anchors.3/@link /0/@children.12/@anchors.4/@link /0/@connections.2/@link /0/@connections.3/@link /0/@connections.4/@link /0/@children.13/@link /0/@children.13/@anchors.0/@link /0/@children.13/@anchors.1/@link /0/@children.13/@anchors.2/@link /0/@children.13/@anchors.3/@link /0/@children.13/@anchors.4/@link /0/@children.13/@anchors.5/@link /0/@children.14/@link /0/@children.14/@anchors.0/@link /0/@children.14/@anchors.1/@link /0/@children.14/@anchors.2/@link /0/@children.14/@anchors.3/@link /0/@connections.5/@link /0/@connections.6/@link" version="0.17.0">
     <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
       <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="100" height="24" x="920" y="270" id="wfresponse"/>
@@ -178,21 +178,6 @@
         <link businessObjects="/77"/>
         <location x="130" y="77"/>
       </anchors>
-      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.12/@graphicsAlgorithm">
-        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
-        <link businessObjects="/122"/>
-        <location x="130" y="92"/>
-      </anchors>
-      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.12/@graphicsAlgorithm">
-        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
-        <link businessObjects="/123"/>
-        <location x="130" y="107"/>
-      </anchors>
-      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.12/@graphicsAlgorithm">
-        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
-        <link businessObjects="/124"/>
-        <location x="130" y="122"/>
-      </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
       <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="201" height="92" x="250" y="340" id="wfnode"/>
@@ -346,7 +331,7 @@
   <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/56"/>
   <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/56"/>
   <gov.sandia.dart.workflow.domain:InputPort name="outputFile" type="input_file" node="/32" arcs="/117"/>
-  <gov.sandia.dart.workflow.domain:WFNode name="QOIExtractor" properties="/65 /66 /67 /68 /69" inputPorts="/63" outputPorts="/64 /75 /76 /77 /122 /123 /124" type="qoiExtractor" label="Extract quantities of interest from text using simple positional expressions."/>
+  <gov.sandia.dart.workflow.domain:WFNode name="QOIExtractor" properties="/65 /66 /67 /68 /69" inputPorts="/63" outputPorts="/64 /75 /76 /77" type="qoiExtractor" label="Extract quantities of interest from text using simple positional expressions."/>
   <gov.sandia.dart.workflow.domain:InputPort name="inputText" type="text" node="/62" arcs="/70"/>
   <gov.sandia.dart.workflow.domain:OutputPort name="qoiMap" type="text" node="/62"/>
   <gov.sandia.dart.workflow.domain:Property name="xmlModelData" type="text" value="&lt;linked-hash-map>&#xA;  &lt;entry>&#xA;    &lt;gov.sandia.bb.commons.node.Response>&#xA;      &lt;uuid>cbd4c26d-06ea-4d65-aaeb-50ee0c931ba1&lt;/uuid>&#xA;      &lt;name>mass&lt;/name>&#xA;      &lt;value>&lt;/value>&#xA;    &lt;/gov.sandia.bb.commons.node.Response>&#xA;    &lt;gov.sandia.qoi.impl.QoiAnchor>&#xA;      &lt;resultLength>1&lt;/resultLength>&#xA;      &lt;resultType>WORD&lt;/resultType>&#xA;      &lt;anchorDistance>2&lt;/anchorDistance>&#xA;      &lt;anchorType>LINE&lt;/anchorType>&#xA;      &lt;anchorText>DISPLACEMENT&lt;/anchorText>&#xA;      &lt;before>false&lt;/before>&#xA;    &lt;/gov.sandia.qoi.impl.QoiAnchor>&#xA;  &lt;/entry>&#xA;  &lt;entry>&#xA;    &lt;gov.sandia.bb.commons.node.Response>&#xA;      &lt;uuid>42750129-12ff-4ddb-ab0d-70d66f625dee&lt;/uuid>&#xA;      &lt;name>stress&lt;/name>&#xA;      &lt;value>&lt;/value>&#xA;    &lt;/gov.sandia.bb.commons.node.Response>&#xA;    &lt;gov.sandia.qoi.impl.QoiAnchor reference=&quot;../../entry/gov.sandia.qoi.impl.QoiAnchor&quot;/>&#xA;  &lt;/entry>&#xA;  &lt;entry>&#xA;    &lt;gov.sandia.bb.commons.node.Response>&#xA;      &lt;uuid>6467caad-46ef-4e54-b598-8e6a9ab64651&lt;/uuid>&#xA;      &lt;name>displacement&lt;/name>&#xA;      &lt;value>&lt;/value>&#xA;    &lt;/gov.sandia.bb.commons.node.Response>&#xA;    &lt;gov.sandia.qoi.impl.QoiAnchor reference=&quot;../../entry/gov.sandia.qoi.impl.QoiAnchor&quot;/>&#xA;  &lt;/entry>&#xA;&lt;/linked-hash-map>" node="/62"/>
@@ -406,7 +391,4 @@
   <gov.sandia.dart.workflow.domain:Property name="expandWildcards" type="default" value="false" node="/117"/>
   <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/117"/>
   <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/117"/>
-  <gov.sandia.dart.workflow.domain:OutputPort name="mass-2" type="default" node="/62"/>
-  <gov.sandia.dart.workflow.domain:OutputPort name="stress-2" type="default" node="/62"/>
-  <gov.sandia.dart.workflow.domain:OutputPort name="displacement-2" type="default" node="/62"/>
 </xmi:XMI>
