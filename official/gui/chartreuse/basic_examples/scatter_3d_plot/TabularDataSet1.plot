@@ -1,6 +1,6 @@
 <gov.sandia.chartreuse.type.model.PlotWindowModel>
-  <uuid>b81be8dd-cbad-4cbe-8190-a721e6cff5f8</uuid>
-  <version>6.12</version>
+  <uuid>f75d731e-4d15-4c6c-948c-73e285ebe6ef</uuid>
+  <version>6.13</version>
   <name>Tabular Data Set 1</name>
   <font>Segoe UI</font>
   <viewHeight>-1</viewHeight>
@@ -8,7 +8,8 @@
   <legendVisible>false</legendVisible>
   <canvasModels>
     <gov.sandia.chartreuse.type.model.PlotCanvasModel>
-      <version>6.12</version>
+      <version>6.13</version>
+      <name>(0, 0)</name>
       <rowPosition>0</rowPosition>
       <colPosition>0</colPosition>
       <axisPrecision>3</axisPrecision>
@@ -46,11 +47,11 @@
       <overlaidCanvasModels/>
       <traceModels>
         <gov.sandia.chartreuse.type.model.PlotTraceModel>
-          <version>6.12</version>
+          <version>6.13</version>
           <name>Scatter 3D Plot: x1 / x2 / response_fn_1</name>
           <plotDataProviderObj class="gov.sandia.dakota.chartreuse.bridge.plotdata.DakotaPlotDataProvider">
-            <originalSourceDataFileAbsPath>C:\Users\emridgw\dakota_gui_workspace\ChartreuseExamples\Standalone\Simple\Scatter3dPlots\rosen_multidim.dat</originalSourceDataFileAbsPath>
-            <originalDakotaInputFileAbsPath>C:\Users\emridgw\dakota_gui_workspace\ChartreuseExamples\Standalone\Simple\Scatter3dPlots\rosen_multidim.in</originalDakotaInputFileAbsPath>
+            <originalSourceDataFileAbsPath>C:\Users\emridgw\dakota_gui_workspace\CheckoutTest\scatter_3d_plot\rosen_multidim.dat</originalSourceDataFileAbsPath>
+            <originalDakotaInputFileAbsPath>C:\Users\emridgw\dakota_gui_workspace\CheckoutTest\scatter_3d_plot\rosen_multidim.in</originalDakotaInputFileAbsPath>
             <outputDataName></outputDataName>
           </plotDataProviderObj>
           <dimensionValues class="linked-hash-map">
@@ -312,6 +313,92 @@
                 <string>401.0</string>
               </list>
             </entry>
+            <entry>
+              <int>4</int>
+              <list>
+                <string>1.0</string>
+                <string>2.0</string>
+                <string>3.0</string>
+                <string>4.0</string>
+                <string>5.0</string>
+                <string>6.0</string>
+                <string>7.0</string>
+                <string>8.0</string>
+                <string>9.0</string>
+                <string>10.0</string>
+                <string>11.0</string>
+                <string>12.0</string>
+                <string>13.0</string>
+                <string>14.0</string>
+                <string>15.0</string>
+                <string>16.0</string>
+                <string>17.0</string>
+                <string>18.0</string>
+                <string>19.0</string>
+                <string>20.0</string>
+                <string>21.0</string>
+                <string>22.0</string>
+                <string>23.0</string>
+                <string>24.0</string>
+                <string>25.0</string>
+                <string>26.0</string>
+                <string>27.0</string>
+                <string>28.0</string>
+                <string>29.0</string>
+                <string>30.0</string>
+                <string>31.0</string>
+                <string>32.0</string>
+                <string>33.0</string>
+                <string>34.0</string>
+                <string>35.0</string>
+                <string>36.0</string>
+                <string>37.0</string>
+                <string>38.0</string>
+                <string>39.0</string>
+                <string>40.0</string>
+                <string>41.0</string>
+                <string>42.0</string>
+                <string>43.0</string>
+                <string>44.0</string>
+                <string>45.0</string>
+                <string>46.0</string>
+                <string>47.0</string>
+                <string>48.0</string>
+                <string>49.0</string>
+                <string>50.0</string>
+                <string>51.0</string>
+                <string>52.0</string>
+                <string>53.0</string>
+                <string>54.0</string>
+                <string>55.0</string>
+                <string>56.0</string>
+                <string>57.0</string>
+                <string>58.0</string>
+                <string>59.0</string>
+                <string>60.0</string>
+                <string>61.0</string>
+                <string>62.0</string>
+                <string>63.0</string>
+                <string>64.0</string>
+                <string>65.0</string>
+                <string>66.0</string>
+                <string>67.0</string>
+                <string>68.0</string>
+                <string>69.0</string>
+                <string>70.0</string>
+                <string>71.0</string>
+                <string>72.0</string>
+                <string>73.0</string>
+                <string>74.0</string>
+                <string>75.0</string>
+                <string>76.0</string>
+                <string>77.0</string>
+                <string>78.0</string>
+                <string>79.0</string>
+                <string>80.0</string>
+                <string>81.0</string>
+              </list>
+            </entry>
           </dimensionValues>
           <dimensionLabels class="linked-hash-map">
             <entry>
@@ -326,39 +413,43 @@
               <int>3</int>
               <string>response_fn_1</string>
             </entry>
+            <entry>
+              <int>4</int>
+              <string>Eval ID</string>
+            </entry>
           </dimensionLabels>
           <properties>
             <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_BOUND_UPPER</gov.sandia.chartreuse.type.PlotToken>
-              <string>2147483647</string>
-            </entry>
-            <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_BOUND_LOWER</gov.sandia.chartreuse.type.PlotToken>
-              <string>-2147483648</string>
-            </entry>
-            <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_COLOR_AXIS</gov.sandia.chartreuse.type.PlotToken>
-              <string>Default</string>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_SCALE_COLOR_VALUE_TYPE</gov.sandia.chartreuse.type.PlotToken>
+              <string>Relative Percentages</string>
             </entry>
             <entry>
               <gov.sandia.chartreuse.type.PlotToken>TRACE_DRAW_NUMBER_LABELS</gov.sandia.chartreuse.type.PlotToken>
               <string>true</string>
             </entry>
             <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_POINT_TYPE</gov.sandia.chartreuse.type.PlotToken>
-              <string>SCATTER_3D_PLOT</string>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_BOUND_UPPER</gov.sandia.chartreuse.type.PlotToken>
+              <string>2147483647</string>
+            </entry>
+            <entry>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_PRECISION</gov.sandia.chartreuse.type.PlotToken>
+              <string>-1</string>
+            </entry>
+            <entry>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_COLOR_AXIS</gov.sandia.chartreuse.type.PlotToken>
+              <string>Default</string>
             </entry>
             <entry>
               <gov.sandia.chartreuse.type.PlotToken>TRACE_POINT_MODE</gov.sandia.chartreuse.type.PlotToken>
               <string>Circle</string>
             </entry>
             <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_SCALE_COLOR_VALUE_TYPE</gov.sandia.chartreuse.type.PlotToken>
-              <string>Relative Percentages</string>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_BOUND_LOWER</gov.sandia.chartreuse.type.PlotToken>
+              <string>-2147483648</string>
             </entry>
             <entry>
-              <gov.sandia.chartreuse.type.PlotToken>TRACE_PRECISION</gov.sandia.chartreuse.type.PlotToken>
-              <string>-1</string>
+              <gov.sandia.chartreuse.type.PlotToken>TRACE_POINT_TYPE</gov.sandia.chartreuse.type.PlotToken>
+              <string>SCATTER_3D_PLOT</string>
             </entry>
           </properties>
           <rgbs>
