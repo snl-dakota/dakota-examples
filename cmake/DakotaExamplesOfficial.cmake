@@ -139,16 +139,33 @@ dakota_example_test(
   CHECK dakota_matlab_rosenbrock.in
 )
 
-dakota_example_test(
-  PATH official/hdf5/centered_parameter_study
-  RUN dakota_centered.in
-)
+if(DAKOTA_HAVE_HDF5)
+  dakota_example_test(
+    PATH official/hdf5/centered_parameter_study
+    RUN dakota_centered.in
+  )
+  
+  if( Python_EXECUTABLE) # should also test for h5py
+    dakota_example_test(
+      PATH official/hdf5/centered_parameter_study
+      COMMAND ${Python_EXECUTABLE} -B test_centered.py
+      DEPENDS ${_last_test_added}
+    )
+  endif()
+  
+  dakota_example_test(
+    PATH official/hdf5/incremental_sampling
+    RUN dakota_refine.in
+  )
 
-dakota_example_test(
-  PATH official/hdf5/incremental_sampling
-  RUN dakota_refine.in
-)
-
+  if( Python_EXECUTABLE) # should also test for h5py
+    dakota_example_test(
+      PATH official/hdf5/incremental_sampling
+      COMMAND ${Python_EXECUTABLE} -B test_refine.py
+      DEPENDS ${_last_test_added}
+    )
+  endif()
+endif()
 # Surrogates
 dakota_example_test(
   PATH official/surrogates/dace
