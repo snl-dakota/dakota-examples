@@ -1,0 +1,35 @@
+environment
+  method_pointer = 'EvalSurrogate'
+
+method
+  id_method = 'EvalSurrogate'
+  model_pointer = 'SurrogateModel'
+  list_parameter_study
+    import_points_file 'eval_points.dat'
+      freeform
+
+model
+  id_model = 'SurrogateModel'
+  surrogate global
+    gaussian_process surfpack	
+    import_build_points 'build_points.dat'
+       freeform
+ 
+    export_model
+      filename_prefix = 'dak_gp_model'
+      formats
+        text_archive
+
+variables
+  uniform_uncertain =  2
+    lower_bounds    =  0.9  0.9
+    upper_bounds    =  1.1  1.1
+    descriptors     =  'x1' 'x2'
+
+responses
+  response_functions = 1
+    descriptors 'f'
+  no_gradients
+  no_hessians
+
+

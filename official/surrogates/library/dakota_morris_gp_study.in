@@ -1,0 +1,52 @@
+ environment
+  method_pointer = 'EvalSurrogate'
+
+method
+  id_method = 'EvalSurrogate'
+  model_pointer = 'SurrogateModel'
+  sampling
+    samples = 500 
+    seed = 5
+    sample_type lhs
+
+model
+  id_model = 'SurrogateModel'
+  surrogate global
+    dace_method_pointer = 'DesignMethod'
+  experimental_gaussian_process
+    export_model
+      filename_prefix 'morris'
+      formats binary_archive
+    export_approx_variance = 'dak_gp_variances.dat'
+
+variables,
+  uniform_uncertain =  20
+    lower_bounds    =  20 * 0
+    upper_bounds    =  20 * 1
+    descriptors     =  'x0' 'x1' 'x2' 'x3' 'x4' 'x5' 'x6' 'x7' 'x8' 'x9'
+                       'x10' 'x11' 'x12' 'x13' 'x14' 'x15' 'x16' 'x17' 'x18' 'x19'
+
+responses
+  response_functions = 1
+    descriptors 'gp'
+  no_gradients
+  no_hessians
+
+method
+  id_method = 'DesignMethod'
+  model_pointer = 'SimulationModel'
+  sampling
+    seed = 50 
+    sample_type lhs
+    samples = 200 
+
+model
+  id_model = 'SimulationModel'
+  single
+    interface_pointer = 'SimulationInterface'
+
+interface,
+  id_interface = 'SimulationInterface'
+  python
+    numpy
+    analysis_drivers = 'benchmark_functions:Morris'

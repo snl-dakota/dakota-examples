@@ -10,6 +10,9 @@ fort.*
 __pycache__/
 *.py[cod]
 
+# Jupyter notebook
+.ipynb_checkpoints/
+
 # Potential emacs cruft
 *~
 

@@ -1,0 +1,43 @@
+environment
+  method_pointer = 'EvalSurrogate'
+
+method
+  id_method = 'EvalSurrogate'
+  model_pointer = 'SurrogateModel'
+  sampling
+    samples = 100 seed = 5
+
+model
+  id_model = 'SurrogateModel'
+  surrogate global
+    gaussian_process surfpack	
+    dace_method_pointer = 'DesignMethod'
+
+variables
+  uniform_uncertain =  2
+    lower_bounds    =  0.9  0.9
+    upper_bounds    =  1.1  1.1
+    descriptors     =  'x1' 'x2'
+
+responses
+  response_functions = 1
+    descriptors 'f'
+  no_gradients
+  no_hessians
+
+method
+  id_method = 'DesignMethod'
+  model_pointer = 'SimulationModel'
+  sampling
+    seed = 50
+    samples = 10
+
+model
+  id_model = 'SimulationModel'
+  single
+    interface_pointer = 'SimulationInterface'
+
+interface
+  id_interface = 'SimulationInterface'
+  direct
+    analysis_driver = 'text_book'

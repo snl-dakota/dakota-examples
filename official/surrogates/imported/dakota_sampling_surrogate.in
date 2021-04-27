@@ -1,0 +1,22 @@
+method
+  sampling
+    samples = 100 seed = 5
+
+model
+  surrogate global
+    gaussian_process surfpack	
+    import_build_points_file 'training_data.dat'
+      annotated
+        use_variable_labels
+
+variables
+  uniform_uncertain =  2
+    lower_bounds    =  0.9  0.9
+    upper_bounds    =  1.1  1.1
+    descriptors     =  'x1' 'x2'
+
+responses
+  response_functions = 1
+    descriptors 'f'
+  no_gradients
+  no_hessians

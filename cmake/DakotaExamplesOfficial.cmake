@@ -148,3 +148,52 @@ dakota_example_test(
   PATH official/hdf5/incremental_sampling
   RUN dakota_refine.in
 )
+
+# Surrogates
+dakota_example_test(
+  PATH official/surrogates/dace
+  RUN dakota_sampling_surrogate.in
+)
+
+dakota_example_test(
+  PATH official/surrogates/imported
+  RUN dakota_sampling_surrogate.in
+)
+
+
+dakota_example_test(
+  PATH official/surrogates/surfpack
+  RUN dakota_surrogate.in
+)
+
+dakota_example_test(
+  PATH official/surrogates/surfpack
+  COMMAND $<TARGET_NAME:surfpack_exe> sp_build_surrogate.spk
+)
+
+dakota_example_test(
+  PATH official/surrogates/surfpack
+  COMMAND $<TARGET_NAME:surfpack_exe> sp_eval_surrogate.spk
+  DEPENDS ${_last_test_added}
+)
+
+if(DAKOTA_PYTHON AND Python_EXECUTABLE)
+  
+  dakota_example_test(
+    PATH official/surrogates/library
+    COMMAND ${Python_EXECUTABLE} -B test_notebook.py
+  )
+
+  dakota_example_test(
+    PATH official/surrogates/library
+    RUN dakota_morris_gp_study.in
+  )
+
+  dakota_example_test(
+    PATH official/surrogates/library
+    COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
+    DEPENDS ${_last_test_added}
+  )
+endif()
+
+
