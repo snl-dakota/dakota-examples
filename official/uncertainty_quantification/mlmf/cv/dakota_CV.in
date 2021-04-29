@@ -1,0 +1,68 @@
+# DAKOTA INPUT FILE -- Multifidelity MC
+
+environment,
+   tabular_data
+   tabular_data_file = 'dakota_CV.dat' 
+   freeform
+
+method,
+	model_pointer = 'HIERARCH'
+        multilevel_sampling				
+	  pilot_samples = 10 seed = 1237
+	  max_iterations = 5
+	  convergence_tolerance = 0.01	
+	output silent
+
+model,
+	id_model = 'HIERARCH'
+	variables_pointer = 'HF_VARS'
+	surrogate hierarchical
+	  ordered_model_fidelities = 'LF' 'HF'
+
+model,
+	id_model = 'LF'
+	variables_pointer = 'LF_VARS'
+	simulation
+	  solution_level_cost = 15.
+
+model,
+	id_model = 'HF'
+	variables_pointer = 'HF_VARS'
+	simulation
+          solution_level_cost = 4200.
+
+variables,
+	id_variables = 'LF_VARS'
+	uniform_uncertain = 7
+	  lower_bounds    = 7*-1.
+	  upper_bounds    = 7* 1.
+	discrete_state_set
+	  integer = 2
+	    num_set_values = 1 1
+	    set_values = 5 # number of spatial coords
+	    	       	 3 # number of Fourier solution modes
+	    initial_state = 5 3
+	    descriptors 'N_x' 'N_mod'
+
+variables,
+	id_variables = 'HF_VARS'
+	uniform_uncertain = 7
+	  lower_bounds    = 7*-1.
+	  upper_bounds    = 7* 1.
+	discrete_state_set
+	  integer = 2
+	    num_set_values = 1 1
+	    set_values = 200 # number of spatial coords
+	    	       	 21  # number of Fourier solution modes
+	    initial_state = 200 21
+	    descriptors 'N_x' 'N_mod'
+
+interface,
+	direct
+	  analysis_driver = 'transient_diffusion_1d'
+	  deactivate restart_file
+
+responses,
+	response_functions = 1
+	no_gradients
+	no_hessians

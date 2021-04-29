@@ -213,4 +213,25 @@ if(DAKOTA_PYTHON AND Python_EXECUTABLE)
   )
 endif()
 
+# ML/MF examples
+dakota_example_test(
+  PATH official/uncertainty_quantification/mlmf/mc
+  REGRESS dakota_MC.in
+)
+
+dakota_example_test(
+  PATH official/uncertainty_quantification/mlmf/cv
+  REGRESS dakota_CV.in
+)
+
+dakota_example_test(
+  PATH official/uncertainty_quantification/mlmf/mlmc
+  REGRESS dakota_MLMC.in
+)
+
+dakota_example_test(
+  PATH official/uncertainty_quantification/mlmf/mlmf
+  REGRESS dakota_MLMF.in
+)
+
 
