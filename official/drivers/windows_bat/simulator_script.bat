@@ -12,7 +12,7 @@ rem  --------------
 rem  Incorporate the parameters from Dakota into the template, writing ros.in
 
 
-python %dakota_bin%\bin\dprepro.py %1% ros.template ros.in
+python3 %dakota_intall%\bin\dprepro.py %1% ros.template ros.in
 
 
 rem  --------
