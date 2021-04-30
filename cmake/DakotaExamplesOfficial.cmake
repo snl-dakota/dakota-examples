@@ -95,7 +95,7 @@ dakota_example_test(
   )
 
 dakota_example_test(
-  PATH official/linked_interfaces/Python
+  PATH official/drivers/Python/linked
   RUN dakota_rosenbrock_python.in
   )
 # This is a workaround to enforce consistency between the Python used
@@ -107,35 +107,35 @@ set(_env_python_home
 set_tests_properties(${_last_test_added} PROPERTIES
   ENVIRONMENT "${_linked_python_env};${_env_python_home}")
 
-# external_drivers tests
+# drivers tests
 if (UNIX)
   dakota_example_test(
-    PATH official/external_drivers/bash/
+    PATH official/drivers/bash/
     RUN dakota_rosenbrock.in
   )
 endif()
 
 if (WIN32)
   dakota_example_test(
-    PATH official/external_drivers/windows_bat
+    PATH official/drivers/windows_bat
     RUN dakota_rosenbrock.in
   )
 endif()
 
 if (Python_EXECUTABLE)
   dakota_example_test(
-    PATH official/external_drivers/Python
+    PATH official/drivers/Python/di
     RUN dakota_rosenbrock_python.in
   )
 endif()
 
 dakota_example_test(
-  PATH official/external_drivers/MATLAB/linux
+  PATH official/drivers/MATLAB/linux
   CHECK dakota_matlab_rosenbrock.in
 )
 
 dakota_example_test(
-  PATH official/external_drivers/MATLAB/windows
+  PATH official/drivers/MATLAB/windows
   CHECK dakota_matlab_rosenbrock.in
 )
 
