@@ -14,7 +14,7 @@ results=$2
 ##
 ###############################################################################
 
-dprepro $params cantilever.template cantilever.i
+dprepro3 $params cantilever.template cantilever.i
 
 ############################################################################### 
 ##
