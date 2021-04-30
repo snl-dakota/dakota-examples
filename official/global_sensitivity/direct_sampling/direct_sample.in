@@ -25,7 +25,7 @@ model single
 
 interface
     fork
-    analysis_driver = 'python Ishigami.py'
+    analysis_driver = 'python3 Ishigami.py'
     asynchronous evaluation_concurrency = 5
 
 

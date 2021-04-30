@@ -31,7 +31,7 @@ variables
 
 interface
 	id_interface "interface1"
-	analysis_drivers "python -m DakotaDriver"
+	analysis_drivers "python3 -m DakotaDriver"
 		system
 			file_save
 			work_directory

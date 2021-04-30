@@ -18,7 +18,7 @@ $results=$args[1]
 ###############################################################################
 
 $pyprepro_py = (get-command "pyprepro").Path
-python $pyprepro_py -I $params cantilever.template cantilever.i
+python3 $pyprepro_py -I $params cantilever.template cantilever.i
 
 ############################################################################### 
 ##
@@ -27,7 +27,7 @@ python $pyprepro_py -I $params cantilever.template cantilever.i
 ###############################################################################
 
 
-python ./cantilever cantilever.i > cantilever.log
+python3 ./cantilever cantilever.i > cantilever.log
 
 ############################################################################### 
 ##

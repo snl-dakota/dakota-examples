@@ -20,7 +20,7 @@ variables
 # differencing (see responses section below), take advantage of
 # Dakota's ability to do concurrent evaluations.
 interface
-  analysis_drivers = 'python cantilever.py'
+  analysis_drivers = 'python3 cantilever.py'
     fork
   asynchronous evaluation_concurrency = 2
 

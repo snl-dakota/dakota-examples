@@ -41,7 +41,7 @@ responses
     
 interface
   fork
-    analysis_driver 'python cantilever.py'
+    analysis_driver 'python3 cantilever.py'
     parameters_file 'params.in'
     results_file 'results.out'
     file_save file_tag

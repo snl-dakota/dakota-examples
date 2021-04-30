@@ -11,7 +11,7 @@ results=$2
 # --------------
 # Incorporate the parameters from Dakota into the template, writing ros.in
 
-dprepro $params ros.template ros.in
+dprepro3 $params ros.template ros.in
 
 # ---------
 # EXECUTION

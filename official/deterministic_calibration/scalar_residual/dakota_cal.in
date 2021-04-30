@@ -40,7 +40,7 @@ responses
 
 interface
   fork
-    analysis_driver 'python cantilever_residuals.py'
+    analysis_driver 'python3 cantilever_residuals.py'
     parameters_file 'params.in'
     results_file 'results.out'
     file_save file_tag
