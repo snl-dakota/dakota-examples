@@ -8,7 +8,7 @@ environment,
 method,
 	model_pointer = 'HIERARCH'
         multilevel_sampling				
-	  pilot_samples = 20 seed = 1237		
+	  pilot_samples = 20 seed_sequence = 1237		
 	  max_iterations = 5
 	  convergence_tolerance = 0.002
 	output silent
