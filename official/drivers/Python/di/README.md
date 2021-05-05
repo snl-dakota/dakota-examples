@@ -19,6 +19,9 @@ introduction to the interfacing task may be found in the [bash](../bash/) and
 [windows_bat](../windows_bat/) examples. Chapter 10 of the User's  Manual describes
 interfacing in depth. It also contains detailed documentation of the `dakota.interfacing` module.
 
+A [companion example](../linked) is available that demonstrates how to directly import a Python module
+into Dakota.
+
 # Driver
 
 The main function of the driver `rosenbrock_bb.py` is:
