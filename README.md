@@ -11,7 +11,7 @@ Tour a few examples:
 * Construct a [driver](./official/drivers/) for Dakota to run your simulation;
 * Learn about Dakota's new [multilevel and multifidelity](./official/uncertainty_quantification/mlmf/) 
   sampling methods;
-* Develop a driver or plot results using the[Dakota GUI](./official/gui);
+* Develop a driver or plot results using the [Dakota GUI](./official/gui);
 * Access results and evaluation data in Dakota's [HDF5](./official/hdf5) format output file;
 * Calibrate model parameters to [experimental data](./official/deterministic_calibration/)
 
