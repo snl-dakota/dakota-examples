@@ -25,7 +25,7 @@ of the first model form to obtain a control variate, level-by-level.
 The estimator form is
 ```math
 {\mathbb{E}\left[Q\right]} = \hat{Q}^{MLMF} = \sum_{\ell=0}^L \frac{1}{N_\ell} \sum_{i=1}^{N_\ell} Y_\ell^{HF,(i)} 
-                         + \alpha_\ell \left( \sum_{i=1}^{N_\ell} Y_\ell^{LF,(i)} - \sum_{i=1}^{r N_\ell} Y_\ell^{LF,(i)} \right).
+                         + \alpha_\ell \left( \sum_{i=1}^{N_\ell} Y_\ell^{LF,(i)} - \frac{1}{r_\ell} \sum_{i=1}^{r_\ell N_\ell} Y_\ell^{LF,(i)} \right).
 ```
 Level-by-level the control variate is applied, as explained in the
 previous sections, with the only difference that this is used between

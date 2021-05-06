@@ -18,7 +18,7 @@ instance of the Approximate Control Variate (ACV) introduced in
 [\[4\]](#references). The CVMC estimator is written as
 
 ```math
-\hat{Q}^{CV} = \sum_{i=1}^N Q^{(i)} + \alpha \left( \sum_{i=1}^N Q_{LF}^{(i)} - \sum_{i=1}^{rN} Q_{LF}^{(i)} \right),
+\hat{Q}^{CV} = \frac{1}{N} \sum_{i=1}^N Q^{(i)} + \alpha \left( \frac{1}{N} \sum_{i=1}^N Q_{LF}^{(i)} - \frac{1}{rN} \sum_{i=1}^{rN} Q_{LF}^{(i)} \right),
 ```
 
 where $`N`$ indicates the number of HF simulations and $`r N`$ the total
@@ -170,8 +170,8 @@ The MC configuration can be executed with:\
 We will now follow the execution of the job starting with the pilot
 phase. In this phase Dakota evaluates a number of common
 samples for both HF and LF in order to derive the statistics needed for
-the job execution. By using the pilot samples, Dakota computes several
-quantities: the variance of the HF QoI, $`{\mathbb{V}ar\left[Q\right]}`$
+the job execution. By using the pilot samples, Dakota estimates several
+quantities: the variance of the HF QoI, $`{\mathbb{V}ar\left[Q\right]}`$,
 and the correlation between HF and LF, $`\rho`$. In the output file, the
 number of HF and LF evaluations is summarized first, *i.e.*
 $`N_{pilot}=10`$ for each model in this case, and, then, few statistics
