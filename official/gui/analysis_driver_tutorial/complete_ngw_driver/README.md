@@ -51,7 +51,7 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 ## Prerequisites
 
-Make sure Dakota's bin directory is available on your system path.  For example, if you installed Dakota to `/home/dakota`, then `/home/dakota/bin` should be accessible on your system path.  The bin directory contains the _dprepro_ pre-processing utility, which is used by _WorkflowDriver.iwf_.
+Make sure Dakota's bin directory is available on your system path.  For example, if you installed Dakota to `/home/dakota`, then `/home/dakota/bin` should be accessible on your system path.  The bin directory contains the _dprepro_ pre-processing utility, which is used by _WorkflowDriver.iwf_.  Additionally, the _dakota_ node in _RunDakota.iwf_ has no explicit path to Dakota set, which means the workflow will try to locate Dakota on your system path.
 
 ## Run in Dakota GUI
 

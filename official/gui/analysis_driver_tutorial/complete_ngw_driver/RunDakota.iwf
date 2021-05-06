@@ -102,7 +102,7 @@
   <gov.sandia.dart.workflow.domain:OutputPort name="stdout" type="default" node="/15"/>
   <gov.sandia.dart.workflow.domain:OutputPort name="stderr" type="default" node="/15"/>
   <gov.sandia.dart.workflow.domain:OutputPort name="exitStatus" type="default" node="/15"/>
-  <gov.sandia.dart.workflow.domain:Property name="dakotaPath" type="home_file" value="C:\dakota-6.13.0-release-snlweb-Windows.x86-UI\bin\dakota.exe" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="dakotaPath" type="home_file" value="" node="/15"/>
   <gov.sandia.dart.workflow.domain:Property name="analysisDriverWorkflow" type="home_file" value="" node="/15"/>
   <gov.sandia.dart.workflow.domain:Property name="useRestartFile" type="boolean" value="false" node="/15"/>
   <gov.sandia.dart.workflow.domain:Property name="automaticallyReadParameters" type="boolean" value="true" node="/15"/>
