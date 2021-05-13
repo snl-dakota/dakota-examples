@@ -31,7 +31,7 @@ Each level is handled independently with $`N_\ell`$ samples, which means
 that for $`Y_\ell \rightarrow 0`$,
 $`{\mathbb{V}ar\left[Y_\ell\right]} \rightarrow 0`$ and, therefore, the
 amount of work needed at higher levels, *i.e.* number of samples
-$`N_\ell$, decreases with $\ell`$.
+$`N_\ell`$, decreases with $`\ell`$.
 
 Multilevel MC (MLMC) is a particular multifidelity estimator that has a
 main distinctive feature compared to a multifidelity MC: it does not
