@@ -42,8 +42,8 @@ sum of variances of control variate estimators.
 The sample allocation problem is a combination of the MLMC allocation
 and control variate allocation:
 ```math
-N_{\ell}^{HF} = \frac{1}{\varepsilon^2} \!\! \left[ \, \sum_{k=0}^{L} \left( \frac{{\mathbb{V}ar\left[Y^{HF}_\ell\right]} \mathcal{C}_{\ell}^{HF}}{ 1-\rho_\ell^2}  \right)^{1/2}
- \left(1 - \frac{r_\ell-1}{r_\ell} \rho_\ell^2  \right) \right] \sqrt{ \left( 1 - \rho_\ell^2 \right) \frac{ {\mathbb{V}ar\left[Y^{HF}_\ell\right]} }{\mathcal{C}_{\ell}^{HF} } },
+N_{\ell}^{HF} = \frac{1}{\varepsilon^2} \!\! \left[ \, \sum_{k=0}^{L} \left( \frac{{\mathbb{V}ar\left[Y^{HF}_k\right]} \mathcal{C}_{k}^{HF}}{ 1-\rho_k^2}  \right)^{1/2}
+ \left(1 - \frac{r_k-1}{r_k} \rho_k^2  \right) \right] \sqrt{ \left( 1 - \rho_\ell^2 \right) \frac{ {\mathbb{V}ar\left[Y^{HF}_\ell\right]} }{\mathcal{C}_{\ell}^{HF} } },
  ```
 
 where the control variate term contributes to reduce the variance, and,
