@@ -1,6 +1,6 @@
 # Summary
 
-Understand how Control Variate Monte Carlo (CVMC) can compute statistics with greater precision and lower cost than orindary Monte Carlo and learn how to configure a Dakota study to use this approach
+Understand how Control Variate Monte Carlo (CVMC) can compute statistics with greater precision and lower cost than ordinary Monte Carlo and learn how to configure a Dakota study to use this approach
 
 # Description
 
@@ -163,7 +163,7 @@ with a single model.
 
 # PostProcessing Phase
 
-The MC configuration can be executed with:\
+The MC configuration can be executed with:
 
 `dakota -i dakota_CV.in -o dakota_CV.out`.
 
@@ -234,7 +234,7 @@ needs to evaluate the full set of LF models corresponding to the
 evaluated statistics. For this case, the updated correlation value is
 $`0.98882`$, which corresponds to an oversampling ratio of $`r = 110.98`$.
 The total number of LF evaluations is $`r N = 110.98 \times 94 = 10432`$.
-The algorithm needs to compute an additional number of $10432 - 94$ LF
+The algorithm needs to compute an additional number of $`10432 - 94`$ LF
 evaluations to complete the estimator evaluation:
 ```
 CVMC LF sample increment = 10338
@@ -250,7 +250,7 @@ of evaluations and their equivalent HF cost:
 <<<<< Equivalent number of high fidelity evaluations: 1.3125714286e+02
 ```
 
-In this case we have a total of $`10432`$ LF and $`94`$ Hf evaluations. The
+In this case we have a total of $`10432`$ LF and $`94`$ HF evaluations. The
 total cost is then
 ```math
 \mathcal{C}_{tot} = 94 \times 4200 + 10432 \times 15 = 551280,

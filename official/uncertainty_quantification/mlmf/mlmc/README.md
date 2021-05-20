@@ -56,7 +56,7 @@ seminal paper [\[3\]](#references).
 In this case, we want to configure a MLMC study that uses all the
 available levels of the HF model, which is all the models that use $`21`$
 modes and a spatial resolution
-$`N_x = \left\{ 30, 60, 100, 200 \right\}`$ (see also the Table at the end of the [problem description](../README.md#test-problem-description). The total cost is, as for the
+$`N_x = \left\{ 30, 60, 100, 200 \right\}`$ (see also the Table at the end of the [problem description](../README.md#test-problem-description)). The total cost is, as for the
 previous case, defined as $`N_x \times N_{mod}`$.
 
 For the configuration of a MLMC study, we only need minimal
@@ -77,7 +77,7 @@ method,
 ```
 
 The `method` is configured to use $`10`$ pilot samples per level, which means that each discrepancy
-level ($`Y_\ell = Q_\ell - Q_{\ell-1}`$, for $`\ell`$) is evaluated 20
+level ($`Y_\ell = Q_\ell - Q_{\ell-1}`$, for $`\ell`$) is evaluated 10
 times. In our case we have 4 levels and therefore the total number
 of model evaluations corresponding to the pilot phase is
 $`10 + 20 + 20 + 20 = 70`$. Also, we are using a smaller `convergence_tolerance`, $`\tau_{target}`$,
