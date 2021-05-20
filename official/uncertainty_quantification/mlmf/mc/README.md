@@ -4,7 +4,7 @@ Describe use of Monte Carlo sampling to estimate the expectation (mean) of a mod
 
 # Description
 
-This example is part of a longer tutorial that covers Dakota's multilevel and multifidelity sampling approaches. The top-level page, which provides an outline and describes the test problem used throughout the tutorial, is [here](../README.md). In this section, Monte Carlo sampling is used to estimate the expectation (mean) of a model QoI. The variance or uncertainty of the estimate is discussed. Understanding these conepts is key before reading the following sections.
+This example is part of a longer tutorial that covers Dakota's multilevel and multifidelity sampling approaches. The top-level page, which provides an outline and describes the test problem used throughout the tutorial, is [here](../README.md). In this section, Monte Carlo sampling is used to estimate the expectation (mean) of a model QoI. The variance or uncertainty of the estimate is discussed. Understanding these concepts is key before reading the following sections.
 
 # Theory Highlights
 
@@ -111,7 +111,7 @@ and this produces a number of outputs. The relevant ones are:
 -   `dakota_MC.out` which contains the results of the analysis (and
     output relative to the job execution).
 
-For this tutorial the important information are reported at the end of
+For this tutorial the important information is reported at the end of
 `dakota_MC.out`
 
 Dakota computes moments (mean, standard deviation, skewness and
