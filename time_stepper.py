@@ -59,3 +59,15 @@ def set_v():
 
 
 
+if __name__ == "__main__":
+
+    # Start by trying to call the various functions
+    #   ... use some nominal time stepping values ...
+    dt = 0.01
+    nt = 10
+    v0 = 0.0 
+    x0 = 1.0
+
+    time_step(dt, nt, v0, x0) 
+
+    assert(True),'expected to make it this far wthout error.'
