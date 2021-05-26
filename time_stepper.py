@@ -15,6 +15,8 @@ def time_step(dt, nt, v0, x0):
     pos = np.empty(nt)
 
     E   = 1.0                  # placeholder for later Electric Field Function
+    q   = 1.0                  # Dummy charge value - TODO: replace with meaningful value
+    m   = 1.0                  # Dummy mass value - TODO: replace with meaningful value
     vel[0] = v0-0.5*q/m*E*dt   # move vel back by 1/2*dt
     pos[0] = x0                # initialize position
 
@@ -48,14 +50,14 @@ def set_v():
             vy[ii] = vy[ii]*dtdx
 
      # normalize vx
-     for ii in range():
-         vx[ii] = vx[ii]*dtdx
+    for ii in range(len(vx)):
+        vx[ii] = vx[ii]*dtdx
 
      # electric impulse to go back 1/2 time step
-     dum = 0.0
-     accel()
+    dum = 0.0
+    accel()
 
-     return
+    return
 
 
 
