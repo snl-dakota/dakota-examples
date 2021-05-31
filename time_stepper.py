@@ -53,13 +53,34 @@ def scenario_oscillator(dt, nt, leap_frog=False):
         vel[step+1] = vel[step] + dt*acc
         pos[step+1] = pos[step] + dt*vel[step+vel_index_shift]
 
-        # Compute exact values
-        time += dt
-        xexact[step+1] =  np.cos(omega*time)
-        vexact[step+1] = -np.sin(omega*time)*omega
+    time = np.linspace(0,nt*dt,nt+1)
 
-    return pos, vel, xexact, vexact
+    return pos, vel, time
 
+
+def plot_pos_vel(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
+
+    plt.plot(time, pos, marker='o', label='Position (x)')
+    plt.plot(time, exact_pos(time), label='Exact (x)')
+    if leap_frog:
+        dt = time[1]-time[0]
+        plt.plot(time-0.5*dt, vel, marker='o', label='Velocity (v)')
+    else:
+        plt.plot(time, exact_vel(time), marker='o', label='Velocity (v)')
+    plt.plot(time, exact_vel(time), label='Exact (v)')
+    plt.legend()
+    plt.show()
+
+
+def plot_phase(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
+
+    if leap_frog:
+        plt.plot(exact_vel(time-0.5*dt), exact_pos(time), label='Theory')
+    else:
+        plt.plot(exact_vel(time), exact_pos(time), label='Theory')
+    plt.plot(vel, pos, '--', label='Numerical')
+    plt.legend()
+    plt.show()
 
 
 
@@ -68,20 +89,31 @@ if __name__ == "__main__":
     # Start by trying to call the various functions
     #   ... use some nominal time stepping values ...
     dt = 0.1
-    nt = 42
+    nt = 232
     x0 = 1.0
     v0 = 0.0 
 
+    # Exact velocity and position functions
+    omega = 2*np.pi/(50.0*dt)
+    exact_x = lambda t :  np.cos(omega*t)
+    exact_v = lambda t : -np.sin(omega*t)*omega
+
     # Use Forward Euler
-    pos, vel, exact_x, exact_v = scenario_oscillator(dt, nt)
+    pos, vel, time = scenario_oscillator(dt, nt)
     for i in range(nt+1):
-        print(i, i*dt, vel[i], pos[i], exact_v[i], exact_x[i])
+        print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
+
+    #plot_pos_vel(time, pos, vel, exact_x, exact_v)
+    #plot_phase(time, pos, vel, exact_x, exact_v)
 
 
     # Now use Leap Frog
-    pos, vel, exact_x, exact_v = scenario_oscillator(dt, nt, True)
+    pos, vel, time = scenario_oscillator(dt, nt, True)
     for i in range(nt+1):
-        print(i, i*dt, vel[i], pos[i], exact_v[i], exact_x[i])
+        print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
+
+    #plot_pos_vel(time, pos, vel, exact_x, exact_v, leap_frog=True)
+    #plot_phase(time, pos, vel, exact_x, exact_v, leap_frog=True)
 
 
     assert(True),'expected to make it this far wthout error.'
