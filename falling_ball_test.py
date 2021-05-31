@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from gallery import FallingBall
+import PIC
+
 def time_step(dt, nt, v0, x0):
     '''
     Input variables:
@@ -44,4 +47,18 @@ if __name__ == "__main__":
     plt.legend()
     plt.savefig("vel_pos_graph.png");
     
-    assert(True),'expected to make it this far wthout error.'
+    # Use a FallingBall object to test the Leap Frog time integator in the PIC module
+    ball = FallingBall(x0, v0, E=-10.0, q=1.0, m=1.0)
+
+    test_pos = np.empty(time.size)
+    test_vel = 0.0*test_pos
+    test_pos[0] = x0
+    test_vel[0] = v0 - 0.5*ball.exact_a(0)*dt
+
+    for i in range(1, time.size):
+        xval = test_pos[i-1]
+        vval = test_vel[i-1]
+        test_pos[i], test_vel[i] = PIC.update_pos_and_vel(xval, vval, dt, ball.forcing_term(xval))
+
+    assert( np.allclose(pos, test_pos, rtol=0, atol=1.e-20)),'positions should exactly agree.'
+    assert( np.allclose(vel, test_vel, rtol=0, atol=1.e-20)),'velocities should exactly agree.'

@@ -1,6 +1,35 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from gallery import Oscillator
+import PIC
+
+
+def plot_pos_vel(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
+
+    plt.plot(time, pos, marker='o', label='Position (x)')
+    plt.plot(time, exact_pos(time), label='Exact (x)')
+    if leap_frog:
+        dt = time[1]-time[0]
+        plt.plot(time-0.5*dt, vel, marker='o', label='Velocity (v)')
+    else:
+        plt.plot(time, exact_vel(time), marker='o', label='Velocity (v)')
+    plt.plot(time, exact_vel(time), label='Exact (v)')
+    plt.legend()
+    plt.show()
+
+
+def plot_phase(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
+
+    if leap_frog:
+        plt.plot(exact_vel(time-0.5*dt), exact_pos(time), label='Theory')
+    else:
+        plt.plot(exact_vel(time), exact_pos(time), label='Theory')
+    plt.plot(vel, pos, '--', label='Numerical')
+    plt.legend()
+    plt.show()
+
+
 
 def scenario_oscillator(dt, nt, leap_frog=False):
     '''
@@ -58,31 +87,6 @@ def scenario_oscillator(dt, nt, leap_frog=False):
     return pos, vel, time
 
 
-def plot_pos_vel(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
-
-    plt.plot(time, pos, marker='o', label='Position (x)')
-    plt.plot(time, exact_pos(time), label='Exact (x)')
-    if leap_frog:
-        dt = time[1]-time[0]
-        plt.plot(time-0.5*dt, vel, marker='o', label='Velocity (v)')
-    else:
-        plt.plot(time, exact_vel(time), marker='o', label='Velocity (v)')
-    plt.plot(time, exact_vel(time), label='Exact (v)')
-    plt.legend()
-    plt.show()
-
-
-def plot_phase(time, pos, vel, exact_pos, exact_vel, leap_frog=False):
-
-    if leap_frog:
-        plt.plot(exact_vel(time-0.5*dt), exact_pos(time), label='Theory')
-    else:
-        plt.plot(exact_vel(time), exact_pos(time), label='Theory')
-    plt.plot(vel, pos, '--', label='Numerical')
-    plt.legend()
-    plt.show()
-
-
 
 if __name__ == "__main__":
 
@@ -100,8 +104,8 @@ if __name__ == "__main__":
 
     # Use Forward Euler
     pos, vel, time = scenario_oscillator(dt, nt)
-    for i in range(nt+1):
-        print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
+    #for i in range(nt+1):
+    #    print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
 
     #plot_pos_vel(time, pos, vel, exact_x, exact_v)
     #plot_phase(time, pos, vel, exact_x, exact_v)
@@ -109,11 +113,30 @@ if __name__ == "__main__":
 
     # Now use Leap Frog
     pos, vel, time = scenario_oscillator(dt, nt, True)
-    for i in range(nt+1):
-        print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
+    #for i in range(nt+1):
+    #    print(i, time[i], vel[i], pos[i], exact_v(time[i]), exact_x(time[i]))
 
     #plot_pos_vel(time, pos, vel, exact_x, exact_v, leap_frog=True)
     #plot_phase(time, pos, vel, exact_x, exact_v, leap_frog=True)
 
 
-    assert(True),'expected to make it this far wthout error.'
+    # Use an Oscillator object configured with multiple scenarios
+    # ... We will test the first (index 0) scenario against the numerical results 
+    # ... for scenario_oscillator using Leap Frog
+    x0vec = np.linspace(1.0, 10.0, 10)
+    v0vec = 0.1*(x0vec-1.0)
+    freq_vec = omega*x0vec
+
+    oscil = Oscillator(x0vec, v0vec, freq_vec)
+
+    pos_family = np.empty((x0vec.size, nt+1))
+    vel_family = 0.0*pos_family
+    pos_family[:,0] = x0vec
+    vel_family[:,0] = v0vec - 0.5*oscil.exact_a(0.0)*dt
+
+    for step in range(1,nt+1):
+        xval = pos_family[:,step-1]
+        pos_family[:,step], vel_family[:,step] = PIC.update_pos_and_vel(xval, vel_family[:,step-1], dt, oscil.forcing_term(xval))
+
+    assert( np.allclose(pos, pos_family[0,:], rtol=0, atol=1.e-20)),'positions should exactly agree.'
+    assert( np.allclose(vel, vel_family[0,:], rtol=0, atol=1.e-20)),'velocities should exactly agree.'

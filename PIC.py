@@ -49,3 +49,11 @@ def computeGrad(dx, V, second_order) :
     
     return grad
 
+
+def update_pos_and_vel(pos, vel, dt, acc):
+
+    new_vel = vel + dt*acc
+    new_pos = pos + dt*new_vel
+
+    return new_pos, new_vel
+
