@@ -2,14 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def scenario_ForwardEuler(dt, nt):
+def scenario_oscillator(dt, nt, leap_frog=False):
     '''
-    "Explicit" or "Forward" Euler time integration using example from
+    Time integration using example from
          https://www.particleincell.com/2011/velocity-integration/
 
     Input variables:
         dt = time step size
         nt = number of time steps
+        leap_frog = Boolean flag using either:
+           True: Leap Frog time stepping OR
+           False: Explicit (Forward) Euler time stepping
     '''
 
     # Model params
@@ -38,16 +41,22 @@ def scenario_ForwardEuler(dt, nt):
     xexact[0] = x0
     vexact[0] = v0
 
+    vel_index_shift = 0
+
+    if leap_frog:
+        vel[0] = vel[0] -0.5*accel(pos[0])*dt
+        vel_index_shift = 1
+    
     # Do time integration
     for step in range(nt):
         acc = accel(pos[step])
         vel[step+1] = vel[step] + dt*acc
-        pos[step+1] = pos[step] + dt*vel[step]
+        pos[step+1] = pos[step] + dt*vel[step+vel_index_shift]
 
         # Compute exact values
         time += dt
         xexact[step+1] =  np.cos(omega*time)
-        vexact[step+1] = -np.sin(omega*time)
+        vexact[step+1] = -np.sin(omega*time)*omega
 
     return pos, vel, xexact, vexact
 
@@ -59,12 +68,20 @@ if __name__ == "__main__":
     # Start by trying to call the various functions
     #   ... use some nominal time stepping values ...
     dt = 0.1
-    nt = 25
-    v0 = 0.0 
+    nt = 42
     x0 = 1.0
+    v0 = 0.0 
 
-    x, v, xe, ve = scenario_ForwardEuler(dt, nt)
+    # Use Forward Euler
+    pos, vel, exact_x, exact_v = scenario_oscillator(dt, nt)
     for i in range(nt+1):
-        print(i, v[i], x[i], ve[i], xe[i])
+        print(i, i*dt, vel[i], pos[i], exact_v[i], exact_x[i])
+
+
+    # Now use Leap Frog
+    pos, vel, exact_x, exact_v = scenario_oscillator(dt, nt, True)
+    for i in range(nt+1):
+        print(i, i*dt, vel[i], pos[i], exact_v[i], exact_x[i])
+
 
     assert(True),'expected to make it this far wthout error.'
