@@ -57,3 +57,12 @@ def update_pos_and_vel(pos, vel, dt, acc):
 
     return new_pos, new_vel
 
+
+def get_elem_id(mesh, pos):
+
+    # Assumes equal mesh spacing
+    # ... will need to generalize to support unequal mesh spacing
+    dx = abs(mesh[1] - mesh[0])
+    return np.floor((pos-mesh[0])/dx).astype(int)
+
+

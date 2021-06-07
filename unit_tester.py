@@ -77,5 +77,34 @@ class TestSolver(unittest.TestCase):
         self.assertTrue(error_norm < 1.e-14)
 
 
+    def test_elem_id(self):
+
+        dx = 0.01
+        N = int(1/dx)
+
+        # Introduce a shift in order to test meshes that don't have 0.0 as the left end-point
+        shift = 0.15
+
+        x = np.linspace(0.0, 1.0, N+1) - shift
+
+        # Test left end-point
+        self.assertEqual(PIC.get_elem_id(x, -shift), 0)
+        # Test right location of first element
+        self.assertEqual(PIC.get_elem_id(x, -shift+dx), 1)
+
+        # Test left location of last element
+        self.assertEqual(PIC.get_elem_id(x, x[-1]-dx), N-2)
+        # Test right end-point
+        self.assertEqual(PIC.get_elem_id(x, x[-1]), N-1)
+
+        # Test an interior point
+        pos = 42*dx +0.5*dx - shift
+        self.assertEqual(PIC.get_elem_id(x, pos), 42)
+
+        # Test a collection of interior points
+        elem_arr = [31, 87, 42]
+        pos_vec = np.array(elem_arr)*dx + 0.5*dx - shift
+        self.assertEqual(PIC.get_elem_id(x, pos_vec).tolist(), elem_arr)
+
 if __name__=='__main__':
     unittest.main()
