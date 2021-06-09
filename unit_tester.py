@@ -106,5 +106,35 @@ class TestSolver(unittest.TestCase):
         pos_vec = np.array(elem_arr)*dx + 0.5*dx - shift
         self.assertEqual(PIC.get_elem_id(x, pos_vec).tolist(), elem_arr)
 
+
+    def test_charge_scatter(self):
+
+        dx = 0.01
+        N = int(1/dx)
+        mesh = np.linspace(0.0, 1.0, N+1)
+
+        # Fake particle charge and macroparticle weight for testing purposes
+        charge = 1.5
+        particle_wt = 2.0
+
+        # Place a charge at a certain location
+        pos = np.array( [ 0.4125 ] )
+
+        # We should get an array of charge on the left and right nodes of the element
+        #    ... that this point lies within.  So calculate what the result should be:
+        elem_id = PIC.get_elem_id(mesh, pos[0])
+        left_x = mesh[elem_id]
+        right_x = mesh[elem_id+1]
+        weight_right = (pos[0]-left_x)/(right_x-left_x)
+        weight_left = 1.0 - weight_right
+
+        # The function we want to test
+        scat_chg = PIC.charge_scatter(mesh, pos, particle_wt, charge)
+
+        # Correctness checks for the two nodes
+        self.assertEqual(scat_chg[elem_id]  , weight_left *charge*particle_wt)
+        self.assertEqual(scat_chg[elem_id+1], weight_right*charge*particle_wt)
+
+
 if __name__=='__main__':
     unittest.main()
