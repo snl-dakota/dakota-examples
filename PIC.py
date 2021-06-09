@@ -66,3 +66,30 @@ def get_elem_id(mesh, pos):
     return np.floor((pos-mesh[0])/dx).astype(int)
 
 
+def charge_scatter(mesh, charge):
+
+    #Assumes equal mesh spacing
+    #Distributes charge in 1d
+
+    '''
+    sp_wt = pos/dx
+    right = 1-sp_wt
+    left  = sp_wt
+
+    charge_den[get_elem_id(mesh,pos)] = right*charge
+    charge_den[get_elem_id(mesh,pos)+1] = left*charge
+    return sp_wt_right, sp_wt_left
+    '''
+
+    #dx  = abs(mesh[1] - mesh[0])
+    dx  = 1                          # Placeholder for actual dx
+    rho = np.empty(size.mesh())
+    qdx = charge/dx
+
+    for i in range(1,n-1):
+        rho[i] = qdx*(mesh[i] + (1-mesh[i+1]))
+
+    #rho[0] = 
+    #rho[n] = 
+
+    return rho
