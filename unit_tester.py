@@ -136,5 +136,25 @@ class TestSolver(unittest.TestCase):
         self.assertEqual(scat_chg[elem_id+1], weight_right*charge*particle_wt)
 
 
+    def test_field_gather(self):
+
+        dx = 0.01
+        N = int(1/dx)
+        mesh = np.linspace(0.0, 1.0, N+1)
+
+        # Place a charge at a certain location
+        pos = np.array( [ 0.4125 ] )
+
+        # Linear field should give us an exact gather value (because we interpolate linearly)
+        mock_field = lambda x : -2.0 + 4.0*x
+        E_field = mock_field(mesh)
+
+        # The function we want to test
+        gathered_field = PIC.field_gather(mesh, pos, E_field)
+
+        # Correctness check
+        self.assertEqual(gathered_field[0], mock_field(pos[0]))
+
+
 if __name__=='__main__':
     unittest.main()

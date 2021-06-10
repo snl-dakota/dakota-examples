@@ -97,4 +97,15 @@ def charge_scatter(mesh, pos, part_wt, charge):
     return rho
 
 
-    
+def field_gather(mesh, pos, field):
+
+    gathered_vals = np.empty(pos.shape[0])
+    for i,x in enumerate(pos):
+        elem_id = get_elem_id(mesh, x)
+        left_x = mesh[elem_id]
+        right_x = mesh[elem_id+1]
+        weight_right = (x-left_x)/(right_x-left_x)
+        weight_left = 1.0 - weight_right
+        gathered_vals[i] = field[elem_id]*weight_left + field[elem_id+1]*weight_right
+
+    return gathered_vals
