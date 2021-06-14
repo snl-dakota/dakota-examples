@@ -114,6 +114,6 @@ def field_gather(mesh, pos, field):
 
 def read_parameters(filename):
 
-    with open("test_params.json") as F:
+    with open(filename) as F:
         params = json.load(F)
     return params
