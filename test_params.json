@@ -1,0 +1,27 @@
+{
+  "simulation" :
+  {
+    "verbose" : true,
+    "time_steps" : 10,
+    "dt" : 0.01,
+    "xmin" : -1.0,
+    "xmax" : 1.0,
+    "num_elems" : 100
+  },
+
+  "initial_conditions" :
+  {
+    "particle_1" :
+    {
+      "charge" : -1.0,
+      "x0" : -0.5,
+      "v0" : 0.0
+    },
+    "particle_2" :
+    {
+      "charge" : 1.0,
+      "x0" : 0.5,
+      "v0" : 0.0
+    }
+  }
+}

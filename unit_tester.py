@@ -1,5 +1,6 @@
 
 import unittest
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -154,6 +155,21 @@ class TestSolver(unittest.TestCase):
 
         # Correctness check
         self.assertEqual(gathered_field[0], mock_field(pos[0]))
+
+
+    def test_read_parameters(self):
+        with open("test_params.json") as F:
+            params = json.load(F)
+
+        # Test the presence of some expected (required?) parameters
+        dt = params['simulation']['dt']
+        self.assertEqual(0.01, dt)
+        xmin = params['simulation']['xmin']
+        self.assertEqual(-1.0, xmin)
+        xmax = params['simulation']['xmax']
+        self.assertEqual(1.0, xmax)
+        N = params['simulation']['num_elems']
+        self.assertEqual(100, N)
 
 
 if __name__=='__main__':
