@@ -92,8 +92,8 @@ def charge_scatter(mesh, pos, part_wt, charge):
         wt_right = (pos[i]-left_x)/dx
         wt_left  = 1-wt_right
             
-        rho[elem_id]   += charge*part_wt*wt_left 
-        rho[elem_id+1] += charge*part_wt*wt_right 
+        rho[elem_id]   += charge[i]*part_wt*wt_left 
+        rho[elem_id+1] += charge[i]*part_wt*wt_right 
     return rho
 
 

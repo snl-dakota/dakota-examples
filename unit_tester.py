@@ -114,7 +114,7 @@ class TestSolver(unittest.TestCase):
         mesh = np.linspace(0.0, 1.0, N+1)
 
         # Fake particle charge and macroparticle weight for testing purposes
-        charge = 1.5
+        charge = np.array([1.5])
         particle_wt = 2.0
 
         # Place a charge at a certain location
@@ -132,8 +132,8 @@ class TestSolver(unittest.TestCase):
         scat_chg = PIC.charge_scatter(mesh, pos, particle_wt, charge)
 
         # Correctness checks for the two nodes
-        self.assertEqual(scat_chg[elem_id]  , weight_left *charge*particle_wt)
-        self.assertEqual(scat_chg[elem_id+1], weight_right*charge*particle_wt)
+        self.assertEqual(scat_chg[elem_id]  , weight_left *charge[0]*particle_wt)
+        self.assertEqual(scat_chg[elem_id+1], weight_right*charge[0]*particle_wt)
 
 
     def test_field_gather(self):
