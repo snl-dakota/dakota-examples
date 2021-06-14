@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -109,3 +110,10 @@ def field_gather(mesh, pos, field):
         gathered_vals[i] = field[elem_id]*weight_left + field[elem_id+1]*weight_right
 
     return gathered_vals
+
+
+def read_parameters(filename):
+
+    with open("test_params.json") as F:
+        params = json.load(F)
+    return params

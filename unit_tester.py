@@ -1,6 +1,5 @@
 
 import unittest
-import json
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -158,8 +157,8 @@ class TestSolver(unittest.TestCase):
 
 
     def test_read_parameters(self):
-        with open("test_params.json") as F:
-            params = json.load(F)
+
+        params = PIC.read_parameters("test_params.json")
 
         # Test the presence of some expected (required?) parameters
         dt = params['simulation']['dt']
