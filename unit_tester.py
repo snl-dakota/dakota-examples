@@ -171,5 +171,25 @@ class TestSolver(unittest.TestCase):
         self.assertEqual(100, N)
 
 
+    def test_parse_particle_types(self):
+
+        params = PIC.read_parameters("test_params.json")
+
+        # Parse some particle types
+        particles = PIC.parse_particle_types(params)
+
+        # This is a pythonic way of getting the particle objects out of the array of
+        # ... particles by name without concern for their order in the array
+        fake_e          = [_ for _ in particles if _.type == "fake_e-"][0]
+        super_heavy_ion = [_ for _ in particles if _.type == "super_heavy_ion"][0]
+
+        # Test some expected atributes from the particle objects
+        self.assertEqual(fake_e.mass, 1.0)
+        self.assertEqual(fake_e.charge, -1.0)
+        self.assertEqual(super_heavy_ion.mass, 1.0e20)
+        self.assertEqual(super_heavy_ion.charge, 1.0)
+
+
+
 if __name__=='__main__':
     unittest.main()

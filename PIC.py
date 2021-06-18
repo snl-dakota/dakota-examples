@@ -4,6 +4,8 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 
+from particle import Particle
+
 #EPS_0 = 8.85418782e-12   # C/V/m, vac. permittivity
 EPS_0 = 1.0
 
@@ -117,3 +119,22 @@ def read_parameters(filename):
     with open(filename) as F:
         params = json.load(F)
     return params
+
+
+def parse_particle_types(params):
+    
+    particles = []
+
+    for part_type in params['particle_types'] :
+        particles.append( Particle(part_type, params['particle_types'][part_type]) )
+
+    return particles
+
+
+def driver():
+    params = read_parameters("test_params.json")
+    return
+
+
+if __name__=='__main__':
+    driver()
