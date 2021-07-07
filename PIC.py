@@ -114,6 +114,18 @@ def field_gather(mesh, pos, field):
     return gathered_vals
 
 
+def compute_node_volumes(mesh):
+
+    node_vols = 0.0*mesh
+
+    elem_centers = np.zeros(mesh.shape[0]-1)
+    for elem in range(len(mesh)-1):
+        elem_centers[elem] = 0.5*(mesh[elem] + mesh[elem+1])
+
+    dx = abs(mesh[1] - mesh[0])
+    return charge_scatter(mesh, elem_centers, 1.0, dx*np.ones_like(elem_centers))
+
+
 def read_parameters(filename):
 
     with open(filename) as F:

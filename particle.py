@@ -3,6 +3,7 @@ import numpy as np
 class Particle:
 
     def __init__(self, ptype, specs):
+
         self.type = ptype
         self.charge = specs['charge']
         self.mass = specs['mass']

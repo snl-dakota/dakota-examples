@@ -1,0 +1,41 @@
+{
+  "simulation" :
+  {
+    "verbose" : true,
+    "time_steps" : 10,
+    "dt" : 0.01,
+    "xmin" : -1.0,
+    "xmax" : 1.0,
+    "num_elems" : 100
+  },
+
+  "particle_types" :
+  {
+    "super_heavy_ion" :
+    {
+      "charge" : 1.0,
+      "mass" : 1.0e20
+    },
+    "fake_e-" :
+    {
+      "charge" : -1.0,
+      "mass" : 1.0
+    }
+  },
+
+  "initial_conditions" :
+  {
+    "particle_1" :
+    {
+      "type" : "fake_e-",
+      "x0" : -0.5,
+      "v0" : 0.0
+    },
+    "particle_2" :
+    {
+      "type" : "super_heavy_ion",
+      "x0" : 0.5,
+      "v0" : 0.0
+    }
+  }
+}
