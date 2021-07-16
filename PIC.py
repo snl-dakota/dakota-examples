@@ -126,6 +126,11 @@ def compute_node_volumes(mesh):
     return charge_scatter(mesh, elem_centers, 1.0, dx*np.ones_like(elem_centers))
 
 
+def charge_density(mesh, pos, part_wt, charge):
+
+    return charge_scatter(mesh, pos, part_wt, charge)/compute_node_volumes(mesh)
+
+
 def read_parameters(filename):
 
     with open(filename) as F:

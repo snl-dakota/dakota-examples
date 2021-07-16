@@ -17,11 +17,11 @@ if __name__ == "__main__":
     xmax       = params['simulation']['xmax']
     N          = params['simulation']['num_elems']
 
-    # print(dt         )
-    # print(time_steps )
-    # print(xmin       )
-    # print(xmax       )
-    # print(N          )
+    print(dt         )
+    print(time_steps )
+    print(xmin       )
+    print(xmax       )
+    print(N          )
 
     # Create the equally spaced 1D mesh
     mesh = np.linspace(xmin, xmax, N+1)
@@ -57,28 +57,27 @@ if __name__ == "__main__":
 
     print("\n\n")
     for p in particles:
-        print(p.type, p.pos, p.vel, p.field)
-        #print(p.pos.shape)
+        print(p.type, p.pos, p.vel, p.field, p.mass, p.charge)
+        print(p.pos.shape)
 
     # Compute initial potential field by:
     #   1) Scattering charge to nodes to 
     rho = np.zeros_like(mesh)
     for p in particles:
-        rho += PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
-    rho /= node_vols
-    # print(rho)
+        rho += PIC.charge_density(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+    print(rho)
     #   2) Solving the linear system
     V = PIC.solvePotentialGS(dx, rho, 200)
-    #print(V)
+    print(V)
 
     # Compute the electric field from the potential
     E = PIC.computeGrad(dx, V, second_order=True)
-    # print(E)
+    print(E)
 
     # Gather the electric field from the mesh to the particles
     for p in particles:
         p.field = PIC.field_gather(mesh, p.pos, E)
-        # print(p.field)
+        print(p.field)
 
     # Rewind initial particle velocities by 0.5 dt based on electric field
     for p in particles:
@@ -88,30 +87,27 @@ if __name__ == "__main__":
     # Do time integration
     # Loop over previous steps
 
-    time_steps = 10   # --- TODO remove this line
-    
     for t in range(time_steps):
         for p in particles:
-            rho += PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
-        rho /= node_vols
+            rho += PIC.charge_density(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
         #print("rho = ", rho)
 
         # Solve the linear system
         V = PIC.solvePotentialGS(dx, rho, 200)
-        # print("V = ", V)
+        #print("V = ", V)
 
         # Compute the electric field from the potential
         E = PIC.computeGrad(dx, V, second_order=True)
-        # print(E)
+        #print("E = ", E)
 
         # Gather the electric field from the mesh to the particles
         for p in particles:
             p.field = PIC.field_gather(mesh, p.pos, E)
-            #print(p.field)
+           # print("Field = ", p.field)
 
-        # --- TODO Fix-me
         # Update position and velocity
         for p in particles:
-            acc = 1   #p.charge*p.field/p.mass  --- TODO Fix-me
+            # acc = 1                        # --- Temporary acceleration value
+            acc = p.charge*p.field/p.mass    
             p.pos, p.vel = PIC.update_pos_and_vel(p.pos, p.vel, dt, acc)
-            print(p.pos)
+            #print(p.pos)
