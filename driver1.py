@@ -16,12 +16,14 @@ if __name__ == "__main__":
     xmin       = params['simulation']['xmin']
     xmax       = params['simulation']['xmax']
     N          = params['simulation']['num_elems']
+    GS_iters   = params['simulation']['GS_iters']
 
     print(dt         )
     print(time_steps )
     print(xmin       )
     print(xmax       )
     print(N          )
+    print(GS_iters   )
 
     # Create the equally spaced 1D mesh
     mesh = np.linspace(xmin, xmax, N+1)
@@ -64,10 +66,11 @@ if __name__ == "__main__":
     #   1) Scattering charge to nodes to 
     rho = np.zeros_like(mesh)
     for p in particles:
-        rho += PIC.charge_density(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+        rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+    rho /= node_vols
     print(rho)
     #   2) Solving the linear system
-    V = PIC.solvePotentialGS(dx, rho, 200)
+    V = PIC.solvePotentialGS(dx, rho, GS_iters)
     print(V)
 
     # Compute the electric field from the potential
@@ -88,12 +91,14 @@ if __name__ == "__main__":
     # Loop over previous steps
 
     for t in range(time_steps):
+        rho = np.zeros_like(mesh)
         for p in particles:
-            rho += PIC.charge_density(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+            rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+        rho /= node_vols
         #print("rho = ", rho)
 
         # Solve the linear system
-        V = PIC.solvePotentialGS(dx, rho, 200)
+        V = PIC.solvePotentialGS(dx, rho, GS_iters)
         #print("V = ", V)
 
         # Compute the electric field from the potential
@@ -110,4 +115,8 @@ if __name__ == "__main__":
             # acc = 1                        # --- Temporary acceleration value
             acc = p.charge*p.field/p.mass    
             p.pos, p.vel = PIC.update_pos_and_vel(p.pos, p.vel, dt, acc)
-            #print(p.pos)
+            if p.charge < 0:
+                print(t*dt, p.pos[0], p.vel[0])
+
+
+

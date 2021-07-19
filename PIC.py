@@ -27,7 +27,8 @@ def solvePotentialGS(dx, rho, max_it) :
         # Gauss Seidel method, V[i-1]-2*V[i]+V[i+1] = -dx^2*rho[i]/eps_0*/
         for i in range(1,ni-1) :
             g = 0.5*(V[i-1] + V[i+1] + dx2*rho[i]/EPS_0)
-            V[i] = V[i] + SOR_W*(g-V[i]) # SOR
+            deltaV = SOR_W*(g-V[i]) # SOR
+            V[i] = V[i] + deltaV
 
     return V;	
 
