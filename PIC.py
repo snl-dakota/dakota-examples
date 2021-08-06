@@ -3,15 +3,46 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.linalg import solve_banded
 
 from particle import Particle
 
-#EPS_0 = 8.85418782e-12   # C/V/m, vac. permittivity
-EPS_0 = 1.0
+
+# solves potential using scipy's banded linear solver
+def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
+    # This is based on:
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve_banded.html#scipy.linalg.solve_banded
+
+    # precompute dx*dx
+    dx2 = dx*dx
+
+    # number of mesh nodes
+    ni = rho.shape[0]
+
+    # Form the matrix - does not change so that we might want to do it once and reuse
+    ab = np.zeros((3,len(rho)))
+    # ... and the right-hand-side - does change over time
+    b  = np.zeros(len(rho))
+    for i in range(1,ni-1) :
+        ab[2][i-1] = 1.0
+        ab[1][i  ] = -2.0
+        ab[0][i+1] = 1.0
+        b[i]      = -dx2*rho[i]/eps0
+
+    # For Dirichlet BCs
+    ab[1][0]    = 1.0
+    ab[1][ni-1] = 1.0
+    b[0]        = 0.0
+    b[ni-1]     = 0.0
+
+    # Do the solve
+    V = solve_banded((1, 1), ab, b)
+
+    return V;	
 
 
 # solves potential using Gauss-Seidel iterations with successive overrelaxation (SOR)
-def solvePotentialGS(dx, rho, max_it) :
+def solvePotentialGS(dx, rho, max_it, eps0=8.854187817e-12) :
 
     dx2 = dx*dx       # precompute dx*dx
     SOR_W = 1.4;
@@ -24,9 +55,9 @@ def solvePotentialGS(dx, rho, max_it) :
         V[0] = 0.0      # dirichlet boundary on left,  V = 0
         V[ni-1] = 0.0   # dirichlet boundary on right, V = 0
 		
-        # Gauss Seidel method, V[i-1]-2*V[i]+V[i+1] = -dx^2*rho[i]/eps_0*/
+        # Gauss Seidel method, V[i-1]-2*V[i]+V[i+1] = -dx^2*rho[i]/eps0*/
         for i in range(1,ni-1) :
-            g = 0.5*(V[i-1] + V[i+1] + dx2*rho[i]/EPS_0)
+            g = 0.5*(V[i-1] + V[i+1] + dx2*rho[i]/eps0)
             deltaV = SOR_W*(g-V[i]) # SOR
             V[i] = V[i] + deltaV
 
@@ -70,7 +101,7 @@ def get_elem_id(mesh, pos):
     return np.floor((pos-mesh[0])/dx).astype(int)
 
 
-def charge_scatter(mesh, pos, part_wt, charge):
+def charge_scatter(mesh, pos, part_wt, charge, verbose=False):
 
     #Distributes charge in 1d
 
@@ -98,6 +129,10 @@ def charge_scatter(mesh, pos, part_wt, charge):
             
         rho[elem_id]   += charge[i]*part_wt*wt_left 
         rho[elem_id+1] += charge[i]*part_wt*wt_right 
+        if verbose:
+            print(pos, charge)
+    if verbose:
+        print(rho)
     return rho
 
 

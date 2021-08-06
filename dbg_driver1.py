@@ -17,13 +17,16 @@ if __name__ == "__main__":
     xmax       = params['simulation']['xmax']
     N          = params['simulation']['num_elems']
     GS_iters   = params['simulation']['GS_iters']
+    verbose    = params['simulation']['verbose']
 
-    print(dt         )
-    print(time_steps )
-    print(xmin       )
-    print(xmax       )
-    print(N          )
-    print(GS_iters   )
+
+    if verbose:
+        print(dt         )
+        print(time_steps )
+        print(xmin       )
+        print(xmax       )
+        print(N          )
+        print(GS_iters   )
 
     # Create the equally spaced 1D mesh
     mesh = np.linspace(xmin, xmax, N+1)
@@ -57,31 +60,35 @@ if __name__ == "__main__":
         particle.field = np.zeros(len(pos_list[p]))
 
 
-    print("\n\n")
-    for p in particles:
-        print(p.type, p.pos, p.vel, p.field, p.mass, p.charge)
-        print(p.pos.shape)
+    if verbose:
+        print("\n\n")
+        for p in particles:
+            print(p.type, p.pos, p.vel, p.field, p.mass, p.charge)
+            print(p.pos.shape)
 
     # Compute initial potential field by:
     #   1) Scattering charge to nodes to 
     #### ---- Set a constant source term - RWH
-    rho = -1.0*np.ones_like(mesh)
-    #for p in particles:
-    #    rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
-    #rho /= node_vols
-    print(rho)
+    rho = -0.0*np.ones_like(mesh)
+    for p in particles:
+        rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+    rho /= node_vols
+    #print(rho)
     #   2) Solving the linear system
-    V = PIC.solvePotentialGS(dx, rho, GS_iters)
-    print(V)
+    V = PIC.solveBanded(dx, rho)
+    #print(V)
+    with open("python_V.dat", 'w') as F:
+        for i in range(len(V)):
+            F.write("{0:25.14e}{1:25.14}\n".format(mesh[i], V[i]))
 
     # Compute the electric field from the potential
     E = PIC.computeGrad(dx, V, second_order=True)
-    print(E)
+    #print(E)
 
     # Gather the electric field from the mesh to the particles
     for p in particles:
         p.field = PIC.field_gather(mesh, p.pos, E)
-        print(p.field)
+        #print(p.field)
 
     # Rewind initial particle velocities by 0.5 dt based on electric field
     for p in particles:
@@ -91,17 +98,21 @@ if __name__ == "__main__":
     # Do time integration
     # Loop over previous steps
 
+    time, pos, vel = np.zeros(time_steps+1), np.zeros(time_steps+1), np.zeros(time_steps+1)
+    pos[0] = -0.5
+    vel[0] =  0.0
     for t in range(time_steps):
+        rho = np.zeros_like(mesh)
         #### ---- Disable recalculation of the source term - RWH
-        #for p in particles:
-        #    rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
-        #rho /= node_vols
+        for p in particles:
+            rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
+        rho /= node_vols
         #print("rho = ", rho)
 
         # Solve the linear system
         #### ---- Disable the potential solver because the solution - RWH
         ####      doesn't change when using a constatn source term.
-        #V = PIC.solvePotentialGS(dx, rho, GS_iters)
+        V = PIC.solveBanded(dx, rho)
         #print("V = ", V)
 
         # Compute the electric field from the potential
@@ -120,6 +131,10 @@ if __name__ == "__main__":
             p.pos, p.vel = PIC.update_pos_and_vel(p.pos, p.vel, dt, acc)
             if p.charge < 0:
                 print(t*dt, p.pos[0], p.vel[0])
+                time[t+1] = (t+1)*dt
+                pos[t+1] = p.pos[0]
+                vel[t+1] = p.vel[0]
 
-
-
+    with open("pos_vel_v_time.dat", 'w') as F:
+        for i in range(len(time)):
+            F.write("{0:25.14e}{1:25.14}{2:25.14}\n".format(time[i], pos[i], vel[i]))

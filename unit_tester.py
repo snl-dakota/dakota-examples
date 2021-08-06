@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 
 import PIC # Our evolving ES PIC library we want to test
 
-class TestSolver(unittest.TestCase):
+class TestPICPieces(unittest.TestCase):
 
-    def _test_V_solve(self):
+    def test_V_Bandedsolve(self):
 
         dx = 0.01
         N = int(1/dx)
@@ -16,25 +16,25 @@ class TestSolver(unittest.TestCase):
 
         # Call the numerical solver
         max_iters = 1000
-        V = PIC.solvePotentialGS(dx, rho, max_iters)
+        V = PIC.solveBanded(dx, rho, eps0=1.0)
+        #print(V)
 
         # Compare to the known exact solution
         exact = lambda x : 0.5*x*(1-x)
         phi_e = exact(x)
-        #error_norm = np.linalg.norm((V-phi_e))
+        error_norm = np.linalg.norm((V-phi_e))
         #print("Error norm: "+str(error_norm))
 
-        # Plot the two solutions
-        fig, ax = plt.subplots()
-        ax.plot(x, V, marker='x', label='FD')
-        ax.plot(x, phi_e, label='exact')
-        ax.legend()
-
-        ax.set(xlabel='Pos (x)', ylabel='voltage (V)', title='convergence')
-        #ax.grid()
-
-        fig.savefig("test.png")
-        #plt.show()
+        # Plot the two solutions ... or don't based on hard-coded boolean
+        if False:
+            fig, ax = plt.subplots()
+            ax.plot(x, V, marker='x', label='FD')
+            ax.plot(x, phi_e, label='exact')
+            ax.legend()
+            ax.set(xlabel='Pos (x)', ylabel='voltage (V)', title='convergence')
+            #ax.grid()
+            fig.savefig("test.png")
+            #plt.show()
 
         # Test that the solver produced a solution that agrees with the
         # exact solution to within (default) tolerance
