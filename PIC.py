@@ -3,10 +3,10 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import random as rnd
 from scipy.linalg import solve_banded
 
 from particle import Particle
-
 
 # solves potential using scipy's banded linear solver
 def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
@@ -39,7 +39,6 @@ def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
     V = solve_banded((1, 1), ab, b)
 
     return V;	
-
 
 # solves potential using Gauss-Seidel iterations with successive overrelaxation (SOR)
 def solvePotentialGS(dx, rho, max_it, eps0=8.854187817e-12) :
@@ -105,16 +104,6 @@ def charge_scatter(mesh, pos, part_wt, charge, verbose=False):
 
     #Distributes charge in 1d
 
-    '''
-    sp_wt = pos/dx
-    right = 1-sp_wt
-    left  = sp_wt
-
-    charge_den[get_elem_id(mesh,pos)] = right*charge
-    charge_den[get_elem_id(mesh,pos)+1] = left*charge
-    return sp_wt_right, sp_wt_left
-    '''
-
     n   = mesh.shape[0]
     rho = np.zeros(n)
 
@@ -134,6 +123,7 @@ def charge_scatter(mesh, pos, part_wt, charge, verbose=False):
     if verbose:
         print(rho)
     return rho
+
 
 
 def field_gather(mesh, pos, field):
@@ -162,9 +152,9 @@ def compute_node_volumes(mesh):
     return charge_scatter(mesh, elem_centers, 1.0, dx*np.ones_like(elem_centers))
 
 
-def charge_density(mesh, pos, part_wt, charge):
+def charge_density(mesh, pos, part_wt, charge, node_vols):
 
-    return charge_scatter(mesh, pos, part_wt, charge)/compute_node_volumes(mesh)
+    return charge_scatter(mesh, pos, part_wt, charge)/node_vols
 
 
 def read_parameters(filename):
@@ -187,6 +177,36 @@ def parse_particle_types(params):
 def driver():
     params = read_parameters("test_params.json")
     return
+
+def calc_energy(mesh, V, particle): #pos, vel, mass_e, charge_e):   #, charge_ion):
+    
+    field = field_gather(mesh, particle.pos, V)
+    potentialEnergy = field * particle.charge
+    kineticEnergy   =  particle.mass * particle.vel**2 / 2.0
+
+    totalEnergy = potentialEnergy + kineticEnergy
+
+    return potentialEnergy, kineticEnergy, totalEnergy
+
+def particle_loader(xleft, xright, num_den, num_sim, mass, Temp, K_B = 1.380649e-23):
+    
+    box_vol  = float((xright - xleft))
+    num_real = num_den * box_vol
+    mpw      = num_real/num_sim
+    vel_seed = np.sqrt(2*K_B*Temp / mass)
+
+    particles = np.zeros((num_sim, 3))
+
+    # sample position and velocity
+    for i in range(num_sim):
+        pos = rnd.uniform(xleft, xright)
+        vel = rnd.normal(vel_seed) 
+
+        particles[i][0] = pos
+        particles[i][1] = vel
+        particles[i][2] = mpw
+    
+    return particles
 
 
 if __name__=='__main__':
