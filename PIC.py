@@ -3,7 +3,6 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-import random as rnd
 from scipy.linalg import solve_banded
 
 from particle import Particle
@@ -196,25 +195,19 @@ def calc_energy(mesh, V, particle): #pos, vel, mass_e, charge_e):   #, charge_io
 
     return potentialEnergy, kineticEnergy, totalEnergy
 
-def particle_loader(xleft, xright, num_den, num_sim, mass, Temp, K_B = 1.380649e-23):
+
+def particle_loader(xleft, xright, num_den, particle, Temp, K_B = 1.380649e-23):
     
     box_vol  = float((xright - xleft))
     num_real = num_den * box_vol
-    mpw      = num_real/num_sim
-    vel_seed = np.sqrt(2*K_B*Temp / mass)
+    num_sim  = round(num_real/particle.weight)
+    sigma = np.sqrt(K_B*Temp / particle.mass)
 
-    particles = np.zeros((num_sim, 3))
+    # sample position (uniform) and velocity (Maxwellian)
+    particle.pos = np.random.uniform(xleft, xright, num_sim)
+    particle.vel = sigma*np.random.standard_normal(num_sim)
 
-    # sample position and velocity
-    for i in range(num_sim):
-        pos = rnd.uniform(xleft, xright)
-        vel = rnd.normal(vel_seed) 
-
-        particles[i][0] = pos
-        particles[i][1] = vel
-        particles[i][2] = mpw
-    
-    return particles
+    return
 
 
 if __name__=='__main__':

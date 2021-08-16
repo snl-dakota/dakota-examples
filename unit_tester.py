@@ -190,6 +190,34 @@ class TestPICPieces(unittest.TestCase):
         self.assertEqual(super_heavy_ion.charge, 1.0)
 
 
+    def test_load_particles(self):
+
+        # Create a particle instance
+        test_particle = PIC.Particle("e-", { 'charge': -1.0, 'mass': 9.109548628456E-31 })
+        test_particle.weight = 1.e10 # assign a representative computational particle weight
+
+        PIC.particle_loader(-0.1, 0.1, 1.e18, test_particle, Temp=800.0, K_B = 1.380649e-23)
+
+        if False:
+            # Do some pplots to see how the pos and vel distributions look
+            n, bins, patches = plt.hist(test_particle.pos, 50, density=True) #, facecolor='g', alpha=0.75)
+            plt.xlabel('pos')
+            plt.ylabel('Probability')
+            plt.title('Histogram')
+            plt.show()
+
+            n, bins, patches = plt.hist(test_particle.vel, 50, density=True) #, facecolor='g', alpha=0.75)
+            plt.xlabel('vel')
+            plt.ylabel('Probability')
+            plt.title('Histogram')
+            plt.show()
+
+            print(test_particle.pos.shape)
+            print(np.mean(test_particle.pos))
+            print(np.mean(test_particle.vel))
+            print((np.dot(test_particle.vel, test_particle.vel)*test_particle.mass*test_particle.weight/(1.380649e-23*1.e18)))
+
+
 
 if __name__=='__main__':
     unittest.main()
