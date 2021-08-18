@@ -9,7 +9,7 @@ from scipy.linalg import solve_banded
 from particle import Particle
 
 # solves potential using scipy's banded linear solver
-def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
+def solveBanded(dx, rho, bc = "dirichlet", left_side = 0.0, right_side = 0.0, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
     # This is based on:
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve_banded.html#scipy.linalg.solve_banded
 
@@ -30,10 +30,18 @@ def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
         b[i]      = -dx2*rho[i]/eps0
 
     # For Dirichlet BCs
-    ab[1][0]    = 1.0
-    ab[1][ni-1] = 1.0
-    b[0]        = 0.0
-    b[ni-1]     = 0.0
+    if (bc == "dirichlet"):
+        ab[1][0]    = 1.0
+        ab[1][ni-1] = 1.0
+        b[0]        = left_side
+        b[ni-1]     = right_side
+
+    # For Neumann BCs
+    elif (bc == "neumann"):
+        ab[1][0]    = 1.0
+        ab[1][ni-1] = 1.0
+        b[0]        = (left_side*dx - 2*b[1] + b[2]/2.0) / (-3.0/2.0)
+        b[ni-1]     = (right_side*dx + 3.0/2.0*b[ni-3] - 2*b[ni-2]) / (-1.0/2.0)
 
     # Do the solve
     V = solve_banded((1, 1), ab, b)
@@ -41,7 +49,7 @@ def solveBanded(dx, rho, eps0=8.854187817e-12) : # C/V/m, vac. permittivity
     return V;	
 
 # solves potential using Gauss-Seidel iterations with successive overrelaxation (SOR)
-def solvePotentialGS(dx, rho, max_it, eps0=8.854187817e-12) :
+def solvePotentialGS(dx, rho, max_it, bc = "Dirichlet", left_side = 0.0, right_side = 0.0, eps0=8.854187817e-12) :
 
     dx2 = dx*dx       # precompute dx*dx
     SOR_W = 1.4;
@@ -50,16 +58,16 @@ def solvePotentialGS(dx, rho, max_it, eps0=8.854187817e-12) :
     #print("The size of the numpy array is: "+str(ni))
 
     # solve potential
-    for solver_it in range(max_it) :
-        V[0] = 0.0      # dirichlet boundary on left,  V = 0
-        V[ni-1] = 0.0   # dirichlet boundary on right, V = 0
-		
-        # Gauss Seidel method, V[i-1]-2*V[i]+V[i+1] = -dx^2*rho[i]/eps0*/
-        for i in range(1,ni-1) :
-            g = 0.5*(V[i-1] + V[i+1] + dx2*rho[i]/eps0)
-            deltaV = SOR_W*(g-V[i]) # SOR
-            V[i] = V[i] + deltaV
-
+    if (bc == "Dirichlet" or bc == "dirichlet"):
+        for solver_it in range(max_it) :
+            V[0] = 0.0      # dirichlet boundary on left,  V = 0
+            V[ni-1] = 0.0   # dirichlet boundary on right, V = 0
+	    	
+            # Gauss Seidel method, V[i-1]-2*V[i]+V[i+1] = -dx^2*rho[i]/eps0*/
+            for i in range(1,ni-1) :
+                g = 0.5*(V[i-1] + V[i+1] + dx2*rho[i]/eps0)
+                deltaV = SOR_W*(g-V[i]) # SOR
+                V[i] = V[i] + deltaV
     return V;	
 
 
