@@ -205,7 +205,9 @@ def particle_loader(xleft, xright, num_den, particle, Temp, K_B = 1.380649e-23):
 
     # sample position (uniform) and velocity (Maxwellian)
     particle.pos = np.random.uniform(xleft, xright, num_sim)
-    particle.vel = sigma*np.random.standard_normal(num_sim)
+    particle.velx = sigma*np.random.standard_normal(num_sim)
+    particle.vely = sigma*np.random.standard_normal(num_sim)
+    particle.velz = sigma*np.random.standard_normal(num_sim)
 
     return
 

@@ -196,26 +196,44 @@ class TestPICPieces(unittest.TestCase):
         test_particle = PIC.Particle("e-", { 'charge': -1.0, 'mass': 9.109548628456E-31 })
         test_particle.weight = 1.e10 # assign a representative computational particle weight
 
-        PIC.particle_loader(-0.1, 0.1, 1.e18, test_particle, Temp=800.0, K_B = 1.380649e-23)
+        T_spec = 800.0
 
+        # This produces a lot of computational particles, eg ~20 million and so is an indicator of performance
+        PIC.particle_loader(-0.1, 0.1, 1.e18, test_particle, Temp=T_spec, K_B = 1.380649e-23)
+
+        # Compute the temperature and compare to what we wanted
+        avg_velx = np.mean(test_particle.velx)
+        avg_vely = np.mean(test_particle.vely)
+        avg_velz = np.mean(test_particle.velz)
+        avg_T = test_particle.mass*(  np.dot((avg_velx-test_particle.velx), (avg_velx-test_particle.velx))
+                                    + np.dot((avg_vely-test_particle.vely), (avg_vely-test_particle.vely))
+                                    + np.dot((avg_velz-test_particle.velz), (avg_velz-test_particle.velz)) )
+        avg_T = avg_T/(3.0*1.380649e-23*test_particle.pos.shape[0])
+        #print("avg_T: "+str(avg_T))
+        self.assertTrue(np.isclose(avg_T, T_spec, rtol=1.0e-3))
+
+
+        # Optionally plot the distributions
         if False:
-            # Do some pplots to see how the pos and vel distributions look
             n, bins, patches = plt.hist(test_particle.pos, 50, density=True) #, facecolor='g', alpha=0.75)
             plt.xlabel('pos')
             plt.ylabel('Probability')
             plt.title('Histogram')
             plt.show()
 
-            n, bins, patches = plt.hist(test_particle.vel, 50, density=True) #, facecolor='g', alpha=0.75)
+            n, bins, patches = plt.hist(test_particle.velx, 50, density=True) #, facecolor='g', alpha=0.75)
             plt.xlabel('vel')
             plt.ylabel('Probability')
             plt.title('Histogram')
             plt.show()
 
-            print(test_particle.pos.shape)
-            print(np.mean(test_particle.pos))
-            print(np.mean(test_particle.vel))
-            print((np.dot(test_particle.vel, test_particle.vel)*test_particle.mass*test_particle.weight/(1.380649e-23*1.e18)))
+            print("computational partilces: ",test_particle.pos.shape)
+            print("Pos  (min, mean, max): ",np.min(test_particle.pos), np.mean(test_particle.pos), np.max(test_particle.pos))
+            print("Velx (min, mean, max): ",np.min(test_particle.velx), np.mean(test_particle.velx), np.max(test_particle.velx))
+            print("Vely (min, mean, max): ",np.min(test_particle.vely), np.mean(test_particle.vely), np.max(test_particle.vely))
+            print("Velz (min, mean, max): ",np.min(test_particle.velz), np.mean(test_particle.velz), np.max(test_particle.velz))
+
+
 
 
 

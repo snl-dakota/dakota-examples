@@ -55,15 +55,17 @@ if __name__ == "__main__":
 
     for p in pos_list:
         particle = [_ for _ in particles if _.type == p][0]
-        particle.pos = np.array(pos_list[p])
-        particle.vel = np.array(vel_list[p])
+        particle.pos   = np.array(pos_list[p])
+        particle.velx  = np.array(vel_list[p])
+        particle.vely  = np.zeros(len(pos_list[p]))
+        particle.velz  = np.zeros(len(pos_list[p]))
         particle.field = np.zeros(len(pos_list[p]))
 
 
     if verbose:
         print("\n\n")
         for p in particles:
-            print(p.type, p.pos, p.vel, p.field, p.mass, p.charge)
+            print(p.type, p.pos, p.velx, p.field, p.mass, p.charge)
             print(p.pos.shape)
 
     # Compute initial potential field by:
@@ -92,15 +94,15 @@ if __name__ == "__main__":
 
     # Rewind initial particle velocities by 0.5 dt based on electric field
     for p in particles:
-        p.vel += -0.5 * p.charge*p.field/p.mass*dt
-        print(p.vel)
+        p.velx += -0.5 * p.charge*p.field/p.mass*dt
+        print(p.velx)
 
     # Do time integration
     # Loop over previous steps
 
-    time, pos, vel = np.zeros(time_steps+1), np.zeros(time_steps+1), np.zeros(time_steps+1)
+    time, pos, velx = np.zeros(time_steps+1), np.zeros(time_steps+1), np.zeros(time_steps+1)
     pos[0] = -0.5
-    vel[0] =  0.0
+    velx[0] =  0.0
     for t in range(time_steps):
         rho = np.zeros_like(mesh)
         #### ---- Disable recalculation of the source term - RWH
@@ -128,13 +130,13 @@ if __name__ == "__main__":
         for p in particles:
             # acc = 1                        # --- Temporary acceleration value
             acc = p.charge*p.field/p.mass    
-            p.pos, p.vel = PIC.update_pos_and_vel(p.pos, p.vel, dt, acc)
+            p.pos, p.velx = PIC.update_pos_and_vel(p.pos, p.velx, dt, acc)
             if p.charge < 0:
-                print(t*dt, p.pos[0], p.vel[0])
+                print(t*dt, p.pos[0], p.velx[0])
                 time[t+1] = (t+1)*dt
                 pos[t+1] = p.pos[0]
-                vel[t+1] = p.vel[0]
+                velx[t+1] = p.velx[0]
 
     with open("pos_vel_v_time.dat", 'w') as F:
         for i in range(len(time)):
-            F.write("{0:25.14e}{1:25.14}{2:25.14}\n".format(time[i], pos[i], vel[i]))
+            F.write("{0:25.14e}{1:25.14}{2:25.14}\n".format(time[i], pos[i], velx[i]))
