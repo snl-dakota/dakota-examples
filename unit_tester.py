@@ -193,7 +193,7 @@ class TestPICPieces(unittest.TestCase):
     def test_load_particles(self):
 
         # Create a particle instance
-        test_particle = PIC.Particle("e-", { 'charge': -1.0, 'mass': 9.109548628456E-31 })
+        test_particle = PIC.Particle("e-", { 'charge': -1.0, 'mass': 9.109548628456E-31, 'weight': 1.e6 })
         test_particle.weight = 1.e10 # assign a representative computational particle weight
 
         T_spec = 800.0
@@ -227,7 +227,7 @@ class TestPICPieces(unittest.TestCase):
             plt.title('Histogram')
             plt.show()
 
-            print("computational partilces: ",test_particle.pos.shape)
+            print("computational particles: ",test_particle.pos.shape)
             print("Pos  (min, mean, max): ",np.min(test_particle.pos), np.mean(test_particle.pos), np.max(test_particle.pos))
             print("Velx (min, mean, max): ",np.min(test_particle.velx), np.mean(test_particle.velx), np.max(test_particle.velx))
             print("Vely (min, mean, max): ",np.min(test_particle.vely), np.mean(test_particle.vely), np.max(test_particle.vely))

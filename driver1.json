@@ -15,12 +15,14 @@
     "super_heavy_ion" :
     {
       "charge" : 1.0,
-      "mass" : 1.0e20
+      "mass" : 1.0e20,
+      "weight" : 1.0
     },
     "fake_e-" :
     {
       "charge" : -1.0,
-      "mass" : 1.0
+      "mass" : 1.0,
+      "weight" : 1.0
     }
   },
 

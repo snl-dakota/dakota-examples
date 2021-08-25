@@ -7,7 +7,7 @@ class Particle:
         self.type = ptype
         self.charge = specs['charge']
         self.mass = specs['mass']
-        self.weight = 1.0
+        self.weight = specs['weight']
         self.pos = np.empty(0)
         self.velx = np.empty(0)
         self.vely = np.empty(0)
