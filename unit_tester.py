@@ -12,10 +12,9 @@ class TestPICPieces(unittest.TestCase):
         dx = 0.01
         N = int(1/dx)
         x = np.linspace(0.0, 1.0, N+1)
-        rho = x*0.0 + 1.0
+        rho = np.ones_like(x)
 
         # Call the numerical solver
-        max_iters = 1000
         V = PIC.solveBanded(dx, rho, eps0=1.0)
         #print(V)
 
@@ -35,6 +34,28 @@ class TestPICPieces(unittest.TestCase):
             #ax.grid()
             fig.savefig("test.png")
             #plt.show()
+
+        # Test that the solver produced a solution that agrees with the
+        # exact solution to within (default) tolerance
+
+        self.assertTrue(np.allclose(V, phi_e))
+
+
+    def test_V_Bandedsolve_Dirichlet(self):
+
+        dx = 0.01
+        N = int(1/dx)
+        x = np.linspace(0.0, 1.0, N+1)
+        rho = 10.0*np.ones_like(x)
+
+        # Call the numerical solver
+        V = PIC.solveBanded(dx, rho, bc="dirichlet", left_side=1.0, right_side=5.0, eps0=1.0)
+
+        # Compare to the known exact solution
+        exact = lambda x : -5.0*x*x+9.0*x+1.0
+        phi_e = exact(x)
+        error_norm = np.linalg.norm((V-phi_e))
+        #print("Error norm: "+str(error_norm))
 
         # Test that the solver produced a solution that agrees with the
         # exact solution to within (default) tolerance
