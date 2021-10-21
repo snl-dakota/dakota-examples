@@ -196,21 +196,26 @@ dakota_example_test(
 
 if(DAKOTA_PYTHON AND Python_EXECUTABLE)
   
-  dakota_example_test(
-    PATH official/surrogates/library
-    COMMAND ${Python_EXECUTABLE} -B test_notebook.py
-  )
+  if(DAKOTA_PYTHON_SURROGATES)
+    dakota_example_test(
+      PATH official/surrogates/library
+      COMMAND ${Python_EXECUTABLE} -B test_notebook.py
+      )
+  endif()
 
+  # Could this be factored out of the Python conditional and tests re-ordered?
   dakota_example_test(
     PATH official/surrogates/library
     RUN dakota_morris_gp_study.in
   )
 
-  dakota_example_test(
-    PATH official/surrogates/library
-    COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
-    DEPENDS ${_last_test_added}
-  )
+  if(DAKOTA_PYTHON_SURROGATES)
+    dakota_example_test(
+      PATH official/surrogates/library
+      COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
+      DEPENDS ${_last_test_added}
+      )
+  endif()
 endif()
 
 # ML/MF examples

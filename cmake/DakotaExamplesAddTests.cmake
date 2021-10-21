@@ -42,11 +42,14 @@ function(apply_test_properties _test_name _depends_on)
     "PATH=${DAKOTA_DPREPRO_PATH}:${DAKOTA_TEST_DRIVERS_PATH}:$ENV{PATH}")
   set(_env_python_path "PYTHONPATH=${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
 
-  # Can only do generator expressions in certain commands
-  # This will be fragile if Dakota is built without Python surrogates
-  set_tests_properties(${_test_name} PROPERTIES
-    ENVIRONMENT "${_env_path};PYTHONPATH=$<TARGET_FILE_DIR:surrogates>:${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
-#    ENVIRONMENT "${_env_path};${_env_python_path}")
+  # Can only have generator expressions in certain commands:
+  if(TARGET surrogates)
+    set_tests_properties(${_test_name} PROPERTIES
+      ENVIRONMENT "${_env_path};PYTHONPATH=$<TARGET_FILE_DIR:surrogates>:${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
+  else()
+    set_tests_properties(${_test_name} PROPERTIES
+      ENVIRONMENT "${_env_path};${_env_python_path}")
+  endif()
 endfunction()
 
 
