@@ -10,8 +10,7 @@ After running a Dakota LHS study and producing an HDF5 dataset file, many useful
 
 # Contents
 
-- `BarChart.iwf` - a workflow file that extracts data from increm_lhs.h5 and creates a set of bar charts.
-- `BarChart.plot` - a previously-generated plot file.  This plot is viewable in Dakota GUI.
+- `BarChart.plot` - a previously-generated Chartreuse plot file.  This plot is viewable in Dakota GUI.
 - `increm_lhs.h5` - The original HDF5 database file that contains the results of the Dakota study.
 
 # How to run the example
