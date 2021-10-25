@@ -23,7 +23,7 @@ After running a Dakota LHS study and producing an HDF5 dataset file, many useful
 
 - Open Dakota GUI.
 - Import this example into your workspace.
-- Right-click the dataset.h5 file, and choose `Chartreuse > New plot trace from this file.`
+- Right-click the basic_lhs.h5 file, and choose `Chartreuse > New plot trace from this file.`
 - Click on the "Get Data" button (the folder-and-file icon) to choose an HDF5 dataset to plot.
 - In the "Select Plot Data" dialog that opens, select "PARTIAL\_CORRELATIONS" from the "HDF Target Object" dropdown.  You should see the dialog locate the partial\_correlations dataset within the HDF5 hierarchy on the right side of the dialog.
 
@@ -31,7 +31,7 @@ After running a Dakota LHS study and producing an HDF5 dataset file, many useful
 
 - Click OK to close the dialog.
 - Choose "Bar Chart" from the "Plot Type" dropdown menu.
-- Choose "response_fn_1 [Response]" in the "Data" dropdown menu.
+- Choose "response\_fn\_1 [Response]" in the "Data" dropdown menu.
 - Choose "Vertical" in the "Orientation" dropdown menu.
 - You may optionally specify a color for the bar chart, which is recommended since black is the default color.
 - When you're finished, click OK.
