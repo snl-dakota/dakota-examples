@@ -1,0 +1,32 @@
+
+environment
+    tabular_data
+    results_output
+      results_output_file "dakota_cantilever_examples.s1"
+      hdf5
+
+method
+  centered_parameter_study
+    step_vector 0.1 0.1
+    steps_per_variable 2
+
+model
+  single
+
+variables
+  continuous_design = 2
+    initial_point  2.5     2.5
+    descriptors    'w'     't'
+  continuous_state = 4
+    initial_state  40000. 29.E+6 500. 1000.
+    descriptors    'R'    'E'    'X'  'Y'
+
+interface
+  direct
+    analysis_driver = 'mod_cantilever'
+
+responses
+  objective_functions = 3
+  descriptors = 'area' 'stress' 'displacement'
+  no_gradients
+  no_hessians
