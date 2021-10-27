@@ -4,7 +4,6 @@ fort.*
 
 # Generated output
 *.out
-*.log
 
 # Potential python cruft
 __pycache__/
