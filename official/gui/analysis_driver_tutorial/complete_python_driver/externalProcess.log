@@ -1,0 +1,89 @@
+
+     _____                 ___          _   __      __  _                   __
+    / ___/____ _____  ____/ (_)___ _   / | / /___ _/ /_(_)___  ____  ____ _/ /
+    \__ \/ __ `/ __ \/ __  / / __ `/  /  |/ / __ `/ __/ / __ \/ __ \/ __ `/ / 
+   ___/ / /_/ / / / / /_/ / / /_/ /  / /|  / /_/ / /_/ / /_/ / / / / /_/ / /  
+  /____/\__,_/_/ /_/\__,_/_/\__,_/  /_/ |_/\__,_/\__/_/\____/_/ /_/\__,_/_/   
+                                                                              
+           __          __                     __             _          
+          / /   ____ _/ /_  ____  _________ _/ /_____  _____(_)__  _____
+         / /   / __ `/ __ \/ __ \/ ___/ __ `/ __/ __ \/ ___/ / _ \/ ___/
+        / /___/ /_/ / /_/ / /_/ / /  / /_/ / /_/ /_/ / /  / /  __(__  ) 
+       /_____/\__,_/_.___/\____/_/   \__,_/\__/\____/_/  /_/\___/____/
+-------------------------------------------------------------------------------- 
+                      
+                      Cantilever Physics, Release 12.1.4
+                             All Rights Reserved
+       This software released WITHOUT WARRANTY. User assumes ALL RISKS!
+
+--------------------------------------------------------------------------------
+Time at invocation: 2021-10-27 13:22:31.101709
+Attempting to read input file................................................
+OK
+Echo user input file C:\Users\emridgw\dakota_gui_workspace\CantileverBeam_NGW\DakotaDriver\dprepro\outFile.out 
+--------------------------------------------------------------------------------
+  1: # cantilever.i
+
+  2: # One parameter per line. Whitespace otherwise ignored.
+
+  3: # Comments start with # and continue to the end of the line
+
+  4: # All parameters below are required
+
+  5: 
+
+  6: width = 10            # beam width (horizontal dimension), inches
+
+  7: thickness = 10        # beam thickness (vertical dimension), inches
+
+  8: length = 100          # beam length, inches
+
+  9: youngs_modulus = 29000000  # lb/in^2
+
+ 10: horizontal_load = 100    # lb
+
+ 11: 
+
+ 12: vertical_load = 100     # lb
+
+ 13: density = 500          # density, lb/ft^3
+
+--------------------------------------------------------------------------------
+Parsing input file, checking for errors......................................
+OK
+Confirming feasability of inputs.............................................
+OK
+Initializing simulation...................................................... OK
+Reticulating splines......................................................... OK
+Sequencing particles......................................................... OK
+Splatting transforms......................................................... OK
+Beginning simulation............................................................
+................................................................................
+.................Running........................................................
+..............................................Running...........................
+...............................Patience.........................................
+.......................................................Almost there.............
+.........Almost there..................................................... DONE!
+                          ____                  ____      
+                         / __ \___  _______  __/ / /______
+                        / /_/ / _ \/ ___/ / / / / __/ ___/
+                       / _, _/  __(__  ) /_/ / / /_(__  ) 
+                      /_/ |_|\___/____/\__,_/_/\__/____/ 
+--------------------------------------------------------------------------------
+Output Section: MASS
+Based on user inputs, estimated cantilever beam mass is:
+                2.89351852e+03 (lb)
+--------------------------------------------------------------------------------
+Output Section: STRESS
+Based on user inputs, estimated cantilever beam stress is:
+                1.20000000e+02 (lb/in^2)
+--------------------------------------------------------------------------------
+Output Section: DISPLACEMENT
+Based on user inputs, estimated cantilever beam displacement is:
+                1.95063940e-03 (in)
+--------------------------------------------------------------------------------
+END OF RESULTS, Shutdown beginning
+Removing all temporary files................................................. OK
+Deallocating memory.......................................................... OK
+Deleting satellite telemetry................................................. OK
+DONE
