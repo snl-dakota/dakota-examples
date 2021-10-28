@@ -7,7 +7,7 @@ environment,
 
 method,
 	model_pointer = 'HIERARCH'
-        multilevel_sampling				
+      multifidelity_sampling				
 	  pilot_samples = 10 seed_sequence = 1237
 	  max_iterations = 5
 	  convergence_tolerance = 0.01	
@@ -16,8 +16,9 @@ method,
 model,
 	id_model = 'HIERARCH'
 	variables_pointer = 'HF_VARS'
-	surrogate hierarchical
-	  ordered_model_fidelities = 'LF' 'HF'
+    surrogate non_hierarchical
+	  unordered_model_fidelities = 'LF' 
+	  truth_model = 'HF' 
 
 model,
 	id_model = 'LF'
