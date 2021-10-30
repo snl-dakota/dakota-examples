@@ -239,4 +239,22 @@ dakota_example_test(
   REGRESS dakota_MLMF.in
 )
 
+dakota_example_test(
+  PATH official/uncertainty_quantification/pce/quadrature
+  REGRESS dakota_pce_quadrature.in
+)
 
+dakota_example_test(
+  PATH official/uncertainty_quantification/pce/sparse_grid
+  REGRESS dakota_pce_sparse_grid.in
+)
+
+dakota_example_test(
+  PATH official/uncertainty_quantification/pce/omp
+  REGRESS dakota_pce_omp.in
+)
+
+dakota_example_test(
+  PATH official/uncertainty_quantification/pce/least_squares
+  REGRESS dakota_pce_least-squares.in
+)
