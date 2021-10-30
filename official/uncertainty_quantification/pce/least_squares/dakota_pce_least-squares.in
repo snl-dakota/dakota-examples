@@ -1,0 +1,33 @@
+# Global Sensitivity directly on a PCE
+
+environment,
+	tabular_data
+		tabular_data_file = 'pce_samples.dat'
+        custom_annotated header
+
+method,
+	polynomial_chaos
+	    expansion_order = 4
+	    collocation_ratio = 5
+	       least_squares
+	    samples_on_emulator = 10000
+     	variance_based_decomp
+	distribution complementary
+	response_levels = -10.00 -5.00 0.00 5.00 10.00 15.00
+
+variables,
+	uniform_uncertain =  3
+	lower_bounds    =    -3.14159 -3.14159 -3.14159
+	upper_bounds    =    +3.14159 +3.14159 +3.14159
+	descriptors     =    'x'      'y'      'z'
+
+interface
+    fork
+    analysis_driver = 'python3 Ishigami.py'
+    asynchronous evaluation_concurrency = 5
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians
