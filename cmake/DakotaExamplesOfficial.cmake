@@ -94,18 +94,20 @@ dakota_example_test(
   RUN dakota_opt_qnewton_constrained.in
   )
 
-dakota_example_test(
-  PATH official/drivers/Python/linked
-  RUN dakota_rosenbrock_python.in
-  )
-# This is a workaround to enforce consistency between the Python used
-# to build Dakota and which one gets used to run the driver script
-# associated with this test.
-get_test_property(${_last_test_added} ENVIRONMENT _linked_python_env)
-set(_env_python_home
-  "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
-set_tests_properties(${_last_test_added} PROPERTIES
-  ENVIRONMENT "${_linked_python_env};${_env_python_home}")
+if(DAKOTA_PYTHON_DIRECT_INTERFACE)
+  dakota_example_test(
+    PATH official/drivers/Python/linked
+    RUN dakota_rosenbrock_python.in
+    )
+  # This is a workaround to enforce consistency between the Python used
+  # to build Dakota and which one gets used to run the driver script
+  # associated with this test.
+  get_test_property(${_last_test_added} ENVIRONMENT _linked_python_env)
+  set(_env_python_home
+    "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
+  set_tests_properties(${_last_test_added} PROPERTIES
+    ENVIRONMENT "${_linked_python_env};${_env_python_home}")
+endif()
 
 # drivers tests
 if (UNIX)
@@ -203,19 +205,22 @@ if(DAKOTA_PYTHON AND Python_EXECUTABLE)
       )
   endif()
 
-  # Could this be factored out of the Python conditional and tests re-ordered?
-  dakota_example_test(
-    PATH official/surrogates/library
-    RUN dakota_morris_gp_study.in
-  )
-
-  if(DAKOTA_PYTHON_SURROGATES)
+  if(DAKOTA_PYTHON_DIRECT_INTERFACE AND DAKOTA_PYTHON_DIRECT_INTERFACE_NUMPY)
+    # Requires Python direct interface with numpy
     dakota_example_test(
       PATH official/surrogates/library
-      COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
-      DEPENDS ${_last_test_added}
-      )
+      RUN dakota_morris_gp_study.in
+    )
+    # Depends on surrogate exported in previous test
+    if(DAKOTA_PYTHON_SURROGATES)
+      dakota_example_test(
+        PATH official/surrogates/library
+        COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
+        DEPENDS ${_last_test_added}
+        )
+    endif()
   endif()
+
 endif()
 
 # ML/MF examples
