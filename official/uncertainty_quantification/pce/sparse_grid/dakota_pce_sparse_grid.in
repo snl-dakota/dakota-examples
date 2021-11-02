@@ -7,6 +7,7 @@ environment,
 
 method,
 	polynomial_chaos
+            seed 27135629
 	    sparse_grid_level = 3
 	    samples_on_emulator = 10000
      	variance_based_decomp

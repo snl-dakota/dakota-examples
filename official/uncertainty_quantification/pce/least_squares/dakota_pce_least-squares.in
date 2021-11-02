@@ -7,6 +7,7 @@ environment,
 
 method,
 	polynomial_chaos
+            seed 27135629
 	    expansion_order = 4
 	    collocation_ratio = 5
 	       least_squares
