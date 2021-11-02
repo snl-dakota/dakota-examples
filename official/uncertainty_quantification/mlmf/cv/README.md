@@ -86,7 +86,7 @@ The main differences of this configuration, with respect to the MC
 configuration presented in [the previous section](/..mc) are:
 
 The `method` section points to the `HIERARCH` model, which specifies
-a hierarchical sequence of models. The `multilevel_sampling` method is
+a hierarchical sequence of models. The `multifidelity_sampling` method is
 selected and configured by specifying the number of pilot samples, the maximum
 number of iterations to reach the convergence tolerance and the
 convergence tolerance. Dakota currently implements a
@@ -97,7 +97,7 @@ detail in the postprocessing section);
 ```
 method,
 	model_pointer = 'HIERARCH'
-        multilevel_sampling				
+      multifidelity_sampling				
 	  pilot_samples = 10 seed_sequence = 1237
 	  max_iterations = 5
 	  convergence_tolerance = 0.01	
@@ -105,13 +105,14 @@ method,
 ```
 
 
-The `HIERARCH` model section specifies the hierarchy of models with two fidelities in this case, *i.e.* HF and LF;
+The `HIERARCH` model section specifies the sequence of models with just two fidelities in this case, *i.e.* HF and LF. The two fidelitites are specified by providing, separately, LF and HF, in which the HF model is clearly identified as `truth_model`
 ```
 model,
 	id_model = 'HIERARCH'
 	variables_pointer = 'HF_VARS'
-	surrogate hierarchical
-	  ordered_model_fidelities = 'LF' 'HF'
+	surrogate_non_hierarchical
+	  unordered_model_fidelities = 'LF' 
+	  truth_model = 'HF'
 ```
 The `HF` and `LF` model sections are consistent with the model specification of a MC simulation with the only difference that the
 `solution_level_cost` needs to be specified to represent the computational cost, *i.e.* $`N_x \times N_{mod}`$;
@@ -157,9 +158,8 @@ variables,
 	    descriptors 'N_x' 'N_mod'
 ```
 
-In summary, once a new `multilevel_sampling` method is specified, the
-configuration of the two models follows the configuration of a MC method
-with a single model.
+In summary, once a new `multifidelity_sampling` method is specified, and the HF model is identified as the `truth_model`, the 
+configuration closely follows the one of a MC method with a single model.
 
 # PostProcessing Phase
 
