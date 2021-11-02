@@ -58,10 +58,15 @@ used for the [control variate](../cv) estimator, with the levels definition of
 the [MLMC](../mlmc) estimator. The resulting input file is `dakota_MLMF.in`.
 
 If we start from the input file of the control variate estimator,
-`dakota_CV.dat`, the only difference is in the
-definition of the model forms, which will need the
+`dakota_CV.dat`, the differences are in the method specification, in which the keyword `multilevel_multifidelity_sampling` is used, 
+and the definition of the model forms, which will need the
 levels/discretizations specification:
 ```
+method,
+	model_pointer = 'HIERARCH'
+    multilevel_multifidelity_sampling
+	(...)
+
 model,
 	id_model = 'LF'
 	variables_pointer = 'LF_VARS'
