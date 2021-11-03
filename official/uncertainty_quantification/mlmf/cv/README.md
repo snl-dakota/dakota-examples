@@ -178,35 +178,26 @@ $`N_{pilot}=10`$ for each model in this case, and, then, few statistics
 are reported:
 
 ```
-CVMC pilot sample: LF = 10 HF = 10
-
 NonD random Samples = 10 Seed (user-specified) = 1237
-Mean square error for QoI 1 reduced from 6.4667099361e+02 (MC) to 6.0815611243e+01 (CV); factor = 9.4044130391e-02
-Average MSE reduction factor since pilot MC = 9.4044130391e-02 targeting convergence tol = 1.0000000000e-02
+Scaling profile for convergenceTol = 1.0000000000e-02: average HF target = 9.4044130391e+01
 ```
 
--   The MC estimator variance is reported
-    $`{\mathbb{V}ar\left[ \hat{Q}^{MC} \right]} = {\mathbb{V}ar\left[ Q \right]} / N_{pilot} = 646.671`$;
+-   The MC estimator variance is not reported if the `output silent` keyword is used, but it could be retrieved by using `output debug` as
+    ```math
+	{\mathbb{V}ar\left[ \hat{Q}^{MC} \right]} = {\mathbb{V}ar\left[ Q \right]} / N_{pilot} = 646.671.
+	```
 
--   The correlation $`\rho=0.92198`$ is used to estimate the oversampling
+-   Similarly, the correlation $`\rho=0.92198`$ (not reported) is used to estimate the oversampling
     ratio $`r = 57.52`$ (not reported) and, from it, the variance
     reduction term is estimated
     ```math
-    \left( 1 - \frac{r-1}{r} \rho^2 \right) = 0.094044,
-    ```
-
-    and it is indicated as the `factor`.
-
--   The multifidelity MC variance that would correspond to the estimated
-    optimal allocation on the LF model only is evaluated as
-    ```math
-    \frac{{\mathbb{V}ar\left[Q\right]}}{N_{pilot}} \left( 1 - \frac{r-1}{r} \rho^2 \right) = 60.816.
+    \left( 1 - \frac{r-1}{r} \rho^2 \right) = 0.094044.
     ```
 
 -   The relative variance reduction requested by the user, `convergence_tolerance`,
     which we can indicate with $`\tau_{target}`$, is compared to the
     variance reduction attained with allocation on the LF model only.
-    Since, in this case, `factor` $`>`$ `convergence_tolerance`, a full allocation
+    Since, in this case, `0.094044` $`>`$ `convergence_tolerance`, a full allocation
     problem needs to be solved, *i.e.*
     ```math
     N = \frac{ {\mathbb{V}ar\left[Q\right]} }{ \left( \frac{{\mathbb{V}ar\left[Q\right]}}{N_{pilot}} \tau_{target}  \right) } \left( 1 - \frac{r-1}{r} \rho^2 \right) = 94.044.
@@ -216,78 +207,81 @@ Average MSE reduction factor since pilot MC = 9.4044130391e-02 targeting converg
     zero, the algorithm continues with both HF and LF simulations.
 
 ```
-CVMC iteration 1 sample increments: LF = 84 HF = 84
+Non-hierarchical sampling iteration 1: shared sample increment = 84
 
 NonD random Samples = 84 Seed not reset from previous LHS execution
-Mean square error for QoI 1 reduced from 1.0491364498e+02 (MC) to 3.2565372602e+00 (CV); factor = 3.1040168902e-02
-Average MSE reduction factor since pilot MC = 5.0358486655e-03 targeting convergence tol = 1.0000000000e-02
+Scaling profile for convergenceTol = 1.0000000000e-02: average HF target = 4.7336977456e+01
 ```
 
-The number of paired HF and LF simulations is reported first. In this
-case, we need a total of $`94`$ HF simulations, but 10 are already
+In this case, we needed a total of $`94`$ HF simulations, but 10 are already
 available from pilot, so only additional 84 samples are evaluated for
 the two models. After an updated evaluation of the correlation $`\rho`$,
-the same statistics described above are evaluated, and, since the
-variance reduction `factor` is now lower than the `convergence_tolerance`, an
-additional iteration is not performed. At this point, the algorithm
-needs to evaluate the full set of LF models corresponding to the
+the same statistics described above are evaluated, and, the number of HF simulations needed to satisfy the 
+convergence tolerance are computed. This number is reported as `average HF target`. This number is now smaller than the available number of HF runs, therefore the iteration for the HF model is terminated.
+
+
+At this point, the algorithm needs to evaluate the full set of LF models corresponding to the
 evaluated statistics. For this case, the updated correlation value is
 $`0.98882`$, which corresponds to an oversampling ratio of $`r = 110.98`$.
-The total number of LF evaluations is $`r N = 110.98 \times 94 = 10432`$.
-The algorithm needs to compute an additional number of $`10432 - 94`$ LF
+
+The total number of LF evaluations needed is evaluated as the product between $r$ and the `average HF target`, which in this case 
+corresponds to a total of 5253 LF runs. Hence, the algorithm needs to compute an additional number of $`5253 - 94`$ LF
 evaluations to complete the estimator evaluation:
 ```
-CVMC LF sample increment = 10338
+MFMC sample increment = 5159 for approximations [1, 1]
 ```
 After all the iterations, Dakota reports the final number
-of evaluations and their equivalent HF cost:
+of evaluations and their equivalent HF cost (with additional statistics for the estimator components)
 ```
 <<<<< Final samples per model form:
       Model Form 1:
-                                 10432
+                                  5253
       Model Form 2:
                                     94
-<<<<< Equivalent number of high fidelity evaluations: 1.3125714286e+02
+<<<<< Equivalent number of high fidelity evaluations: 1.1276071429e+02
+<<<<< Variance for mean estimator:
+      Initial MC (  10 pilot samples):  6.4667099361e+02
+      Final   MC (  94 HF samples):     1.0491364498e+02
+      Final MFMC (sample profile):      4.1677281280e+00
+      Final MFMC ratio (1 - R^2):       3.9725320086e-02
 ```
 
-In this case we have a total of $`10432`$ LF and $`94`$ HF evaluations. The
+In this case we have a total of $`5253`$ LF and $`94`$ HF evaluations. The
 total cost is then
 ```math
-\mathcal{C}_{tot} = 94 \times 4200 + 10432 \times 15 = 551280,
+\mathcal{C}_{tot} = 94 \times 4200 + 5253 \times 15 = 473595,
 ```
 
-which corresponds to a total of $`551280 / 4200 = 131.26`$ HF evaluations.
+which corresponds to a total of $`473595 / 4200 = 112.76`$ HF evaluations.
 
 Similarly to the MC case, the final statistics are reported at the end
 of the output file
 ```
-Statistics based on multilevel sample set:
-
 Sample moment statistics for each response function:
                             Mean           Std Dev          Skewness          Kurtosis
- response_fn_1  4.0855883696e+01  1.0970501200e+02  2.1626578720e+00  6.5023855805e+00
+ response_fn_1  4.1540185792e+01  1.0699164066e+02  2.0255307960e+00  5.7054234756e+00
 ```
 In this case, in order to evaluate the confidence of interval we need to
 manually evaluate the estimator variance from the available data. We
 first compute the variance of the QoI from the reported standard
-deviation: $`109.705^2 = 12035`$. From the QoI variance we can evaluate
+deviation: $`106.99^2 = 11447.21`$. From the QoI variance we can evaluate
 the estimator variance
 ```math
-{\mathbb{V}ar\left[ \hat{Q}^{CV} \right]} = \frac{{\mathbb{V}ar\left[Q\right]}}{94} \left( 1 - \frac{110.98-1}{110.98} 0.98882^2 \right) = 3.9742.
+{\mathbb{V}ar\left[ \hat{Q}^{CV} \right]} = \frac{{\mathbb{V}ar\left[Q\right]}}{94} \left( 1 - \frac{110.98-1}{110.98} 0.98882^2 \right) = 3.7807.
 ```
 
 The 99.7% confidence interval can be defined as
-$`\hat{Q}^{CV} \pm 3 {\mathbb{V}ar^{1/2}\left[ \hat{Q}^{CV} \right]} = \left[ 34.875, 46.837 \right]`$.
+$`\hat{Q}^{CV} \pm 3 {\mathbb{V}ar^{1/2}\left[ \hat{Q}^{CV} \right]} = \left[ 35.707, 47.373 \right]`$.
 From a comparison between the confidence interval of MC and CVMC, it is
 possible to see that CVMC attains a smaller confidence interval than MC
-for a total cost that is approximately 7 times smaller ($`131`$ Vs $`1000`$
+for a total cost that is approximately 9 times smaller ($`113`$ Vs $`1000`$
 HF simulations).
 
 # Further Reading
 
 * Reference Manual entry for the 
-  [multilevel_sampling](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/method-multilevel_sampling.html)
-  method and [hierarchical](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/model-surrogate-hierarchical.html)
+  [multifidelity_sampling](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/method-multifidelity_sampling.html)
+  method and [non_hierarchical](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/model-surrogate-non_hierarchical.html)
   surrogate model.
 * [User's Manual](https://dakota.sandia.gov/content/manuals) discussion of active variable view in section 9.5.
 
