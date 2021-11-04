@@ -18,7 +18,7 @@ model,
 	variables_pointer = 'HF_VARS'
     surrogate non_hierarchical
 	  unordered_model_fidelities = 'LF' 
-	  truth_model = 'HF' 
+	  truth_model_pointer = 'HF' 
 
 model,
 	id_model = 'LF'
