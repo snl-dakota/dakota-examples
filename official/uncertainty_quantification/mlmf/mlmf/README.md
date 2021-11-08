@@ -64,7 +64,7 @@ levels/discretizations specification:
 ```
 method,
 	model_pointer = 'HIERARCH'
-    multilevel_multifidelity_sampling
+	multilevel_multifidelity_sampling
 	(...)
 
 model,
@@ -116,17 +116,18 @@ variables,
 	    descriptors 'N_x' 'N_mod'	
 ```
 
-In the case of the MLMF estimator, Dakota uses the
-relative `convergence_tolerance` as in the case of MLMC, which corresponds 
-to a relative variance reduction computed from the corresponding MLMC variance after the pilot
-sampling. It is important to note that the presence of the low-fidelity
-evaluations is not accounted in the evaluation of the convergence
-criterion for the estimator, which only based on the MLMC for the
-high-fidelity model form.
+In the case of the MLMF estimator, Dakota uses the relative
+`convergence_tolerance` as in the case of MLMC, which targets a
+reduction relative to the initial estimator variance after pilot
+sampling. It is important to note that this initial estimator variance
+reference extracts no benefit from low-fidelity pilot samples, as the
+control variates do not reduce the estimator variance prior to the
+definition of low-fidelity sample increments.  Thus, both MLMC and
+MLMF estimators are controlled relative to the same reference of pilot
+MLMC for the high-fidelity model form.
 
-In order to make the sample allocation problem more interesting, we
-select 20 samples per level and, to maintain the same accuracy level of
-the previous MLMC case, we use 0.002 for `convergence_tolerance`.
+As for the MLMC example, we again select 10 samples per level and employ
+the same relative `convergence_tolerance` of 0.001.
 
 # PostProcessing Phase
 
@@ -134,76 +135,76 @@ The MLMF study can be executed with:\
 `dakota -i dakota_MLMF.in -o dakota_MLMF.out`.
 
 The method starts with the pilot samples for both model fidelities and
-for all levels:
+for all resolution levels:
 
 ```
 Multilevel-multifidelity pilot sample:
-                                    20
-                                    20
+                                    10
+                                    10
 ```
-In this case, by using 20 samples per levels, this first step requires a
-total of 20+40+40+40 model evaluations for each model form, for a total
-of 280 evaluations.
+In this case, by using 10 samples per model fidelity, this first step
+requires a total of 10+20+20+20 evaluations across the four resolution
+levels for each model fidelity, resulting in a total of 140 simulation
+evaluations for the pilot analysis.
 
-After this step, Dakota considers a control variate on
-each level and evaluates the optimal oversampling ratio for the
-low-fidelity model:
+Based on initial estimates from the pilot samples, the multilevel
+adaptation begins and converges after two iterations, with HF sample
+increments for the first two resolution levels on iteration 1, and no
+sample increments for any level on iteration 2:
+```
+MLMF MC iteration 1 HF sample increments:
+                                  1116
+                                     2
+                                     0
+                                     0
+
+(...)
+
+MLMF MC iteration 2 HF sample increments:
+                                     0
+                                     0
+                                     0
+                                     0
+```
+The iteration terminates at this point, as there are no more multilevel
+evaluations to perform and the MLMF estimator can transition to the
+control variate step.  To apply a control variate across low and high
+model fidelities for each resolution level, we apply the optimal
+over-sampling ratio to define sample increments for each resolution of
+the low-fidelity model:
 
 ```
-VMC LF sample increment = 613
+CVMC LF sample increment = 35906
 
-NonD random Samples = 613 Seed not reset from previous LHS execution
+NonD random Samples = 35906 Seed not reset from previous LHS execution
+
+CVMC LF sample increment = 2
+
+NonD random Samples = 2 Seed not reset from previous LHS execution
 
 No CVMC LF sample increment
 
-CVMC LF sample increment = 7
-
-NonD random Samples = 7 Seed not reset from previous LHS execution
-
-CVMC LF sample increment = 7
-
-NonD random Samples = 7 Seed not reset from previous LHS execution
+No CVMC LF sample increment
 ```
+For this case, the algorithm allocates an additional 35906 samples at the
+coarsest level $`\ell=0`$ (where most of the variance resides) and 2
+additional samples for level $`\ell=1`$.
 
-
-In this case, the algorithm allocates a total of 613 samples at the
-coarsest level $`\ell=0`$, 7 for $`\ell=2`$ and 7 for $`\ell=3`$. No samples
-are allocated for the low-fidelity, at this step, on the level $`\ell=1`$
-due to a low estimated correlation.
-
-Once all the additional low-fidelity evaluations are computed, the MLMC
-step is performed. This case only requires a single level sample
-iteration:
-```
-MLCVMC iteration 1 sample increments:
-                                   723
-                                     0
-                                     0
-                                     0
-```
-
-However, a final control variate step is needed to finalize this
-iteration, which requires low-fidelity evaluations only, for a total of 34699
-evaluations:
-```
-CVMC LF sample increment = 34699
-```
-
-Finally, before reporting the final statistics,
-Dakota reports the correlation and the control variate
-data for each level (and for the first four moments). For instance, for
-the first level we observe a correlation of 0.991:
+Before reporting the final statistics, Dakota reports the correlation
+and the control variate parameters for the first four moments for each
+resolution level. For instance, for the first level we observe a low-high
+correlation of 0.992:
 
 ```
-rho_LH (Pearson correlation) for QoI 1 = 9.9119944477e-01
+rho_LH (Pearson correlation) for QoI 1 = 9.9166260889e-01
 Moment 1:
-   QoI 1: control variate beta = 1.0478033791e+00
+   QoI 1: control variate beta = 1.0340940478e+00
 Moment 2:
-   QoI 1: control variate beta = 1.1411411782e+00
+   QoI 1: control variate beta = 1.1092756991e+00
 Moment 3:
-   QoI 1: control variate beta = 1.2180765560e+00
+   QoI 1: control variate beta = 1.1522709872e+00
 Moment 4:
-   QoI 1: control variate beta = 1.3026938129e+00
+   QoI 1: control variate beta = 1.1912355333e+00
 ```
 
 The final sample allocation is reported with the total computational
@@ -213,23 +214,22 @@ simulation:
 ```
 <<<<< Final samples per model form:
       Model Form 1:
-                                 36055
-                                    20
-                                    27
-                                    27
+                                 37032
+                                    14
+                                    10
+                                    10
       Model Form 2:
-                                   743
-                                    20
-                                    20
-                                    20
-<<<<< Equivalent number of high fidelity evaluations: 2.9810714286e+02
+                                  1126
+                                    12
+                                    10
+                                    10
+<<<<< Equivalent number of high fidelity evaluations: 3.3072142857e+02
 ```
-
-The total cost, of approximately 298 high-fidelity simulation, is
-approximately one order of magnitude less than the MLMC cost (see the
-result of the previous section) for the same accuracy requirement. The
-total cost of this estimator is obtained by summing the cost of all the simulations, per
-model fidelity and model form.
+The total cost, of approximately 331 high-fidelity simulation, is
+approximately one order of magnitude less than the MLMC cost (see results
+from the previous section) for the same accuracy requirement. The total
+cost of this estimator includes the cost of all simulations, accumulated
+across 4 resolution levels for both model fidelities.
 
 # Further Reading
 
