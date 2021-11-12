@@ -204,7 +204,7 @@ class TestPICPieces(unittest.TestCase):
         fake_e          = [_ for _ in particles if _.type == "fake_e-"][0]
         super_heavy_ion = [_ for _ in particles if _.type == "super_heavy_ion"][0]
 
-        # Test some expected atributes from the particle objects
+        # Test some expected attributes from the particle objects
         self.assertEqual(fake_e.mass, 1.0)
         self.assertEqual(fake_e.charge, -1.0)
         self.assertEqual(super_heavy_ion.mass, 1.0e20)
@@ -254,6 +254,27 @@ class TestPICPieces(unittest.TestCase):
             print("Vely (min, mean, max): ",np.min(test_particle.vely), np.mean(test_particle.vely), np.max(test_particle.vely))
             print("Velz (min, mean, max): ",np.min(test_particle.velz), np.mean(test_particle.velz), np.max(test_particle.velz))
 
+
+    def test_particle_outflux(self):
+
+        test_particles = PIC.Particle("fake", { 'charge': 1.0, 'mass': 1.0, 'weight': 1.0 })
+
+        test_particles.pos   = np.linspace(-10.0, 10.0, 21)
+        test_particles.velx  = 2.0*test_particles.pos
+        test_particles.vely  = 3.0*test_particles.pos
+        test_particles.velz  = 4.0*test_particles.pos
+        test_particles.field = 5.0*test_particles.pos
+
+        new_particles = PIC.apply_outflux_bc(test_particles, -4.5, 4.5)
+
+        # Test expected behavior after removing out-of-bounds particles
+        baseline = np.linspace(-4.0, 4.0, 9)
+        self.assertEqual(new_particles.pos.shape[0], 9)
+        self.assertTrue(np.allclose(    baseline, new_particles.pos  ), 'Filtered particle pos values are not correct.')
+        self.assertTrue(np.allclose(2.0*baseline, new_particles.velx ), 'Filtered particle velx values are not correct.')
+        self.assertTrue(np.allclose(3.0*baseline, new_particles.vely ), 'Filtered particle vely values are not correct.')
+        self.assertTrue(np.allclose(4.0*baseline, new_particles.velz ), 'Filtered particle velz values are not correct.')
+        self.assertTrue(np.allclose(5.0*baseline, new_particles.field), 'Filtered particle field values are not correct.')
 
 
 

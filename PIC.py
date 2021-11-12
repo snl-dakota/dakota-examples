@@ -99,6 +99,23 @@ def update_pos_and_vel(pos, vel, dt, acc):
     return new_pos, new_vel
 
 
+def apply_outflux_bc(particles, left, right):
+
+    new_part = Particle(particles.type, { 'charge': particles.charge, 'mass': particles.mass, 'weight': particles.weight })
+
+    mask1 = particles.pos >= left
+    mask2 = particles.pos <= right
+    mask = np.logical_and(mask1, mask2)
+
+    new_part.pos   = particles.pos  [mask]
+    new_part.velx  = particles.velx [mask]
+    new_part.vely  = particles.vely [mask]
+    new_part.velz  = particles.velz [mask]
+    new_part.field = particles.field[mask]
+
+    return new_part
+
+
 def get_elem_id(mesh, pos):
 
     # Assumes equal mesh spacing
