@@ -64,7 +64,7 @@ whenever possible to reduce the risk of mistakes.
 One final note concerning the interface column in the tabular file. The interplay between
 it and the `id_interface` of any interfaces in the study can be confusing. Broadly speaking,
 the column contents must match the ID of an interface that is associated with the surrogate
-model via a `dace_method_pointer`or `actual_model_pointer`. Otherwise, it should be `NO_ID`.
+model via a `dace_method_pointer`or `truth_model_pointer`. Otherwise, it should be `NO_ID`.
 In this example, there are no interface blocks, so the column is `NO_ID`. A tell-tale
 sign of a problem with interface naming is that the console output indicates that
 data was imported, but surrogate construction fails because no data is available to it. This often
