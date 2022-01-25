@@ -1,0 +1,22 @@
+method,
+  output silent
+  max_function_evaluations 500
+  optpp_newton
+#  ncsu_direct
+#    min_boxsize_limit 1.e-20
+#    volume_boxsize_limit 1.e-20
+variables,
+  continuous_design = 3
+    initial_point  -2.3    2.3   0.23
+    upper_bounds  10.0   10.0  10.0
+    lower_bounds     -10.0  -10.0 -10.0
+    descriptors 'x1'  'x2'  'x3'
+interface,
+    pybind11
+      analysis_driver = 'driver-np-or-list:text_book'
+responses,
+  num_objective_functions = 1
+  nonlinear_inequality_constraints = 2
+  nonlinear_inequality_upper_bounds = 0.0 0.0
+  analytic_gradients
+  analytic_hessians
