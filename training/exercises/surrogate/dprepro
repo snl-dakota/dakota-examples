@@ -1,14 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#  _______________________________________________________________________
-#
-#  DAKOTA: Design Analysis Kit for Optimization and Terascale Applications
-#  Copyright 2014-2020
-#  National Technology & Engineering Solutions of Sandia, LLC (NTESS).
-#  This software is distributed under the GNU Lesser General Public License.
-#  For more information, see the README file in the top Dakota directory.
-#  _______________________________________________________________________
-
 from __future__ import division, print_function, unicode_literals, absolute_import
 import os
 import re
@@ -33,12 +24,12 @@ if pyv >= (3,):
     xrange = range
     unicode = str
     
-__version__ = '20180411'
+__version__ = '20210218.1'
 
 __all__ = ['pyprepro','Immutable','Mutable','ImmutableValDict','dprepro','convert_dakota']
 
 DESCRIPTION="""\
-%(prog)s -- python input deck pre-proscessor and template engine.
+%(prog)s -- python-based input deck pre-processor and template engine.
 
 version: __version__
 
@@ -49,6 +40,13 @@ Fallback Flags
 -----------------
 Will also accept `--(left/right)-delimiter` as an alias to the 
 respective parts of `--inline`. 
+
+Include Ordering
+----------------
+All include files are read and set as Immutable immediately. They are read
+in the following order: include files, json-include, python-include.
+Therefore, if a variable is, for example, set in the include file and the 
+python-include, the original value will hold.
 
 Sources:
 --------
@@ -82,9 +80,15 @@ CLI_MODE = False # Reset in the if __name__ == '__main__'
 ###########################################################################
 ############################## Main Functions #############################
 ###########################################################################
-def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
-    code='%',code_block='{% %}',inline='{ }',
-    ):
+def pyprepro(tpl,
+             include_files=None,
+             json_include=None,
+             python_include=None,
+             dakota_include=None,
+             env=None,immutable_env=None,
+             fmt='%0.10g',
+             code='%',code_block='{% %}',inline='{ }',
+             warn=True,output=None):
     """
     Main pyprepro function.
     
@@ -98,16 +102,32 @@ def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
     --------
     include_files: (filename string or list of filenames)
         Files to be read *first* and take precendance (i.e. set as immutable). 
-        No output from these are printed!
+        No output from these are printed! See include order below
     
     json_include: (filename string or list of filenames)
         JSON files of variables to be read that take precendance 
-        (i.e. set as immutable). These are read after include_files
+        (i.e. set as immutable). See include order below
+    
+    python_include: (filename string or list of filenames)
+        python files to be evaluated as pure python where indentation
+        matters and blocks should *not* have an `end` statement (contrary 
+        to the modified python language in a template code block). All 
+        variables take precedence (i.e. set as immutable). See include 
+        order below. 
+    
+    dakota_include (filename string or list of filenames)
+        Input files that are formatted as Dakota paramater files.
+        All variables are immutable. See include 
+        order below. 
     
     env: (dictionary)
         A dictionary of additional settings. If passed as an ImmutableValDict,
         immutability of the params will be maintained
     
+    immutable_env: (dictionary)
+        Like `env` but will automatically set every element as immutable. Just 
+        for convenience 
+        
     fmt:
         String formatting code for numerical output. Can be overidden inline
         with (for example) `{ "%5.2e" % var }`, Can specify with '%' or '{}' 
@@ -125,9 +145,24 @@ def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
         Specify the open and closing strings to specify an inline expression.
         Use a space to separate the start and the end.
     
+    warn [True]
+        Whether to allow warnings on changed param names (likely from 
+        Dakota)
+    
+    output [None]
+        Convenience option to write the output string.
+    
     Returns:
     ---------
     resulting string from the template
+    
+    Include Order:
+    --------------
+    All methods of including parameters set them as Immutable before
+    reading the final template file. However, they also have a specific
+    ordering aa follows: include_files, json_include,python_include
+    Therefore, if a parameter is set in the include_file and also set in a
+    json_include, the original value will hold!
     
     """
     # (re)set some globals from this function call.
@@ -141,17 +176,23 @@ def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
     
     _check_block_syntax()
     
-    
     if include_files is None:
         include_files = []
     if json_include is None:
         json_include = []
+    if python_include is None:
+        python_include = []
+    if dakota_include is None:
+        dakota_include = []
     
     if isinstance(include_files,(str,unicode)):
         include_files = [include_files]
     if isinstance(json_include,(str,unicode)):
         json_include = [json_include]
-    
+    if isinstance(python_include,(str,unicode)):
+        python_include = [python_include]
+    if isinstance(dakota_include,(str,unicode)):
+        dakota_include = [dakota_include]
     
     # The broken_bottle code is designed (modified) such that when an 
     # environment is passed in, that environment is modified and not copied
@@ -165,6 +206,10 @@ def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
         # IMPORTANT: pass the incoming env as an arg and not kw 
         #            to ensure immutability is maintained.
         env = ImmutableValDict(env)
+    
+    if immutable_env is not None:
+        for key,val in immutable_env.items():
+            env[key] = Immutable(val)
     
     # Parse all include files. Do not send in the environment since we will
     # reserve that for later.
@@ -184,16 +229,38 @@ def pyprepro(tpl,include_files=None,json_include=None,env=None,fmt='%0.10g',
             subenv = json.loads(_touni(F.read()))
         for key,val in subenv.items():
             env[key] = Immutable(val)
-        
-        
     
+    for python_file in python_include:
+        subenv = dict()
+        with open(python_file,'rb') as F:
+            exec_(F.read(),subenv)
+        for key,val in subenv.items():
+            env[key] = Immutable(val)
+    
+    for dakota_file in dakota_include:
+        subenv = convert_dakota(dakota_file)
+        for key,val in subenv.items():
+            param0 = key
+            param = _fix_param_name(param0,warn=warn)
+            if param0 != param and warn:
+                txt = """         Or, may be accessed via "DakotaParams['{0}']"\n""".format(param0)
+                if sys.version_info < (2,7):
+                    txt = txt.encode('utf8')
+                sys.stderr.write(txt)
+            env[param] = Immutable(val)
+        env['DakotaParams'] = subenv
+            
     # perform the final evaluation. Note that we do *NOT* pass `**env` since that
     # would create a copy.
-    output = _template(tpl,env=env)     
+    txtout = _template(tpl,env=env)     
 
-    return output
+    if output:
+        with open(output,'wt') as out:
+            out.write(txtout)
 
-def _parse_cli(argv,positional_include=False):
+    return txtout
+
+def _parse_cli(argv,dprepro=False):
     """
     Handle command line input.
     
@@ -202,11 +269,13 @@ def _parse_cli(argv,positional_include=False):
         argv: The command line argumnets. Ex: sys.argv[1:]
     
     Options:
-        positional_include [False]
+        dprepo [False]
             If True, will expect a *single* include file as the first 
             positional argument. Otherwise, will allow for any number
             of includes via --include (this toggle is to change behavior
             for dprepro)
+            
+            Also adds a --simple-parser mode
     """
     
     parser = argparse.ArgumentParser(\
@@ -223,26 +292,41 @@ def _parse_cli(argv,positional_include=False):
         help=('["%(default)s"] Specify the open and close of inline '
               'code/variables to print')) # out of order but makes more sense
               
-#     parser.add_argument('--dakota-params',action='store_true',
-#         help=('Tells %(prog)s that command-line include files are Dakota ' 
-#               'parameter files. Note: does *NOT* affect the `include()` '
-#               'function inside templates. All ":" in variables names are converted to "_".'))
-    
-    if positional_include:
+    if dprepro:
+        parser.add_argument('--simple-parser',action='store_true',
+            help='Always use the simple parser in %(prog)s rather than dakota.interfacing')
         parser.add_argument('include', help='Include (parameter) file.')
     else:
         parser.add_argument('-I','--include',metavar='FILE',action='append',default=[],
             help=('Specify a file to read before parsing input. '
+                  "Should be formatted with the same '--inline','--code', and/or '--code-block' "
+                  "as the 'infile' template. "
                   'Note: All variables read from the --include will be take precedence '
                   '(i.e. be immutable). You later make them mutable if necessary. '
                   'Can specify more than one and they will be read in order. '
                 ))
+        parser.add_argument('--dakota-include',metavar='FILE',action='append',
+            help=('Specify Dakota formatted files to load variables '
+                 'directly. As with `--include`, all variables will '
+                 'be immutable and can specify this flag multiple times. '
+                 'See include ordering. ' 
+                 'All ":" in variables names are converted to "_".'))
             
-    parser.add_argument('--json-include',metavar='FILE',
-                        help=('Specify a JSON formatted file to load variables '
+    parser.add_argument('--json-include',metavar='FILE',action='append',
+                        help=('Specify JSON formatted files to load variables '
                               'directly. As with `--include`, all variables will '
-                              'be immutable. These will be read *after* other included '
-                              'files'))
+                              'be immutable. Can specify multiple. '
+                              'See include ordering'))
+    parser.add_argument('--python-include',metavar='FILE',action='append',
+                        help=('Specify a python formatted file to read and use '
+                              'the resulting environment. NOTE: the file '
+                              'is read a regular python where indentation '
+                              'matters and blocks should *not* have an `end` '
+                              'statement (unlike in coode blocks). ' 
+                              'As with `--include`, all variables will '
+                              'be immutable and can specify this flag multiple times. ' 
+                              'See include ordering'))
+    
     
     parser.add_argument('--no-warn',action='store_false',default=True,dest='warn',
         help = ('Silence warning messages.'))
@@ -276,8 +360,21 @@ def _parse_cli(argv,positional_include=False):
     # Hidden debug
     parser.add_argument('--debug',action='store_true',help=argparse.SUPPRESS)
     
-    args = parser.parse_args(argv)
+    # This sorts the optional arguments or each parser.
+    # It is a bit of a hack. The biggest issue is that this happens on every 
+    # call but it takes about 10 microseconds
+    # Inspired by https://stackoverflow.com/a/12269358/3633154
+    for action_group in parser._action_groups:
+        # Make sure it is the **OPTIONAL** ones
+        if not all(len(action.option_strings) > 0 for action in action_group._group_actions):
+            continue
+        action_group._group_actions.sort(key=lambda action: # lower of the longest key
+                                                    sorted(action.option_strings,
+                                                           key=lambda a:-len(a))[0].lower())
     
+    
+    args = parser.parse_args(argv)
+
     if args.debug:
         global DEBUGCLI
         DEBUGCLI = True
@@ -285,8 +382,8 @@ def _parse_cli(argv,positional_include=False):
     ########## Handle Dakota fallbacks
 
     left,right = args.inline.split()
-    left  = agrs.left_delimiter  if args.left_delimiter  else left
-    right = agrs.right_delimiter if args.right_delimiter else right
+    left  = args.left_delimiter  if args.left_delimiter  else left
+    right = args.right_delimiter if args.right_delimiter else right
     args.inline = left + ' ' + right
         
     del args.left_delimiter
@@ -299,7 +396,7 @@ def _parse_cli(argv,positional_include=False):
         addvar = addvar.split('=',2)
         if len(addvar) != 2:
             sys.stderr.write('ERROR: --var must be of the form `--var "var=value"`\n')
-            sys.exit()
+            sys.exit(1)
         key,val = addvar
         
         key = key.strip()
@@ -314,6 +411,11 @@ def _parse_cli(argv,positional_include=False):
     # Read stdin if needed
     if args.infile == '-':
         args.infile = _touni(sys.stdin.read())
+    elif not os.path.isfile(args.infile):
+        # pyprepro function can take an input file or text but the CLI
+        # should always be a file
+        print('ERROR: `infile` must be a file or `-` to read from stdin',file=sys.stderr)
+        sys.exit(1)
     
     return args,env
 
@@ -327,18 +429,20 @@ def _pyprepro_cli(argv):
         output = pyprepro(args.infile,
                      include_files=args.include,
                      json_include=args.json_include,
+                     python_include=args.python_include,
+                     dakota_include=args.dakota_include,
                      env=env,
                      fmt=args.fmt,
                      code=args.code,
                      code_block=args.code_block,
                      inline=args.inline,
+                     warn=args.warn,
                 )
-    except (NameError,BlockCharacterError) as E:
+    except (NameError,BlockCharacterError,IncludeSyntaxError) as E:
         if DEBUGCLI:
             raise
-            
-        sys.stderr.write('Error occurred:\n  ' + E.args[0] + '\n')        
-        sys.exit(2)
+        sys.stderr.write(_error_msg(E))        
+        sys.exit(1)
     
     if args.outfile is None:
         sys.stdout.write(output)
@@ -350,7 +454,13 @@ def _pyprepro_cli(argv):
 ############################# Helper Functions ############################
 ###########################################################################
 
+class IncludeSyntaxError(Exception):
+    pass
+
 class BlockCharacterError(Exception):
+    pass
+
+class EmptyInlineError(ValueError):
     pass
 
 def _check_block_syntax():
@@ -388,7 +498,18 @@ def _formatter(*obj):
         obj = obj[0] 
     else:
         return '(' + ','.join(_formatter(o) for o in obj) + ')'
-        
+
+    # This is to catch a user error if the include is called wrong. It should be
+    # (with default syntax)
+    #   {% include('file') %}
+    # and NOT
+    #   {include('file')}
+    if getattr(obj,'includesentinel',False):
+        msg = ['Incorrect include syntax. Use "code-block" syntax, not "inline"']
+        msg.append("  e.g.: BLOCK_START include('include_file.inp') BLOCK_CLOSE")
+        msg = _mult_replace('\n'.join(msg),BLOCK_START=BLOCK_START,BLOCK_CLOSE=BLOCK_CLOSE)
+        raise IncludeSyntaxError(msg)
+
     if obj is None:
         return ''     
     if isinstance(obj,Immutable):
@@ -432,43 +553,16 @@ def _formatter(*obj):
     # give up!
     return repr(obj)
 
-       
-class _bracket_escape_obj:
+def _preparser(text):
     """
-    This class escapes inline \{ \} brackets. It needs to only be instanitated
-    once (at the bottom). It uses random characters to delineate brackets
-    so they cannot be (easily) fooled
-    """
-    def __init__(self):
-        self.esc = _rnd_str(30) # regenerate so it cannot be fooled (easily)
-        self.find_esc_out = re.compile('{0}(.*?){0}'.format(self.esc))
-        
-    def pre(self,text):
-        # Note, we redefine this regex in case the globals have changed
-        replacements = { 
-            'IS':re.escape(INLINE_START),
-            'IE':re.escape(INLINE_END),
-        } 
-        re_find_esc = re.compile(_mult_replace(r'\\IS(.*?)\\IE',replacements)) 
-         
-        return re_find_esc.sub(self.subin,text)
-    
-    def subin(self,re_obj):
-        return self.esc+re_obj.group(1)+self.esc    
-    
-    def post(self,text):
-        return self.find_esc_out.sub(self.subout,text) 
-    
-    def subout(self,re_obj):
-        return INLINE_START + re_obj.group(1) + INLINE_END
-
-def _parse_inline_assignments(text):
-    """
-    This is a PREPARSER before sending anything to Bottle.
+    This is a PREPARSER before sending anything to Bottle Simple Template 
+    Engine.
     
     It parses out inline syntax of `{ param = val }` so that it will still 
     define `param`. It will also make sure the evaluation is NOT inside 
-    of %< and %} blocks (by parsing them out first
+    of %< and %} blocks (by parsing them out first).
+    
+    It also handles escaped inline assigments
     
     Can also handle complex siutations such as:
     
@@ -479,14 +573,14 @@ def _parse_inline_assignments(text):
     which will turn into the following.
     
         \\
-        % p = 10
+        {% p = 10 %}
         { p }
         start,\\
-        % p = p+1
+        {% p = p+1 %}
         { p },\\
-        % p = p+1
+        {% p = p+1 %}
         { p },\\
-        % p = p+1
+        {% p = p+1 %}
         { p },end
         {p}
     
@@ -513,15 +607,56 @@ def _parse_inline_assignments(text):
     
     # Remove any code blocks and replace with random text
     code_rep = defaultdict(lambda:_rnd_str(20))    # will return random string but store it
+    _,text = _delim_capture(text,'{0} {1}'.format(BLOCK_START,BLOCK_CLOSE), # delim_capture does NOT want re.escape
+                            lambda t:code_rep[t])
+        
+    # Convert single line expression "% expr" and convert them to "{% expr %}" 
+    search  =  "^([\t\f ]*)LINE_START(.*)".replace('LINE_START',re.escape(LINE_START))
+    replace = r"\1{0} \2 {1}".format(BLOCK_START,BLOCK_CLOSE)
+    text = re.sub(search,replace,text)
+    
+    # and then remove them too!
+    _,text = _delim_capture(text,'{0} {1}'.format(BLOCK_START,BLOCK_CLOSE), # delim_capture does NOT want re.escape
+                            lambda t:code_rep[t])
+    
+    ###### Bracket Escaping
+    # Apply escaping to things like '\{' --> "{" and "\\{" --> "\{"
+    # by replacing them with a variable. First, remove all inline, then find
+    # the offending lines, replace them, then add back in the inline
+    inline_rep = defaultdict(lambda:_rnd_str(20)) 
+    _,text = _delim_capture(text,
+                            '{0} {1}'.format(INLINE_START,INLINE_END), # do not use re escaped
+                            lambda t:inline_rep[t]) 
+    
+    # Replace '\{' with a variable version of '{ _INLINE_START }'. Make sure it is not escaped
+    text = re.sub(r'(?<!\\)\\{0}'.format(re.escape(INLINE_START)),
+                  r'{0} _INLINE_START {1}'.format(INLINE_START,INLINE_END),
+                  text) 
+    
+    # replace '\\{' with '\{ _INLINE_START }' since it is escaped
+    text = re.sub(r'\\\\{0}'.format(re.escape(INLINE_START)),
+                  r'{0}_eINLINE_START{1}'.format(INLINE_START,INLINE_END),
+                  text)
 
-    code_blocks,text = _delim_capture(text,
-                                     '{0} {1}'.format(BLOCK_START,BLOCK_CLOSE), # do not use re escaped
-                                      lambda t:code_rep[t])
- 
+    # Replace '\}' with a variable version of '{ _INLINE_END }'. Make sure it is not escaped
+    text = re.sub(r'(?<!\\)\\{0}'.format(re.escape(INLINE_END)),
+                  r'{0} _INLINE_END {1}'.format(INLINE_START,INLINE_END),
+                  text) # reminder r"\\" will *still* be "\" to regex
+    
+    # replace '\\{' with '\{ _INLINE_END }' since it is escaped
+    text = re.sub(r'\\\\{0}'.format(re.escape(INLINE_END)),
+                  r'{0}_eINLINE_END{1}'.format(INLINE_START,INLINE_END),
+                  text)
+                  
+    # Sub back in the other removed inline expressions
+    text = _mult_replace(text,inline_rep,_invert=True)       
+    ###### /Bracket Escaping
+    
     # Apply _inline_fix to all inline assignments
     _,text = _delim_capture(text,
                             '{0} {1}'.format(INLINE_START,INLINE_END), # do not use re escaped
                             _inline_fix)
+                
     
     # Re-add the code blocks with an inverted dict
     return _mult_replace(text,code_rep,_invert=True)
@@ -534,6 +669,9 @@ def _inline_fix(capture):
     # Take EVERYTHING and then remove the outer.
 
     match = capture[len(INLINE_START):-len(INLINE_END)].strip() # Remove open and close brackets
+    
+    if not match.strip():
+        raise EmptyInlineError('Empty inline expression')
     
     # Need to decide if this is a {param} or {var=param}
     # But need to be careful for:
@@ -568,35 +706,40 @@ def _inline_fix(capture):
     if any(c in var for c in ['"',"'",'(',')']):  # something like {function(p="}")}
         return capture # Do not fix. See above
     
-    opperator = '='
+    operator = '='
     
     # is it a modified assignment operator (e.g. "+=","<<=") but NOT comparison (e.g. "<=").
     # Check first for assignment and ONLY then can you check for comparison.
     assignment_mods = ['+', '-', '*', '/', '%', '//', '**', '&', '|', '^', '>>', '<<'] # += -= *=, etc
     comparison_mods = ['=','!','>','<'] # ==,!=, etc
     
-    is_assignment = False
+    if pyv >= (3,8):
+        # This is the python3.8 "Walrus Operator" called an assignment expression.
+        # Essentially `a := val` becomes `a = val` and then `val`. But this
+        # is what we already do! So just let it pass for newer python
+        # See PEP572 https://www.python.org/dev/peps/pep-0572/ for details
+        comparison_mods.append(':') 
+        
+    
     for v in assignment_mods:
         if var.endswith(v):
-            is_assignment = True
             var = var[:-len(v)]
-            opperator = v + opperator
+            operator = v + operator
             break
-            
-    if not is_assignment:
+    else:
         for v in comparison_mods:
             if var.endswith(v):
                 var = var[:-len(v)]
                 var = _fix_varnames(var)   # { A <= 10 } and/or {A:1 <= 10} becomes {A_1<=10}
-                opperator = v + opperator
-                return INLINE_START + var + opperator + val + INLINE_END 
+                operator = v + operator
+                return INLINE_START + var + operator + val + INLINE_END 
                
     # Fix disallowed var names
     var = _fix_varnames(var)
     
     # Set the value
     return ''.join([r'\\','\n', 
-                    LINE_START,' ',var,opperator,val,'\n', 
+                    BLOCK_START,' ',var,operator,val,' ',BLOCK_CLOSE,'\n', 
                     INLINE_START,' ',var.strip(),' ',INLINE_END])
 
 
@@ -699,6 +842,21 @@ def _delim_capture(txt,delim,sub=None):
         
     return captured,''.join(outtxt)
 
+def _error_msg(E):
+    msg = []
+    err = E.__class__.__name__
+    msg.append('Exception: {0}'.format(err))
+    if hasattr(E,'filename'):
+        msg.append('Filename: {0}'.format(E.filename))
+    if hasattr(E,'lineno'):
+        msg.append('Approximate Line Number: {0}'.format(E.lineno))
+#     if hasattr(E,'offset'): # Not reliable
+#         msg.append('Column: {0}'.format(E.offset))
+    if hasattr(E,'args') and len(E.args)>0:
+        msg.append('Message: {0}'.format(E.args[0]))
+    
+    msg = 'Error occurred\n' + '\n'.join('    ' + l for l in msg) + '\n'
+    return msg
 ###### Functions for inside templates  
 
 def _vartxt(env,return_values=True,comment=None):
@@ -983,23 +1141,28 @@ def _dprepro_cli(argv):
     except ImportError:
         di = None
     
-    args,env = _parse_cli(argv,positional_include=True)
+    args,env = _parse_cli(argv,dprepro=True)
 
     params = None
     results = None
     # Convert Dakota
-    if di is None:
-        if args.warn:
+    if di is None or args.simple_parser:
+        if args.warn and not args.simple_parser:
             sys.stderr.write(diwarning + '\n') # print the error message
-        env2 = convert_dakota(args.include) # ToDo: Check with Adam on how this should be passed
+        env2 = convert_dakota(args.include)
         env.update(env2)
     else:
-        params, results = di.read_parameters_file(parameters_file=args.include,results_file=di.UNNAMED)
+        try:
+            params, results = di.read_parameters_file(parameters_file=args.include,results_file=di.UNNAMED)
+        except di.ParamsFormatError as E:
+            sys.stderr.write(_error_msg(E))
+            sys.exit(1)
+
         env["DakotaParams"] = params
-        for _, d, v in params:
+        for d, v in params.items():
             env[d] = v
         env["DakotaResults"] = results
-        for _, d, v in results:
+        for d, v in results.items():
             env[d] = v
 
     try:
@@ -1010,6 +1173,7 @@ def _dprepro_cli(argv):
                     code_block=args.code_block,
                     inline=args.inline,
                     json_include=args.json_include,
+                    python_include=args.python_include,
                     warn=args.warn
                     )
     except Exception as E:
@@ -1017,8 +1181,8 @@ def _dprepro_cli(argv):
         if DEBUGCLI:
             raise
             
-        sys.stderr.write('Error occurred:\n  ' + E.args[0] + '\n')        
-        sys.exit(2)
+        sys.stderr.write(_error_msg(E))        
+        sys.exit(1)
     
     if args.outfile is None:
         sys.stdout.write(output)
@@ -1034,7 +1198,7 @@ def dprepro(include=None, template=None, output=None, fmt='%0.10g', code='%',
         
         include(dict): Items to make available for substitution
         template(str or IO object): Template. If it has .read(), will be 
-            treated like a file. Otherwise, assumed to be the name of a file.
+            treated like a file. Otherwise, assumed to contain a template.
         output(str or IO object): If None (the default), the substituted
             template will be returned as a string. If it has .write(), will
             be treated like a file. Otherwise, assumed to be the name of a file.
@@ -1044,10 +1208,14 @@ def dprepro(include=None, template=None, output=None, fmt='%0.10g', code='%',
         inline(str): Delimiters for inline substitution. Default: '{ }'
         warn(bool): Whether or not to warn the user of invalid parameter names
 
+        All additional parameters are passed to pyprepro (e.g. json_include,
+        python_include)
     Returns:
         If no output is specified, returns a string containing the substituted
             template.
     """
+    # Process the Dakota input file and then call pyprepro
+    
     # Construct the env from parameters, results, and include
     env = ImmutableValDict()
     
@@ -1068,7 +1236,7 @@ def dprepro(include=None, template=None, output=None, fmt='%0.10g', code='%',
     if hasattr(template,"read"):
         use_template = template.read()
 
-    # Call the template engine
+    # Call pyprepro engine
     output_string = pyprepro(tpl=use_template, 
                              env=env, 
                              fmt=fmt, 
@@ -1085,10 +1253,6 @@ def dprepro(include=None, template=None, output=None, fmt='%0.10g', code='%',
         with open(output,"wt") as f:
             f.write(output_string)
 
-
-
-
-
 ###########################################################################
 ####################### BottlePy Extracted Functions ######################
 ###########################################################################
@@ -1100,7 +1264,7 @@ def dprepro(include=None, template=None, output=None, fmt='%0.10g', code='%',
 # 
 # * Changed the default environment to ImmutableValDict
 # * Added Immutable and Mutable functions to be passed it
-# * All text is routed through _parse_inline_assignments (3 places...I think)
+# * All text is routed through _preparser (3 places...I think)
 # * Ability to return the environment
 # * Adjusted scope so that if a variable is parsed in an include, it is present
 #   in the parent. (the env object is passed in and NEVER copied)
@@ -1148,7 +1312,7 @@ class TemplateError(Exception):
 
 def _touni(s, enc=None, err='strict'):
     if enc is None:
-        # This ordering is intension since, anecdotally, some Windows-1252 will
+        # This ordering is intensional since, anecdotally, some Windows-1252 will
         # be decodable as UTF-16. The chardet module is the "correct" answer
         # but we don't want to add the dependency
         enc = ['utf8','Windows-1252','utf16','ISO-8859-1',]
@@ -1206,7 +1370,7 @@ class _BaseTemplate(object):
         The settings parameter contains a dict for engine-specific settings.
         """
         self.name = name
-        self.source = _bracket_escape.pre(_parse_inline_assignments(source.read())) if hasattr(source, 'read') else source
+        self.source = _preparser(source.read()) if hasattr(source, 'read') else source
         self.filename = source.filename if hasattr(source, 'filename') else None
         self.lookup = [os.path.abspath(x) for x in lookup] if lookup else []
         self.encoding = encoding
@@ -1296,7 +1460,7 @@ class _SimpleTemplate(_BaseTemplate):
             source, encoding = _touni(source), 'utf8'
         except UnicodeError:
             raise depr(0, 11, 'Unsupported _template encodings.', 'Use utf-8 for _templates.')
-        source = _bracket_escape.pre(_parse_inline_assignments(source))
+        source = _preparser(source)
         parser = _StplParser(source, encoding=encoding, syntax=self.syntax)
         code = parser.translate()
         self.encoding = parser.encoding
@@ -1310,9 +1474,12 @@ class _SimpleTemplate(_BaseTemplate):
         env.update(kwargs)
         if _name not in self.cache:
             self.cache[_name] = self.__class__(name=_name, lookup=self.lookup, syntax=self.syntax)
-    
-        return self.cache[_name].execute(env['_stdout'], env)
-
+        
+        r = self.cache[_name].execute(env['_stdout'], env)
+        
+        r.includesentinel = True # This is to make sure the return of include
+                                 # is not trying to be displayed
+        return r
 
     def execute(self, _stdout, kwargs):
         env = kwargs # Use the same namespace/environment rather than a copy
@@ -1354,6 +1521,18 @@ class _SimpleTemplate(_BaseTemplate):
             'all_var_names':lambda **k: _vartxt(env,return_values=False,**k),
         })
         
+        # String literals of escape characters
+        env.update({
+            '_BLOCK_START':BLOCK_START,
+            '_BLOCK_CLOSE':BLOCK_CLOSE,
+            '_LINE_START':LINE_START,
+            '_INLINE_START':INLINE_START,
+            '_eINLINE_START': '\\' + INLINE_START,
+            '_INLINE_END':INLINE_END,
+            '_eINLINE_END':'\\' + INLINE_END,
+            })
+
+        
         exec_(self.co,env)
         
         if env.get('_rebase'):
@@ -1382,7 +1561,7 @@ class _StplParser(object):
     # This huge pile of voodoo magic splits python code into 8 different tokens.
     # We use the verbose (?x) regex mode to make this more manageable
 
-    _re_tok = _re_inl = r'''(?mx)(        # verbose and dot-matches-newline mode
+    _re_tok = _re_inl = r'''( # (?mx) will be added below for verbose and dotall mode
         [urbURB]*
         (?:  ''(?!')
             |""(?!")
@@ -1424,6 +1603,11 @@ class _StplParser(object):
     # Match inline statements (may contain python strings)
     _re_inl = r'''%%(inline_start)s((?:%s|[^'"\n]+?)*?)%%(inline_end)s''' % _re_inl
 
+    # Add back in the flags to avoid the deprecation warning
+    # verbose and dot-matches-newline mode
+    _re_tok = '(?mx)' + _re_tok
+    _re_inl = '(?mx)' + _re_inl
+    
     # default_syntax = '{% %} % { }'
 
     def __init__(self, source, syntax=None, encoding='utf8'):
@@ -1579,9 +1763,17 @@ def _template(tpl, env=None, return_env=False):
         settings = {}
         tpl = _touni(tpl)
     
-        if not os.path.exists(tpl): # template string
+        # Try to determine if it is a file or a template string
+        
+        isfile = False
+        try:
+            if os.path.exists(tpl):
+                isfile = True
+        except:pass # Catch any kind of error
+    
+        if not isfile:  # template string
             lookup = ['./'] # Just have the lookup be in this path
-            tpl = _bracket_escape.pre(_parse_inline_assignments(tpl))
+            tpl = _preparser(tpl)
             tpl_obj = _SimpleTemplate(source=tpl, lookup=lookup, **settings)
         else: # template file
             # set the lookup. It goes in order so first check directory
@@ -1594,19 +1786,14 @@ def _template(tpl, env=None, return_env=False):
     
         rendered,env =  tpl_obj.render(env)
     
-        # All methods had _bracket_escape.pre run on them (potentially multiple times but that is ok.
-        # Undo it
-        rendered = _bracket_escape.post(rendered)
-    
         if not return_env:
             return rendered
         return rendered,env
     except Exception as E:
-        if CLI_MODE and DEBUGCLI:
-            err = E.__class__.__name__
-            desc = unicode(E)
-            sys.stderr.write('Error occurred:\n  {0}: {1}\n'.format(err,desc))        
-            sys.exit(2)
+        if CLI_MODE and not DEBUGCLI:
+            msg = _error_msg(E)
+            sys.stderr.write(msg)        
+            sys.exit(1)
         else:
             raise
 ########################### six extracted codes ###########################
@@ -1617,7 +1804,7 @@ def _template(tpl, env=None, return_env=False):
 #   https://pypi.python.org/pypi/six
 #   http://pythonhosted.org/six/
 ##############################################################################
-# Copyright (c) 2017, Marcel Hellkamp.
+# Copyright (c) 2010-2018 Benjamin Peterson
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -1655,17 +1842,15 @@ else:
 
 ##############################################################################
 
-# Global object for bracket escape modes
-_bracket_escape = _bracket_escape_obj()      
-
 # Global set of keys from an empty execution:
 INIT_VARS = set(_template('BLA',return_env=True)[-1].keys())
 
 def main():
+    global CLI_MODE
     CLI_MODE = True 
     cmdname = sys.argv[0].lower()
     path, execname = os.path.split(cmdname)
-    if execname.rstrip(".py") == 'dprepro':
+    if execname.startswith('dprepro'):
         sys.exit(_dprepro_cli(sys.argv[1:]))
     sys.exit(_pyprepro_cli(sys.argv[1:]))
 
