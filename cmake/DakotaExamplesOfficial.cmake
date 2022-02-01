@@ -107,21 +107,11 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
     "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
   set_tests_properties(${_last_test_added} PROPERTIES
     ENVIRONMENT "${_linked_python_env};${_env_python_home}")
-endif()
 
-if(DAKOTA_PYTHON_DIRECT_INTERFACE)
   dakota_example_test(
     PATH official/drivers/Python/pybind11
     RUN dakota_textbook_pybind11.in
     )
-  # This is a workaround to enforce consistency between the Python used
-  # to build Dakota and which one gets used to run the driver script
-  # associated with this test.
-  get_test_property(${_last_test_added} ENVIRONMENT _linked_python_env)
-  set(_env_python_home
-    "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
-  set_tests_properties(${_last_test_added} PROPERTIES
-    ENVIRONMENT "${_linked_python_env};${_env_python_home}")
 endif()
 
 # drivers tests
