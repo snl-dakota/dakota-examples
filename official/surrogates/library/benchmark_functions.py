@@ -1,7 +1,7 @@
 import numpy as np
 
 def unpack_inputs(params):
-    x = np.array(params["cv"])
+    x = params["cv"]
     ASV = params["asv"]
     return x, ASV
 
