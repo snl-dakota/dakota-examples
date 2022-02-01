@@ -1,7 +1,7 @@
 import numpy as np
 
 def unpack_inputs(params):
-    x = params["cv"]
+    x = np.array(params["cv"])
     ASV = params["asv"]
     return x, ASV
 
@@ -86,7 +86,7 @@ def Dette_and_Peplyshev(**kwargs):
         retval["fns"] = np.array([f])
     return retval
 
-def Morris(**kwargs):
+def Morris(kwargs):
     """
     input space: [0, 1]**20
     """

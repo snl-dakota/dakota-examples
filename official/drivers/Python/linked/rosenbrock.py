@@ -1,4 +1,4 @@
-def rosenbrock_list(**kwargs):
+def rosenbrock_list(kwargs):
 
     num_fns = kwargs['functions']
  #   if num_fns > 1:
@@ -38,7 +38,7 @@ def rosenbrock_list(**kwargs):
 
     return(retval)
 
-def rosenbrock_numpy(**kwargs):
+def rosenbrock_numpy(kwargs):
 
     from numpy import array
 
