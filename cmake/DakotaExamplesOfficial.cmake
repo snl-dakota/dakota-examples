@@ -102,7 +102,7 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
 
   dakota_example_test(
     PATH official/drivers/Python/pybind11
-    RUN dakota_textbook_pybind11.in
+    REGRESS dakota_textbook_pybind11.in
     )
 endif()
 
@@ -124,7 +124,7 @@ endif()
 if (Python_EXECUTABLE)
   dakota_example_test(
     PATH official/drivers/Python/di
-    RUN dakota_rosenbrock_python.in
+    REGRESS dakota_rosenbrock_python.in
   )
 endif()
 
@@ -206,7 +206,7 @@ if(DAKOTA_PYTHON AND Python_EXECUTABLE)
     # Requires Python direct interface with numpy
     dakota_example_test(
       PATH official/surrogates/library
-      RUN dakota_morris_gp_study.in
+      REGRESS dakota_morris_gp_study.in
     )
     # Depends on surrogate exported in previous test
     if(DAKOTA_PYTHON_SURROGATES)
