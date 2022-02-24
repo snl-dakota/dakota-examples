@@ -86,7 +86,7 @@ def Dette_and_Peplyshev(**kwargs):
         retval["fns"] = np.array([f])
     return retval
 
-def Morris(**kwargs):
+def Morris(kwargs):
     """
     input space: [0, 1]**20
     """

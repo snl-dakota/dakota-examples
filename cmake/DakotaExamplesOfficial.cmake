@@ -99,14 +99,11 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
     PATH official/drivers/Python/linked
     RUN dakota_rosenbrock_python.in
     )
-  # This is a workaround to enforce consistency between the Python used
-  # to build Dakota and which one gets used to run the driver script
-  # associated with this test.
-  get_test_property(${_last_test_added} ENVIRONMENT _linked_python_env)
-  set(_env_python_home
-    "PYTHONHOME=${Python_STDLIB}:${Python_STDARCH}:$ENV{PYTHONHOME}")
-  set_tests_properties(${_last_test_added} PROPERTIES
-    ENVIRONMENT "${_linked_python_env};${_env_python_home}")
+
+  dakota_example_test(
+    PATH official/drivers/Python/pybind11
+    REGRESS dakota_textbook_pybind11.in
+    )
 endif()
 
 # drivers tests
@@ -127,7 +124,7 @@ endif()
 if (Python_EXECUTABLE)
   dakota_example_test(
     PATH official/drivers/Python/di
-    RUN dakota_rosenbrock_python.in
+    REGRESS dakota_rosenbrock_python.in
   )
 endif()
 
@@ -209,7 +206,7 @@ if(DAKOTA_PYTHON AND Python_EXECUTABLE)
     # Requires Python direct interface with numpy
     dakota_example_test(
       PATH official/surrogates/library
-      RUN dakota_morris_gp_study.in
+      REGRESS dakota_morris_gp_study.in
     )
     # Depends on surrogate exported in previous test
     if(DAKOTA_PYTHON_SURROGATES)
