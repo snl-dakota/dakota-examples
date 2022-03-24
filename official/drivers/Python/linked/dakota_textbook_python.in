@@ -1,0 +1,32 @@
+# Dakota/Python linked interface demonstration
+#  * Requires Dakota compiled with and linked against Python
+#  * Exercise the Python interface using list or numpy
+
+method,
+        optpp_newton
+          output silent
+          max_function_evaluations 500
+
+variables,
+        continuous_design = 3
+          initial_point  -2.3    2.3   0.23
+          upper_bounds    10.0   10.0  10.0
+          lower_bounds   -10.0  -10.0 -10.0
+          descriptors     'x1'   'x2'  'x3'
+
+interface,
+        python
+# the current analysis driver format is module:function	
+# use this for the list method of passing the data
+          analysis_driver = 'textbook:textbook_list'
+# use this for the numpy array method of passing the data
+#         analysis_drivers = 'textbook:textbook_numpy'
+#           numpy
+
+
+responses,
+        num_objective_functions = 1
+        nonlinear_inequality_constraints  = 2
+        nonlinear_inequality_upper_bounds = 0.0 0.0
+        analytic_gradients
+        analytic_hessians

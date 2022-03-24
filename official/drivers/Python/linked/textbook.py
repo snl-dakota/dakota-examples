@@ -10,9 +10,7 @@ import numpy as np
 
 use_list_return_type = True
 
-#print("In driver.py")
-
-def text_book_numpy(params):
+def textbook_numpy(params):
 
     num_fns = params["functions"]
     x = params["cv"]
@@ -34,17 +32,13 @@ def text_book_numpy(params):
         h = np.diag([12. * (val - 1.)**2 for val in x])
         retval["fnHessians"] = np.array([h])
 
-    #if use_list_return_type:
-    #    for key, value in retval.items():
-    #        retval[key] = value.tolist()
-
     if num_fns == 1:
         return retval
 
 
     # We have nonlinear constraints to provide
     if num_fns != 3:
-        raise("text_book problem supports exactly 2 nonlinear inequality constraints.")
+        raise("textbook problem supports exactly 2 nonlinear inequality constraints.")
 
     if (ASV[1] & 1): # **** first nonlinear constraint objective:
         retval['fns'] = np.append(retval['fns'], (x[0]*x[0] - x[1]/2.0))
@@ -79,7 +73,7 @@ def text_book_numpy(params):
 
 
 
-def text_book_list(params):
+def textbook_list(params):
 
     num_fns = params['functions']
     x = params['cv']
@@ -116,7 +110,7 @@ def text_book_list(params):
 
     # We have nonlinear constraints to provide
     if num_fns != 3:
-        raise("text_book problem supports exactly 2 nonlinear inequality constraints.")
+        raise("textbook problem supports exactly 2 nonlinear inequality constraints.")
 
     if (ASV[1] & 1): # **** first nonlinear constraint objective:
         retval['fns'].append(x[0]*x[0] - x[1]/2.0)
@@ -158,9 +152,9 @@ def text_book_list(params):
 
 
 
-def text_book(params):
+def textbook(params):
 
     if use_list_return_type:
-        return text_book_list(params)
+        return textbook_list(params)
     else:
-        return text_book_numpy(params)
+        return textbook_numpy(params)
