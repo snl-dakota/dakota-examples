@@ -9,6 +9,12 @@
     "num_elems"  :  1024
   },
 
+  "output" :
+  {
+    "show_plots" :  false,
+    "densities"  :  true
+  },
+
   "particle_types" :
   {
     "ion" :

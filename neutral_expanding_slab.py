@@ -2,6 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 import PIC
 
@@ -43,6 +44,13 @@ if __name__ == "__main__":
     N          = params['simulation']['num_elems']
     verbose    = params['simulation']['verbose']
 
+    # Determine outputs
+    show_plots       = params['output']['show_plots']
+    output_densities = params['output']['densities']
+
+    if output_densities:
+        if not os.path.exists("output"):
+            os.makedirs("output")
 
     if verbose:
         print("dt:\t\t",         dt         )
@@ -110,18 +118,19 @@ if __name__ == "__main__":
 
     # Do time integration
     time = 0.0
-    p1 = [_ for _ in particles if _.charge < 0][0]
-    p2 = [_ for _ in particles if _.charge > 0][0]
     #update_hist_plot(p.pos)
     #plt.show()
     #plt.pause(0.001)
-    fig, ax = plt.subplots()
-    update_line_plot(time, mesh,
-                     PIC.charge_scatter(mesh, p1.pos, p1.weight, p1.weight*np.ones_like(p1.pos)),
-                     PIC.charge_scatter(mesh, p2.pos, p2.weight, p2.weight*np.ones_like(p2.pos)))
-    plt.ylim(top=1.25*n0_max)
-    plt.show()
-    plt.pause(0.001)
+    if show_plots:
+        p1 = [_ for _ in particles if _.charge < 0][0]
+        p2 = [_ for _ in particles if _.charge > 0][0]
+        fig, ax = plt.subplots()
+        update_line_plot(time, mesh,
+                         PIC.charge_scatter(mesh, p1.pos, p1.weight, p1.weight*np.ones_like(p1.pos)),
+                         PIC.charge_scatter(mesh, p2.pos, p2.weight, p2.weight*np.ones_like(p2.pos)))
+        plt.ylim(top=1.25*n0_max)
+        plt.show()
+        plt.pause(0.001)
 
 
     for t in range(time_steps):
@@ -131,11 +140,21 @@ if __name__ == "__main__":
         rho /= node_vols
 
         # Allow real-time plotting
-        p1 = [_ for _ in particles if _.charge < 0][0]
-        p2 = [_ for _ in particles if _.charge > 0][0]
-        update_line_plot(time, mesh,
-                         PIC.charge_scatter(mesh, p1.pos, p1.weight, p1.weight*np.ones_like(p1.pos)),
-                         PIC.charge_scatter(mesh, p2.pos, p2.weight, p2.weight*np.ones_like(p2.pos)))
+        if show_plots:
+            p1 = [_ for _ in particles if _.charge < 0][0]
+            p2 = [_ for _ in particles if _.charge > 0][0]
+            update_line_plot(time, mesh,
+                             PIC.charge_scatter(mesh, p1.pos, p1.weight, p1.weight*np.ones_like(p1.pos)),
+                             PIC.charge_scatter(mesh, p2.pos, p2.weight, p2.weight*np.ones_like(p2.pos)))
+
+        # Write densities
+        if output_densities:
+            for p in particles:
+                filename = "output/"+p.type+"_density_"+str(t)+".csv"
+                density = PIC.charge_scatter(mesh, p.pos, p.weight, np.ones_like(p.pos))/node_vols
+                with open(filename, 'w') as F:
+                    for i in range(len(V)):
+                        F.write("{0:25.14e}, {1:25.14}\n".format(mesh[i], density[i]))
 
         # Solve the linear system
         V = PIC.solveBanded(dx, rho)
