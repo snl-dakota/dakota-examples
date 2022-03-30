@@ -31,9 +31,9 @@ computational work done by a driver for each evaluation is very small but depend
 significant set up that can be shared by all evaluations, such as building or reading
 in a surrogate model or large lookup table for interpolation.
 
-In this example, a simple optimization of the Rosenbrock scalar function is performed
+In this example, a simple optimization of the Textbook scalar function is performed
 using the `python` interface. The optimization is performed to obtain the best values
-for two continuous variables, each constrained by lower and upper bounds. After reading
+for three continuous variables, each constrained by lower and upper bounds. After reading
 the example, the user should understand how to configure Dakota to use the `python` interface,
 and the basics of how to write a Python module for use with the interface.
 
@@ -42,23 +42,24 @@ Dakota to write a forked Python driver is [also available](../di).
 
 # Python driver module
 
-The Python driver module featured in this example, `rosenbrock.py`, includes callbacks to
-evaluate function values, gradients and hessians requested
+The Python driver module featured in this example, `textbook.py`, includes callbacks to
+evaluate function values, two nonlinear inequality values and gradients and hessians for each of these as requested
 by Dakota.  The script has two candidate callback functions with the
-first(`rosenbrock_list`) using native Python lists, and the second (`rosenbrock_numpy`)
-using numpy arrays. The Dakota study in this example currently is configured to use the
-former.
+first(`textbook_numpy`) using numpy arrays, and the second (`textbook_list`)
+using native Python lists. The Dakota study in this example currently is configured to use the
+latter.
 
-The `rosenbrock_list` function uses the double-star (\*\*) operator to collect the keyword
+Both Python functions receive keyword
 arguments passed to it by Dakota in a dictionary named `kwargs`. These arguments include variable
-values and other information needed to perform the evaluation. A complete list of is available
+values and other information needed to perform the evaluation. A complete list of arguments is available
 in Table 16.1 of the Dakota User's Manual. In this example, two items in the dictionary are used.
 The first, `cv`, is a Python list of the continuous variable values. The second, `asv`, is the
 active set vector, which encodes the information (function value, gradient, hessian) that Dakota
-requests for each response. See Section 9.7 of the User's Manual for further description of the ASV.
+requests for each response (objective and two nonlinear inequalities). See
+Section 9.7 of the User's Manual for further description of the ASV.
 
-After extracting variable values from `dakota_params`, the driver computes the requested
-portions (function, gradient, hessian) of the response based on the ASV. It packs the
+After extracting variable values from `params`, the driver computes the requested
+portions (function, gradient, hessian) of the responses based on the ASV. It packs the
 results into a dictionary called `retval`. The function values are placed in a list and
 associated with the key `fns`, and similarly for the  gradients (key `fnGrads`) and
 hessians (key `fnHessians`). Figure 16.2 in the User's Manual shows the required and
@@ -70,32 +71,31 @@ Finally, the function returns `retval` to Dakota.
 
 Our primary focus here is on the interface block.
 ```
-interface,							
-	python
-# the current analysis driver format is module:function	
+interface,
+        python
+# the current analysis driver format is module:function
 # use this for the list method of passing the data		
-	  analysis_drivers = 'rosenbrock:rosenbrock_list'
-# use this for the numpy array method of passing the data	
-#	  analysis_drivers = 'rosenbrock:rosenbrock_numpy'
+          analysis_driver = 'textbook:textbook_list'
+# use this for the numpy array method of passing the data
+#         analysis_drivers = 'textbook:textbook_numpy'
 #           numpy
-#	  analysis_components = 'optarg1'
 ```
 
 The primary things to note are:
 * The interface type is `python`.
-* The `analysis_drivers` specifies the name of the module (`rosenbrock`) and function (`rosenbrock_list`)
+* The `analysis_drivers` specifies the name of the module (`textbook`) and function (`textbook_list`)
   that Dakota is to execute. They are delimited by a colon.
 
 
 # How to run the example
  
  Make sure the Python used to build Dakota is in the environment PATH and
- that the PYTHONPATH includes the directory containing the rosenbrock.py
+ that the PYTHONPATH includes the directory containing the textbook.py
  driver script.
 
 Run Dakota
 
-    $ dakota -i dakota_rosenbrock_python.in
+    $ dakota -i dakota_textbook_python.in
  
 # Requirements
 
@@ -107,13 +107,13 @@ satisfy the version requirements.
 
 # Contents
 
-* `dakota_rosenbrock_python.in`: Dakota input file
-* `rosenbrock.py`: Combined simulator and analysis driver
+* `dakota_textbook_python.in`: Dakota input file
+* `textbook.py`: Combined simulator and analysis driver
 
 # Further reading
 
-* The Rosenbrock function is described in more detail in the 
-  [Reference Manual](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/rosenbrock.html).
+* The Textbook function is described in more detail in the 
+  [Reference Manual](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/textbook.html).
 * More details of the Python linked interface can be found in the [Reference
   Manual](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/interface-analysis_drivers-python.html)
   and in Section 16.3.2 of the [User's Manual](https://dakota.sandia.gov/content/manuals).

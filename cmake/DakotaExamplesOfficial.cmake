@@ -97,12 +97,7 @@ dakota_example_test(
 if(DAKOTA_PYTHON_DIRECT_INTERFACE)
   dakota_example_test(
     PATH official/drivers/Python/linked
-    RUN dakota_rosenbrock_python.in
-    )
-
-  dakota_example_test(
-    PATH official/drivers/Python/pybind11
-    REGRESS dakota_textbook_pybind11.in
+    REGRESS dakota_textbook_python.in
     )
 endif()
 
