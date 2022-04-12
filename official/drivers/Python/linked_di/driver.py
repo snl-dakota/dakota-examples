@@ -7,7 +7,8 @@ import dakota.interfacing as di
 def pack_textbook_parameters(dakota_params, dakota_results):
     """Pack textbook input dictionary
     
-    There is assumed to be two variables, x1 and x2, and a single response, obj_fn
+    There is assumed to be three variables, x1, x2 and x3, and a single response, obj_fn
+    together with two nonlinear inequality constraints
     """
     continuous_vars = [ dakota_params['x1'], dakota_params['x2'], dakota_params['x3'] ]
 
@@ -31,19 +32,17 @@ def pack_textbook_parameters(dakota_params, dakota_results):
     return textbook_input
 
 
-def pack_dakota_results(textbook_output, dakota_results):
+def pack_dakota_results(fns, grads, hessians, dakota_results):
     """Insert results from textbook into Dakota di results object
 
-    *** THIS FUNTION IS NOT USED WHEN THIS DRIVER IS CALLED BY DAKOTA'S
-        DIRECT PYTHON INTERFACE.
     """
     for i, label in enumerate(dakota_results):
         if dakota_results[label].asv.function:
-            dakota_results[label].function = textbook_output["fns"][i]
+            dakota_results[label].function = fns[i]
         if dakota_results[label].asv.gradient:
-            dakota_results[label].gradient = textbook_output["fnGrads"][i]
+            dakota_results[label].gradient = grads[i]
         if dakota_results[label].asv.hessian:
-            dakota_results[label].hessian = textbook_output["fnHessians"][i]
+            dakota_results[label].hessian = hessians[i]
     
     return dakota_results
 
@@ -53,9 +52,13 @@ def main(dakota_params):
     params, results = di.read_params_from_dict(dakota_params)
     textbook_input = pack_textbook_parameters(params, results)
 
-    textbook_output = textbook_list(textbook_input)
-    
-    return textbook_output
+    fns, grads, hessians = textbook_list(textbook_input)
+
+    results = pack_dakota_results(fns, grads, hessians, results)
+
+    direct_results_dict = results.return_direct_results_dict()
+
+    return direct_results_dict
 
 
 if __name__ == '__main__':
