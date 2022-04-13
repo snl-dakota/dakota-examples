@@ -12,7 +12,7 @@
 ##set(DAKOTA_EXE ${CMAKE_CURRENT_SOURCE_DIR}/../../build.opt/src/dakota)
 if(NOT DAKOTA_EXE)
   message(STATUS "DAKOTA_EXE not set.\n"
-    "   DakotaExamples tests will attempt to use dakota executable target")
+    "   Examples tests will attempt to use dakota executable target")
 endif()
 
 add_test(NAME dakota-exe-version
@@ -40,7 +40,7 @@ if(NOT DAKOTA_TEST_DRIVERS_PATH)
     set(DAKOTA_TEST_DRIVERS_PATH "${Dakota_BINARY_DIR}/test")
   else()
     message(WARNING
-      "Some DakotaExamples tests require DAKOTA_TEST_DRIVERS_PATH (not found)")
+      "Some Examples tests require DAKOTA_TEST_DRIVERS_PATH (not found)")
   endif()
 endif()
 # TODO: validate driver location test at test time, maybe with cmake -P
@@ -52,7 +52,7 @@ if(NOT DAKOTA_PYTHON_PATH)
     set(DAKOTA_PYTHON_PATH "${Dakota_SOURCE_DIR}/interfaces/Python")
   else()
     message(WARNING
-      "Some DakotaExamples tests require DAKOTA_PYTHON_PATH (not found)")
+      "Some Examples tests require DAKOTA_PYTHON_PATH (not found)")
   endif()
 endif()
 
@@ -71,7 +71,7 @@ if(NOT DAKOTA_DPREPRO_PATH)
     set(DAKOTA_DPREPRO_PATH "${Dakota_SOURCE_DIR}/scripts/pyprepro")
   else()
     message(WARNING
-      "Some DakotaExamples tests require DAKOTA_DPREPRO_PATH (not found)")
+      "Some Examples tests require DAKOTA_DPREPRO_PATH (not found)")
   endif()
 endif()
 
