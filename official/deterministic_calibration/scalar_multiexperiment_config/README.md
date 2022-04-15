@@ -319,7 +319,9 @@ Original (as-posed) residuals:
                      -5.7206431307e-02
                      -1.9851959634e-01
 <<<<< Best residual norm =  7.2079041625e-01; 0.5 * norm^2 =  2.5976941208e-01
-<<<<< Best data not found in evaluation cache
+<<<<< Best evaluation ID not available
+(This warning may occur when the best iterate is comprised of multiple interface
+evaluations or arises from a composite, surrogate, or transformation model.)
 
 Warning: Confidence intervals may be inaccurate when num_experiments > 1
 Confidence Intervals on Calibrated Parameters:

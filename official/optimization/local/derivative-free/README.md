@@ -75,7 +75,7 @@ includes the final variable values and corresponding response value.
                       8.1860351562e-01 x2
 <<<<< Best objective function  =
                       9.0419506706e-03
-<<<<< Best data captured at function evaluation 2000
+<<<<< Best evaluation ID: 2000
 
 
 <<<<< Iterator asynch_pattern_search completed.

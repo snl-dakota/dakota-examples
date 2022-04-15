@@ -316,7 +316,12 @@
                       1.6565918000e+01
                       4.3314640000e+02
                      -3.3571920000e-02
-<<<<< Best data not found in evaluation cache
+<<<<< Best residual norm =  9.3680852663e+03; 0.5 * norm^2 =  4.3880510778e+07
+<<<<< Best evaluation ID (full match) not available
+(This warning may occur when the best iterate is comprised of multiple interface
+evaluations or arises from a composite, surrogate, or transformation model.)
+<<<<< Best evaluation ID (partial match): 37
+
 Confidence Intervals on Calibrated Parameters:
              L: [ -1.4069692269e+05, 1.4090683949e+05 ]
              p: [ -6.6942361229e+05, 6.7042227520e+05 ]
