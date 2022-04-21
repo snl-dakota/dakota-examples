@@ -47,7 +47,17 @@ def pack_dakota_results(fns, grads, hessians, dakota_results):
     return dakota_results
 
 
-def main(dakota_params):
+@di.python_interface()
+def decorated_driver(params, results):
+
+    textbook_input = pack_textbook_parameters(params, results)
+    fns, grads, hessians = textbook_list(textbook_input)
+    results = pack_dakota_results(fns, grads, hessians, results)
+
+    return results
+
+
+def driver(dakota_params):
 
     params, results = di.read_params_from_dict(dakota_params)
     textbook_input = pack_textbook_parameters(params, results)
@@ -62,4 +72,4 @@ def main(dakota_params):
 
 
 if __name__ == '__main__':
-    main()
+    driver()

@@ -18,7 +18,7 @@ interface,
         python
 # the current analysis driver format is module:function	
 # use this for the list method of passing the data
-          analysis_driver = 'driver:main'
+          analysis_driver = 'driver:decorated_driver'
 
 
 responses,
