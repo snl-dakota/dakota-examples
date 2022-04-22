@@ -99,6 +99,11 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
     PATH official/drivers/Python/linked
     REGRESS dakota_textbook_python.in
     )
+
+  dakota_example_test(
+    PATH official/drivers/Python/linked_di
+    REGRESS dakota_textbook_python.in
+    )
 endif()
 
 # drivers tests
