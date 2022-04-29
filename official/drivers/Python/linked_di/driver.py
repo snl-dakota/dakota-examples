@@ -21,7 +21,7 @@ def pack_textbook_parameters(dakota_params, dakota_results):
             active_set_vector += 2
         if dakota_results[label].asv.hessian:
             active_set_vector += 4
-            asv_vec.append(active_set_vector)
+        asv_vec.append(active_set_vector)
     
     textbook_input = {
         "cv": continuous_vars,
