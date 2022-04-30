@@ -47,7 +47,7 @@ def pack_dakota_results(fns, grads, hessians, dakota_results):
     return dakota_results
 
 
-@di.python_interface()
+@di.python_interface
 def decorated_driver(params, results):
 
     textbook_input = pack_textbook_parameters(params, results)
