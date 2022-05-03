@@ -8,7 +8,7 @@
 #  _______________________________________________________________________
 
 project(DakotaExamples LANGUAGES NONE)
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.15)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
