@@ -32,7 +32,7 @@ variables
 interface
 	id_interface "interface1"
 	analysis_drivers "{DRIVER}"
-		system
+		fork
 			parameters_file "params.txt"
 			results_file "results.txt"
 			file_save
