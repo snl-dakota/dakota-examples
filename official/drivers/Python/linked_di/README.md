@@ -18,7 +18,7 @@ examples that are peers to this one.
 The main function of the direct Python callback driver `driver.py` is:
 
 ```python
-@di.python_interface()
+@di.python_interface
 def decorated_driver(params, results):
 
     textbook_input = pack_textbook_parameters(params, results)
