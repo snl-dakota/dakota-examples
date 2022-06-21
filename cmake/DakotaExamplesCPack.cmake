@@ -20,6 +20,8 @@ foreach(_dir_entry ${_dir_contents})
 	USE_SOURCE_PERMISSIONS
 	# Manually account for case_studies as not at top-level
 	PATTERN "case_studies" EXCLUDE
+        PATTERN "__pycache__" EXCLUDE
+        PATTERN "*.py[cdo]" EXCLUDE
 	)
     else()
       install(FILES ${_dir_entry}
@@ -37,6 +39,7 @@ endforeach()
 list(APPEND _examples_cpack_source_ignore
   "^${CMAKE_CURRENT_SOURCE_DIR}/official/case_studies")
 
+list(APPEND _examples_cpack_source_ignore "__pycache__" ".*\\\\.py[cdo]")
 
 if(_examples_cpack_source_ignore)
   set(DAKOTA_EXAMPLES_CPACK_SOURCE_IGNORE ${_examples_cpack_source_ignore}
