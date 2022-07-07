@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from math import sin
 
 import PIC
 
@@ -24,7 +25,7 @@ def update_line_plot(time, x, y1, y2):
     plt.plot(x, y2)
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.xlim(4*slab_xmin, 4*slab_xmax)
+    plt.xlim(xmin, xmax)
     plt.ylim(top=1.25*n0_max)
     plt.title('Time ='+str(time))
     plt.draw()
@@ -72,14 +73,20 @@ if __name__ == "__main__":
     # This needs to be moved into PIC and unit tested...
     n0_max = -1.0
     for ptype in params['initial_conditions']:
-        slab_xmin = params['initial_conditions'][ptype]['xmin']
-        slab_xmax = params['initial_conditions'][ptype]['xmax']
-        n0   = params['initial_conditions'][ptype]['n0']
-        vx0  = params['initial_conditions'][ptype]['vx0']
-        T    = params['initial_conditions'][ptype]['T']
+        num_p = params['initial_conditions'][ptype]['num']
+        vx0   = params['initial_conditions'][ptype]['vx0']
+        T     = params['initial_conditions'][ptype]['T']
         particle = [_ for _ in particles if _.type == ptype][0]
-        n0_max = max(n0_max, n0*particle.weight*dx)
-        PIC.particle_loader(slab_xmin, slab_xmax, n0, particle, T, K_B = 1.380649e-23)
+        #n0_max = max(n0_max, n0*particle.weight*dx)
+        #PIC.particle_loader(xmin, xmax, n0, particle, T, K_B = 1.380649e-23)
+        particle.pos = np.linspace(xmin, xmax, num_p)
+        particle.velx = vx0*np.ones_like(particle.pos)
+        particle.vely = np.zeros_like(particle.pos)
+        particle.velz = np.zeros_like(particle.pos)
+        if 'perturb_x' in params['initial_conditions'][ptype].keys():
+            pert_x_expr = params['initial_conditions'][ptype]['perturb_x']
+            pert_x = lambda x: eval(pert_x_expr)
+            particle.pos += np.array([pert_x(xi) for xi in particle.pos])
 
     if verbose:
         for p in particles:
@@ -92,7 +99,7 @@ if __name__ == "__main__":
 
     # Compute initial potential field by:
     #   1) Scattering charge to nodes to 
-    rho = -0.0*np.ones_like(mesh)
+    rho = 0.0*np.ones_like(mesh)
     for p in particles:
         rho -= PIC.charge_scatter(mesh, p.pos, p.weight, p.charge*np.ones_like(p.pos))
     rho /= node_vols
@@ -150,11 +157,10 @@ if __name__ == "__main__":
         # Write densities
         if output_densities:
             for p in particles:
-                filename = "tsi_output/"+p.type+"_density_"+str(t)+".csv"
-                density = PIC.charge_scatter(mesh, p.pos, p.weight, np.ones_like(p.pos))/node_vols
+                filename = "tsi_output/"+p.type+"_phasespace_"+str(t)+".csv"
                 with open(filename, 'w') as F:
-                    for i in range(len(V)):
-                        F.write("{0:25.14e}, {1:25.14}\n".format(mesh[i], density[i]))
+                    for i in range(len(p.pos)):
+                        F.write("{0:25.14e}, {1:25.14}\n".format(p.pos[i], p.velx[i]))
 
         # Solve the linear system
         V = PIC.solveBanded(dx, rho)
@@ -170,6 +176,7 @@ if __name__ == "__main__":
         for p in particles:
             acc = p.charge*p.field/p.mass    
             p.pos, p.velx = PIC.update_pos_and_vel(p.pos, p.velx, dt, acc)
+            PIC.apply_periodic_bc(p, xmin, xmax)
 
             #if t%5 == 0 and p.charge < 0:
             #    n, bins, patches = plt.hist(p.pos, 50, range=(-0.001,0.001), density=True)

@@ -277,6 +277,29 @@ class TestPICPieces(unittest.TestCase):
         self.assertTrue(np.allclose(5.0*baseline, new_particles.field), 'Filtered particle field values are not correct.')
 
 
+    def test_particle_periodic(self):
+
+        test_particles = PIC.Particle("fake", { 'charge': 1.0, 'mass': 1.0, 'weight': 1.0 })
+
+        x_left  = -0.5
+        x_right =  1.0
+        test_particles.pos   = np.array([x_left+2.234*(x_right-x_left), x_right-5.15*(x_right-x_left)])
+        test_particles.velx  = 2.0*test_particles.pos
+        test_particles.vely  = 3.0*test_particles.pos
+        test_particles.velz  = 4.0*test_particles.pos
+        test_particles.field = 5.0*test_particles.pos
+
+        new_particles = PIC.apply_periodic_bc(test_particles, x_left, x_right)
+
+        # Test expected behavior after removing out-of-bounds particles
+        baseline = np.array([x_left+0.234*(x_right-x_left), x_right-0.15*(x_right-x_left)])
+        self.assertTrue(np.allclose(baseline, new_particles.pos), 'Filtered particle pos values are not correct.')
+        self.assertTrue(np.allclose(test_particles.velx , new_particles.velx ), 'Filtered particle velx values are not correct.')
+        self.assertTrue(np.allclose(test_particles.vely , new_particles.vely ), 'Filtered particle vely values are not correct.')
+        self.assertTrue(np.allclose(test_particles.velz , new_particles.velz ), 'Filtered particle velz values are not correct.')
+        self.assertTrue(np.allclose(test_particles.field, new_particles.field), 'Filtered particle field values are not correct.')
+
+
 
 
 if __name__=='__main__':

@@ -116,18 +116,34 @@ def apply_outflux_bc(particles, left, right):
     return new_part
 
 
+def apply_periodic_bc(particles, left, right):
+
+    mask1 = particles.pos > right
+    mask2 = particles.pos < left
+
+    particles.pos[mask1] = left  + np.mod((particles.pos[mask1]-left),(right-left))
+    particles.pos[mask2] = right + np.mod((particles.pos[mask2]-right),(left-right))
+
+    return particles
+
+
 def get_elem_id(mesh, pos):
 
     # Assumes equal mesh spacing
     # ... will need to generalize to support unequal mesh spacing
     dx = abs(mesh[1] - mesh[0])
-    return np.floor((pos-mesh[0])/dx).astype(int)
+    elem_id = np.floor((pos-mesh[0])/dx).astype(int)
+    # Handle pos on outer domain boundary
+    if elem_id < 0:
+        elem_id = 0
+    elif elem_id > len(mesh)-2:
+        elem_id = len(mesh)-2
+    return elem_id
 
 
 def charge_scatter(mesh, pos, part_wt, charge, verbose=False):
 
-    #Distributes charge in 1d
-
+    # Distributes charge in 1d
     n   = mesh.shape[0]
     rho = np.zeros(n)
 
