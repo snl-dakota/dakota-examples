@@ -18,26 +18,6 @@ Tour a few examples:
 
 ## How to use the Library
 
-### Access
-
-If you are internal to Sandia, we recommend accessing the Library directly on
-gitlab-ex. (https://gitlab-ex.sandia.gov/dakota/dakota-examples). Library content has
-been tailored to render correctly there, and any additions or changes we make to examples
-will be available immediately. On Gitlab, we recommend browsing the folder
-structure or using search to find what you are looking for.
-
-Outside of Sandia, the Library currently is available only in Dakota source and binary
-packages [on our website](https://dakota.sandia.gov/download.html). In source
-packages, it is located in the `dakota-examples` folder. In binary packages, it is
-locatedin `share/dakota/examples/official`. We plan to mirror the repository externally
-in the very near future; to be notified, email dakota-announce@software.sandia.gov
-and ask to be subscribed.
-
-The Dakota GUI also is a convenient and powerful way to view and find examples. It
-includes a text-based search interface to quickly search for examples.
-
-### Organization
-
 Examples are organized topically in a hierarchy of folders. Each example (and in some
 cases collection of examples) has a README, which is in markdown format.
 This document includes a description of the example and other details, such as how to
@@ -50,9 +30,12 @@ may be useful but have received a lower level of vetting.
 (Some of the other folders you may encounter, such as `cmake`, handle testing
 and packaging and can be disregarded if you aren't a Dakota developer.)
 
+The Dakota GUI also is a convenient and powerful way to view and find examples. It
+includes a text-based search interface to quickly search for examples.
+
 ## Contributing Dakota Examples
 
 If you've created an example that you feel may be of value to others, we invite you
-to submit it for inclusion in the Library. Please contact the user support mailing
-list, dakota-users@software.sandia.gov.
-
+to submit it for inclusion in the Library. Let us know in the
+[Show and Tell](https://github.com/orgs/snl-dakota/discussions/categories/show-and-tell)
+discussion. 
