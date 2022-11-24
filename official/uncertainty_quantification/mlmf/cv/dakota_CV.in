@@ -16,8 +16,8 @@ method,
 model,
 	id_model = 'HIERARCH'
 	variables_pointer = 'HF_VARS'
-    surrogate non_hierarchical
-	  unordered_model_fidelities = 'LF' 
+    surrogate ensemble
+	  approximation_models = 'LF' 
 	  truth_model_pointer = 'HF' 
 
 model,
