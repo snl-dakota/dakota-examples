@@ -1,12 +1,14 @@
 Test Number 0 succeeded
 <<<<< Function evaluation summary: 5347 total (5347 new, 0 duplicate)
 <<<<< Function evaluation summary: 5347 total (5347 new, 0 duplicate)
-<<<<< Equivalent number of high fidelity evaluations: 1.1276071429e+02
+<<<<< Online number of equivalent high fidelity evaluations: 1.1276071429e+02
 <<<<< Variance for mean estimator:
-      Initial MC (  10 pilot samples):  6.4667099361e+02
-      Final   MC (  94 HF samples):     1.0491364498e+02
-      Final MFMC (sample profile):      4.1677281280e+00
-      Final MFMC ratio (1 - R^2):       3.9725320086e-02
+      Initial MC (   10 HF samples):  6.4667099361e+02
+     Online   MC (   94 HF samples):  1.0491364498e+02
+     Online MFMC (sample profile):    4.1677281280e+00
+     Online MFMC ratio (1 - R^2):     3.9725320086e-02
+ Equivalent   MC (  113 HF samples):  8.7458497317e+01
+ Equivalent MFMC ratio:               4.7653781575e-02
 Sample moment statistics for each response function:
                             Mean           Std Dev          Skewness          Kurtosis
  response_fn_1  4.1540185792e+01  1.0699164066e+02  2.0255307960e+00  5.7054234756e+00
