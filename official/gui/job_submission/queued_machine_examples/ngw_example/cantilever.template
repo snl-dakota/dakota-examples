@@ -1,0 +1,13 @@
+# cantilever.i
+# One parameter per line. Whitespace otherwise ignored.
+# Comments start with # and continue to the end of the line
+# All parameters below are required
+
+width = {w}            # beam width (horizontal dimension), inches
+thickness = {t}        # beam thickness (vertical dimension), inches
+length = {L}          # beam length, inches
+youngs_modulus = {E}  # lb/in^2
+horizontal_load = {X}    # lb
+
+vertical_load = {Y}     # lb
+density = {p}          # density, lb/ft^3
