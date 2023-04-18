@@ -1,0 +1,18 @@
+Parameters:
+  L: 100
+  w: 1
+  t: 1
+  E: 2.9e7
+  p: 500
+  X: 100
+  Y: 100
+
+Responses:
+  - mass
+  - stress
+  - displacement
+  
+  
+  
+  
+  

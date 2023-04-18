@@ -40,7 +40,7 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 - `cantilever` - the black-box simulation model representing the cantilever beam.  In reality, this is a Python script with the extension removed, so it would be invoked from the command-line as `python cantilever <input file>`, where <input file\> is the input data file for the simulation.
 - `cantilever.template` - the templatized input file for the cantilever beam.  Note the presence of curly braces in the text of this file.  This file is primarily used in the **pre-processing** step of analysis driver logic.
-- `CantileverBeam.bmf` - a lightweight model definition for the cantilever beam.  This BMF model contains seven input parameters and three output responses.  BMF stands for "basic model format", and these files are generated/used in Dakota GUI.
+- `CantileverBeam.yaml` - a lightweight definition for the input parameters and output responses of the cantilever beam. We choose to use YAML format here to recognize input parameters and output responses, but Dakota GUI also acknowledges JSON and INI formats.
 - `CPS.in` - the Dakota study, which uses the `centered_parameter_study` method to study the cantilever beam model.
 - `DakotaDriver.py` - the analysis driver for the Dakota study.  This Python script is responsible for transferring information between Dakota and the cantilever beam model.
 - `DakotaDriver.py.im` - an "interface manifest" file, which is used by Dakota GUI.  The interface manifest declares which input parameters the Python driver script is capable of receiving, and what output responses it is expected to produce.
@@ -62,10 +62,3 @@ This analysis driver will only work if Dakota's Python interfacing libraries are
 ## Run in Dakota GUI
 
 After importing this example project into the GUI, right-click the CPS.in file, and choose `Run As > Dakota` from the context menu.
-
-# Further Reading
-
-This example was developed from the example available at `dakota-examples/official/gui/analysis_driver_tutorial/begin`, using the following steps to produce a Python driver script and a new Dakota study:
-
- - [Create a driver script to wrap the parameterized simulation model.](https://dakota.sandia.gov/content/wizards-1#script-based-dakota-driver-wizard)
- - [Create a new Dakota study using the Dakota Study Wizard, providing your driver script as the analysis driver.](https://dakota.sandia.gov/content/wizards-1#dakota-study-wizard)
