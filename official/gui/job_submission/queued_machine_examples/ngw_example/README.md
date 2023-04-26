@@ -109,12 +109,24 @@ Once you have configured your workflow files, you are ready to run the workflow!
 
 By way of demonstration, we have included "jobId" as an example value that is returned from LoginNodeWorkflow back to LocalWorkflow, using output ports and responses. You can configure an additional number of output ports to send additional information back to your local machine. For example, remote files may be sent back using the "Grab Output File" feature on the remoteNestedWorkflow node. 
 
-To send remote files back to the local machine after the remoteNestedWorkflow has completed execution, right-click the remoteNestedWorkflow node in your LocalWorkflow workflow file, and choose "Grab Output File" from the context menu. You will be presented with the following dialog:
+To send remote files back to your local machine after the entire workflow has completed execution, you will need to create output ports and response nodes for each file or folder you want to bring back. Additionally, you will need to do this at every "level" of the workflow, starting from the point at which the files originate. Finally, you will need to set all this up *before* you run the workflow, not afterwards.
+
+Let's assume we want to get Dakota's tabular data file. Because Dakota runs on a remote machine, we will need to retrieve the tabular data file from the remote machine. But how do we do that? Well, because it is the Dakota process that generates this output file, we can use the "Grab Output File" option on the "dakotaQueueSubmit" node, which is located in the "RemoteWorkflow.iwf" workflow.
+
+Right-click the "dakotaQueueSubmit" node and choose "Grab Output File" from the context menu. You will be presented with the following dialog:
 
 ![alt text](img/JobSubmission_NGW_FileRetrieval1.png "'Grab Output File' dialog")
 
-This dialog will allow you to specify the name of the file as well as the name of the remote file (relative to the working directory of remoteNestedWorkflow).
+Enter "tabular\_data\_file" (or something similar) in the "Port name" field, and "tabular.data" in the "File name" field, as "tabular.data" is the name that Dakota uses for its tabular data output in this example.
 
-![alt text](img/JobSubmission_NGW_FileRetrieval2.png "Attaching nodes to output ports")
+Click OK on this dialog, which will result in a new output port, "tabular\_data\_file," being added to your "dakotaQueueSubmit" node. Now, pass the data from this output port to a response node, like so:
 
-After setting output ports on your remoteNestedWorkflow node, you can do whatever you wish with the returned files.
+![alt text](img/JobSubmission_NGW_Example1_4.png "Attaching nodes to output ports")
+
+Doing all this will result in the *path to the tabular data file* being provided as an output response of the "RemoteWorkflow.iwf" workflow. This is all well and good, but we still need to send the file back to our local machine.
+
+Back in the "LocalWorkflow.iwf" workflow, manually add an output port to "remoteNestedWorkflow" node using the Output Ports tab in the Settings editor (there is no need to use the "Grab Output File" shortcut dialog here). This new output port should be called "tabular\_data\_file" (it should mirror the response node we set up in the other workflow). As before, pass the data from this output port to a response node:
+
+![alt text](img/JobSubmission_NGW_Example1_5.png "Attaching nodes to output ports part 2")
+
+Now, when you run this workflow to completion, Dakota's tabular data file will be returned to your local machine. You can follow this same process for any of Dakota's output files.

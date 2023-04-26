@@ -26,7 +26,7 @@ This problem is emblematic of most Dakota studies, in that we have a simulation 
 
 # Description of analysis driver
 
-Dakota does not know how to set up, run, or get output from a user's simulation.  The user is responsible for creating a driver that carries out those tasks on Dakota's behalf. In a typical study, Dakota runs the driver one time for each evaluation, which is a mapping from a single point in input/parameter space to a corresponding point in response/output space.  The driver has three main responsibilities.
+Dakota does not know how to set up, run, or get output from a user's simulation.  That responsibility belongs to the *analysis driver,* which carries out those tasks on Dakota's behalf. In a typical study, Dakota runs the analysis driver one time for each evaluation, which is a mapping from a single point in input/parameter space to a corresponding point in response/output space.  The driver has three main responsibilities.
 
 1. **Preprocessing:** Dakota provides parameter values to the driver by writing them to a parameters file.  It communicates the name of the parameters file as the first command line argument of the driver. In the preprocessing phase, the driver uses values it reads from the parameters file to construct valid input for the simulation.
 
@@ -49,11 +49,10 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 # How to run the example
 
-## Prerequisites
+## Prerequisites (IMPORTANT!)
 
-This analysis driver will only work if Dakota's Python interfacing libraries are available on the **PYTHONPATH** environment variable.  For example, if you installed Dakota to `/home/dakota`, then the absolute path to the Python interfacing directory will be `/home/dakota/share/dakota/Python`, and this must be available on PYTHONPATH for the Python driver script to work correctly.
-
-[You can learn more about PYTHONPATH here.](https://docs.python.org/3/using/cmdline.html#environment-variables)
+- This analysis driver will *only* work if Dakota's Python interfacing libraries are available on the **PYTHONPATH** environment variable.  For example, if you installed Dakota to `/home/dakota`, then the absolute path to the Python interfacing directory will be `/home/dakota/share/dakota/Python`, and this must be available on PYTHONPATH for the Python driver script to work correctly. [You can learn more about PYTHONPATH here.](https://docs.python.org/3/using/cmdline.html#environment-variables)
+- Additionally, you may be required to alter the line `analysis_drivers "python3 -m DakotaDriver"` in the `CPS.in` input file. If you are using Python 2.7 or older, or if `python3` is aliased to `python`, you may need to change this line to the following: `analysis_drivers "python -m DakotaDriver"` 
 
 ## Run on command line
 
@@ -62,3 +61,7 @@ This analysis driver will only work if Dakota's Python interfacing libraries are
 ## Run in Dakota GUI
 
 After importing this example project into the GUI, right-click the CPS.in file, and choose `Run As > Dakota` from the context menu.
+
+# Further Reading
+
+This example was developed from the example available at `dakota-examples/official/gui/analysis_driver_tutorial/begin`.
