@@ -70,7 +70,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="381" height="91" x="120" y="70" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="381" height="111" x="120" y="50" id="wfnote"/>
       <link businessObjects="/57"/>
     </children>
     <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.1/@anchors.2" end="/0/@children.0/@anchors.0">
@@ -142,5 +142,5 @@
   <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/51"/>
   <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/51"/>
   <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/51"/>
-  <gov.sandia.dart.workflow.domain:Note text="USER TO-DO LIST:&#xD;&#xA;&#xD;&#xA;Click on the dakota node, and in the Settings view, set the &quot;dakotaPath&quot; property to the installation location of Dakota on the remote machine." color="yellow"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;USER TO-DO LIST:&#xD;&#xA;&#xD;&#xA;Click on the dakota node, and in the Settings view, set the &quot;dakotaPath&quot; property to the installation location of Dakota on the remote machine." color="red"/>
 </xmi:XMI>
