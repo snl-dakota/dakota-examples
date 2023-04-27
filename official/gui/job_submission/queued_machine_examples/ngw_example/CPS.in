@@ -1,9 +1,4 @@
 environment
-	tabular_data
-		tabular_data_file "tabular.data"
-	output_file "dakota.out"
-	error_file "dakota.err"
-	write_restart "dakota.rst"
 	results_output
 		hdf5
 
