@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:gov.sandia.dart.workflow.domain="https://dart.sandia.gov/workflow/domain" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
-  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="LoginNodeWorkflow.iwf" snapToGrid="true" pictogramLinks="/0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.3/@anchors.1/@link /0/@children.3/@anchors.2/@link /0/@children.3/@anchors.3/@link /0/@children.3/@anchors.4/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.5/@anchors.1/@link /0/@children.5/@anchors.2/@link /0/@children.5/@anchors.3/@link /0/@children.5/@anchors.4/@link /0/@connections.0/@link /0/@children.5/@anchors.5/@link /0/@connections.1/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@connections.2/@link /0/@children.5/@anchors.6/@link /0/@children.2/@link /0/@children.1/@link /0/@children.0/@link" version="0.17.0">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="LoginNodeWorkflow.iwf" snapToGrid="true" pictogramLinks="/0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.3/@anchors.1/@link /0/@children.3/@anchors.2/@link /0/@children.3/@anchors.3/@link /0/@children.3/@anchors.4/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.5/@anchors.1/@link /0/@children.5/@anchors.2/@link /0/@children.5/@anchors.3/@link /0/@children.5/@anchors.4/@link /0/@connections.0/@link /0/@children.5/@anchors.5/@link /0/@connections.1/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@connections.2/@link /0/@children.5/@anchors.6/@link /0/@children.2/@link /0/@children.1/@link /0/@children.0/@link /0/@children.7/@link" version="0.17.0">
     <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="181" x="100" y="280" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="181" x="80" y="280" id="wfnote"/>
       <link businessObjects="/71"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="231" height="121" x="670" y="175" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="231" height="121" x="630" y="270" id="wfnote"/>
       <link businessObjects="/70"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="201" x="100" y="50" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="201" x="80" y="50" id="wfnote"/>
       <link businessObjects="/69"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="91" x="129" y="140" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="91" x="109" y="140" id="wfnode"/>
       <link businessObjects="/1"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -44,7 +44,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="180" height="75" x="120" y="370" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="180" height="75" x="100" y="370" id="wfnode"/>
       <link businessObjects="/16"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" outgoingConnections="/0/@connections.1" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
@@ -53,7 +53,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="221" height="111" x="380" y="180" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="221" height="111" x="360" y="275" id="wfnode"/>
       <link businessObjects="/27"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.0" referencedGraphicsAlgorithm="/0/@children.5/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -92,13 +92,17 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="100" height="24" x="730" y="250" id="wfresponse"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="100" height="24" x="690" y="340" id="wfresponse"/>
       <link businessObjects="/65"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.2" referencedGraphicsAlgorithm="/0/@children.6/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
         <link businessObjects="/65"/>
         <location y="10"/>
       </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="501" height="191" x="360" y="50" id="wfnote"/>
+      <link businessObjects="/72"/>
     </children>
     <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.3/@anchors.2" end="/0/@children.5/@anchors.0">
       <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
@@ -185,7 +189,8 @@
   <gov.sandia.dart.workflow.domain:ResponseArc name="jobId -> jobId" source="/32" target="/65"/>
   <gov.sandia.dart.workflow.domain:Property name="runDakotaScript" value="" node="/27"/>
   <gov.sandia.dart.workflow.domain:InputPort name="preprocFile" type="default" node="/27"/>
-  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;The Dakota study to run in the queue" color="red"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;The Dakota study to run in the queue" color="yellow"/>
   <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;Send the job ID back to the local machine" color="green"/>
   <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;Turn our analysis driver workflow into a run-ready shell script for Dakota" color="yellow"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;USER TO-DO LIST:&#xD;&#xA;&#xD;&#xA;Click on the DakotaQueueSubmit node, and in the Settings view:&#xD;&#xA; - Set &quot;account&quot; to your job queue account name/number&#xD;&#xA; - Set &quot;job.hours&quot; and &quot;job.minutes&quot; according to the time your job will have in the queue&#xD;&#xA; - Set &quot;num.nodes&quot; and &quot;num.processors&quot; according to the number of queue resources you would like to provision.&#xD;&#xA; - Set &quot;queue&quot; to an appropriate default (i.e. &quot;batch&quot; for Slurm).&#xD;&#xA; - Optionally, check the &quot;continueAfterSubmit&quot; box on DakotaQueueSubmit if you would like the DakotaQueueSubmit node to return immediately after submitting the job to the queue." color="red"/>
 </xmi:XMI>

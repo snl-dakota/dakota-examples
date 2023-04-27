@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:gov.sandia.dart.workflow.domain="https://dart.sandia.gov/workflow/domain" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
-  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="LocalWorkflow.iwf" snapToGrid="true" pictogramLinks="/0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.3/@anchors.1/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.4/@anchors.1/@link /0/@children.4/@anchors.2/@link /0/@children.4/@anchors.3/@link /0/@children.3/@anchors.2/@link /0/@connections.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.5/@anchors.1/@link /0/@children.5/@anchors.2/@link /0/@children.5/@anchors.3/@link /0/@children.3/@anchors.3/@link /0/@connections.1/@link /0/@children.3/@anchors.4/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@connections.2/@link /0/@children.7/@link /0/@children.7/@anchors.0/@link /0/@children.7/@anchors.1/@link /0/@children.7/@anchors.2/@link /0/@children.7/@anchors.3/@link /0/@children.3/@anchors.5/@link /0/@connections.3/@link /0/@children.8/@link /0/@children.8/@anchors.0/@link /0/@children.8/@anchors.1/@link /0/@children.8/@anchors.2/@link /0/@children.8/@anchors.3/@link /0/@children.3/@anchors.6/@link /0/@connections.4/@link /0/@children.2/@link /0/@children.1/@link /0/@children.0/@link" version="0.17.0">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="LocalWorkflow.iwf" snapToGrid="true" pictogramLinks="/0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.3/@anchors.1/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.4/@anchors.1/@link /0/@children.4/@anchors.2/@link /0/@children.4/@anchors.3/@link /0/@children.3/@anchors.2/@link /0/@connections.0/@link /0/@children.5/@link /0/@children.5/@anchors.0/@link /0/@children.5/@anchors.1/@link /0/@children.5/@anchors.2/@link /0/@children.5/@anchors.3/@link /0/@children.3/@anchors.3/@link /0/@connections.1/@link /0/@children.3/@anchors.4/@link /0/@children.6/@link /0/@children.6/@anchors.0/@link /0/@connections.2/@link /0/@children.7/@link /0/@children.7/@anchors.0/@link /0/@children.7/@anchors.1/@link /0/@children.7/@anchors.2/@link /0/@children.7/@anchors.3/@link /0/@children.3/@anchors.5/@link /0/@connections.3/@link /0/@children.8/@link /0/@children.8/@anchors.0/@link /0/@children.8/@anchors.1/@link /0/@children.8/@anchors.2/@link /0/@children.8/@anchors.3/@link /0/@children.3/@anchors.6/@link /0/@connections.4/@link /0/@children.2/@link /0/@children.1/@link /0/@children.0/@link /0/@children.9/@link" version="0.17.0">
     <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="231" height="121" x="680" y="160" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="231" height="121" x="680" y="248" id="wfnote"/>
       <link businessObjects="/109"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="351" x="80" y="160" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="351" x="61" y="200" id="wfnote"/>
       <link businessObjects="/108"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="159" x="80" y="-10" id="wfnote"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="228" height="159" x="60" y="20" id="wfnote"/>
       <link businessObjects="/107"/>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="261" height="107" x="380" y="170" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="261" height="107" x="360" y="270" id="wfnode"/>
       <link businessObjects="/1"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
@@ -54,7 +54,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="109" y="66" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="90" y="70" id="wfnode"/>
       <link businessObjects="/20"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -78,7 +78,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="109" y="226" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="90" y="266" id="wfnode"/>
       <link businessObjects="/41"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.5/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -102,7 +102,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="100" height="24" x="750" y="220" id="wfresponse"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="100" height="24" x="740" y="320" id="wfresponse"/>
       <link businessObjects="/63"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.2" referencedGraphicsAlgorithm="/0/@children.6/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -111,7 +111,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="109" y="326" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="90" y="366" id="wfnode"/>
       <link businessObjects="/65"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.7/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -135,7 +135,7 @@
       </anchors>
     </children>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="109" y="420" id="wfnode"/>
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="170" height="70" x="90" y="460" id="wfnode"/>
       <link businessObjects="/86"/>
       <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.8/@graphicsAlgorithm">
         <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
@@ -157,6 +157,10 @@
         <link businessObjects="/90"/>
         <location x="170" y="47"/>
       </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="551" height="205" x="360" y="20" id="wfnote"/>
+      <link businessObjects="/110"/>
     </children>
     <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@anchors.2" end="/0/@children.3/@anchors.2">
       <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0"/>
@@ -290,7 +294,8 @@
   <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/101"/>
   <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/101"/>
   <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="true" node="/101"/>
-  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;The Dakota study to run in the queue" color="red"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;The Dakota study to run in the queue" color="yellow"/>
   <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;Analysis driver files to upload" color="yellow"/>
   <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;Save the job ID so we can look up the results later" color="green"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;USER TO-DO LIST:&#xD;&#xA;&#xD;&#xA;Click on the remoteNestedWorkflow node, and adjust its properties in the Settings view:&#xD;&#xA;&#xD;&#xA;- Verify that the &quot;fileName&quot; property is set to &quot;RemoteWorkflow.iwf.&quot;&#xD;&#xA;- Set the &quot;hostname&quot; property to the name of the remote machine you will be connecting and sending files to.&#xD;&#xA;- Set the &quot;username&quot; property to your username on the remote machine.&#xD;&#xA;- Set the &quot;remotePath&quot; property to the remote destination which you would like to act as your remote directory.&#xD;&#xA;- Optionally, set the &quot;wflib&quot; property to the installation location of NGW on the remote machine." color="red"/>
 </xmi:XMI>
