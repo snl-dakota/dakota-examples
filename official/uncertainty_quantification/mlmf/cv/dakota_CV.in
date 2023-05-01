@@ -17,8 +17,8 @@ model,
 	id_model = 'HIERARCH'
 	variables_pointer = 'HF_VARS'
     surrogate ensemble
-	  approximation_models = 'LF' 
 	  truth_model_pointer = 'HF' 
+	  approximation_models = 'LF' 
 
 model,
 	id_model = 'LF'
@@ -59,8 +59,8 @@ variables,
 	    descriptors 'N_x' 'N_mod'
 
 interface,
-	direct
-	  analysis_driver = 'transient_diffusion_1d'
+	analysis_driver = 'transient_diffusion_1d'
+	  direct
 	  deactivate restart_file
 
 responses,
