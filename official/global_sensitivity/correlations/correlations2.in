@@ -1,0 +1,29 @@
+method
+  sampling
+    seed 1337
+    samples 4000
+ 
+variables
+  uniform_uncertain 4
+    descriptors 'x1' 'x2' 'x3' 'x4'
+    lower_bounds  0.0  0.0  0.0  0.0
+    upper_bounds  1.0  1.0  1.0  1.0
+  uncertain_correlation_matrix
+     1.0 0.0 0.0 0.8
+     0.0 1.0 0.0 0.0
+     0.0 0.0 1.0 0.0
+     0.8 0.0 0.0 1.0
+ 
+responses
+  response_functions 1
+    descriptors 'y'
+    no_gradients
+    no_hessians
+ 
+interface
+  analysis_drivers 'driver2.py'
+    fork
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_tag
+asynchronous evaluation_concurrency 16
