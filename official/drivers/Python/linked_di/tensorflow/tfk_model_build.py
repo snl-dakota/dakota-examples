@@ -6,7 +6,7 @@ import numpy as np
 from tensorflow.keras import layers
 
 #load data to train model from
-Traindf = pd.read_csv("IshigamiSample.txt", delimiter='\t', header = None)
+Traindf = pd.read_csv("ishigami_training_data.txt", delim_whitespace=True, header = None)
 data = Traindf.values
 
 #split labels from train data
@@ -37,13 +37,14 @@ def build_ffnn(activation, nodes):
 
 #load model with hyper-params
 ffnn_model = build_ffnn("gelu", 100)
-ffnn_model.summary()
 
 ffnn_model.fit(X_train,
                Y_train,
                epochs = 500,
 #              batch_size = 10,
                verbose = 1)
+
+ffnn_model.summary()
 
 mse = ffnn_model.evaluate(X_train, Y_train)[0]
 
