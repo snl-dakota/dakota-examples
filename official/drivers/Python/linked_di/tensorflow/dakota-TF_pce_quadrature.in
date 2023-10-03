@@ -1,0 +1,25 @@
+# Global Sensitivity directly on a PCE through Ishigami Surrogate model
+
+method
+	polynomial_chaos
+            seed 141521
+	    quadrature_order = 5
+#	    samples_on_emulator = 10000
+     	variance_based_decomp #interaction_order = 1
+	distribution cumulative
+
+variables
+	uniform_uncertain =  3
+	descriptors     =    'x'      'y'      'z'
+	lower_bounds    =    -3.141592 -3.141592 -3.141592
+	upper_bounds    =    +3.141592 +3.141592 +3.141592
+
+interface
+    python
+    analysis_driver = 'TF-Ishigami:prediction_driver'
+
+responses
+    response_functions = 1
+    descriptors = 'Ishigami'
+	no_gradients
+	no_hessians
