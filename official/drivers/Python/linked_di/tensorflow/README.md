@@ -84,14 +84,18 @@ that the PYTHONPATH includes the directory containing the textbook.py
 driver script.
 
 To create sample data from the Ishigami function
-     $ dakota -i dakota_training_data.in
+
+  $ dakota -i dakota_training_data.in
 
 To build Tensorflow/Keras surrogate model from Dakota sample data
-     $ python tfk_model_build.py
+
+  $ python tfk_model_build.py
 
 To perform sensitivity analysis on the previously trained and exported surrogate model or Dakota's sobol_ishigami function:
-     $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
-(to modify what interface to use, uncomment or comment the driver to be tested in the dakota-TF_pce_quadrature.in input file's interface block)
+
+  $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
+(
+to modify what interface to use, uncomment or comment the driver to be tested in the dakota-TF_pce_quadrature.in input file's interface block)
 
 # Requirements
 
