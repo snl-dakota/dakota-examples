@@ -1,13 +1,19 @@
 # Summary
 
-Perform uncertainty quantification and global sensitivity analysis using polynomial chaos expansions constructed from quadrature points applied to external tensorflow/keras surrogate model of the Ishigami function. 
+Perform uncertainty quantification and global sensitivity analysis using polynomial chaos expansions constructed from quadrature points applied to an external tensorflow/keras surrogate model of the Ishigami function. 
 
 # Description
-To analyze the sensitivity of the function approximation of an exported surrogate model trained on random uniform samples of the Ishigami function.
+This example uses the Dakota direct python callback interface with the use of the `dakota.interfacing` Python module provided by Dakota to 
+convert from the incomming Python dictionary to Parameters and Response object native to dakota.interfacing.
+Dakota can create sample points from a function like Ishigami, which are then used to build a Tensorflow/Keras surrogate model from, 
+to then perform sensitivity analysis on with Dakota.
 
 # Driver
 The main function of the direct Python callback driver 'TF-Ishigami.py' is: 
+
 ```
+tfk_model = tf.keras.models.load_model("./exported_tfk_model.keras")
+
 @di.python_interface
 def prediction_driver(params, results):
     params_list = []
@@ -15,22 +21,15 @@ def prediction_driver(params, results):
     for i, label in enumerate(params):
         params_list.append(params[label])
 
-    '''
-    FOR TENSORFLOW (load an exported model)
-    tfk_model = tf.keras.models.load_model("./exported_tfk_model.keras")
-    '''
     #add function output to dakota response object 
     for i, label in enumerate(results):
-        results[label].function = Ishigami(params_list)
-
-        '''
-        FOR TENSORFLOW (send parameter values to model and get a prediction)
         results[label].function = tfk_model.predict([params_list])[0][0]
-        '''
-    #return function output as dakota response object
+
+#return function output as dakota response object
     return results
 
 ```
+
 Prior to this snippet, the driver imports the `dakota.interfacing` module
 as `di`. 
 The Python decorator is invoked by using the Python convention of the
@@ -39,34 +38,33 @@ The Python decorator is invoked by using the Python convention of the
 python dictionary of parameters and expected responses to the decorator
 which internally converts this to `Parameters` and `Responses` objects
 native to `dakota.interfacing`. 
-A helper function or tensorflow model (in the works) also in `TF-Ishigami.py`
-extract the parameters gotten from dakota and call the functions to get a 
-suitable `Response` object for dakota.
-The function to calculate the Ishigami function output can 
-either be a tensorflow model (in the works),  or a simple Ishigami function
-in mathematical form "sin(x) + a*sin(y)**2 + b*z**4*sin(x)" where a = 7.0
-and b = 0.1. 
+
+The 'prediction_driver' function receives direct parameters from Dakota and a results variable to package the responses into.
+The received parameters are then sent to an exported Tensorflow/Keras surrogate model to then place the predictions in Dakota 
+appropriate format and returned as a response.
 
 # Dakota input
-Dakota input file for global sensitivity analysis for the Ishigami function
+Dakota input file for direct global sensitivity analysis on the Ishigami function or on the Tensorflow/Keras surrogate model of it.
 
 ```
-
 method
 	polynomial_chaos
 	    quadrature_order = 5
-     	variance_based_decomp #interaction_order = 1
-	distribution cumulative
+     	variance_based_decomp
 
 variables
 	uniform_uncertain =  3
-	descriptors     =    'x'      'y'      'z'
-	lower_bounds    =    -3.141592 -3.141592 -3.141592
-	upper_bounds    =    +3.141592 +3.141592 +3.141592
+	descriptors     =    'x1'      'x2'    'x3'
+	lower_bounds    =     0         0       0
+	upper_bounds    =     1         1       1
 
 interface
-    python
-    analysis_driver = 'TF-Ishigami:prediction_driver'
+#    python
+#    analysis_driver = 'TF-Ishigami:prediction_driver'
+     direct
+	analysis_driver = 'sobol_ishigami'
+
+
 
 responses
     response_functions = 1
@@ -85,9 +83,15 @@ Make sure the Python used to build Dakota is in the environment PATH and
 that the PYTHONPATH includes the directory containing the textbook.py
 driver script.
 
-To perform sensitivity analysis on the previously trained and exported surrogate model or dedicated function:
+To create sample data from the Ishigami function
+     $ dakota -i dakota_training_data.in
+
+To build Tensorflow/Keras surrogate model from Dakota sample data
+     $ python tfk_model_build.py
+
+To perform sensitivity analysis on the previously trained and exported surrogate model or Dakota's sobol_ishigami function:
      $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
-	
+(to modify what interface to use, uncomment or comment the driver to be tested in the dakota-TF_pce_quadrature.in input file's interface block)
 
 # Requirements
 
@@ -101,9 +105,12 @@ Python with the following libraries: numpy, pandas, tensorflow
 
 # Contents
 
-* `dakota-TF_pce_quadrature.in`: Dakota input file that performs variance based decomposition based on polynomial chaos expansion samples on an external surrogate model.  
-* `TF-Ishigami.py`: Python scripts to read Dakota outputs and return predictions as responses for Dakota.
-* `exported_tfk_model.keras`: Exported tensorflow/keras feed forward neural network for regression
+* `dakota-TF_pce_quadrature.in`: Dakota input file that performs variance based decomposition based on polynomial chaos expansion samples on an external/tensorflow surrogate model.  
+* `TF-Ishigami.py`: Module with decorated callback function used by Dakota's "direct" interface, for Dakota IO.
+* `dakota_training_data.in`: Dakota input file that creates samples from the Ishigami function and outputs a tabular file "ishigami_training_data.txt"
+* `tfk_model_build.py`: Python script with Tensorflow/Keras libraries to train a surrogate neural network model from Dakota's sampled data.
+
+
 
 # Further Reading
 

@@ -1,7 +1,5 @@
 import dakota.interfacing as di
 import tensorflow as tf
-from math import sin
-
 
 tfk_model = tf.keras.models.load_model("./exported_tfk_model.keras")
 
