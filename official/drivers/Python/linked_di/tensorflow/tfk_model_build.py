@@ -24,28 +24,25 @@ def build_ffnn(activation, nodes):
     model = keras.Sequential([
         layers.Dense(nodes, activation=activation),
         layers.Dense(nodes, activation=activation),
-        layers.Dense(nodes, activation=activation),
         layers.Dense(1)
     ])
     #model compilation
     model.compile(loss='mean_squared_error',
-                  optimizer=tf.keras.optimizers.Adam(learning_rate=0.00275),
+                  optimizer=tf.keras.optimizers.Adam(learning_rate=0.003),
                   metrics=["mean_squared_error"])
 
 
     return model
 
 #load model with hyper-params
-ffnn_model = build_ffnn("gelu", 100)
+ffnn_model = build_ffnn("gelu", 80)
 
 ffnn_model.fit(X_train,
                Y_train,
-               epochs = 500,
-#              batch_size = 10,
+               epochs = 300,
                verbose = 1)
 
 ffnn_model.summary()
-
 mse = ffnn_model.evaluate(X_train, Y_train)[0]
 
 #if accurate enough export model

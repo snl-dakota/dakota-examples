@@ -37,9 +37,10 @@ The Python decorator is invoked by using the Python convention of the
 `di.python_interface()`.  This has the effect of passing the incoming
 python dictionary of parameters and expected responses to the decorator
 which internally converts this to `Parameters` and `Responses` objects
-native to `dakota.interfacing`. 
+native to `dakota.interfacing`.
 
-The 'prediction_driver' function receives direct parameters from Dakota and a results variable to package the responses into.
+`TF-Ishigami.py` reads in the model file at the module scope, allowing the model to only be loaded once when Dakota imports the module.
+The `prediction_driver()` function receives direct parameters from Dakota and a results variable to package the responses into.
 The received parameters are then sent to an exported Tensorflow/Keras surrogate model to then place the predictions in Dakota 
 appropriate format and returned as a response.
 
@@ -85,17 +86,17 @@ driver script.
 
 To create sample data from the Ishigami function
 
-  $ dakota -i dakota_training_data.in
+    $ dakota -i dakota_training_data.in
 
 To build Tensorflow/Keras surrogate model from Dakota sample data
 
-  $ python tfk_model_build.py
+    $ python tfk_model_build.py
 
 To perform sensitivity analysis on the previously trained and exported surrogate model or Dakota's sobol_ishigami function:
 
-  $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
-(
-to modify what interface to use, uncomment or comment the driver to be tested in the dakota-TF_pce_quadrature.in input file's interface block)
+    $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
+
+(to modify what interface to use, uncomment or comment the driver to be tested in the dakota-TF_pce_quadrature.in input file's interface block)
 
 # Requirements
 
@@ -110,10 +111,12 @@ Python with the following libraries: numpy, pandas, tensorflow
 # Contents
 
 * `dakota-TF_pce_quadrature.in`: Dakota input file that performs variance based decomposition based on polynomial chaos expansion samples on an external/tensorflow surrogate model.  
-* `TF-Ishigami.py`: Module with decorated callback function used by Dakota's "direct" interface, for Dakota IO.
-* `dakota_training_data.in`: Dakota input file that creates samples from the Ishigami function and outputs a tabular file "ishigami_training_data.txt"
-* `tfk_model_build.py`: Python script with Tensorflow/Keras libraries to train a surrogate neural network model from Dakota's sampled data.
 
+* `TF-Ishigami.py`: Module with decorated callback function used by Dakota's "direct" interface, for Dakota IO.
+
+* `dakota_training_data.in`: Dakota input file that creates samples from Dakota's built-in implementation of the sobol_ishigami function and outputs a tabular file "ishigami_training_data.txt"
+
+* `tfk_model_build.py`: Python script with Tensorflow/Keras libraries to train a surrogate neural network model from Dakota's sampled data.
 
 
 # Further Reading
