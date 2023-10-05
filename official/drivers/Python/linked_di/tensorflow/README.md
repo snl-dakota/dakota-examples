@@ -1,12 +1,16 @@
 # Summary
 
-Perform uncertainty quantification and global sensitivity analysis using polynomial chaos expansions constructed from quadrature points applied to an external tensorflow/keras surrogate model of the Ishigami function. 
+Use the python interface to run a driver that uses a tensorflow/keras surrogate model
+for predictions
 
 # Description
-This example uses the Dakota direct python callback interface with the use of the `dakota.interfacing` Python module provided by Dakota to 
-convert from the incomming Python dictionary to Parameters and Response object native to dakota.interfacing.
-Dakota can create sample points from a function like Ishigami, which are then used to build a Tensorflow/Keras surrogate model from, 
-to then perform sensitivity analysis on with Dakota.
+
+This example demonstrates use of a pre-built tensorflow/keras model in a Python driver.
+Dakota executes the driver using its direct `python` callback interface. One noteworthy
+feature of the example is that the model, which is a surrogate of Dakota's built-in 
+`sobol_ishigami` function, is loaded at module scope rather than in the driver function.
+Because Dakota imports the module only once, this approach elminates the overheard that
+would occur if the model were loaded every time Dakota called the driver function.
 
 # Driver
 The main function of the direct Python callback driver 'TF-Ishigami.py' is: 
@@ -32,19 +36,19 @@ def prediction_driver(params, results):
 
 Prior to this snippet, the driver imports the `dakota.interfacing` module
 as `di`. 
-The Python decorator is invoked by using the Python convention of the
+The Python decorator is invoked by using the Python convention of
 `@` followed by the name of the decorator function which in this case is
-`di.python_interface()`.  This has the effect of passing the incoming
+`di.python_interface()`. This has the effect of passing the incoming
 python dictionary of parameters and expected responses to the decorator
 which internally converts this to `Parameters` and `Responses` objects
 native to `dakota.interfacing`.
 
-`TF-Ishigami.py` reads in the model file at the module scope, allowing the model to only be loaded once when Dakota imports the module.
 The `prediction_driver()` function receives direct parameters from Dakota and a results variable to package the responses into.
-The received parameters are then sent to an exported Tensorflow/Keras surrogate model to then place the predictions in Dakota 
-appropriate format and returned as a response.
+The received parameters are then sent to a Tensorflow/Keras surrogate model. Its prediction is placed in the results object
+and returned to Dakota.
 
 # Dakota input
+
 Dakota input file for direct global sensitivity analysis on the Ishigami function or on the Tensorflow/Keras surrogate model of it.
 
 ```
@@ -60,10 +64,10 @@ variables
 	upper_bounds    =     1         1       1
 
 interface
-#    python
-#    analysis_driver = 'TF-Ishigami:prediction_driver'
-     direct
-	analysis_driver = 'sobol_ishigami'
+    python
+    analysis_driver = 'TF-Ishigami:prediction_driver'
+#     direct
+#     analysis_driver = 'sobol_ishigami'
 
 
 
@@ -74,15 +78,10 @@ responses
 	no_hessians
 
 ```
-Dakota interfaces with python through the type `python`, Dakota passes keyword arguments
-from the directory `kwargs`. These include PCE examples with the bounds set in the input file.
-
 
 # How to run the example
-	 
-Make sure the Python used to build Dakota is in the environment PATH and
-that the PYTHONPATH includes the directory containing the textbook.py
-driver script.
+
+The tensorflow/keras model first must be trained using data from the `sobol_ishigami` function.
 
 To create sample data from the Ishigami function
 
@@ -92,7 +91,7 @@ To build Tensorflow/Keras surrogate model from Dakota sample data
 
     $ python tfk_model_build.py
 
-To perform sensitivity analysis on the previously trained and exported surrogate model or Dakota's sobol_ishigami function:
+To perform sensitivity analysis on the previously trained and exported surrogate model or Dakota's `sobol_ishigami` function:
 
     $ dakota -i dakota-TF_pce_quadrature.in -o dakota_pce_quadrature.out
 
