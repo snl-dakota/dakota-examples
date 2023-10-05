@@ -12,10 +12,10 @@ variables
 	upper_bounds    =     1        1        1
 
 interface
-#    python
-#    analysis_driver = 'TF-Ishigami:prediction_driver'
-    direct
-      analysis_driver 'sobol_ishigami'
+    python
+    analysis_driver = 'TF-Ishigami:prediction_driver'
+#    direct
+#    analysis_driver 'sobol_ishigami'
 
 responses
     response_functions = 1
