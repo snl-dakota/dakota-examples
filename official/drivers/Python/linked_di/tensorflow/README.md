@@ -15,7 +15,7 @@ would occur if the model were loaded every time Dakota called the driver functio
 # Driver
 The main function of the direct Python callback driver 'TF-Ishigami.py' is: 
 
-```
+``` python
 tfk_model = tf.keras.models.load_model("./exported_tfk_model.keras")
 
 @di.python_interface
