@@ -168,6 +168,13 @@ if (Python_EXECUTABLE)
   )
 endif()
 
+if (Python_EXECUTABLE)
+  dakota_example_test(
+    PATH official/drivers/black-box_simulation
+    RUN dakota_cantilever_center.in
+  )
+endif()
+
 dakota_example_test(
   PATH official/drivers/MATLAB/linux
   CHECK dakota_matlab_rosenbrock.in
