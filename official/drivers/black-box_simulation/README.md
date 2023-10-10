@@ -40,7 +40,7 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 # Contents
 
-- `cantilever` - the black-box simulation model representing the cantilever beam.  In reality, this is a Python script with the extension removed and made executable, so it can be invoked from the command-line as `./cantilever <input file>`, where `<input file>` is the input data file for the simulation.
+- `cantilever` - the black-box simulation model representing the cantilever beam.  In reality, this is a Python script with the extension removed and made executable so that it can be invoked from the command-line as `./cantilever <input file>`, where `<input file>` is the input data file for the simulation.
 - `cantilever.template` - the template input file for the cantilever beam.  Note the presence of curly braces in the text of this file.  This file is primarily used in the **pre-processing** step of analysis driver logic.
 - `dakota_cantilever_center.in` - the Dakota study, which uses the `centered_parameter_study` method to study the cantilever beam model.
 - `DakotaDriver.py` - the Python analysis driver for the Dakota study.  This Python script is responsible for transferring information between Dakota and the cantilever beam model. *Note that the driver script must be made executable for it to function as a Driver script for Dakota*
@@ -50,9 +50,10 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 
 ## Prerequisites (IMPORTANT!)
 
+- This example is written for Linux/Mac OS. There is a separate Windows version of the example in `official/drivers/black-box_simulation_windows`.
 - This analysis driver will *only* work if Dakota's Python interfacing libraries are available on the **PYTHONPATH** environment variable. OS-specific instructions for setting this variable are provided [here](https://snl-dakota.github.io/docs/latest_release/users/setupdakota.html#setting-your-environment).
 - The driver and cantilever scripts require Python 3.
-- This example may not function for Windows OS.
+
 
 ## Run on command line
 
