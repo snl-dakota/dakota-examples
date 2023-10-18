@@ -141,9 +141,19 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
     )
 
   dakota_example_test(
-    PATH official/drivers/Python/linked_di
+    PATH official/drivers/Python/linked_di/textbook/
     REGRESS dakota_textbook_python.in
     )
+
+  dakota_example_test(
+    PATH official/drivers/Python/linked_di/tensorflow/
+    CHECK dakota_training_data.in
+  )
+
+  dakota_example_test(
+    PATH official/drivers/Python/linked_di/tensorflow/
+    CHECK dakota-TF_pce_quadrature.in
+  )
 endif()
 
 # drivers tests
@@ -300,3 +310,5 @@ dakota_example_test(
   PATH official/uncertainty_quantification/pce/least_squares
   REGRESS dakota_pce_least-squares.in
 )
+
+
