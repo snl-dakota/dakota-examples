@@ -1,0 +1,24 @@
+environment
+  tabular_data
+    tabular_data_file 'ishigami_training_data.txt'
+    freeform
+
+method
+  sampling
+    seed 1337
+    samples 10000
+
+variables
+  uniform_uncertain 3
+    descriptors 'x1' 'x2' 'x3'
+    lower_bounds 3*0
+    upper_bounds 3*1.0
+
+responses
+  response_functions 1
+    no_gradients
+    no_hessians
+
+interface
+  analysis_drivers 'sobol_ishigami'
+    direct

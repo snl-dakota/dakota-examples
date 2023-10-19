@@ -10,8 +10,8 @@ Dakota to transparently convert from the incoming Python dictionary to
 Parameters and Response objects native to `dakota.interfacing`.  This is
 done using an idiom supported in Python known as a decorator factory.
 More specific details for both the direct python callback in Dakota and
-the `dakota.interfacing` module can be found in the `linked` and `di`
-examples that are peers to this one.
+the `dakota.interfacing` module can be found in the Python `linked` and `di`
+examples.
 
 # Driver
 
