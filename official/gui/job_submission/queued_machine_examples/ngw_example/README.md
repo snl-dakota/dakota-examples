@@ -10,9 +10,9 @@ There are generally two types of remote machines that you can submit Dakota jobs
 
 For the example of submitting a Dakota job to a remote queued machine, you will be creating at least two workflows, as pictured above. The first workflow will run locally on your machine, and its primary responsibility will be uploading files and starting the remote process for NGW, using a **remoteNestedWorkflow** node.
 
-The secondary workflow sent off by the remoteNestedWorkflow node will arrive at a staging area called **the login node.** This is not the appropriate place to perform the job, especially if the job requires heavy-duty computation. This secondary workflow sitting on the login node must itself be smart enough to submit work into a **job queue.** The work submitted to the job queue will then wait in line with other jobs waiting to use that machine.
+The secondary workflow submitted by the remoteNestedWorkflow node will arrive at a staging area called **the login node.** This is not the appropriate place to perform the job, especially if the job requires heavy-duty computation. This secondary workflow sitting on the login node must itself be smart enough to submit work into a **job queue.** The work submitted to the job queue will then wait in line with other jobs waiting to use that machine.
 
-Once it is your job's turn, the actual work will be performed, after which the results can be transferred back to your local machine for review.
+Once it is your job's turn, the actual work will be performed. After this, the results can be transferred back to your local machine for review.
 
 This overall task is complicated by the fact that queue submission is typically script-based, which means that the job itself must be governed by a series of shell scripts (instead of an NGW workflow), so you must be moderately comfortable reading and writing scripts to do queued job submission. However, we have developed a special node called **dakotaQueueSubmit**,  designed to make this step easier.
 
@@ -54,7 +54,7 @@ Now, click on the remoteNestedWorkflow node, and adjust its properties in the Se
 - Set the "hostname" property to the name of the remote machine you will be connecting and sending files to.
 - Set the "username" property to your username on the remote machine.
 - Set the "remotePath" property to the remote destination which you would like to act as your remote directory.
-- Set the "wflib" property to the installation location of headless NGW on the remote machine.
+- Optionally, set the "wflib" property to the installation location of headless NGW on the remote machine.
 
 ## Step 2. Configure LoginNodeWorkflow.iwf
 
@@ -99,7 +99,7 @@ Now, double-click WorkflowDriver.iwf. You will be presented with a workflow that
 
 ![alt text](img/WorkflowDriver.png "WorkflowDriver.iwf")
 
-Click on the dprepro node, and in the Settings view, set the "dpreproPath" property to the installation location of Dakota on the remote machine.
+Click on the pyprepro node, and in the Settings view, set the "pypreproPath" property to the installation location of Dakota on the remote machine, since pyprepro is co-located with Dakota. Alternately, ensure that the path to Dakota's bin directory is immediately available upon login to the remote machine (via a .bashrc script, for example). 
 
 ## Step 5. Run
 
