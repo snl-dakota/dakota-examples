@@ -1,0 +1,7 @@
+{
+    "className": "gov.sandia.dakota.parser.im.python.PythonScriptInterfaceManifest",
+    "supportedResponseLabels": "[mass, stress, displacement]",
+    "requiredFiles": "[LazyDriver.py, LazyDriver.py.recipe]",
+    "supportedVariableLabels": "[w, t, L, p, E, X, Y]",
+    "driverFilePath": "LazyDriver.py"
+}

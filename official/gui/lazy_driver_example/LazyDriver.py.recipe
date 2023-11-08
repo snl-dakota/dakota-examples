@@ -1,0 +1,11 @@
+{
+    "targetAnalysisDriver": "python -m DakotaDriver",
+    "parameterFileName": "params.in",
+    "resultFileName": "results.out",
+    "lazyAnalysisDriverFileName": "LazyDriver",
+    "lazyAnalysisDriverFileExtension": "py",
+    "failValue": "NaN",
+    "expectedEvals": [],
+    "parameterLabels": ["w", "t", "L", "p", "E", "X", "Y"],
+    "resultLabels": ["mass", "stress", "displacement"]
+}
