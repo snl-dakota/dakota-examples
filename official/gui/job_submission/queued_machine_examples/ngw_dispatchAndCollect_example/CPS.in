@@ -1,0 +1,53 @@
+environment
+	tabular_data
+		tabular_data_file = "tabular.dat"
+	output_file "dakota.out"
+	error_file "dakota.err"
+	results_output
+		hdf5
+
+method
+	id_method "method1"
+	centered_parameter_study
+		step_vector 20.0 0.2 0.2 100.0 5800000.0 20.0 20.0
+		steps_per_variable 4 4 4 4 4 4 4
+		model_pointer "model1"
+
+model
+	id_model "model1"
+	single
+		interface_pointer "interface1"
+	variables_pointer "variables1"
+	responses_pointer "responses1"
+
+variables
+	id_variables "variables1"
+	active
+		design
+	continuous_design 7
+		initial_point 100 1 1 500 2.9e7 100 100
+		descriptors "L" "w" "t" "p" "E" "X" "Y"
+
+interface
+	id_interface "interface1"
+	analysis_drivers "{DRIVER}"
+		fork
+			parameters_file "params.txt"
+			results_file "dakResults.txt"
+			file_save
+			work_directory
+				copy_files = "../cantilever" "../cantilever.template"
+				named "work_dir"
+				directory_tag
+				directory_save
+	asynchronous
+		evaluation_concurrency 10
+
+responses
+	id_responses "responses1"
+	descriptors "mass" "stress" "displacement"
+	response_functions 3
+		scalar_responses 3
+	no_gradients
+	no_hessians
+	metadata = "job_status"

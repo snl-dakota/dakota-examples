@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:gov.sandia.dart.workflow.domain="https://dart.sandia.gov/workflow/domain" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="dartWorkflow" name="DispatchAndCollect.iwf" snapToGrid="true" pictogramLinks="/0/@children.1/@link /0/@children.1/@anchors.0/@link /0/@children.1/@anchors.1/@link /0/@children.1/@anchors.2/@link /0/@children.1/@anchors.3/@link /0/@children.2/@link /0/@children.2/@anchors.0/@link /0/@children.2/@anchors.1/@link /0/@children.2/@anchors.2/@link /0/@children.2/@anchors.3/@link /0/@children.0/@link /0/@children.3/@link /0/@children.3/@anchors.0/@link /0/@children.3/@anchors.1/@link /0/@children.3/@anchors.2/@link /0/@connections.0/@link /0/@children.4/@link /0/@children.4/@anchors.0/@link /0/@children.4/@anchors.1/@link /0/@children.4/@anchors.2/@link /0/@connections.1/@link /0/@connections.2/@link /0/@connections.3/@link" version="0.17.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="878" height="351" x="33" y="10" id="wfnote"/>
+      <link businessObjects="/29"/>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="161" height="75" x="70" y="240" id="wfnode"/>
+      <link businessObjects="/1"/>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.1/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/2"/>
+        <location y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.1/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/3"/>
+        <location y="47"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" outgoingConnections="/0/@connections.1" referencedGraphicsAlgorithm="/0/@children.1/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/4"/>
+        <location x="161" y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.1/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/5"/>
+        <location x="161" y="47"/>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="171" height="75" x="700" y="220" id="wfnode"/>
+      <link businessObjects="/15"/>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/16"/>
+        <location y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.0" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/17"/>
+        <location y="47"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/18"/>
+        <location x="171" y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/19"/>
+        <location x="171" y="47"/>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="161" height="75" x="520" y="240" id="wfnode"/>
+      <link businessObjects="/30"/>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.2" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/31"/>
+        <location y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" outgoingConnections="/0/@connections.0" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/32"/>
+        <location x="161" y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.3" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/39"/>
+        <location y="47"/>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="241" height="75" x="260" y="240" id="wfnode"/>
+      <link businessObjects="/46"/>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="/0/@connections.1" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" y="-5" id="wfport"/>
+        <link businessObjects="/47"/>
+        <location y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" outgoingConnections="/0/@connections.2" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/48"/>
+        <location x="241" y="32"/>
+      </anchors>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" outgoingConnections="/0/@connections.3" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm">
+        <graphicsAlgorithm xsi:type="al:PlatformGraphicsAlgorithm" lineWidth="1" transparency="0.0" width="10" height="10" x="-10" y="-5" id="wfport"/>
+        <link businessObjects="/49"/>
+        <location x="241" y="47"/>
+      </anchors>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.3/@anchors.1" end="/0/@children.2/@anchors.1">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="/40"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.1/@anchors.2" end="/0/@children.4/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="/70"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@anchors.1" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="/76"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@anchors.2" end="/0/@children.3/@anchors.2">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="/82"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors red="98" green="131" blue="167"/>
+    <colors red="64" green="64" blue="64"/>
+  </pi:Diagram>
+  <gov.sandia.dart.workflow.domain:WFNode name="paramsFile" properties="/6 /7 /8 /9 /10 /11 /12 /13 /14" inputPorts="/2 /3" outputPorts="/4 /5" start="true" type="file" label="params_txt"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="fileName" type="default" node="/1"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="dataIn" type="default" node="/1"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="fileReference" type="text" node="/1" arcs="/70"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="dataOut" type="default" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="fileName" type="home_file" value="dakota/${workflow.workdir.name}/params.txt" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="append" type="boolean" value="" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="checkExists" type="boolean" value="true" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="async" type="boolean" value="false" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="hide in navigator" type="boolean" value="false" node="/1" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Property name="use private work directory" type="boolean" value="false" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="disabled" type="boolean" value="false" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="clear private work directory" type="boolean" value="false" node="/1"/>
+  <gov.sandia.dart.workflow.domain:Property name="private work directory path" type="text" value="" node="/1" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:WFNode name="resultsFile" properties="/20 /21 /22 /23 /24 /25 /26 /27 /28" inputPorts="/16 /17" outputPorts="/18 /19" type="file" label="results_txt"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="fileName" type="default" node="/15"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="dataIn" type="default" node="/15" arcs="/40"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="fileReference" type="text" node="/15"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="dataOut" type="default" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="fileName" type="home_file" value="dakResults.txt" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="append" type="boolean" value="" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="checkExists" type="boolean" value="" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="async" type="boolean" value="false" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="hide in navigator" type="boolean" value="false" node="/15" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Property name="use private work directory" type="boolean" value="false" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="disabled" type="boolean" value="false" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="clear private work directory" type="boolean" value="false" node="/15"/>
+  <gov.sandia.dart.workflow.domain:Property name="private work directory path" type="text" value="" node="/15" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Note text="&#xD;&#xA;NOTE FOR THE USER:&#xD;&#xA;&#xD;&#xA;This is the Dakota analysis driver.&#xD;&#xA;&#xD;&#xA;This workflow uses DispatchAndCollect to either submit one job to the queue, or collect results from a previously run job. Click on the DispatchAndCollect node's &quot;driverWorkflow&quot; field to see the workflow that will actually execute in the job queue.&#xD;&#xA;&#xD;&#xA;As a Dakota analysis driver, this workflow is only responsible for handling one evaluation at a time." color="yellow"/>
+  <gov.sandia.dart.workflow.domain:WFNode name="DakotaResultsFile" properties="/33 /34 /35 /36 /37 /38" inputPorts="/31 /39" outputPorts="/32" type="dakotaResultsFile" label="Convert a map into Dakota results file text format."/>
+  <gov.sandia.dart.workflow.domain:InputPort name="inputMap" type="default" node="/30" arcs="/76"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="outputText" type="default" node="/30" arcs="/40"/>
+  <gov.sandia.dart.workflow.domain:Property name="async" type="boolean" value="false" node="/30"/>
+  <gov.sandia.dart.workflow.domain:Property name="hide in navigator" type="boolean" value="false" node="/30" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Property name="use private work directory" type="boolean" value="false" node="/30"/>
+  <gov.sandia.dart.workflow.domain:Property name="disabled" type="boolean" value="false" node="/30"/>
+  <gov.sandia.dart.workflow.domain:Property name="clear private work directory" type="boolean" value="false" node="/30"/>
+  <gov.sandia.dart.workflow.domain:Property name="private work directory path" type="text" value="" node="/30" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="jobStatus" type="default" node="/30" arcs="/82"/>
+  <gov.sandia.dart.workflow.domain:WFArc name="outputText -> dataIn" properties="/41 /42 /43 /44 /45" source="/32" target="/17"/>
+  <gov.sandia.dart.workflow.domain:Property name="linkIncomingFileToTarget" type="default" value="false" node="/40"/>
+  <gov.sandia.dart.workflow.domain:Property name="expandWildcards" type="default" value="false" node="/40"/>
+  <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/40"/>
+  <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/40"/>
+  <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/40"/>
+  <gov.sandia.dart.workflow.domain:WFNode name="DispatchAndCollect" properties="/50 /51 /52 /53 /54 /55 /56 /57 /58 /59 /60 /61 /62 /63 /64 /65 /66 /67 /68 /69" inputPorts="/47" outputPorts="/48 /49" type="dispatchAndCollect" label="Dispatch and Collect Results"/>
+  <gov.sandia.dart.workflow.domain:InputPort name="paramsFile" type="default" node="/46" arcs="/70"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="responsesMap" type="default" node="/46" arcs="/76"/>
+  <gov.sandia.dart.workflow.domain:OutputPort name="jobStatus" type="default" node="/46" arcs="/82"/>
+  <gov.sandia.dart.workflow.domain:Property name="dispatchedWorkflow" type="text" value="WorkflowDriver.iwf" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="dispatcherInExpertMode" type="boolean" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="rerunFailedEvaluations" type="boolean" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="account" type="text" value="FY140235" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="job.hours" type="text" value="0" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="job.minutes" type="text" value="5" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="num.nodes" type="text" value="1" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="num.processors" type="text" value="1" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="queue" type="text" value="batch" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="cancelScript" type="text" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="checkjobScript" type="text" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="statusScript" type="text" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="submitScript" type="text" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="dispatchWorkflowScript" type="boolean" value="" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="use private work directory" type="boolean" value="" node="/46" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Property name="async" type="boolean" value="false" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="hide in navigator" type="boolean" value="false" node="/46" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:Property name="disabled" type="boolean" value="false" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="clear private work directory" type="boolean" value="false" node="/46"/>
+  <gov.sandia.dart.workflow.domain:Property name="private work directory path" type="text" value="" node="/46" advanced="true"/>
+  <gov.sandia.dart.workflow.domain:WFArc name="fileReference -> paramsFile" properties="/71 /72 /73 /74 /75" source="/4" target="/47"/>
+  <gov.sandia.dart.workflow.domain:Property name="linkIncomingFileToTarget" type="default" value="false" node="/70"/>
+  <gov.sandia.dart.workflow.domain:Property name="expandWildcards" type="default" value="false" node="/70"/>
+  <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/70"/>
+  <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/70"/>
+  <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/70"/>
+  <gov.sandia.dart.workflow.domain:WFArc name="responsesMap -> inputMap" properties="/77 /78 /79 /80 /81" source="/48" target="/31"/>
+  <gov.sandia.dart.workflow.domain:Property name="linkIncomingFileToTarget" type="default" value="false" node="/76"/>
+  <gov.sandia.dart.workflow.domain:Property name="expandWildcards" type="default" value="false" node="/76"/>
+  <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/76"/>
+  <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/76"/>
+  <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/76"/>
+  <gov.sandia.dart.workflow.domain:WFArc name="jobStatus -> jobStatus" properties="/83 /84 /85 /86 /87" source="/49" target="/39"/>
+  <gov.sandia.dart.workflow.domain:Property name="linkIncomingFileToTarget" type="default" value="false" node="/82"/>
+  <gov.sandia.dart.workflow.domain:Property name="expandWildcards" type="default" value="false" node="/82"/>
+  <gov.sandia.dart.workflow.domain:Property name="readInFile" type="default" value="false" node="/82"/>
+  <gov.sandia.dart.workflow.domain:Property name="writeOutFile" type="default" value="false" node="/82"/>
+  <gov.sandia.dart.workflow.domain:Property name="copyIncomingFileToTarget" type="default" value="false" node="/82"/>
+</xmi:XMI>
