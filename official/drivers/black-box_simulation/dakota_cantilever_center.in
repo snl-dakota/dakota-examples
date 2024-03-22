@@ -19,7 +19,6 @@ variables
 
 interface
   analysis_drivers 'DakotaDriver.py'                         # Python driver script
-  #analysis_drivers 'driver.sh'                         # Bash driver script
     fork
       work_directory named 'workdir/run'
         directory_tag directory_save
