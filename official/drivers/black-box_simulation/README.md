@@ -44,7 +44,6 @@ Because Dakota does not directly interpret the driver and relies on the operatin
 - `cantilever.template` - the template input file for the cantilever beam.  Note the presence of curly braces in the text of this file.  This file is primarily used in the **pre-processing** step of analysis driver logic.
 - `dakota_cantilever_center.in` - the Dakota study, which uses the `centered_parameter_study` method to study the cantilever beam model.
 - `DakotaDriver.py` - the Python analysis driver for the Dakota study.  This Python script is responsible for transferring information between Dakota and the cantilever beam model. *Note that the driver script must be made executable for it to function as a Driver script for Dakota*
-- `driver.sh` - the Bash analysis driver for the Dakota study. This Bash script is responsible for transferring information between Dakota and the cantilever beam model.
 
 # How to run the example
 
