@@ -70,42 +70,42 @@ dakota_example_test(
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/1
   RUN correlations1.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/2
   RUN correlations2.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/3
   RUN correlations3.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/4
   RUN correlations4.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/5
   RUN correlations5.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/6
   RUN correlations6.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/7
   RUN correlations7.in
   )
 
 dakota_example_test(
-  PATH official/global_sensitivity/correlations
+  PATH official/global_sensitivity/correlations/8
   RUN correlations8.in
   )
 

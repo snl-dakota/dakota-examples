@@ -52,14 +52,14 @@ The eight example cases are as follows:
 - Case 8: $y = 10 \cdot x_1 + x_2 + 0.1 \cdot x_3 + 0.01 \cdot x_4 + \epsilon,\text{ with corr}(x_1,x_4)=0.8$
 
 Each of the eight cases demand two files, as follows:
-- Case 1: [correlations1.in](./correlations1.in) and [driver1.py](./driver1.py)
-- Case 2: [correlations2.in](./correlations2.in) and [driver2.py](./driver2.py)
-- Case 3: [correlations3.in](./correlations3.in) and [driver3.py](./driver3.py)
-- Case 4: [correlations4.in](./correlations4.in) and [driver4.py](./driver4.py)
-- Case 5: [correlations5.in](./correlations5.in) and [driver5.py](./driver5.py)
-- Case 6: [correlations6.in](./correlations6.in) and [driver6.py](./driver6.py)
-- Case 7: [correlations7.in](./correlations7.in) and [driver7.py](./driver7.py)
-- Case 8: [correlations8.in](./correlations8.in) and [driver8.py](./driver8.py)
+- Case 1: [correlations1.in](./1/correlations1.in) and [driver1.py](./1/driver1.py)
+- Case 2: [correlations2.in](./2/correlations2.in) and [driver2.py](./2/driver2.py)
+- Case 3: [correlations3.in](./3/correlations3.in) and [driver3.py](./3/driver3.py)
+- Case 4: [correlations4.in](./4/correlations4.in) and [driver4.py](./4/driver4.py)
+- Case 5: [correlations5.in](./5/correlations5.in) and [driver5.py](./5/driver5.py)
+- Case 6: [correlations6.in](./6/correlations6.in) and [driver6.py](./6/driver6.py)
+- Case 7: [correlations7.in](./7/correlations7.in) and [driver7.py](./7/driver7.py)
+- Case 8: [correlations8.in](./8/correlations8.in) and [driver8.py](./8/driver8.py)
 
 ### Running Dakota
 
