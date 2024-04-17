@@ -318,4 +318,18 @@ dakota_example_test(
   REGRESS dakota_pce_least-squares.in
 )
 
+dakota_example_test(
+  PATH official/parallelization/tiling
+  CHECK dakota_sampling.in
+)
+
+dakota_example_test(
+  PATH official/parallelization/batch_tiling
+  CHECK dakota_sampling.in
+)
+
+dakota_example_test(
+  PATH official/parallelization/evaluation_submission
+  CHECK dakota_sampling.in
+)
 

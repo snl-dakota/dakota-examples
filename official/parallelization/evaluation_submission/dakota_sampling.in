@@ -1,0 +1,29 @@
+environment
+  results_output hdf5
+
+method
+  sampling
+    sample_type low_discrepancy
+    samples 5
+    seed 1337
+
+variables
+  uniform_uncertain 4
+    descriptors 'x1' 'x2' 'x3' 'x4'
+    lower_bounds -1 -1 -1 -1
+    upper_bounds  1  1  1  1
+
+responses
+  response_functions 1
+    descriptors 'f'
+    no_gradients
+    no_hessians
+
+interface
+  analysis_drivers 'run_textbook.sh'
+    fork
+    parameters_file 'params.in'
+    results_file 'results.out'
+    file_save file_tag
+    asynchronous
+      evaluation_concurrency 5
