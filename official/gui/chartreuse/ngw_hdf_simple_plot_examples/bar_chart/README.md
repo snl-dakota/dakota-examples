@@ -35,9 +35,9 @@ After running a Dakota LHS study and producing an HDF5 dataset file, many useful
 
 # Further Reading
 
-- [Learn about Dakota's "textbook" function being studied here in Section 20.1 of the User's Manual.](https://dakota.sandia.gov/sites/default/files/docs/6.14/Users-6.14.0.pdf)
-- [Learn about the incremental LHS method performed in the Dakota study.](https://dakota.sandia.gov//sites/default/files/docs/latest_release/html-ref/method-sampling-refinement_samples.html)
+- [Learn about Dakota's "textbook" function being studied here in User's Manual.](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/examples/additionalexamples.html#textbook)
+- [Learn about the incremental LHS method performed in the Dakota study.](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-sampling-refinement_samples.html)
 - Learn about [simple correlation](https://en.wikipedia.org/wiki/Correlation_and_dependence), [rank correlation](https://en.wikipedia.org/wiki/Rank_correlation), and [partial correlation](https://en.wikipedia.org/wiki/Partial_correlation).
-- [Read in the Dakota GUI manual about other types of plots that can be produced.](https://dakota.sandia.gov/content/chartreuse-1)
-- [Read about how to produce HDF5 files using Dakota.](https://dakota.sandia.gov/content/hdf-0)
+- [Read in the Dakota GUI manual about other types of plots that can be produced.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/chartreuse/Chartreuse.html)
+- [Read about how to produce HDF5 files using Dakota.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/output/HDF.html)
 - To learn more about an individual node in Next-Gen Workflow, use the built-in help files by clicking on a node, then clicking on the question mark icon in the Settings Editor view.

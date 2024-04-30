@@ -39,12 +39,12 @@ The Dakota GUI recommends **two possible approaches** for building a Dakota stud
 
 ## Use Next-Gen Workflow to build a visual workflow for your driver
 
- - **Step 1.** [Read the strategy overview.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakota/introduction/couplingtosimulations.html#couplingtosimulations-main)
- - **Step 2.** [Create inputs and outputs for your simulation model in the GUI.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/introduction/simulationmodels.html#gui-simulation-models-overview)
- - **Step 3.** [Create a new Next-Gen Workflow using the Workflow-Based Dakota Driver wizard.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/wizards/NewWorkflowDriver.html#wizards-newworkflowdriver-main)
- - **Step 4.** [Design a workflow that will execute your simulation model.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/ngw/NextGenWorkflowTutorial.html#gui-nestedworkflowtutorial-main)
- - **Step 5.** [Create a new Dakota study using the Dakota Study Wizard, providing your workflow as the analysis driver.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/wizards/NewDakotaStudy.html#wizards-newdakotastudy)
- - **Step 6.** [Choose the “Run As > Dakota (Workflow)” option to run your Dakota study.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/running/DakotaRunConfiguration.html#gui-run-configurations-workflow)
+ - **Step 1.** [Read the strategy overview.](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/introduction/couplingtosimulations.html)
+ - **Step 2.** [Create inputs and outputs for your simulation model in the GUI.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/introduction/simulationmodels.html)
+ - **Step 3.** [Create a new Next-Gen Workflow using the Workflow-Based Dakota Driver wizard.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/wizards/NewWorkflowDriver.html)
+ - **Step 4.** [Design a workflow that will execute your simulation model.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/ngw/NextGenWorkflowTutorial.html)
+ - **Step 5.** [Create a new Dakota study using the Dakota Study Wizard, providing your workflow as the analysis driver.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/wizards/NewDakotaStudy.html)
+ - **Step 6.** [Choose the “Run As > Dakota (Workflow)” option to run your Dakota study.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/running/DakotaRunConfiguration.html)
 
 If you would like to see a completed example of this approach, refer to the example located at:
 

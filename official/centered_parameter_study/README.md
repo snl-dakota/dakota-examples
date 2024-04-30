@@ -70,4 +70,4 @@ _In this set of plots, each response is given its own plot, while each variable 
 
 # Further Reading
 
-[Learn more about the centered\_parameter\_study method.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/html-ref/method-centered_parameter_study.html)
+[Learn more about the centered\_parameter\_study method.](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-centered_parameter_study.html)

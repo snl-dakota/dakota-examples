@@ -61,6 +61,6 @@ After importing this example project into the GUI, right-click `CPS.in` and choo
 
 This example was developed from the example available at `dakota-examples/official/gui/analysis_driver_tutorial/begin`, using the following steps to produce workflow files:
 
-- [Create a new Next-Gen Workflow using the Workflow-Based Dakota Driver wizard.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/wizards/NewWorkflowDriver.html#wizards-newworkflowdriver-main)
-- [Design a workflow that will execute your simulation model.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/ngw/NextGenWorkflowTutorial.html#gui-nestedworkflowtutorial-main)
-- [Create a new Dakota study using the Dakota Study Wizard, providing your workflow as the analysis driver.](https://dakota.sandia.gov/sites/default/files/docs/latest_release/user-html/usingdakotagui/wizards/NewDakotaStudy.html#wizards-newdakotastudy)
+- [Create a new Next-Gen Workflow using the Workflow-Based Dakota Driver wizard.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/wizards/NewWorkflowDriver.html)
+- [Design a workflow that will execute your simulation model.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/ngw/NextGenWorkflowTutorial.html#gui-nestedworkflowtutorial-main)
+- [Create a new Dakota study using the Dakota Study Wizard, providing your workflow as the analysis driver.](https://snl-dakota.github.io/docs/latest_release/users/usingdakotagui/wizards/NewDakotaStudy.html)

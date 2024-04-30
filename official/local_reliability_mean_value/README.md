@@ -51,9 +51,9 @@ The mean value results are shown below and consist of approximate mean
 and standard deviation of the response, the importance factors for
 each uncertain variable, and approximate probability/reliability
 levels for the prescribed response levels that have been inferred from
-the approximate mean and standard deviation (see Mean Value section in
-Reliability Methods Chapter of 
-[Dakota Theory Manual](https://dakota.sandia.gov/sites/default/files/docs/6.9/Theory-6.9.0.pdf) ).  
+the approximate mean and standard deviation (see the description of the
+[Mean Value method](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/theory/reliability.html#mean-value)
+in the Reliability Methods section of the Dakota Theory manual.)
 It is evident that the statistics are considerably different from the fully
 converged FORM results; however, these rough approximations are also
 much less expensive to calculate. The importance factors are a measure
