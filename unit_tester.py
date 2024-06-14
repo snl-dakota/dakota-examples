@@ -125,7 +125,7 @@ class TestPICPieces(unittest.TestCase):
         # Test a collection of interior points
         elem_arr = [31, 87, 42]
         pos_vec = np.array(elem_arr)*dx + 0.5*dx - shift
-        self.assertEqual(PIC.get_elem_id(x, pos_vec).tolist(), elem_arr)
+        self.assertTrue(np.array_equal(PIC.get_elem_id(x, pos_vec), np.array(elem_arr)))
 
 
     def test_charge_scatter(self):
