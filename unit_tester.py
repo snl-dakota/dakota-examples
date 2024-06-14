@@ -63,6 +63,32 @@ class TestPICPieces(unittest.TestCase):
         self.assertTrue(np.allclose(V, phi_e))
 
 
+    def test_V_Bandedsolve_Periodic(self):
+
+        dx = 0.01
+        N = int(1/dx)
+        x = np.linspace(0.0, 1.0, N+1)
+        exact = lambda x : np.sin(2.0*np.pi*x)
+        mms_rhs = lambda x : -4.0*np.pi*np.pi*np.sin(2.0*np.pi*x)
+        # Need to negate per ES formulation
+        rho = -mms_rhs(x)
+
+        # Call the numerical solver
+        V = PIC.solveBanded(dx, rho, bc="dirichlet", left_side=1.0, right_side=1.0, eps0=1.0)
+        #print("V:",V)
+
+        # Compare to the known exact solution - includes shift repated to BCs
+        phi_e = 1.0+exact(x)
+        #print("Exact:",phi_e)
+        error_norm = np.linalg.norm((V-phi_e))
+        #print("Error norm: "+str(error_norm))
+
+        # Test that the solver produced a solution that agrees with the
+        # exact solution to within (default) tolerance
+
+        self.assertTrue(np.allclose(V, phi_e, atol=0.001))
+
+
     def test_dVdx(self):
 
         dx = 0.01
