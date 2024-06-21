@@ -21,7 +21,7 @@ responses
 
 interface
   analysis_drivers 'run_textbook.sh'
-    fork
+    system 
     parameters_file 'params.in'
     results_file 'results.out'
     file_save file_tag
