@@ -16,11 +16,11 @@ variables,
 
 interface,
         python
-# the current analysis driver format is module:function	
+# the current analysis driver format is module.function	
 # use this for the list method of passing the data
-          analysis_driver = 'textbook:textbook_list'
+          analysis_driver = 'textbook.textbook_list'
 # use this for the numpy array method of passing the data
-#         analysis_drivers = 'textbook:textbook_numpy'
+#         analysis_drivers = 'textbook.textbook_numpy'
 #           numpy
 
 

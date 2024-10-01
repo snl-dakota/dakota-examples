@@ -13,7 +13,7 @@ variables
 
 interface
     python
-    analysis_driver = 'TF-Ishigami:prediction_driver'
+    analysis_driver = 'TF-Ishigami.prediction_driver'
 #    direct
 #    analysis_driver 'sobol_ishigami'
 
