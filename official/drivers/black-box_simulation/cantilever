@@ -13,7 +13,7 @@ requiredParams = set(("length",
         "vertical_load",
         "density"))
 
-outputHeader = """
+outputHeader = r"""
      _____                 ___          _   __      __  _                   __
     / ___/____ _____  ____/ (_)___ _   / | / /___ _/ /_(_)___  ____  ____ _/ /
     \__ \/ __ `/ __ \/ __  / / __ `/  /  |/ / __ `/ __/ / __ \/ __ \/ __ `/ / 
