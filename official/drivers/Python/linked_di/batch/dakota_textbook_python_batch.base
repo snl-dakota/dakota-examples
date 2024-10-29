@@ -1,0 +1,38 @@
+Test Number 0 succeeded
+<<<<< Function evaluation summary: 30 total (30 new, 0 duplicate)
+Sample moment statistics for each response function:
+                            Mean           Std Dev          Skewness          Kurtosis
+             f  6.6386390322e+03  5.0288463459e+03  6.1291719372e-01 -7.2157075355e-01
+            c1  3.3911018003e+01  3.0836140143e+01  5.7538684448e-01 -9.5753534957e-01
+            c2  3.3585893517e+01  2.9869354898e+01  6.4823523196e-01 -9.8433006092e-01
+95% confidence intervals for each response function:
+                    LowerCI_Mean      UpperCI_Mean    LowerCI_StdDev    UpperCI_StdDev
+             f  4.7608369458e+03  8.5164411185e+03  4.0050080937e+03  6.7603544769e+03
+            c1  2.2396614039e+01  4.5425421966e+01  2.4558115790e+01  4.1453491264e+01
+            c2  2.2432493097e+01  4.4739293936e+01  2.3788161318e+01  4.0153827183e+01
+Simple Correlation Matrix among all inputs and outputs:
+                       x1           x2           x3            f           c1           c2 
+          x1  1.00000e+00 
+          x2  4.03032e-03  1.00000e+00 
+          x3 -4.07267e-02 -3.44541e-03  1.00000e+00 
+           f -1.13192e-01 -3.02679e-02 -2.35915e-01  1.00000e+00 
+          c1 -1.51426e-02  1.17139e-02  1.14973e-01  4.63851e-01  1.00000e+00 
+          c2  1.84883e-01  3.79482e-02 -2.69156e-03  5.57259e-01  7.14257e-02  1.00000e+00 
+Partial Correlation Matrix between input and output:
+                        f           c1           c2 
+          x1 -1.26413e-01 -1.05870e-02  1.84914e-01 
+          x2 -3.17465e-02  1.22328e-02  3.78729e-02 
+          x3 -2.42491e-01  1.14511e-01  5.05503e-03 
+Simple Rank Correlation Matrix among all inputs and outputs:
+                       x1           x2           x3            f           c1           c2 
+          x1  1.00000e+00 
+          x2  2.44716e-03  1.00000e+00 
+          x3 -3.62625e-02 -1.00111e-02  1.00000e+00 
+           f -9.54394e-02 -8.16463e-02 -2.33370e-01  1.00000e+00 
+          c1 -2.95884e-02 -9.01001e-02  1.44383e-01  3.93993e-01  1.00000e+00 
+          c2  2.32036e-01  2.91435e-02 -1.44605e-02  5.81313e-01  9.89989e-02  1.00000e+00 
+Partial Rank Correlation Matrix between input and output:
+                        f           c1           c2 
+          x1 -1.07143e-01 -2.45387e-02  2.31725e-01 
+          x2 -8.66456e-02 -8.95739e-02  2.93178e-02 
+          x3 -2.39701e-01  1.43161e-01 -5.93122e-03 

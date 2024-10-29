@@ -146,6 +146,11 @@ if(DAKOTA_PYTHON_DIRECT_INTERFACE)
     )
 
   dakota_example_test(
+    PATH official/drivers/Python/linked_di/batch/
+    REGRESS dakota_textbook_python_batch.in
+    )
+
+  dakota_example_test(
     PATH official/drivers/Python/linked_di/tensorflow/
     CHECK dakota_training_data.in
   )

@@ -1,0 +1,31 @@
+# Dakota/Python linked interface demonstration
+#  * Requires Dakota compiled with and linked against Python
+#  * Exercise the Python interface using list or numpy
+
+method,
+        sampling
+          seed 1337
+          samples 30
+          output silent
+
+variables,
+        uniform_uncertain = 3
+          initial_point  -2.3    2.3   0.23
+          upper_bounds    10.0   10.0  10.0
+          lower_bounds   -10.0  -10.0 -10.0
+          descriptors     'x1'   'x2'  'x3'
+
+interface,
+        python
+# the current analysis driver format is module.function	
+# use this for the list method of passing the data
+          analysis_driver = 'driver.decorated_driver'
+       batch
+
+responses,
+        response_functions = 3
+        descriptors 'f' 'c1' 'c2'
+        no_gradients
+        no_hessians
+
+    
