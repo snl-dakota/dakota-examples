@@ -255,7 +255,8 @@ dakota_example_test(
   DEPENDS ${_last_test_added}
 )
 
-if(DAKOTA_PYTHON AND Python_EXECUTABLE)
+# These use GaussianProcess surrogates and so require ROL
+if(DAKOTA_PYTHON AND Python_EXECUTABLE AND HAVE_ROL)
   
   if(DAKOTA_PYTHON_SURROGATES)
     dakota_example_test(
