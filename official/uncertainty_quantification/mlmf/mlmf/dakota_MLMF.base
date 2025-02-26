@@ -3,11 +3,15 @@ Test Number 0 succeeded
 <<<<< Function evaluation summary: 38290 total (38290 new, 0 duplicate)
 <<<<< Online number of equivalent high fidelity evaluations: 3.3072142857e+02
 <<<<< Variance for mean estimator:
-      Initial MLMC (pilot samples):     6.3925500368e+02
-     Online MLCVMC (sample profile):    4.1893445622e-01
-     Online MLCVMC / pilot ratio:       6.5534795005e-04
- Equivalent     MC (  331 HF samples):  3.4572375354e+01
- Equivalent MLCVMC / MC ratio:          1.2117606960e-02
+ response_fn_1:
+        Initial MLMC (pilot samples):     6.3925500368e+02
+       Online MLCVMC (sample profile):    4.1893445650e-01
+       Online MLCVMC / pilot ratio:       6.5534795049e-04
+   Equivalent     MC (  331 HF samples):  3.4572375354e+01
+   Equivalent MLCVMC / MC ratio:          1.2117606968e-02
 Sample moment statistics for each response function:
                             Mean           Std Dev          Skewness          Kurtosis
  response_fn_1  4.1073004300e+01  1.0692906699e+02  2.1766520878e+00  6.8403661578e+00
+95% confidence intervals for each response function:
+                    LowerCI_Mean      UpperCI_Mean
+ response_fn_1  3.9804414743e+01  4.2341593856e+01
