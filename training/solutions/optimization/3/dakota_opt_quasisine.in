@@ -6,7 +6,7 @@
 # point (x1,x2) = (0.177,0.177) which has a function value
 # of 0.060.
 
-# Parallel test matrix is dedicated master and peer partition
+# Parallel test matrix is dedicated scheduler and peer partition
 # scheduling for concurrent iterators with single-processor and
 # multiprocessor iterator partitions. Parallel tests 2 and 3 include
 # an idle partition due to over-allocation
