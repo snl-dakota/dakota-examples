@@ -63,10 +63,10 @@ dakota_example_test(
 #)
 # Add another general test to the lhs_basic_incremental suite that depends on 
 # last added test. Also modeling use of CMake conditionals
-if(Python_EXECUTABLE AND UNIX)
+if(Python3_EXECUTABLE AND UNIX)
   dakota_example_test(
     PATH contributed/sampling/lhs_basic_incremental
-    COMMAND ${Python_EXECUTABLE} -V
+    COMMAND ${Python3_EXECUTABLE} -V
     DEPENDS ${_last_test_added}
     )
 endif()

@@ -176,14 +176,14 @@ if (WIN32)
   )
 endif()
 
-if (Python_EXECUTABLE)
+if (Python3_EXECUTABLE)
   dakota_example_test(
     PATH official/drivers/Python/di
     REGRESS dakota_rosenbrock_python.in
   )
 endif()
 
-if (Python_EXECUTABLE)
+if (Python3_EXECUTABLE)
   dakota_example_test(
     PATH official/drivers/black-box_simulation
     RUN dakota_cantilever_center.in
@@ -209,7 +209,7 @@ if(DAKOTA_HAVE_HDF5)
   if(DAKOTA_H5PY_FOUND) # should also test for h5py
     dakota_example_test(
       PATH official/hdf5/centered_parameter_study
-      COMMAND ${Python_EXECUTABLE} -B test_centered.py
+      COMMAND ${Python3_EXECUTABLE} -B test_centered.py
       DEPENDS ${_last_test_added}
     )
   endif()
@@ -222,7 +222,7 @@ if(DAKOTA_HAVE_HDF5)
   if(DAKOTA_H5PY_FOUND) # should also test for h5py
     dakota_example_test(
       PATH official/hdf5/incremental_sampling
-      COMMAND ${Python_EXECUTABLE} -B test_refine.py
+      COMMAND ${Python3_EXECUTABLE} -B test_refine.py
       DEPENDS ${_last_test_added}
     )
   endif()
@@ -256,12 +256,12 @@ dakota_example_test(
 )
 
 # These use GaussianProcess surrogates and so require ROL
-if(DAKOTA_PYTHON AND Python_EXECUTABLE AND HAVE_ROL)
+if(DAKOTA_PYTHON AND Python3_EXECUTABLE AND HAVE_ROL)
   
   if(DAKOTA_PYTHON_SURROGATES)
     dakota_example_test(
       PATH official/surrogates/library
-      COMMAND ${Python_EXECUTABLE} -B test_notebook.py
+      COMMAND ${Python3_EXECUTABLE} -B test_notebook.py
       )
   endif()
 
@@ -275,7 +275,7 @@ if(DAKOTA_PYTHON AND Python_EXECUTABLE AND HAVE_ROL)
     if(DAKOTA_PYTHON_SURROGATES)
       dakota_example_test(
         PATH official/surrogates/library
-        COMMAND ${Python_EXECUTABLE} -B test_load_gp.py
+        COMMAND ${Python3_EXECUTABLE} -B test_load_gp.py
         DEPENDS ${_last_test_added}
         )
     endif()

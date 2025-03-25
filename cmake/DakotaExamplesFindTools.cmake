@@ -56,10 +56,10 @@ if(NOT DAKOTA_PYTHON_PATH)
   endif()
 endif()
 
-# TODO: This won't work outside a Dakota build unless Python_EXECUTABLE set
-if(Python_EXECUTABLE)
+# TODO: This won't work outside a Dakota build unless Python3_EXECUTABLE set
+if(Python3_EXECUTABLE)
   add_test(NAME dakota-interfacing-import
-    COMMAND ${Python_EXECUTABLE} -c "import dakota.interfacing")
+    COMMAND ${Python3_EXECUTABLE} -c "import dakota.interfacing")
   set_tests_properties(dakota-interfacing-import PROPERTIES
     ENVIRONMENT "PYTHONPATH=${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
 endif()

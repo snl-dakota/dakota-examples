@@ -38,7 +38,7 @@ function(apply_test_properties _test_name _depends_on)
 
   add_conditional_dependence(${_test_name} "${_depends_on}")
 
-  get_filename_component(_python_exe_dir ${Python_EXECUTABLE} DIRECTORY)
+  get_filename_component(_python_exe_dir ${Python3_EXECUTABLE} DIRECTORY)
   set(_env_path
     "PATH=${_python_exe_dir}:${DAKOTA_DPREPRO_PATH}:${DAKOTA_TEST_DRIVERS_PATH}:$ENV{PATH}")
   set(_env_python_path "PYTHONPATH=${DAKOTA_PYTHON_PATH}:$ENV{PYTHONPATH}")
