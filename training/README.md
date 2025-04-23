@@ -7,10 +7,7 @@ Materials for demonstrations and hands-on exercises used in Dakota training
 Training resources developed for classes delivered in 2015 and
 2016. Presentation slides, video recordings, and a static snapshot of
 these materials are hosted at
-https://dakota.sandia.gov/training/dakota-training-materials
-
-This content migrated from top-level Dakota Git repo at
-`fd500c77fc94fe3dceab864e1f7235820386a321`
+https://dakota.sandia.gov/training/
 
 # Contents
 
