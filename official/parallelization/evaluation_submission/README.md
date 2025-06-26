@@ -28,7 +28,7 @@ There are a few things to note about evaluation submission.
 * The driver script is responsible for submitting the
   job and waiting for it to complete. In this example, `run_textbook.sh`
   uses the [srun](https://slurm.schedmd.com/srun.html) command to
-  submit perform the submission. Equivalently,
+  perform the submission. Equivalently,
   [sbatch --wait](https://slurm.schedmd.com/sbatch.html#OPT_wait)
   could be used. On HPCs that do not have a queue submission
   command that can be configured to block, the driver must determine when
