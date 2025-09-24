@@ -11,7 +11,7 @@
 
   "output" :
   {
-    "show_plots" :  false,
+    "show_plots" :  true,
     "densities"  :  true
   },
 
