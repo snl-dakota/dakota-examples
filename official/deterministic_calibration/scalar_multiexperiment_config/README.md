@@ -50,7 +50,10 @@ The experiments differed in one respect. In the first, the vertical load was 400
 and in the second, it was 600 lbs.
 
 These data are recorded in the file `displacements.dat`. The format of this file is
-explained in the [Reference Manual](https://dakota.sandia.gov//sites/default/files/docs/6.13/html-ref/responses-calibration_terms-calibration_data_file.html). This example uses the default `annotated` format, in which the first line is a header, which is ignored by Dakota, and each subsequent line contains calibration data for one experiment. On each row:
+explained in the 
+[Keyword reference page for calibration_data_file](https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/responses-calibration_terms-calibration_data_file.html).
+This example uses the default `annotated` format, in which the first line is a header, 
+which is ignored by Dakota, and each subsequent line contains calibration data for one experiment. On each row:
 
 **Item 1:** The experiment number
 
