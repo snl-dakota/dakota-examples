@@ -206,7 +206,7 @@ if(DAKOTA_HAVE_HDF5)
     RUN dakota_centered.in
   )
   
-  if(DAKOTA_H5PY_FOUND) # should also test for h5py
+  if(DAKOTA_PYTHON_H5PY_FOUND) # should also test for h5py
     dakota_example_test(
       PATH official/hdf5/centered_parameter_study
       COMMAND ${Python3_EXECUTABLE} -B test_centered.py
@@ -219,7 +219,7 @@ if(DAKOTA_HAVE_HDF5)
     RUN dakota_refine.in
   )
 
-  if(DAKOTA_H5PY_FOUND) # should also test for h5py
+  if(DAKOTA_PYTHON_H5PY_FOUND) # should also test for h5py
     dakota_example_test(
       PATH official/hdf5/incremental_sampling
       COMMAND ${Python3_EXECUTABLE} -B test_refine.py
