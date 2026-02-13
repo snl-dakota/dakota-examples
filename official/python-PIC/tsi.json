@@ -1,0 +1,63 @@
+{
+  "simulation" :
+  {
+    "verbose"    :  true,
+    "time_steps" :  320,
+    "dt"         :  0.2,
+    "xmin"       :  0.0,
+    "xmax"       :  6.283185307,
+    "num_elems"  :  32
+  },
+
+  "output" :
+  {
+    "show_plots" :  false,
+    "densities"  :  true
+  },
+
+  "particle_types" :
+  {
+    "ion" :
+    {
+      "charge" :  1.60217662e-19,
+      "mass"   :  1.0e20,
+      "weight" :  0.00012337
+    },
+    "e1-" :
+    {
+      "charge" : -1.60217662e-19,
+      "mass"   :  9.10938356e-31,
+      "weight" :  4.819142774e-07
+    },
+    "e2-" :
+    {
+      "charge" : -1.60217662e-19,
+      "mass"   :  9.10938356e-31,
+      "weight" :  4.819142774e-07
+    }
+  },
+
+  "initial_conditions" :
+  {
+    "ion" :
+    {
+      "num"  :  33,
+      "vx0"  :  0.0,
+      "T"    :  0.0
+    },
+    "e1-" :
+    {
+      "num"  :  4097,
+      "vx0"  :  1.0,
+      "T"    :  0.0,
+      "perturb_x" : "-0.0007669903939+0.001*sin(1*x+1.570796327)"
+    },
+    "e2-" :
+    {
+      "num"  :  4097,
+      "vx0"  : -1.0,
+      "T"    :  0.0,
+      "perturb_x" : "-0.0007669903939+0.001*sin(1*x+1.570796327)"
+    }
+  }
+}
