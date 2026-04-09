@@ -108,12 +108,17 @@ function(test_regress_input _example_path _input_name _depends_on)
   if(DAKOTA_EXE)
     get_filename_component(_dakota_exe_dir ${DAKOTA_EXE} DIRECTORY)
   endif()
+  set(_bin_dir_arg
+    --bin-dir=$<IF:$<BOOL:${DAKOTA_EXE}>,${_dakota_exe_dir},$<TARGET_FILE_DIR:dakota>>
+  )
+  
   add_test(NAME ${_test_name}
     COMMAND "${DAKOTA_TEST_PERL}" --save-output
-      --bin-dir="$<IF:$<BOOL:${DAKOTA_EXE}>,${_dakota_exe_dir},$<TARGET_FILE_DIR:dakota>>"
+      "${_bin_dir_arg}"
       ${_input_name}
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_example_path}"
-    )
+  )
+
   apply_test_properties(${_test_name} "${_depends_on}")
 
   set(_last_test_added ${_test_name} PARENT_SCOPE)
