@@ -16,11 +16,11 @@ def pack_rosen_parameters(dakota_params, dakota_results):
     continuous_vars = [ dakota_params['x1'], dakota_params['x2'] ]
 
     active_set_vector = 0
-    if dakota_results["obj_fn"].asv.function:
+    if dakota_results["obj_fn_1"].asv.function:
         active_set_vector += 1
-    if dakota_results["obj_fn"].asv.gradient:
+    if dakota_results["obj_fn_1"].asv.gradient:
         active_set_vector += 2
-    if dakota_results["obj_fn"].asv.hessian:
+    if dakota_results["obj_fn_1"].asv.hessian:
         active_set_vector += 4
     
     rosen_input = {
