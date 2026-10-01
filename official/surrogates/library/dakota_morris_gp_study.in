@@ -1,3 +1,5 @@
+#@ s*: TimeoutDelay=500
+
  environment
   method_pointer = 'EvalSurrogate'
 
