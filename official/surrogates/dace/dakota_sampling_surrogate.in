@@ -9,7 +9,7 @@ method
 
 model
   id_model = 'SurrogateModel'
-  surrogate global
+  global_surrogate
     gaussian_process surfpack	
     dace_method_pointer = 'DesignMethod'
 

@@ -28,7 +28,7 @@ model using the new surrogate modeling library. It obtains training data using a
 ```
 model
   id_model = 'SurrogateModel'
-  surrogate global
+  global_surrogate
     dace_method_pointer = 'DesignMethod'
   experimental_gaussian_process
     export_model

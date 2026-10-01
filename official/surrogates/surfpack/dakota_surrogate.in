@@ -10,7 +10,7 @@ method
 
 model
   id_model = 'SurrogateModel'
-  surrogate global
+  global_surrogate
     gaussian_process surfpack	
     import_build_points 'build_points.dat'
        freeform

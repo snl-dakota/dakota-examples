@@ -96,7 +96,7 @@ keyword.
 model,
 	id_model = 'HIERARCH'
 	variables_pointer = 'HF_VARS'
-	surrogate hierarchical
+	ensemble_surrogate
 	  ordered_model_fidelities = 'HF'	
 	  
 model,

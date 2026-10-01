@@ -22,13 +22,13 @@ Compared to the [dace](../dace) example, this one is relatively straightforward.
 We focus our attention on the surrogate model specification in `dakota_sampling_surrogate.in`.
 ```
 model
-  surrogate global
+  global_surrogate
     gaussian_process surfpack	
     import_build_points_file 'training_data.dat'
       annotated
         use_variable_labels
 ```
-The `surrogate global` keywords identify the type of model. This is in contrast to, say,
+The `global_surrogate` keyword identifies the type of model. This is in contrast to, say,
 a `single` model type, which is used when running an external simulation. The specific
 kind of surrogate that Dakota will build and evaluate is `gaussian_process surfpack`.
 Surfpack is the surrogate modeling library that currently provides much of Dakota's

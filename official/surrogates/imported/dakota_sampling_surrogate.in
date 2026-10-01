@@ -3,7 +3,7 @@ method
     samples = 100 seed = 5
 
 model
-  surrogate global
+  global_surrogate
     gaussian_process surfpack	
     import_build_points_file 'training_data.dat'
       annotated
