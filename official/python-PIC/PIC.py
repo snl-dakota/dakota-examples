@@ -134,9 +134,7 @@ def get_elem_id(mesh, pos):
     dx = abs(mesh[1] - mesh[0])
     elem_id = np.floor((pos-mesh[0])/dx).astype(int)
     # Handle pos on outer domain boundary
-    if elem_id.size > 1:
-        elem_id[elem_id<0] = 0
-        elem_id[elem_id>len(mesh)-2] = 0
+    elem_id = np.clip(elem_id, 0, len(mesh)-2)
     return elem_id
 
 
