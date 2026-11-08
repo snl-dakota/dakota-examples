@@ -1,0 +1,22 @@
+# eps_0 = {eps_0 = 8.8541878188e-12}
+# k_b = {k_b = 1.380649e-23}
+# q_e = {q_e = 1.602176634e-19}
+# m_e = {m_e = 9.109e-31}
+# pi = {pi = 3.1415926}
+#
+# mult = { mult = 0.50 }
+# n_cell = { n_cell = 160 }
+# Te = { Te = 20 } eV
+# Ti = { Ti = 10 } eV
+# n = {n = eps_0*k_b*20/(q_e*q_e*(PI*PI/(20*20))) } /m^3
+# debye_l = {debye_l = sqrt(eps_0*k_b*Te/(n*q_e*q_e))}
+# dx = { dx = debye_l * mult }
+# L = {L = dx*n_cell}
+#
+# n_ppc = {n_ppc = 1000}
+# weight = {weight = n*dx/n_ppc}
+#
+# omega_pe = {omega_pe = sqrt(n*q_e*q_e/(m_e*eps_0))}
+# plasma_period = {plasma_period = 1/omega_pe}
+# duration = {duration = 40000*plasma_period}
+
