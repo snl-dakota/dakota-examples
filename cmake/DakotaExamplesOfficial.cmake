@@ -339,3 +339,28 @@ dakota_example_test(
   CHECK dakota_sampling.in
 )
 
+# Python API examples
+if(DAKOTA_PYTHON AND Python3_EXECUTABLE)
+  dakota_example_test(
+    PATH official/python-api/sampling
+    COMMAND ${Python3_EXECUTABLE} -B study.py
+  )
+
+  dakota_example_test(
+    PATH official/python-api/nested
+    COMMAND ${Python3_EXECUTABLE} -B study.py
+  )
+
+  dakota_example_test(
+    PATH official/python-api/to-json
+    COMMAND ${Python3_EXECUTABLE} -B study.py
+  )
+endif()
+
+if(DAKOTA_PYTHON AND DAKOTA_PYTHON_DIRECT_INTERFACE AND Python3_EXECUTABLE)
+  dakota_example_test(
+    PATH official/python-api/callback
+    COMMAND ${Python3_EXECUTABLE} -B study.py
+  )
+endif()
+
